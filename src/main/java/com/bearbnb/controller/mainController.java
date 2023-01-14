@@ -21,5 +21,4 @@ public class mainController {
         test.add("스프링 내부 리액트 연동");
         return test;
     }
-
 }
