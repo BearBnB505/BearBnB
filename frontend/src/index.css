@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.btn {
+  margin-bottom: 10px;
+  width: 30%;
+  color: white;
+  background-color: pink;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &.active {
+   background-color: lightblue;
+ }
+}
