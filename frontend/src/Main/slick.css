@@ -3,7 +3,7 @@
 {
     position: relative;
 
-    border-radius: 15px;
+    border-radius: 20px;
 
     display: block;
     box-sizing: border-box;
@@ -24,9 +24,12 @@
 {
     position: relative;
 
+    border-radius: 20px;
+
     display: block;
     overflow: hidden;
 
+    height: 300px;
     margin: 0;
     padding: 0;
 }
@@ -103,14 +106,17 @@
 .slick-initialized .slick-slide
 {
     display: block;
+    border-radius: 20px;
 }
 .slick-loading .slick-slide
 {
     visibility: hidden;
+    border-radius: 20px;
 }
 .slick-vertical .slick-slide
 {
     display: block;
+    border-radius: 20px;
 
     height: auto;
 
@@ -118,4 +124,5 @@
 }
 .slick-arrow.slick-hidden {
     display: none;
+    border-radius: 20px;
 }

@@ -28,21 +28,22 @@ function MainContents(props) {
         infinite: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
     };
 
     return (
-        <div className={"rounded-3"} style={{width: 300}}>
+        <div style={{width: 300}}>
             <div>
                 <Slider {...settings}>
-                    <div className={"rounded-3"}>
+                    <div>
                         <img
                             className="d-block w-100"
                             src="https://a0.muscache.com/im/pictures/c0dd551b-e328-4958-9209-9fa66ac47217.jpg?im_w=1200"
                             alt="First slide"
+                            style={{height: 300}}
                         />
                     </div>
-                    <div className={"rounded-3"}>
+                    <div>
                         <img
                             className="d-block w-100"
                             src="https://a0.muscache.com/im/pictures/03389803-26cf-4de3-bfc8-6dadeb41df40.jpg?im_w=1440"
@@ -50,7 +51,7 @@ function MainContents(props) {
                             style={{height: 300}}
                         />
                     </div>
-                    <div className={"rounded-3"}>
+                    <div>
                         <img
                             className="d-block w-100"
                             src="https://a0.muscache.com/im/pictures/a8d45b2e-8bbe-4e05-85fb-36cbce7e79cc.jpg?im_w=1440"
