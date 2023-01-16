@@ -11,6 +11,7 @@ import LodgingCheck from "./LodgingCheck";
 import LodgingImg from "./LodgingImg";
 import LodgingIntro from "./LodgingIntro";
 import LodgingCost from "./LodgingCost";
+import LoadingConceptTest from "./LoadingConceptTest";
 function AppControl(){
 
     return(
@@ -18,6 +19,7 @@ function AppControl(){
         <Routes>
             <Route path={"lodgingWelcome"} element={<LodgingWelcome />}/>
             <Route path={"lodgingConcept"} element={<LodgingConcept/>}/>
+            <Route path={"lodgingConceptTest"} element={<LoadingConceptTest/>}/>
             <Route path={"lodgingMap"} element={<LodgingMap/>}/>
             <Route path={"lodgingLocationDetail"} element={<LodgingLocationDetail/>}/>
             <Route path={"lodgingBasicInfo"} element={<LodgingBasicInfo/>}/>

@@ -6,7 +6,7 @@ import AppLodgingReg from "./lodging_reg/AppLodgingReg";
 
 function App() {
     return (
-        <div className="App">
+        <div>
             {/*<Test />*/}
             {/*<Loaging/>*/}
             <AppLodgingReg/>
