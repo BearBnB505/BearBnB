@@ -3,8 +3,8 @@ package com.bearbnb.dto;
 import lombok.Data;
 
 @Data
-public class ComfortsDto {
+public class PhotoDto {
     private String lodgingNum;
-    private String comfortId;
-    private String usableYn;
+    private String photo;
+    private String deletedYn;
 }

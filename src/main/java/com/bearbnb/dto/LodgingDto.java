@@ -13,13 +13,13 @@ public class LodgingDto {
     private String addr;
     private double latitude;
     private double longitude;
-    private String intro;
+    private String introHost;
+    private String introLodging;
     private int cost;
     private int peopleNum;
     private int area;
     private String checkInDt;
     private String checkOutDt;
-    private String picture;
     private int bedroomNum;
     private int bedNum;
     private String bedSize;
