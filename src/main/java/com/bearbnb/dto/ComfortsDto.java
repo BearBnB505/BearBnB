@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class ComfortsDto {
     private String lodgingNum;
-    private String comfortName;
+    private String comfortId;
     private String usableYn;
-    private String categoryCode;
 }

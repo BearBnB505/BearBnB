@@ -13,7 +13,8 @@ public class LodgingDto {
     private String addr;
     private double latitude;
     private double longitude;
-    private String intro;
+    private String introHost;
+    private String introLodging;
     private int cost;
     private int peopleNum;
     private int area;
