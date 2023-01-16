@@ -1,5 +1,5 @@
 import React from "react";
-import './hostDetaile.css';
+import './hostDetail.css';
 
 function HostHouse(){
   return(

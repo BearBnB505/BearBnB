@@ -1,19 +1,24 @@
+
 import React from "react";
 import HostImg from "./HostImg";
-import HostDetaileTitle from "./HostDetaileTitle";
 import HouseExplain from "./HouseExplain";
 import HostHouse from "./HostHouse";
+import HostDetailTitle from "./HostDetailTitle";
+import DetailAmenity from "./DetailAmenity";
+import HostIntroduce from "./HostIntroduce";
 
-function HostDetaile(){
+function HostDetail(){
 
   return(
     <div style={{display:"grid", justifyContent:"center"}}>
-      <HostDetaileTitle/>
+      <HostDetailTitle/>
       <HostImg/>
       <HouseExplain/>
       <HostHouse/>
+      <DetailAmenity/>
+      <HostIntroduce/>
     </div>
   )
 }
 
-export default HostDetaile;
+export default HostDetail;

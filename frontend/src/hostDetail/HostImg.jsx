@@ -1,6 +1,6 @@
 import React from "react";
-import {Container} from "react-bootstrap";
-import './hostDetaile.css';
+import {Button, Container} from "react-bootstrap";
+import './hostDetail.css';
 
 
 function HostImg () {
@@ -11,6 +11,7 @@ function HostImg () {
       <img className={'img3'} src="/hostImg/3.png" alt="hostHouse"/>
       <img className={'img4'} src="/hostImg/4.png" alt="hostHouse"/>
       <img className={'img5'} src="/hostImg/5.png" alt="hostHouse"/>
+      <Button className={'HouseImgBtn'} variant="dark">사진 모두보기</Button>
     </div>
   )
 }

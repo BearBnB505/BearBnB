@@ -3,7 +3,7 @@ import React from "react";
 function HouseExplain(){
   return(
     <div className={'containerExplain'}>
-      <hr/>
+      <hr className={'PositionHr'}/>
       <div className={'EXPLine'}>숙소설명</div>
       <p>
         ** 주말, 연휴기간, 6~9월 예약은 2박이상을 우선적으로 받고 있으며 1박예약은 어려운점 양해바랍니다.
