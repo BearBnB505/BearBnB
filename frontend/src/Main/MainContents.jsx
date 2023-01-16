@@ -1,5 +1,4 @@
 import React, {useState, Component} from "react";
-import Carousel from "react-bootstrap/Carousel";
 import Slider from "react-slick";
 
 import "./slick.css";
@@ -31,9 +30,17 @@ function MainContents(props) {
         slidesToScroll: 1,
     };
 
+    const keep = {
+        width: 25,
+        // opacity: .60
+    };
+
     return (
-        <div style={{width: 300}}>
-            <div>
+        <div style={{width: 300}} className={"contents"}>
+            <div className={"position-relative"}>
+                <div className={"position-absolute top-0 end-0 me-2 mt-2"} style={{zIndex: 1}}>
+                    <a href="#" type={"button"}><img src="/img/btnKeep.png" alt="" style={keep}/></a>
+                </div>
                 <Slider {...settings}>
                     <div>
                         <img
@@ -58,27 +65,17 @@ function MainContents(props) {
                             alt="Third slide"
                             style={{height: 300}}
                         />
+                        <img src="" alt=""/>
                     </div>
                 </Slider>
             </div>
 
-            <div className={"text-start mt-4"}>
+            <div className={"text-start mt-2"}>
                 <span><b>주소, 한국</b></span><br/>
                 <span className={"text-muted"}>바다 전망</span><br/>
                 <span className={"text-muted"}>1월 24일~29일</span><br/>
                 <span><b>₩311,640</b> /박</span>
             </div>
-
-            {/*<ol className="carousel-indicators">*/}
-            {/*    /!*{items.map((item, itemIndex) => {*!/*/}
-            {/*    /!*    return (*!/*/}
-            {/*    /!*        <li*!/*/}
-            {/*    /!*            key={index}*!/*/}
-            {/*    /!*            // onClick={() => this.handleCarouselSlide(itemIndex,null)}*!/*/}
-            {/*    /!*            className={((itemIndex === index) ? "active" : "")+" "+item.itemIndicatorClass}/>*!/*/}
-            {/*    /!*    );*!/*/}
-            {/*    /!*})}*!/*/}
-            {/*</ol>*/}
         </div>
     );
 }
