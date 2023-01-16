@@ -19,7 +19,6 @@ public class LodgingDto {
     private int area;
     private String checkInDt;
     private String checkOutDt;
-    private String picture;
     private int bedroomNum;
     private int bedNum;
     private String bedSize;
