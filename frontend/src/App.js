@@ -2,13 +2,15 @@ import logo from './logo.svg';
 import './App.css';
 import Test from "./Test";
 import Join from "./Join";
-
+import Main from "./Main/Main";
 
 function App() {
     return (
-        <div className="App">
+        <div>
             {/*<Test />*/}
             <Join />
+            <Main />
+
         </div>
     );
 }
