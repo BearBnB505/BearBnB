@@ -17,7 +17,6 @@ public class LodgingDto {
     private String introLodging;
     private int cost;
     private int peopleNum;
-    private int area;
     private String checkInDt;
     private String checkOutDt;
     private int bedroomNum;
