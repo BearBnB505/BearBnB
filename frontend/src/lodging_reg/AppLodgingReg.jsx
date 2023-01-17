@@ -1,5 +1,4 @@
 import React from "react";
-import LodgingWelcome from "./LodgingWelcome";
 import AppControl from "./AppControl";
 
 function AppLodgingReg(props){
