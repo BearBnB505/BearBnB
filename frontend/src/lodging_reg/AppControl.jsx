@@ -11,9 +11,13 @@ import LodgingImg from "./LodgingImg";
 import LodgingIntro from "./LodgingIntro";
 import LodgingCost from "./LodgingCost";
 import LodgingBedSelect from "./LodgingBedSelect";
-import LodgingSecondWelcome from "./LoagingSecondWelcome";
+import LodgingSecondWelcome from "./LodgingSecondWelcome";
 import LodgingWelcome from "./LodgingWelcome";
 import ImgUploadBox from "./ImgUploadBox";
+import LodgingHostInfo from "./LodgingHostInfo";
+import LodgingFinal from "./LodgingFinal";
+import LodgingHostInfoTest from "./LodgingHostInfoTest";
+import LodgingThirdWelcome from "./LodgingThirdWelcome";
 
 
 function AppControl(){
@@ -23,6 +27,7 @@ function AppControl(){
         <Routes>
             <Route path={"lodgingWelcome"} element={<LodgingWelcome />}/>
             <Route path={"lodgingSecondWelcome"} element={<LodgingSecondWelcome />}/>
+            <Route path={"lodgingThirdWelcome"} element={<LodgingThirdWelcome />}/>
             <Route path={"lodgingConcept"} element={<LodgingConcept/>}/>
             <Route path={"lodgingMap"} element={<LodgingMap/>}/>
             <Route path={"lodgingLocationDetail"} element={<LodgingLocationDetail/>}/>
@@ -34,9 +39,12 @@ function AppControl(){
             <Route path={"lodgingCost"} element={<LodgingCost/>}/>
             <Route path={"lodgingCheck"} element={<LodgingCheck/>}/>
             <Route path={"lodgingBedSelect"} element={<LodgingBedSelect/>}/>
+            <Route path={"lodgingHostInfo"} element={<LodgingHostInfo/>}/>
+            <Route path = {"lodgingFinal" } element={<LodgingFinal/>}/>
 
 
             <Route path={"ImgUploadBox"} element={<ImgUploadBox/>}/>
+            <Route path={"LodgingHostInfoTest"} element={<LodgingHostInfoTest/>}/>
         </Routes>
     </BrowserRouter>
     )

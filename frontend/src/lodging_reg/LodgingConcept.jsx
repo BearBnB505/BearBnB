@@ -7,7 +7,7 @@ const LoadingConcept = () => {
     const imgSrc = [
         {
             name : '아파트',
-            src : `/concept/apt.jpg`,
+            src : `/concept/apartment.png`,
         },
         {
             name : '주택',
