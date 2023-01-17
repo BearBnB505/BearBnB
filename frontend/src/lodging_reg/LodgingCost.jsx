@@ -6,23 +6,53 @@ function LodgingCost(){
     const [cost, setCost] = useState(50000);
 
     const styles = {
+        border1:{
+            border : "1px solid",
+            borderColor : "#DDDDDD" ,
+            borderRadius : "15px",
+            height : "300px",
+            marginTop : "28px",
+            backgroundColor :"#fafafa"
+        },
+        border2 : {
+            border : "1px solid",
+            borderColor : "#DDDDDD" ,
+            borderRadius : "15px",
+            height : "150px",
+            marginTop : "28px",
+            backgroundColor :"#fafafa"
+        },
         img :{
             width : "50px",
-
-        }
+        },
+        input : {
+            borderRadius : "10px",
+            height : "100px",
+            width: "450px",
+            textAlign :"center",
+            fontSize :"40px",
+            fontWeight:"bold",
+            borderStyle:"solid",
+            borderColor:"#bebebe",
+        },
     }
     function plusOnclick(){
         // alert("플러스버튼")
         setCost(cost+5000)
     }
     function minusOnclick(){
-        if(cost<=0){
+        if(0>=cost-5000){
             setCost(0);
         }
         else {
             setCost(cost-5000);
         }
     }
+    
+    function clickText(){
+        alert('text선택함');
+    }
+
 
     return(
         <div className={"container"}>
@@ -30,18 +60,34 @@ function LodgingCost(){
                 <div className={'col-7 mx-auto'} style={{marginTop : "120px"}}>
                     <p style={{fontSize :"35px", fontWeight:"bold"}}>이제 요금을 설정하세요</p>
                     <p style={{fontSize : "20px", color : "gray"}}>언제든지 변경하실 수 있습니다.</p>
-                    <div style={{border : "1px solid", borderRadius : "15px", height : "300px", marginTop : "28px", backgroundColor :"#EAE0DA"}}>
+                    <div style={styles.border1}>
                         <div className="row align-items-center mt-5" style={{marginLeft : "30px"}}>
                             <div className="col">
                                 <img src='/concept/minusIcon.png' style={styles.img} onClick={minusOnclick}/>
                             </div>
                             <div className="col">
-                                <input type={'text'} value={cost} className={'me-4'} style={{borderRadius : "10px", height : "100px", width: "450px"}}/>
+                                <input type={'text'} value={cost} className={'me-4'} style={styles.input}
+                                onChange={(e)=>setCost(Number(e.target.value))}/>
                             </div>
                             <div className="col">
                                 <img src='/concept/plusIcon.png' style={styles.img} onClick={plusOnclick} />
                             </div>
                             <p style={{textAlign : "center", fontSize :"20px", marginTop:"10px"}}>/박</p>
+                            <p className={"fs-5 mt-2"}>이 지역에서 비슷한 숙소의 요금은 보통 33,000&#8361; ~ 75,000&#8361; 사이입니다.</p>
+                            <img src='/concept/info.png' style={{width : '45px', display:"block", margin:"auto"}}/>
+                        </div>
+                    </div>
+                    {/*아래 다른 박스*/}
+                    <div style={styles.border2} className={"p-4 mt-5"}>
+                        <div className={'row justify-content-lg-between'}>
+                            <div className={'col-6'}>
+                                <p className={'fs-5 fw-bold'}>단기간에 예약률을 높이는 법</p>
+                            </div>
+                            <div className={'col-4'}>
+                                <input type={'checkbox'} style={{zoom : '2', marginLeft : '80px'}}/>
+                            </div>
+                            <p>첫 게스트 3명에게 20% 할인 혜택을 제공하여 더 빨리 예약을 받아보세요</p>
+                            <p className={'text-decoration-underline'} style={{cursor:'default'}} onClick={clickText}>자세히 알아보기</p>
                         </div>
                     </div>
                 </div>

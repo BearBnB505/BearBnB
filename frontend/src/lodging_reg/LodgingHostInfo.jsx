@@ -161,7 +161,8 @@ function LodgingHostInfo(){
                             <input type={'text'} style={{"marginTop" : '19px', width : "150px", textAlign : "center"}} placeholder={'기타'}></input>
                         </div>
                     </div>
-                    <textarea className={'col-12 mx-auto mt-5 p-4'} style={{height:"300px", borderRadius:"10px", fontSize :"20px"}} onChange={onInputHandler} maxLength="3000" />
+                    <textarea className={'col-12 mx-auto mt-5 p-4'} style={{height:"300px", borderRadius:"10px", fontSize :"20px"}} 
+                              onChange={onInputHandler} maxLength="3000" placeholder={"소개를 해주세요"} />
                     <p>
                         <span style={{fontWeight:"bold", color: "gray"}}>{inputCount}</span>
                         <span style={{fontWeight:"bold", color: "gray"}}>/3000</span>

@@ -5,7 +5,7 @@ function LodgingFinal(){
 
     return(
         <div>
-        <h2>숙소등록한 걸 환영합니다.</h2>
+        <h2>00님, 환영합니다</h2>
 
             <footer>
                 <Link to ={"/lodgingCheck"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
