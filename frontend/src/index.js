@@ -5,11 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HostDetail from "./hostDetail/HostDetail";
+import HouseInfo from "./houseInfoUpdate/HouseInfo";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
+        {/*<App/>*/}
         <HostDetail/>
+        <HouseInfo/>
     </React.StrictMode>
 );
 

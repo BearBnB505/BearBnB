@@ -15,8 +15,103 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.1'
+//    implementation 'mysql:mysql-connector-java'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+
+// Gradle을 이용해서 프로젝트 빌드하기. SpringBoot 프로젝트가 build 될 때 React 프로젝트를 먼저 build 하고 결과물을 SpringBoot 프로젝트 build 결과물에 포함시킨다는 스크립트.
+
+//def frontendDir = "$projectDir/frontend"
+//
+//sourceSets {
+//    main {
+//        resources {
+//            srcDirs = ["$projectDir/src/main/resources"]
+//        }
+//    }
+//}
+//
+//processResources {
+//    dependsOn "copyReactBuildFiles"
+//}
+//
+//task installReact(type: Exec) {
+//    workingDir "$frontendDir"
+//    inputs.dir "$frontendDir"
+//    group = BasePlugin.BUILD_GROUP
+//    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+//        commandLine "npm.cmd", "audit", "fix"
+//        commandLine 'npm.cmd', 'install'
+//    } else {
+//        commandLine "npm", "audit", "fix"
+//        commandLine 'npm', 'install'
+//    }
+//}
+//
+//task buildReact(type: Exec) {
+//    dependsOn "installReact"
+//    workingDir "$frontendDir"
+//    inputs.dir "$frontendDir"
+//    group = BasePlugin.BUILD_GROUP
+//    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+//        commandLine "npm.cmd", "run-script", "build"
+//    } else {
+//        commandLine "npm", "run-script", "build"
+//    }
+//}
+//
+//task copyReactBuildFiles(type: Copy) {
+//    dependsOn "buildReact"
+//    from "$frontendDir/build"
+//    into "$buildDir/resources/main/static"
+//}
+//
+//tasks.bootJar {
+//    dependsOn "copyReactBuildFiles"
+//}
+//////////////////////
+//def frontendDir = "$projectDir/frontend"
+//
+//sourceSets {
+//    main {
+//        resources { srcDirs = ["$projectDir/src/main/resources"]
+//        }
+//    }
+//}
+//
+//processResources { dependsOn "copyReactBuildFiles" }
+//
+//task installReact(type: Exec) {
+//    workingDir "$frontendDir"
+//    inputs.dir "$frontendDir"
+//    group = BasePlugin.BUILD_GROUP
+//    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+//        commandLine "npm.cmd", "audit", "fix"
+//        commandLine 'npm.cmd', 'install' }
+//    else {
+//        commandLine "npm", "audit", "fix" commandLine 'npm', 'install'
+//    }
+//}
+//
+//task buildReact(type: Exec) {
+//    dependsOn "installReact"
+//    workingDir "$frontendDir"
+//    inputs.dir "$frontendDir"
+//    group = BasePlugin.BUILD_GROUP
+//    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+//        commandLine "npm.cmd", "run-script", "build"
+//    } else {
+//        commandLine "npm", "run-script", "build"
+//    }
+//}
+//
+//task copyReactBuildFiles(type: Copy) {
+//    dependsOn "buildReact"
+//    from "$frontendDir/build"
+//    into "$projectDir/src/main/resources/static"
+//}

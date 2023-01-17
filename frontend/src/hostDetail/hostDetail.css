@@ -1,8 +1,8 @@
 /*HostImg*/
 .img1 {
     padding-left: 10px;
-    width: 560px;
-    height: 420px;
+    width: 580px;
+    height: 520px;
     border-radius: 20px 0px 0px 20px;
     grid-row: 1/3;
     grid-column: 1;
@@ -10,33 +10,44 @@
 
 .img2{
     padding-left: 5px;
-    width: 220px;
-    height: 205px;
+    width: 300px;
+    height: 258px;
+    position: relative;
+    right: -30px;
 }
 
 .img3{
     padding-left: 5px;
-    width: 220px;
-    height: 205px;
+    width: 300px;
+    height: 258px;
     grid-row:2;
     grid-column:2;
     margin-top: -6px;
+    position: relative;
+    right: -30px;
+    bottom: -7px;
 
 }
 
 .img4{
     padding-left: 5px;
-    width: 220px;
-    height: 205px;
-    border-radius: 0px 20px 0px 0px
+    width: 300px;
+    height: 258px;
+    border-radius: 0px 20px 0px 0px;
+    position: relative;
+    right: -120px;
+
 }
 
 .img5{
     padding-left: 5px;
-    width: 220px;
-    height: 205px;
+    width: 300px;
+    height: 258px;
     border-radius: 0px 0px 20px 0px;
     margin-top: -6px;
+    position: relative;
+    right: -120px;
+    bottom: -7px;
 
 }
 
@@ -44,8 +55,9 @@
     display: grid;
     grid-template-columns: 545px 205px 220px;
     grid-template-rows: 1fr 1fr 0.1fr;
-    grid-gap: 1rem;
+    grid-gap: 4px;
     margin-bottom: 40px;
+    margin-left: 19px;
 }
 
 .HouseImgBtn{
@@ -54,8 +66,8 @@
     display: flex;
     grid-column: 3;
     position: relative;
-    top:-75px;
-    left:90px;
+    top:-50px;
+    left:300px;
     background-color: white;
     color:black;
     font-weight: bold;
@@ -87,6 +99,7 @@
     display: grid;
     grid-template-columns: 200px 200px 200px 200px;
     grid-template-rows: 65px 120px;
+    margin-top: 50px;
 }
 
 .HouseLine{
@@ -103,16 +116,17 @@
 
 .oneLine{
     display: grid;
-    grid-template-columns: 25px 40px 40px 60px 10px 670px 100px 100px ;
+    grid-template-columns: 25px 40px 270px 60px 650px 100px 100px ;
     grid-template-row: repeat(2,1fr);
-    margin-bottom: 25px;
+    margin-bottom: 35px;
 }
 
 .TLine1{
     grid-column: 1/11;
     font-size: 28px;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
+    margin-top: 30px;
 }
 
 .aTag{
@@ -126,6 +140,7 @@
     display: grid;
     grid-template-columns: repeat(2, 290px);
     grid-template-rows: repeat(6, 50px);
+    gap: 5px;
 }
 .AmenityLine{
     font-size: 24px;
@@ -162,7 +177,7 @@
 
 .IntroTitleBox{
     display: grid;
-    grid-template-columns: 40px 50px 90px 100px 30px;
+    grid-template-columns: 40px 50px 90px 900px ;
     grid-template-rows: 40px 80px;
     margin-top: 40px;
 }
@@ -199,7 +214,7 @@
 
 .HostAvgBox{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(40px,auto));
+    grid-template-columns: repeat(auto-fill, 40px 40px 1000px );
     /*grid-template-rows: 30px;*/
     font-weight: bold;
     margin-top: -30px;
@@ -212,7 +227,7 @@
 
 .IntroContents{
     display: grid;
-    grid-template-columns: 500px 50px 250px;
+    grid-template-columns: 500px 70px 250px;
     grid-template-rows: 200px auto 120px;
 }
 
@@ -263,21 +278,179 @@
     font-size: 17px;
     position: relative;
     right: -88px;
+    margin-left: 30px;
 }
 
 .IntroNoticeImg{
     width: 90px;
     height: 70px;
     position: relative;
-    right: -26px;
-    top:-152px
+    right: -65px;
+    top:-152px;
 }
 
 .IntroNoticeText{
     position: relative;
-    right: -50px;
+    right: -69px;
     top:-132px;
     font-size: 5px;
     font-weight: bold;
     color: gray;
+}
+
+/*review*/
+
+.ReviewAvgTitleBox{
+    font-weight: bold;
+    font-size: 23px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 30px 50px 90px minmax(1000px, auto));
+    margin-bottom: 40px;
+    margin-top: 30px;
+}
+
+.progress {
+    appearance: none;
+    height: 4px;
+    width: 150px;
+    position: relative;
+    top: 7px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.progress::-webkit-progress-bar {
+    background:#f0f0f0;
+    border-radius:10px;
+    box-shadow: inset 3px 3px 10px #ccc;
+}
+.progress::-webkit-progress-value {
+    border-radius:10px;
+    background: #1D976C;
+    background: -webkit-linear-gradient(to right, #0dcaf0, #0d6efd);
+    background: linear-gradient(to right, #0dcaf0, #0d6efd);
+}
+
+.ReviewFormBox{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    grid-template-rows: repeat(3, 30px) ;
+    gap: 10px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.DetailAvg{
+    position: relative;
+    top:-3px
+}
+
+.CommentBox{
+    display: grid;
+    grid-template-columns: 50px 300px ;
+    grid-template-rows: 25px 25px 70px;
+    margin-bottom: 15px;
+}
+
+.ReviewUserImg{
+    width: 40px;
+    height: 40px;
+    border-radius: 70%;
+    grid-row: 1/3;
+}
+
+.CommentText{
+    grid-columns:1/3 ;
+    grid-row:3/4 ;
+    width: 420px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 1.2;
+    height: 3.6em;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3 ;
+    -webkit-box-orient: vertical;
+}
+
+.CommentStyleBox{
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    grid-template-columns: repeat(2,1fr);
+    margin-top: 25px;
+    margin-right: -20px;
+}
+
+.commentLine1{
+    font-weight: bold;
+    margin-top: -2px;
+}
+.commentLine2{
+    color: gray;
+    margin-top: -4px;
+
+    font-size: 13px;
+}
+
+
+.ReviewBtn{
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 45px;
+    width: 158px;
+}
+/*DetailGridBox 상세 페이지 내의 화면 분할*/
+
+.DetailGridBox{
+    display: grid;
+    grid-template-rows: repeat(1,2fr);
+    grid-template-columns: repeat(1,3fr);
+}
+
+.MovePayment{
+    grid-column: 2/3;
+    grid-row:1/3
+}
+
+#test_btn1{
+    margin-right:-4px;
+    width: 140px;
+    height: 50px;
+    border-top-left-radius: 15px;
+}
+#test_btn2 {
+    margin-left: 4px;
+    width: 140px;
+    height: 50px;
+    margin-left: 3px;
+    border-top-right-radius: 15px;
+}
+#test_btn3 {
+    width: 279px;
+    height: 50px;
+    border: 1px solid gray;
+    background-color: rgba(0,0,0,0);
+    color: black;
+    padding: 5px;
+    margin-top: -1px;
+    border-radius: 0px 0px 15px 15px;
+}
+#btn_group button{
+    border: 1px solid gray;
+    background-color: rgba(0,0,0,0);
+    color: black;
+    padding: 5px;
+}
+
+
+.paymentBtn{
+    width: 280px;
+    height: 50px;
+    border-radius: 7px 7px 7px 7px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
