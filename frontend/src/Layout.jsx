@@ -6,6 +6,7 @@ function Layout(props) {
     return (
         <div>
             <Header />
+            <hr/>
 
             <Outlet />
         </div>
