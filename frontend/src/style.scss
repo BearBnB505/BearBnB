@@ -1,0 +1,176 @@
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 3vmin;
+  row-gap: 3vmin;
+}
+
+.item {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  height: 40vmin;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 3vmin;
+  text-align: left;
+  background-color: #fff;
+  border-radius: 3vmin;
+
+  & > div {
+    width: 100%;
+    height: 100%;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 5vmin;
+  }
+
+  .image-motion {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      content: '';
+      background-color: rgba(0,0,0,0.4);
+    }
+  }
+
+  .image {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+  }
+
+  .title-motion {
+    z-index: 1;
+    position: relative;
+    color: #fff;
+  }
+
+  &:nth-child(4n + 1),
+  &:nth-child(4n + 4) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .category {
+    font-size: 80%;
+  }
+
+  .content .title {
+    margin: 1.4vmin 0;
+  }
+}
+
+.modal {
+  z-index: 10;
+  position: fixed;
+  // padding: 5vmin;
+  background: rgba(0, 0, 0, 0.7);
+  will-change: opacity;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  .content {
+    height:  50vmin;
+    background-color: #fff;
+    // padding: 6vmin 4vmin;
+    overflow-y: auto;
+  }
+
+  a {
+    color: #fff;
+    text-align: right;
+    display: block;
+    margin-bottom: 1vmin;
+  }
+
+  .image-motion {
+    display: block;
+    width: 100%;
+    height: 50vmin;
+
+    img {
+      display: block;
+      width: 20%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .title-motion {
+    font-size: 2.4vmin;
+  }
+
+  .title {
+    margin-top: 1vmin;
+    margin-bottom: 4vmin;
+  }
+
+  .cateogry {
+    font-size: 60%;
+  }
+
+  p {
+    font-size: 2.1vmin;
+    line-height: 150%;
+  }
+}
+
+
+.header {
+  font-size: 4vmin;
+  margin-bottom: 4vmin;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', 'Malgun Gothic',
+  '맑은 고딕', sans-serif;
+}
+
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  padding: 5vmin;
+  background-color: rgb(255, 255, 255);
+}

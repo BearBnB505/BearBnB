@@ -36,7 +36,7 @@ function MainContents(props) {
     };
 
     return (
-        <div style={{width: 300}} className={"contents"}>
+        <div style={{width: 300}} className={"contents"} id={"main-contents"}>
             <div className={"position-relative"}>
                 <div className={"position-absolute top-0 end-0 me-2 mt-2"} style={{zIndex: 1}}>
                     <a href="#" type={"button"}><img src="/img/btnKeep.png" alt="" style={keep}/></a>
