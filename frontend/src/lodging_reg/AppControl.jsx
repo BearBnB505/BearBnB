@@ -18,6 +18,9 @@ import LodgingHostInfo from "./LodgingHostInfo";
 import LodgingFinal from "./LodgingFinal";
 import LodgingHostInfoTest from "./LodgingHostInfoTest";
 import LodgingThirdWelcome from "./LodgingThirdWelcome";
+import LodgingHostId from "./LodgingHostId";
+import Guest from "../guest";
+import LodgingPayment from "../lodging_payment/LodgingPayment";
 
 
 function AppControl(){
@@ -41,10 +44,13 @@ function AppControl(){
             <Route path={"lodgingBedSelect"} element={<LodgingBedSelect/>}/>
             <Route path={"lodgingHostInfo"} element={<LodgingHostInfo/>}/>
             <Route path = {"lodgingFinal" } element={<LodgingFinal/>}/>
+            <Route path={"lodgingHostId"} element={<LodgingHostId/>}/>
 
 
             <Route path={"ImgUploadBox"} element={<ImgUploadBox/>}/>
             <Route path={"LodgingHostInfoTest"} element={<LodgingHostInfoTest/>}/>
+            <Route path = {"guest"} element={<Guest/>}/>
+            <Route path = {"lodgingPayment" } element={<LodgingPayment/>}/>
         </Routes>
     </BrowserRouter>
     )

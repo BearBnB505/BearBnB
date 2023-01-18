@@ -1,7 +1,18 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
+
 function LodgingCheck(){
+
+    const styles = {
+        box : {
+            boxShadow:" 5px 5px 10px gray",
+            width : "350px",
+            height : "400px",
+            borderRadius : "25px",
+            marginTop:"50px"
+        }
+    }
 
     return(
         <div className={'container'}>
@@ -12,7 +23,7 @@ function LodgingCheck(){
                     <div className="row justify-content-between">
                     <div className={'col-2'}>
                         {/*왼쪽 사진부분*/}
-                        <div style={{boxShadow:" 5px 5px 10px gray", width : "350px",height : "400px", borderRadius : "25px", marginTop:"50px"}}>
+                        <div style={styles.box}>
                             <img src='/concept/house.jpg' style={{width :"300px"}}className={"ms-4"}/>
                             <div className={'row justify-content-evenly mt-3'}>
                                 <div className={'col-4 ms-3'}>

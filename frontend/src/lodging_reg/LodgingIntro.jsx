@@ -32,7 +32,7 @@ function LodgingIntro(){
                 <div className={'col-7 mx-auto p-5'} style={{marginTop : "200px"}}>
                     <p style={{fontSize : "35px", fontWeight:"bold"}}>숙소 설명 작성하기</p>
                     <p style={{fontSize : "20px", color:"gray"}}>숙소의 특징과 장점을 알려주세요.</p>
-                    <textarea className={'col-12 mx-auto'} style={{height:"300px", borderRadius:"10px", fontSize :"20px"}} onChange={onInputHandler} maxLength="3000" />
+                    <textarea className={'col-12 mx-auto p-3'} style={{height:"300px", borderRadius:"10px", fontSize :"20px"}} onChange={onInputHandler} maxLength="3000" />
                     <p>
                         <span style={{fontWeight:"bold", color: "gray"}}>{inputCount}</span>
                         <span style={{fontWeight:"bold", color: "gray"}}>/3000</span>

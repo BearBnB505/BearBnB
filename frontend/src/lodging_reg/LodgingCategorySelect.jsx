@@ -23,7 +23,11 @@ const LoadingConcept = () => {
             marginTop : "100px"
         },
         img : {
-            textAlign : "center"
+            width:"60px",
+            display : "block",
+            margin : "auto",
+            // textAlign : "center",
+
         }
     }
 
@@ -169,7 +173,6 @@ const LoadingConcept = () => {
             name : '조식',
             src : 'https://cdn-icons-png.flaticon.com/128/4872/4872787.png'
         },
-
     ]
 
     const getButton = (id) => {
@@ -178,7 +181,7 @@ const LoadingConcept = () => {
                 <Pressable
                     style={[
                         {backgroundColor: isSelect[id] ? 'gray' : 'white'},
-                        {width : "180px"},
+                        {width : "160px"},
                         {border : "1px solid black"},
                         {borderRadius : "20px"}
                     ]}
@@ -192,7 +195,7 @@ const LoadingConcept = () => {
                     <div className={'container'}>
                         <div className={'row'}>
                             <div className={'col'}>
-                                <img src={imgSrc[id].src} className={"mt-4 ms-3"} style={styles.img}/>
+                                <img src={imgSrc[id].src} className={"mt-4"} style={styles.img}/>
                                 <p style={{textAlign : "center"}} className={"mt-3 fw-bold"}>{imgSrc[id].name}</p>
                             </div>
                         </div>
@@ -210,7 +213,7 @@ const LoadingConcept = () => {
             <div className={"row"}>
                 <div style={styles.font} className={"p-3"}>
                     <h3 className={"fw-bold"} style={{fontSize :"35px"}}>숙소 편의시설 정보를 추가하세요</h3>
-                    <p className={" fs-5 mt-4"} style={{color:"gray"}}>여기에 추가하려는 편의시설이 보이지 않더라도 걱정하지 마세요! 숙소를 등록한 후에 편의시설을 추가할 수 있습니다.</p>
+                    <p className={"fs-5 mt-4"} style={{color:"gray"}}>여기에 추가하려는 편의시설이 보이지 않더라도 걱정하지 마세요! 숙소를 등록한 후에 편의시설을 추가할 수 있습니다.</p>
                 </div>
                 <div className={"row"}>
                     <p className={"mt-5 p-4"} style={{fontSize : "20px", fontWeight : "bolder"}}>어떤 서비스를 제공하나요?</p>
@@ -318,7 +321,6 @@ const LoadingConcept = () => {
                     <div className={"col-2 mt-2 "}>
                         {getButton(33)}
                     </div>
-
                 </div>
                 <footer style={styles.footer} className={"mt-5"}>
                     <Link to ={"/lodgingBedSelect"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
