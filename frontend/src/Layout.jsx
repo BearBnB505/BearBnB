@@ -1,12 +1,15 @@
 import React from "react";
 import Header from "./Header";
 import {Outlet} from "react-router-dom";
-import "./style.scss";
+import Calendar from "./Calendar";
+
+// import "./style.scss";
 
 function Layout(props) {
     return (
         <div>
             <Header />
+            <Calendar />
 
             <Outlet />
         </div>
