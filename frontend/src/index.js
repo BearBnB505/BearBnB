@@ -12,7 +12,8 @@ import Main from "./Main/Main";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <ProjectRouter />
+        {/*<ProjectRouter />*/}
+        <App />
     </React.StrictMode>
 );
 
