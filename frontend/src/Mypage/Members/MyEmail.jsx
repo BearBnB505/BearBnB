@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Form from 'react-bootstrap/Form';
-import {InputGroup} from "react-bootstrap";
+import {FloatingLabel, InputGroup} from "react-bootstrap";
 
 function MyEmail() {
     const [email, setEmail] = useState("");
@@ -14,8 +14,14 @@ function MyEmail() {
         <div className={"mb-3"}>
             <div>
                 <div className={"mb-3"}><small>언제든지 확인하실 수 있는 주소를 사용하세요</small></div>
-                <InputGroup size="lg"><Form.Control value={email} onChange={onChangeEmail}
-                                                    placeholder={"g***o@gmail.com"}></Form.Control></InputGroup>
+                <InputGroup size="lg">
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="이메일"
+                        className="mb-3"
+                    ><Form.Control value={email} onChange={onChangeEmail}
+                                                    placeholder={"이메일"}></Form.Control>
+                    </FloatingLabel></InputGroup>
             </div>
             <div className={"mt-2"}>
                 <button className={"btn btn-dark btn-lg"}>저장</button>

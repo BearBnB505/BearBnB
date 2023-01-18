@@ -5,6 +5,8 @@ import MyName from "./Members/MyName";
 import MyEmail from "./Members/MyEmail";
 import MyTel from "./Members/MyTel";
 import MyPwd from "./Members/MyPwd";
+import { motion } from "framer-motion";
+import Anima from "./animaData";
 
 function Members(props) {
     const [name, setName] = useState(false);
@@ -13,7 +15,11 @@ function Members(props) {
     const [pwd, setPwd] = useState(false);
 
     return (
-        <div className={"container mt-5"}>
+        <motion.div
+            variants={Anima}
+            initial="hidden"
+            animate="visible"
+            exit="exit" className={"container mt-5 show-center bg-lightRed"}>
             <div className={"mb-5"}>
                 <Breadcrumb>
                     <Breadcrumb.Item href="/">마이페이지</Breadcrumb.Item>
@@ -85,7 +91,7 @@ function Members(props) {
                 <Aside/>
 
             </div>
-        </div>
+        </motion.div>
     )
 }
 
