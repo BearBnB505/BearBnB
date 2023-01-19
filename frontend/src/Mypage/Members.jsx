@@ -20,7 +20,7 @@ function Members(props) {
             initial="hidden"
             animate="visible"
             exit="exit" className={"container mt-5 show-center bg-lightRed"}>
-            <div className={"mb-5"}>
+            <div className={"row mb-5 ms-5"}>
                 <Breadcrumb>
                     <Breadcrumb.Item href="/">마이페이지</Breadcrumb.Item>
                     <Breadcrumb.Item active>본인정보 수정</Breadcrumb.Item>
@@ -29,7 +29,7 @@ function Members(props) {
             </div>
 
             <div className={"row"}>
-                <div className={"col-sm-8"}>
+                <div className={"col-sm-6 mx-5 px-4"}>
 
                     <div className={"row d-flex justify-content-between"}>
                         <div className={"col-sm-9"}>
@@ -88,7 +88,10 @@ function Members(props) {
                     <hr/>
                 </div>
 
-                <Aside/>
+                <div className={"col-4 mb-5 px-5"}>
+                    <Aside/>
+                </div>
+
 
             </div>
         </motion.div>

@@ -75,6 +75,7 @@ function Header(props) {
                             <DropdownMenu align={"end"}>
                                 <DropdownItem href={"#"}>로그인</DropdownItem>
                                 <DropdownItem href={"#"}>회원가입</DropdownItem>
+                                <DropdownItem href={"/mypage"}>마이페이지</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </div>
