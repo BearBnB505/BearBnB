@@ -4,17 +4,17 @@ import HouseName from "../basicInfo/component/HouseName";
 import HouseIntro from "../basicInfo/component/HouseIntro";
 import Capacity from "../basicInfo/component/Capacity";
 import Add from "./component/Add";
+import LocationIntro from "./component/LocationIntro";
 
 const LocationInfoUpdate = () => {
-  const [houseIntro, setHouseIntro] = useState(false);
 
-
-  return(
+  return (
     <div className={'BasicInfoFrame'}>
-      <div className={'BasicTitle'} style={{marginTop:30}}>
+      <div className={'BasicTitle'} style={{marginTop: 30}}>
         위치
       </div>
       <Add/>
+      <LocationIntro/>
     </div>
   )
 }

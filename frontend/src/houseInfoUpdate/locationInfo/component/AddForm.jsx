@@ -7,7 +7,7 @@ const AddForm = (props) => {
     <div>
       <div className={'HNameFrame1'}>
         <p className={'HNameLine1'}>주소</p>
-        <button className={'BasicInfoBtn2'} onClick={() => {
+        <button className={'BasicInfoBtn2'} id={'AddFormBtn1'} onClick={() => {
           props.setAddIntro(false)
         }}>&#88;</button>
       </div>
@@ -59,7 +59,7 @@ const AddForm = (props) => {
 
       <hr/>
       <div className={'HNameFrame2'}>
-        <button className={'BasicInfoBtn'} style={{width: 70}} onClick={() => {
+        <button className={'BasicInfoBtn'}  id={'AddFormBtn2'} style={{width: 70}} onClick={() => {
           props.setAddIntro(false)
         }}>취소
         </button>

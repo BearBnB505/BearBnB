@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import HouseName from "./component/HouseName";
 import HouseIntro from "./component/HouseIntro";
 import Capacity from "./component/Capacity";
 
 function BasicInfoUpdate(){
+
   return(
     <div className={'BasicInfoFrame'}>
       <div className={'BasicTitle'}>
