@@ -3,7 +3,6 @@ import Header from "./Header";
 import {Outlet} from "react-router-dom";
 import Calendar from "./Calendar";
 
-// import "./style.scss";
 
 function Layout(props) {
     return (
