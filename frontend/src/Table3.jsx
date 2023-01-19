@@ -18,7 +18,7 @@ function Table1() {
                 <thead>
                 <tr>
                     <th>번호</th>
-                    <th>캐릭터1</th>
+                    <th>캐릭터3</th>
                     <th>이름</th>
                     <th>아이디</th>
                     <th>전화번호</th>
