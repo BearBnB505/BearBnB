@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-
+// 확인 및 결제 페이지
 function LodgingPayment(){
 
     const styles={
@@ -59,6 +59,16 @@ function LodgingPayment(){
                     <hr style={{width:"810px"}} />
                 </div>
                 <p style={{fontSize:"27px", fontWeight : "bold", paddingTop :"20px"}}>요금 정보</p>
+                <div className={'row'}>
+                    <div className={'col-9'}>
+                        <p style={{fontSize:"23px", color:"gray"}}> &#8361; 50000 x 3박 </p>
+                    </div>
+                    <div className={'col-3'}>
+                        <p style={{fontSize:"23px"}}> &#8361; 150000 </p>
+                    </div>
+
+                    <button className={'btn btn-danger mt-5 col-3 mx-6 fs-5'} style={{marginLeft : "600px"}}>결제</button>
+                </div>
             </div>
         </div>
 
