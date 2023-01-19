@@ -5,11 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProjectRouter from "./ProjectRouter";
+import AppLodgingReg from "./lodging_reg/AppLodgingReg";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <ProjectRouter />
+        <AppLodgingReg/>
     </React.StrictMode>
 );
 
