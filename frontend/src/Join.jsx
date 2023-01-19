@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import {FloatingLabel, InputGroup, ListGroup, ListGroupItem} from "react-bootstrap";
 import {useCallback, useState} from "react";
-import Year from "react-live-clock";
+
 
 function Join(){
 
@@ -35,19 +35,17 @@ function Join(){
 
     //미성년자 체크
     const onChangeBirth = useCallback((e:React.ChangeEvent<HTMLInputElement>) =>{
-        const birthCurrent = Number((e.target.value).slice(0,4)) //입력한 년도
+        const birthCurrent = Number((e.target.value).slice(0,4))
 
-        setBirth(birthCurrent); // birth에 입력
-        //birthCurrent 얘는 숫자형맞음
-        console.log(birth);
-        console.log(birthCurrent);
-        console.log('성인체크 : ' + (birth-birthCurrent));
-        if(numberThisYear-birthCurrent < 19){
+        setBirth(birthCurrent);
+
+        const age = numberThisYear-birthCurrent;
+        console.log(age);
+        if(age < 19){
             setBirthMessage('미성년자는 가입할 수 없습니다.')
             setIsBirth('error')
-
         } else {
-            setBirthMessage('성인입니다.')
+            setBirthMessage('')
             setIsBirth('success')
         }
     },[])
@@ -59,6 +57,7 @@ function Join(){
             /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
         const emailCurrent = e.target.value
         setEmail(emailCurrent)
+
 
         if (!emailRegex.test(emailCurrent)) {
             setEmailMessage('틀린 이메일 형식입니다.')
@@ -74,6 +73,7 @@ function Join(){
         const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
         const passwordCurrent = e.target.value
         setPassword(passwordCurrent)
+        console.log(password)
 
         if (!passwordRegex.test(passwordCurrent)) {
             setPasswordMessage('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요')
@@ -126,14 +126,16 @@ function Join(){
                         </InputGroup>
                         <p style={{color : "gray", fontSize :"15px"}}>정부 발급 신분증에 표시된 이름과 일치하는지 확인하세요.</p>
                         <FloatingLabel controlId="birth" label="생년월일">
-                            <Form.Control type="number" placeholder="생년월일 8자리" onChange={onChangeBirth}/>
+                            <Form.Control type="text" placeholder="생년월일 8자리" onChange={onChangeBirth}/>
                         </FloatingLabel>
-                        <p style={{color : "gray", fontSize :"15px"}}>{birth.length > 0 && <span className={`message ${isBirth ? 'success' : 'error'}`}>{birthMessage}</span>}</p>
+                        <p style={{color : "gray", fontSize :"15px"}}>{<span className={`message ${isBirth ? 'success' : 'error'}`}>{birthMessage}</span>}</p>
+
                         <br/>
                         <FloatingLabel controlId="email" label="이메일">
                             <Form.Control type="email" typeTitle="email" placeholder="이메일" onChange={onChangeEmail}/>
                         </FloatingLabel>
                         <p style={{color : "gray", fontSize :"15px"}}>{email.length > 0 && <span className={`message ${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>}</p>
+
                         <br />
                         <FloatingLabel controlId="pwd" label="비밀번호">
                             <Form.Control type="password" placeholder="비밀번호" onChange={onChangePassword}/>
@@ -441,9 +443,6 @@ function Join(){
                             차별 금지 정책, 개인정보 처리방침에 동의합니다.
                         </div>
                         <button className={'btn btn-danger col-12 mt-5 mb-5'}>회원가입완료</button>
-                        <span className="Year">
-                            <input type={'text'} value={thisYear}  />
-                        </span>
                     </div>
                 </div>
             </div>
