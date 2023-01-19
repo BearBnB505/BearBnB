@@ -32,17 +32,21 @@ function HostIntroContents() {
           </p>
         </div>
         <div className={'col ms-5'}>
-          <div className={'mb-2'}>
-            {/*<div className={'IntroTextLine2'}>언어:</div>*/}
-            <span className={''}>언어 : </span>
-            {/*<div className={'IntroTextLine2'} style={{marginLeft:5}}>한국어</div>*/}
-            <span className={''} style={{marginLeft:5}}>한국어</span>
+          <div className={'ps-4'}>
+            <div className={'mb-2'}>
+              {/*<div className={'IntroTextLine2'}>언어:</div>*/}
+              <span className={''}>언어 : </span>
+              {/*<div className={'IntroTextLine2'} style={{marginLeft:5}}>한국어</div>*/}
+              <span className={''} style={{marginLeft:5}}>한국어</span>
+            </div>
+
+            {/*<div className={'IntroTextLine1'}>숙박 중 게스트와의 교류</div>*/}
+            <div className={'mb-2'}>숙박 중 게스트와의 교류</div>
+
+            {/*<Button style={{gridColumn: 2 / 4, marginLeft:30}} className={'IntroBtn'} variant="dark">호스트에게 연락하기</Button>*/}
+            <Button className={'IntroBtn my-3'} variant="dark">호스트에게 연락하기</Button>
           </div>
 
-          {/*<div className={'IntroTextLine1'}>숙박 중 게스트와의 교류</div>*/}
-          <div className={''}>숙박 중 게스트와의 교류</div>
-          {/*<Button style={{gridColumn: 2 / 4, marginLeft:30}} className={'IntroBtn'} variant="dark">호스트에게 연락하기</Button>*/}
-          <Button className={'IntroBtn my-3'} variant="dark">호스트에게 연락하기</Button>
 
           <div className={'row mt-5'}>
             <div className={'col-1'}>

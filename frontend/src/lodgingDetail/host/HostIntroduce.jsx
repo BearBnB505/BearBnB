@@ -5,12 +5,12 @@ import HostIntroContents from "./HostIntroContents";
 
 function HostIntroduce(){
   return(
-  <div>
-    <HostInroTitle/>
-    <HostAvg/>
-    <HostIntroContents/>
+    <div>
+      <HostInroTitle/>
+      <HostAvg/>
+      <HostIntroContents/>
 
-  </div>
+    </div>
 
   )
 }
