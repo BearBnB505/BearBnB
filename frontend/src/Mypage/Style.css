@@ -1,0 +1,11 @@
+.w1000 {
+    width: 1000px;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: #3f73d2;
+}

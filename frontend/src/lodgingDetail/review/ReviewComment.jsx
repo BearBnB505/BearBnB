@@ -3,7 +3,7 @@ import React from "react";
 function ReviewComment(){
   return(
     <div className={'CommentBox'}>
-      <img  className={'ReviewUserImg'} src={"/hostImg/1.png"} alt={"hostImg"}></img>
+      <img className={'ReviewUserImg'} src={"/hostImg/1.png"} alt={"hostImg"}></img>
       <div className={'commentLine1'}>쥐순이</div>
       <div className={'commentLine2'}>2022.11.21</div>
       <div></div>

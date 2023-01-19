@@ -6,7 +6,7 @@ function AmenityItem(img, title){
   for(let i = 0; i<10; i++){
     AmenityItemArr.push(
       <div className={'AmenityItem'} >
-        <img className={'AmentityImg'} src={`/houseIcon/${img}`} alt={'AmenityIcon'}></img>
+        <img className={'AmentityImg'} src={`/concept/${img}`} alt={'AmenityIcon'}></img>
         <div className={'AmenityTitle'}>{title}</div>
       </div>
     )
