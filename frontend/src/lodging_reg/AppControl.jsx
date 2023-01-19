@@ -55,9 +55,6 @@ function AppControl(){
             {/*성인, 유아, 반려동물 수*/}
             <Route path = {"guest"} element={<Guest/>}/>
 
-            {/*결제페이지들*/}
-            {/*<Route path = {"lodgingPayment" } element={<LodgingPayment/>}/>*/}
-            {/*<Route path = {"lodgingPaymentEnd" } element={<LodgingPaymentEnd/>}/>*/}
         </Routes>
     </BrowserRouter>
     )
