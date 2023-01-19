@@ -66,8 +66,7 @@ function LodgingPayment(){
                     <div className={'col-3'}>
                         <p style={{fontSize:"23px"}}> &#8361; 150000 </p>
                     </div>
-
-                    <button className={'btn btn-danger mt-5 col-3 mx-6 fs-5'} style={{marginLeft : "600px"}}>결제</button>
+                    <button className={'btn btn-danger mt-5 col-3 mx-6 fs-5'} style={{marginLeft : "600px"}}>예약하기</button>
                 </div>
             </div>
         </div>
