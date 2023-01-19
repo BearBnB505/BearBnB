@@ -34,6 +34,7 @@ import Guest from "./guest";
 import LodgingPayment from "./lodging_payment/LodgingPayment";
 import LodgingPaymentEnd from "./lodging_payment/LodgingPaymentEnd";
 import LodgingPaymentFailure from "./lodging_payment/LodgingPaymentFailure";
+import HostMyPageMain from "./HostMyPage/HostMyPageMain";
 
 function ProjectRouter(props) {
     return (
@@ -87,6 +88,9 @@ function ProjectRouter(props) {
                     <Route path = {"lodgingPayment" } element={<LodgingPayment/>}/>
                     <Route path = {"lodgingPaymentEnd" } element={<LodgingPaymentEnd/>}/>
                     <Route path = {"lodgingPaymentFailure" } element={<LodgingPaymentFailure/>}/>
+
+                    {/*호스트마이페이지*/}
+                    <Route path={"hostMyPageMain"} element={<HostMyPageMain/>}/>
 
 
                     {/**/}
