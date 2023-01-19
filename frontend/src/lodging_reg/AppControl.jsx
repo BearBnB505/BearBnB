@@ -29,6 +29,7 @@ function AppControl(){
     return(
     <BrowserRouter>
         <Routes>
+            {/*숙소등록페이지*/}
             <Route path={"lodgingWelcome"} element={<LodgingWelcome />}/>
             <Route path={"lodgingSecondWelcome"} element={<LodgingSecondWelcome />}/>
             <Route path={"lodgingThirdWelcome"} element={<LodgingThirdWelcome />}/>
@@ -55,8 +56,8 @@ function AppControl(){
             <Route path = {"guest"} element={<Guest/>}/>
 
             {/*결제페이지들*/}
-            <Route path = {"lodgingPayment" } element={<LodgingPayment/>}/>
-            <Route path = {"lodgingPaymentEnd" } element={<LodgingPaymentEnd/>}/>
+            {/*<Route path = {"lodgingPayment" } element={<LodgingPayment/>}/>*/}
+            {/*<Route path = {"lodgingPaymentEnd" } element={<LodgingPaymentEnd/>}/>*/}
         </Routes>
     </BrowserRouter>
     )

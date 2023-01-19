@@ -21,7 +21,6 @@ function LodgingFinal(){
 
     return(
         <div style = {styles.body}>
-            <h1 className={'data-splitting'} >Happy birthday Chris Coyier<br/>🎂</h1>
             <div className={'container'}>
             <div  className={'row'}>
                 <div className={'col-6'} style={styles.font}>
