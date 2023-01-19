@@ -1,5 +1,5 @@
 import React from "react";
-import '../hostDetail.css';
+import '../lodgingDetail.css';
 
 function AmenityItem(img, title){
   let AmenityItemArr = [];

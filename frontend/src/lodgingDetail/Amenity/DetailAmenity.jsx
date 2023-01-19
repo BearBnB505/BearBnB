@@ -1,5 +1,5 @@
 import React from "react";
-import '../hostDetail.css';
+import '../lodgingDetail.css';
 import {Button} from "react-bootstrap";
 import AmenityItem from "./AmenityItem";
 

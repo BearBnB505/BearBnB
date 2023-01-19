@@ -1,6 +1,6 @@
 import React from "react";
 import {Button, Container} from "react-bootstrap";
-import '../hostDetail.css';
+import '../lodgingDetail.css';
 
 
 function HostImg () {
