@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Style.css"
 import Card from "./Card";
 import {
-    faCamera, faUser, faHeart, faCalendarCheck, faCalendarMinus, faUserCog, faList, faRightFromBracket
+    faCamera, faUser, faHeart, faCalendarCheck, faCalendarMinus, faUserCog, faList, faRightFromBracket, faHouseSignal
 } from "@fortawesome/free-solid-svg-icons";
 import {Link, Outlet} from "react-router-dom";
 import Anima from "./animaData";
@@ -25,7 +25,7 @@ function Mypage(props) {
                 <Link style={styles.a} className={"col-sm-4"} to={"/review"}><Card id={"2"} icon={faCamera}
                                                                                    title={"후기 관리"}
                                                                                    content={"후기 내역을 확인, 삭제합니다"}/></Link>
-                <Link className={"col-sm-4"} to={"/keeping"}><Card id={"3"} icon={faHeart} title={"찜한 숙소 목록"}
+                <Link className={"col-sm-4"} to={"/keeping"}><Card id={"3"} icon={faHouseSignal} title={"찜한 숙소 목록"}
                                                                    content={"내가 찜한 숙소 목록을 보여줍니다"}/></Link>
                 <div className={"mt-3"}></div>
                 <Link className={"col-sm-4"} to={"/bookingConfirm"}><Card id={"4"} icon={faCalendarCheck}
