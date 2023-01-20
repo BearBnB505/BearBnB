@@ -14,7 +14,7 @@ public class mainController {
         return "Hello World";
     }
 
-    @RequestMapping("test")
+    @RequestMapping("/test")
     public List<String> test() throws Exception {
         List<String> test = new ArrayList<>();
         test.add("테스트");

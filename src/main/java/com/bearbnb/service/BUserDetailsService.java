@@ -10,7 +10,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +37,7 @@ public class BUserDetailsService implements UserDetailsService {
                 member.getUserId(),
                 member.getPwd(),
                 member.isFromSocial(),
-                member.getUserCode()
+                Collections.singleton(new SimpleGrantedAuthority("ROLE_" + member.getUserCode()))
         );
 
         authMember.setName(member.getName());

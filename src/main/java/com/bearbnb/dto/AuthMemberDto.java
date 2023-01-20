@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -19,7 +20,7 @@ public class AuthMemberDto extends User {
     private boolean fromSocial;
 
 
-    public AuthMemberDto(String username, String password, boolean fromSocial, Collection<? extends GrantedAuthority> auth) {
+    public AuthMemberDto(String username, String password, boolean fromSocial, Set<GrantedAuthority> auth) {
         super(username, password, auth);
         this.userId = username;
         this.fromSocial = fromSocial;
