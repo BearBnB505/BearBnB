@@ -1,9 +1,10 @@
 import React, {createContext, useState} from "react";
 import AddForm from "../../locationInfo/component/AddForm";
 import AmenityForm from "./AmenityForm";
+import $ from "jquery";
 
 
-const Amenity= defaultValue=>{
+const Amenity= ()=>{
   const [bathtub, setBathtub] = useState(false);
   const [shower, setShower] = useState(false);
   const [tower, setTower] = useState(false);
@@ -40,7 +41,6 @@ const Amenity= defaultValue=>{
   const [breakfast, setBreakfast] = useState(false);
 
   const [amenity, setAmenity] = useState(false);
-
 
 
 
@@ -90,6 +90,7 @@ const Amenity= defaultValue=>{
         {breakfast && <div className={'HNameLine3'}>조식</div>}
       </div>
       {amenity && <AmenityForm setAmenity={setAmenity}
+
                             bathtub={bathtub} setBathtub={setBathtub}
                             shower={shower} setShower={setShower}
                             tower={tower} setTower={setTower}
@@ -100,24 +101,31 @@ const Amenity= defaultValue=>{
                             washer={washer} setWasher={setWasher}
                             dryer={dryer} setDryer={setDryer}
                             cleaningSupplies={cleaningSupplies} setCleaningSupplies={setCleaningSupplies}
+
                             bed={bed} setBed={setBed}
                             bedSheet={bedSheet} setBedSheet={setBedSheet}
                             bedding={bedding} setBedding={setBedding}
+
                             airCon={airCon} setAirCon={setAirCon}
                             heater={heater} setHeater={setHeater}
+
                             internet={internet} setInternet={setInternet}
                             tv={tv} setTv={setTv}
+
                             refrigerator={refrigerator} setRefrigerator={setRefrigerator}
                             microwave={microwave} setMicrowave={setMicrowave}
                             gasStove={gasStove} setGasStove={setGasStove}
                             dinnerware={dinnerware} setDinnerware={setDinnerware}
+
                             feeParking={feeParking} setFeeParking={setFeeParking}
                             freeParking={freeParking} setFreeParking={setFreeParking}
+
                             cctv={cctv} setCCTV={setCCTV}
                             fireAlarm={fireAlarm} setFireAlarm={setFireAlarm}
                             coAlarm={coAlarm} setCOAlarm={setCOAlarm}
                             fireExtinguisher={fireExtinguisher} setFireExtinguisher={setFireExtinguisher}
                             firstAidKit={firstAidKit} setFirstAidKit={setFirstAidKit}
+
                             longTerm={longTerm} setLongTerm={setLongTerm}
                             pet={pet} setPet={setPet}
                             guestOnlyDoor={guestOnlyDoor} setGuestOnlyDoor={setGuestOnlyDoor}
