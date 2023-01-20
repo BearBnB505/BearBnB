@@ -35,6 +35,7 @@ import LodgingPayment from "./lodging_payment/LodgingPayment";
 import LodgingPaymentEnd from "./lodging_payment/LodgingPaymentEnd";
 import LodgingPaymentFailure from "./lodging_payment/LodgingPaymentFailure";
 import Join from "./Join";
+import HostMyPageMain from "./HostMypage/HostMyPageMain";
 
 function ProjectRouter(props) {
     return (
@@ -93,7 +94,8 @@ function ProjectRouter(props) {
                     {/* 회원가입 */}
                     <Route path={"join"} element={<Join/>}/>
 
-                    {/**/}
+                    {/* 호스트 마이페이지*/}
+                    <Route path={"hostMyPageMain"} element={<HostMyPageMain/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
@@ -101,3 +103,5 @@ function ProjectRouter(props) {
 }
 
 export default ProjectRouter;
+
+
