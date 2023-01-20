@@ -34,6 +34,7 @@ import Guest from "./guest";
 import LodgingPayment from "./lodging_payment/LodgingPayment";
 import LodgingPaymentEnd from "./lodging_payment/LodgingPaymentEnd";
 import LodgingPaymentFailure from "./lodging_payment/LodgingPaymentFailure";
+import Join from "./Join";
 
 function ProjectRouter(props) {
     return (
@@ -89,7 +90,9 @@ function ProjectRouter(props) {
                     <Route path = {"lodgingPaymentFailure" } element={<LodgingPaymentFailure/>}/>
 
 
-                    {/**/}
+                    {/* 회원가입 */}
+                    <Route path={"join"} element={<Join/>}/>
+
                     {/**/}
                 </Route>
             </Routes>
