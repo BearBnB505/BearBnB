@@ -14,11 +14,16 @@ public class mainController {
         return "Hello World";
     }
 
-    @RequestMapping("/test")
+    @RequestMapping("test")
     public List<String> test() throws Exception {
         List<String> test = new ArrayList<>();
         test.add("테스트");
         test.add("스프링 내부 리액트 연동");
         return test;
+    }
+
+    @RequestMapping("/user")
+    public String user() {
+        return "user";
     }
 }
