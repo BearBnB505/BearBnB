@@ -110,7 +110,9 @@ function Join(){
             <div className={'row justify-content-start'}>
                 <div className={'row col-5 mx-auto'}>
                     <div className = {'col-4'}>
-                        <Link to={'#'}><img src='/joinImg/leftleftArrow.png' style={{width :"20px", marginTop:"10px"}}/></Link>
+                        {/*<Link to={'#'}>*/}
+                            <img src='/joinImg/leftleftArrow.png' style={{width :"20px", marginTop:"10px"}}/>
+                        {/*</Link>*/}
                     </div>
                     <div className={"col-6"}>
                         <p style={{fontSize:"22px", fontWeight:"bold"}}>회원가입완료하기</p>
