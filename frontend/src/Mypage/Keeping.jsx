@@ -43,7 +43,7 @@ function Keeping() {
                     exit="exit" className={"container mt-5"}>
             <div className={"mb-5"}>
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/">마이페이지</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/mypage">마이페이지</Breadcrumb.Item>
                     <Breadcrumb.Item active>찜한 숙소 목록</Breadcrumb.Item>
                 </Breadcrumb>
                 <h2 className={"fw-bold"}>찜한 숙소 목록</h2>

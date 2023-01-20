@@ -19,7 +19,7 @@ function MembersDel() {
                     exit="exit" className={"container mt-5"}>
             <div className={"mb-5"}>
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/">마이페이지</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/mypage">마이페이지</Breadcrumb.Item>
                     <Breadcrumb.Item active>회원 탈퇴</Breadcrumb.Item>
                 </Breadcrumb>
                 <h3 className={"fw-bold"}>회원 탈퇴</h3>

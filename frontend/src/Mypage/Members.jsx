@@ -22,7 +22,7 @@ function Members(props) {
             exit="exit" className={"container mt-5 show-center bg-lightRed"}>
             <div className={"row mb-5 ms-5"}>
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/">마이페이지</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/mypage">마이페이지</Breadcrumb.Item>
                     <Breadcrumb.Item active>본인정보 수정</Breadcrumb.Item>
                 </Breadcrumb>
                 <h3 className={"fw-bold"}>본인정보 수정</h3>
