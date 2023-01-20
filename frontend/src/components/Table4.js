@@ -1,29 +1,21 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
 import {Container} from "react-bootstrap";
-import Navbar from "./components/Navbar";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from "react-router-dom";
+import Navbar from "./Navbar";
 
 function Table1() {
 
     return (
         <Container className="panel" style={styles.container}>
-            <Router>
             <Navbar />
-            <Table striped bordered hover>
+            <h4>매출관리</h4>
+            <Table className={"table table-striped table-hover table-bordered"} >
                 <thead>
                 <tr>
-                    <th>번호</th>
-                    <th>캐릭터1</th>
-                    <th>이름</th>
-                    <th>아이디</th>
-                    <th>전화번호</th>
-                    <th>이메일</th>
-                    <th>상태</th>
+                    <th>년도</th>
+                    <th>월</th>
+                    <th>수익</th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -31,26 +23,22 @@ function Table1() {
                     <td>1</td>
                     <td>Mark</td>
                     <td>Otto</td>
-                    <td>@mdo</td>
+
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Jacob</td>
                     <td>Thornton</td>
-                    <td>@fat</td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>Larry the Bird</td>
                     <td>Larry the Bird</td>
-                    <td>@twitter</td>
                 </tr>
 
                 </tbody>
             </Table>
-            </Router>
         </Container>
-
     );
 
 }

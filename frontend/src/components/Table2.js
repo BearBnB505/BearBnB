@@ -1,28 +1,27 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
 import {Container} from "react-bootstrap";
-import Navbar from "./components/Navbar";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from "react-router-dom";
+import Navbar from "./Navbar";
 
 function Table1() {
 
     return (
         <Container className="panel" style={styles.container}>
-            <Router>
             <Navbar />
-            <Table striped bordered hover>
+            <h4>숙소관리</h4>
+            <Table className={"table table-striped table-hover table-bordered"} >
                 <thead>
                 <tr>
                     <th>번호</th>
-                    <th>캐릭터2</th>
-                    <th>이름</th>
-                    <th>아이디</th>
+                    <th>숙소 번호</th>
+                    <th>숙소명</th>
+                    <th>호스트아이디</th>
                     <th>전화번호</th>
                     <th>이메일</th>
+                    <th>신청날짜</th>
+                    <th>별점</th>
+                    <th>신고건수</th>
+                    <th>신분증사진</th>
                     <th>상태</th>
                 </tr>
                 </thead>
@@ -48,7 +47,6 @@ function Table1() {
 
                 </tbody>
             </Table>
-            </Router>
         </Container>
 
     );
