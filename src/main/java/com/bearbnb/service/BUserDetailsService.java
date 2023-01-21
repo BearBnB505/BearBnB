@@ -32,12 +32,11 @@ public class BUserDetailsService implements UserDetailsService {
 
         MembersDto member = result.get();
 
-
         AuthMemberDto authMember = new AuthMemberDto(
                 member.getUserId(),
                 member.getPwd(),
                 member.isFromSocial(),
-                Collections.singleton(new SimpleGrantedAuthority("ROLE_" + member.getUserCode()))
+                Collections.singleton(new SimpleGrantedAuthority("ROLE_" + member.getUserCode().toUpperCase()))
         );
 
         authMember.setName(member.getName());
