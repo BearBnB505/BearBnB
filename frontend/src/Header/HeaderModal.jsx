@@ -38,8 +38,8 @@ function HeaderModal(props) {
                 <div className={"btn-group"} role={"group"}>
 
                     <button type={"button"} id={"btn-where"} className={"btn btn-outline-secondary px-3 py-1"} style={styles.pillStart} onClick={() => setShow(true)}>어디든지</button>
-                    <button type={"button"} className={"btn btn-outline-secondary px-3 py-1"}>언제든 일주일</button>
-                    <button type={"button"} className={"btn btn-outline-secondary px-3 py-1"} style={styles.nav1PillEnd}>
+                    <button type={"button"} className={"btn btn-outline-secondary px-3 py-1"} onClick={() => setShow(true)}>언제든 일주일</button>
+                    <button type={"button"} className={"btn btn-outline-secondary px-3 py-1"} style={styles.nav1PillEnd} onClick={() => setShow(true)}>
                         <div className={"row"}>
                             <div className={"col-8 m-0 px-0 py-2"}>
                                 게스트 추가
