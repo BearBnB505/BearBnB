@@ -15,24 +15,31 @@ const Amenity= ()=>{
   const [washer, setWasher] = useState(false);
   const [dryer, setDryer] = useState(false);
   const [cleaningSupplies, setCleaningSupplies] = useState(false);
+
   const [bed, setBed] = useState(false);
   const [bedSheet, setBedSheet] = useState(false);
   const [bedding, setBedding] = useState(false);
+
   const [airCon, setAirCon] = useState(false);
   const [heater, setHeater] = useState(false);
+
   const [internet, setInternet] = useState(false);
   const [tv, setTv] = useState(false);
+
   const [refrigerator, setRefrigerator] = useState(false);
   const [microwave, setMicrowave] = useState(false);
   const [gasStove, setGasStove] = useState(false);
   const [dinnerware, setDinnerware] = useState(false);
+
   const [feeParking, setFeeParking] = useState(false);
   const [freeParking, setFreeParking] = useState(false);
+
   const [cctv, setCCTV] = useState(false);
   const [fireAlarm, setFireAlarm] = useState(false);
   const [coAlarm, setCOAlarm] = useState(false);
   const [fireExtinguisher, setFireExtinguisher] = useState(false);
   const [firstAidKit, setFirstAidKit] = useState(false);
+
   const [longTerm, setLongTerm] = useState(false);
   const [pet, setPet] = useState(false);
   const [guestOnlyDoor, setGuestOnlyDoor] = useState(false);
@@ -132,7 +139,7 @@ const Amenity= ()=>{
                             barbecue={barbecue} setBarbecue={setBarbecue}
                             pool={pool} setPool={setPool}
                             breakfast={breakfast} setBreakfast={setBreakfast}/>}
-      <hr/>
+      <hr style={{marginBottom:50}}/>
     </div>
   )
 }
