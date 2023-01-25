@@ -7,7 +7,7 @@ import Mypage from "./Mypage/Mypage";
 import Members from "./Mypage/Members";
 import Review from "./Mypage/Review";
 import BookingConfirm from "./Mypage/BookingConfirm";
-import BookingCancel from "./Mypage/BookingCancel";
+import BookingCancle from "./Mypage/BookingCancle";
 import Complain from "./Mypage/Complain";
 import Keeping from "./Mypage/Keeping";
 import MembersDel from "./Mypage/MembersDel";
@@ -34,6 +34,7 @@ import Guest from "./guest";
 import LodgingPayment from "./lodging_payment/LodgingPayment";
 import LodgingPaymentEnd from "./lodging_payment/LodgingPaymentEnd";
 import LodgingPaymentFailure from "./lodging_payment/LodgingPaymentFailure";
+import Message from "./Message/Message";
 
 function ProjectRouter(props) {
     return (
@@ -45,13 +46,15 @@ function ProjectRouter(props) {
                     <Route index element={<Main />} />
                     <Route path={"lodgingDetail"} element={<LodgingDetail/>}/>
 
+                    {/* 메세지알림 */}
+                    <Route path={"message"} element={<Message/>}/>
 
                     {/* mypage */}
                     <Route path={"mypage"} element={<Mypage/>}/>
                     <Route path={"members"} element={<Members/>}/>
                     <Route path={"review"} element={<Review/>}/>
                     <Route path={"bookingConfirm"} element={<BookingConfirm/>}/>
-                    <Route path={"bookingCancel"} element={<BookingCancel/>}/>
+                    <Route path={"bookingCancle"} element={<BookingCancle/>}/>
                     <Route path={"complain"} element={<Complain/>}/>
                     <Route path={"keeping"} element={<Keeping/>}/>
                     <Route path={"membersDel"} element={<MembersDel/>}/>
