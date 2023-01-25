@@ -8,6 +8,9 @@ function Table1() {
     return (
         <Container className="panel" style={styles.container}>
             <Navbar />
+            <br />
+            <br />
+            <br />
             <h4>매출관리</h4>
             <Table className={"table table-striped table-hover table-bordered"} >
                 <thead>
@@ -15,25 +18,68 @@ function Table1() {
                     <th>년도</th>
                     <th>월</th>
                     <th>수익</th>
-
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-
+                    <td>2022</td>
+                    <td>1월</td>
+                    <td>10,000</td>
                 </tr>
                 <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
+                    <td>2022</td>
+                    <td>2월</td>
+                    <td>10,000</td>
                 </tr>
                 <tr>
-                    <td>3</td>
-                    <td>Larry the Bird</td>
-                    <td>Larry the Bird</td>
+                    <td>2022</td>
+                    <td>3월</td>
+                    <td>10,000</td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td>4월</td>
+                    <td>10,000</td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td>5월</td>
+                    <td>10,000</td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td>6월</td>
+                    <td>10,000</td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td>7월</td>
+                    <td>10,000</td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td>8월</td>
+                    <td>10,000</td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td>9월</td>
+                    <td>10,000</td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td>10월</td>
+                    <td>10,000</td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td>11월</td>
+                    <td>10,000</td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td>12월</td>
+                    <td>10,000</td>
                 </tr>
 
                 </tbody>

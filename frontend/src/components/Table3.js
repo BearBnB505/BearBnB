@@ -8,6 +8,9 @@ function Table1() {
     return (
         <Container className="panel" style={styles.container}>
             <Navbar />
+            <br />
+            <br />
+            <br />
             <h4>신고관리</h4>
             <Table className={"table table-striped table-hover table-bordered"} >
                 <thead>
@@ -19,26 +22,39 @@ function Table1() {
                     <th>게스트아이디</th>
                     <th>숙소주소</th>
                     <th>신고날짜</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <td>a24553ee</td>
+                    <td>서울숲집</td>
+                    <td>bbb</td>
+                    <td>ccc</td>
+                    <td>서울강남</td>
+                    <td>2022-11-02</td>
+                    <td>자세히보기</td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
+                    <td>a24553ee</td>
+                    <td>서울숲집</td>
+                    <td>bbb</td>
+                    <td>ccc</td>
+                    <td>서울강남</td>
+                    <td>2022-11-02</td>
+                    <td>자세히보기</td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>Larry the Bird</td>
-                    <td>Larry the Bird</td>
-                    <td>@twitter</td>
+                    <td>a24553ee</td>
+                    <td>서울숲집</td>
+                    <td>bbb</td>
+                    <td>ccc</td>
+                    <td>서울강남</td>
+                    <td>2022-11-02</td>
+                    <td>자세히보기</td>
                 </tr>
 
                 </tbody>

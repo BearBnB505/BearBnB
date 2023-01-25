@@ -8,6 +8,9 @@ function Table1() {
     return (
         <Container className="panel" style={styles.container}>
             <Navbar />
+            <br />
+            <br />
+            <br />
             <h4>숙소관리</h4>
             <Table className={"table table-striped table-hover table-bordered"} >
                 <thead>
@@ -28,21 +31,42 @@ function Table1() {
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <td>a24553ee</td>
+                    <td>서울숲집</td>
+                    <td>bbb</td>
+                    <td>010-111-4444</td>
+                    <td>nara@gmail.com</td>
+                    <td>2022-11-02</td>
+                    <td>3.1</td>
+                    <td>7</td>
+                    <td>확인하기</td>
+                    <td>영업중</td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
+                    <td>a24553ee</td>
+                    <td>서울숲집</td>
+                    <td>bbb</td>
+                    <td>010-111-4444</td>
+                    <td>nara@gmail.com</td>
+                    <td>2022-11-02</td>
+                    <td>4.8</td>
+                    <td>1</td>
+                    <td>확인하기</td>
+                    <td>승인대기</td>
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>Larry the Bird</td>
-                    <td>Larry the Bird</td>
-                    <td>@twitter</td>
+                    <td>a24553ee</td>
+                    <td>서울숲집</td>
+                    <td>bbb</td>
+                    <td>010-111-4444</td>
+                    <td>nara@gmail.com</td>
+                    <td>2022-11-02</td>
+                    <td>3.9</td>
+                    <td>3</td>
+                    <td>확인하기</td>
+                    <td>영업정지</td>
                 </tr>
 
                 </tbody>
