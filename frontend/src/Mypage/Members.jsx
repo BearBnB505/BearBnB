@@ -29,7 +29,7 @@ function Members(props) {
                 <h3 className={"fw-bold"}>본인정보 수정</h3>
             </div>
 
-            <div className={"row"}>
+            <div className={"row mb-5"}>
                 <div className={"col-sm-12 col-lg-7"}>
 
                     <div className={"row"}>

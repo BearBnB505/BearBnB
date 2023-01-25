@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Anima from "./animaData";
 import { motion } from "framer-motion";
 
-function BookingCancle() {
+function BookingCancel() {
 
     const bookingCancle = [
         {idx: 1, lodging_name: "해운대 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
@@ -69,7 +69,7 @@ function BookingCancle() {
 }
 
 
-export default BookingCancle;
+export default BookingCancel;
 
 function BookingCancleWait({lodging_name, book_state, book_dt, pay_cost}) {
     return (

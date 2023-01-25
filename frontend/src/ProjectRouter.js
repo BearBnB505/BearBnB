@@ -7,7 +7,7 @@ import Mypage from "./Mypage/Mypage";
 import Members from "./Mypage/Members";
 import Review from "./Mypage/Review";
 import BookingConfirm from "./Mypage/BookingConfirm";
-import BookingCancle from "./Mypage/BookingCancle";
+import BookingCancel from "./Mypage/BookingCancel";
 import Complain from "./Mypage/Complain";
 import Keeping from "./Mypage/Keeping";
 import MembersDel from "./Mypage/MembersDel";
@@ -30,11 +30,12 @@ import LodgingFinal from "./lodging_reg/LodgingFinal";
 import LodgingHostId from "./lodging_reg/LodgingHostId";
 import ImgUploadBox from "./lodging_reg/ImgUploadBox";
 import LodgingHostInfoTest from "./lodging_reg/LodgingHostInfoTest";
-import Guest from "./guest";
+import GuestCount from "./GuestCount";
 import LodgingPayment from "./lodging_payment/LodgingPayment";
 import LodgingPaymentEnd from "./lodging_payment/LodgingPaymentEnd";
 import LodgingPaymentFailure from "./lodging_payment/LodgingPaymentFailure";
 import Message from "./Message/Message";
+import Join from "./Join";
 
 function ProjectRouter(props) {
     return (
@@ -49,12 +50,12 @@ function ProjectRouter(props) {
                     {/* 메세지알림 */}
                     <Route path={"message"} element={<Message/>}/>
 
-                    {/* mypage */}
+                    {/* 일반회원 마이페이지 */}
                     <Route path={"mypage"} element={<Mypage/>}/>
                     <Route path={"members"} element={<Members/>}/>
                     <Route path={"review"} element={<Review/>}/>
                     <Route path={"bookingConfirm"} element={<BookingConfirm/>}/>
-                    <Route path={"bookingCancle"} element={<BookingCancle/>}/>
+                    <Route path={"bookingCancel"} element={<BookingCancel/>}/>
                     <Route path={"complain"} element={<Complain/>}/>
                     <Route path={"keeping"} element={<Keeping/>}/>
                     <Route path={"membersDel"} element={<MembersDel/>}/>
@@ -82,9 +83,6 @@ function ProjectRouter(props) {
                     {/*<Route path={"imgUploadBox"} element={<ImgUploadBox/>}/>*/}
                     {/*<Route path={"lodgingHostInfoTest"} element={<LodgingHostInfoTest/>}/>*/}
 
-                    {/*성인, 유아, 반려동물 수*/}
-                    <Route path = {"guest"} element={<Guest/>}/>
-
 
                     {/* 예매 */}
                     <Route path = {"lodgingPayment" } element={<LodgingPayment/>}/>
@@ -92,7 +90,9 @@ function ProjectRouter(props) {
                     <Route path = {"lodgingPaymentFailure" } element={<LodgingPaymentFailure/>}/>
 
 
-                    {/**/}
+                    {/* 회원가입 */}
+                    <Route path={"join"} element={<Join/>}/>
+
                     {/**/}
                 </Route>
             </Routes>
