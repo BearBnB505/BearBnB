@@ -35,6 +35,8 @@ import LodgingPayment from "./lodging_payment/LodgingPayment";
 import LodgingPaymentEnd from "./lodging_payment/LodgingPaymentEnd";
 import LodgingPaymentFailure from "./lodging_payment/LodgingPaymentFailure";
 import Join from "./Join";
+import HouseInfo from "./houseInfoUpdate/HouseInfo";
+import HostInfo from "./hostinfo/HostInfo";
 
 function ProjectRouter(props) {
     return (
@@ -45,6 +47,7 @@ function ProjectRouter(props) {
                     {/* 메인 */}
                     <Route index element={<Main />} />
                     <Route path={"lodgingDetail"} element={<LodgingDetail/>}/>
+                    <Route path={"hostInfo"} element={<HostInfo/>}/>
 
 
                     {/* 일반회원 마이페이지 */}
@@ -91,6 +94,8 @@ function ProjectRouter(props) {
                     <Route path={"join"} element={<Join/>}/>
 
                     {/**/}
+                    <Route path={"houseInfo"} element={<HouseInfo/>}/>
+
                 </Route>
             </Routes>
         </BrowserRouter>

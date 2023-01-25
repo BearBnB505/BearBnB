@@ -44,7 +44,7 @@ function HostIntroContents() {
             <div className={'mb-2'}>숙박 중 게스트와의 교류</div>
 
             {/*<Button style={{gridColumn: 2 / 4, marginLeft:30}} className={'IntroBtn'} variant="dark">호스트에게 연락하기</Button>*/}
-            <Button className={'IntroBtn my-3'} variant="dark">호스트에게 연락하기</Button>
+            <Button href={"/hostInfo"} className={'IntroBtn my-3'} variant="dark">호스트에게 연락하기</Button>
           </div>
 
 
