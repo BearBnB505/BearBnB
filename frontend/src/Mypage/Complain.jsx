@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose, faPencil} from "@fortawesome/free-solid-svg-icons";
 import Anima from "./animaData";
 import { motion } from "framer-motion";
+import {Link} from "react-router-dom";
 
 const complain = [
     {idx: 1, lodging_num: "1521", reason: "잘못된 정보", reason_detail: "객실 정보, 이미지 오류", complain_dt: "2023-01-17"},
@@ -20,8 +21,8 @@ function Complain() {
                     exit="exit" className={"container mx-auto mt-5"}>
             <div className={"mb-5"}>
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/mypage">마이페이지</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/complain" active>신고내역 확인</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to={"../mypage"}>마이페이지</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item active>신고내역 확인</Breadcrumb.Item>
                 </Breadcrumb>
                 <h2 className={"fw-bold"}>신고내역 확인</h2>
             </div>

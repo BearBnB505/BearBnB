@@ -1,0 +1,13 @@
+
+.header-modal {
+    width: 100vw;
+    max-width: 100vw;
+    border: none;
+    top: -17px;
+    margin: 0;
+
+}
+
+.header-modal div {
+    border-radius: 0 !important;
+}

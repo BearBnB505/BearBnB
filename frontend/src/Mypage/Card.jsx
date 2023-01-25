@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 function Card(props) {
     return (
-            <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 1}} className={"card shadow-sm rounded p-1"}>
+            <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 1}} className={"card shadow-sm rounded p-1 mb-3"}>
                 <div className={"card-body text-start"}>
                     <div className={""}><FontAwesomeIcon icon={props.icon} size="2x" /></div>
                     <div style={styles.title} className={"card-title mt-4"}>{props.title}</div>
@@ -20,11 +20,11 @@ const styles = {
 
     title: {
         fontWeight : "bold",
-        fontSize: 16,
+        fontSize: 20,
     },
     content: {
         // fontWeight : "lighter",
-        fontSize: 14,
+        fontSize: 16,
     },
 
 }

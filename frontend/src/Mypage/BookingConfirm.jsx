@@ -28,7 +28,7 @@ function BookingConfirm() {
                      exit="exit" className={"container mt-5"}>
             <div className={"mb-5"}>
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/mypage">마이페이지</Breadcrumb.Item>
+                    <Breadcrumb.Item href="../mypage">마이페이지</Breadcrumb.Item>
                     <Breadcrumb.Item active>예약내역 확인</Breadcrumb.Item>
                 </Breadcrumb>
                 <h2 className={"fw-bold"}>예약내역 확인</h2>

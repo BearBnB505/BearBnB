@@ -30,10 +30,11 @@ import LodgingFinal from "./lodging_reg/LodgingFinal";
 import LodgingHostId from "./lodging_reg/LodgingHostId";
 import ImgUploadBox from "./lodging_reg/ImgUploadBox";
 import LodgingHostInfoTest from "./lodging_reg/LodgingHostInfoTest";
-import Guest from "./guest";
+import GuestCount from "./GuestCount";
 import LodgingPayment from "./lodging_payment/LodgingPayment";
 import LodgingPaymentEnd from "./lodging_payment/LodgingPaymentEnd";
 import LodgingPaymentFailure from "./lodging_payment/LodgingPaymentFailure";
+import Message from "./Message/Message";
 import Join from "./Join";
 import Table1 from "./components/Table1";
 import Table2 from "./components/Table2";
@@ -51,8 +52,10 @@ function ProjectRouter(props) {
                     <Route index element={<Main />} />
                     <Route path={"lodgingDetail"} element={<LodgingDetail/>}/>
 
+                    {/* 메세지알림 */}
+                    <Route path={"message"} element={<Message/>}/>
 
-                    {/* mypage */}
+                    {/* 일반회원 마이페이지 */}
                     <Route path={"mypage"} element={<Mypage/>}/>
                     <Route path={"members"} element={<Members/>}/>
                     <Route path={"review"} element={<Review/>}/>
@@ -84,9 +87,6 @@ function ProjectRouter(props) {
 
                     {/*<Route path={"imgUploadBox"} element={<ImgUploadBox/>}/>*/}
                     {/*<Route path={"lodgingHostInfoTest"} element={<LodgingHostInfoTest/>}/>*/}
-
-                    {/*성인, 유아, 반려동물 수*/}
-                    <Route path = {"guest"} element={<Guest/>}/>
 
 
                     {/* 예매 */}
