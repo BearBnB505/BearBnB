@@ -39,6 +39,7 @@ import Table1 from "./components/Table1";
 import Table2 from "./components/Table2";
 import Table3 from "./components/Table3";
 import Table4 from "./components/Table4";
+import Navbar from "./components/Navbar";
 
 function ProjectRouter(props) {
     return (
@@ -103,11 +104,12 @@ function ProjectRouter(props) {
                 </Route>
 
                 {/* 관리자페이지 */}
-                <Route path={"/adminMember"} element={<Table1 />} />
-                <Route path={"/adminLodging"} element={<Table2/>}/>
-                <Route path={"/adminReport"} element={<Table3/>}/>
-                <Route path={"/adminSales"} element={<Table4/>}/>
-
+                <Route path={"/admin"} element={<Navbar/>}>
+                    <Route index element={<Table1 />} />
+                    <Route path={"lodging"} element={<Table2/>}/>
+                    <Route path={"report"} element={<Table3/>}/>
+                    <Route path={"sales"} element={<Table4/>}/>
+                </Route>
             </Routes>
         </BrowserRouter>
     );

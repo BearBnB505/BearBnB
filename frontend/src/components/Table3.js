@@ -7,7 +7,6 @@ function Table1() {
 
     return (
         <Container className="panel" style={styles.container}>
-            <Navbar />
             <br />
             <br />
             <br />

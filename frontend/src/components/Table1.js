@@ -1,13 +1,11 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
 import {Container} from "react-bootstrap";
-import Navbar from "./Navbar";
 
 
 function Table1() {
     return (
         <Container className="panel" style={styles.container}>
-            <Navbar />
             <br />
             <br />
             <br />
