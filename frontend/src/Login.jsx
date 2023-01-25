@@ -41,9 +41,7 @@ function Login() {
                             <br/>
 
                             <div className="d-grid gap-1">
-                                <Button variant="primary" type="submit" >
-                                    로그인
-                                </Button>
+                                <button className={"btn btn-primary"}>Login</button>
                             </div>
                         </Form>
                     </Container>
