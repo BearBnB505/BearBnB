@@ -8,6 +8,7 @@ import DropdownToggle from "react-bootstrap/DropdownToggle";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import DropdownItem from "react-bootstrap/DropdownItem";
 import HeaderModal from "./HeaderModal";
+import Login from "../Login";
 
 function Header(props) {
 
@@ -26,7 +27,10 @@ function Header(props) {
                             </DropdownToggle>
 
                             <DropdownMenu align={"end"}>
-                                <DropdownItem href={"#"}>로그인</DropdownItem>
+                                <DropdownItem href={"#"}>
+                                    {/*로그인*/}
+                                    <Login />
+                                </DropdownItem>
                                 <DropdownItem href={"/join"}>회원가입</DropdownItem>
                                 <DropdownItem href={"/mypage"}>마이페이지</DropdownItem>
                             </DropdownMenu>
