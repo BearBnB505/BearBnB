@@ -1,0 +1,20 @@
+.progress {
+    appearance: none;
+    height: 4px;
+    width: 150px;
+    position: relative;
+    top: 7px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.DetailAvg{
+    position: relative;
+    top:-3px
+}
+
+.CommentFrame1{
+    display: grid;
+    grid-template-columns: 200px 180px 30px;
+    grid-template-rows: repeat(6, 30px);
+}

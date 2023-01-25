@@ -1,0 +1,112 @@
+.PaymentBox {
+    display: grid;
+    justify-content: center;
+}
+
+.PaymentFrame {
+    display: grid;
+    grid-template-columns: 50px 480px;
+}
+
+.PaymentFrame2 {
+    display: grid;
+    grid-template-columns: 50px 30px 30px 350px 50px;
+    grid-template-rows: repeat(2, 40px);
+}
+
+.PaymentFrame3 {
+    display: grid;
+    grid-template-columns: 400px 110px;
+
+}
+
+.PaymentFrame4{
+    margin-top: 60px;
+}
+
+.PaymentFrame5{
+    padding-bottom: 50px;
+}
+
+.PaymentArrow {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.PaymentLine1 {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.PaymentLine2 {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.PaymentLine3 {
+    font-weight: bold;
+    font-size: 15px;
+    grid-columns: 1/5;
+    margin-bottom: 500px;
+}
+
+.PaymentLine4 {
+    grid-column: 1/3;
+}
+
+.PaymentLine5 {
+    grid-column: 1/5;
+}
+
+
+.PaymentBtn1 {
+    text-decoration: underline;
+    border: white;
+    font-size: 13px;
+
+}
+
+.PaymentBtn2 {
+    background-color: white;
+}
+
+.PaymentBtn3{
+    width: 86px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+
+.paymentLogo {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+paymentLogo1 {
+    width: 5px;
+    height: 5px;
+}
+
+
+.select {
+    width: 500px;
+    height: 45px;
+    background-size: 20px;
+    padding: 5px 30px 5px 10px;
+    border-radius: 6px;
+    outline: 0 none;
+    border-color: gray;
+    margin-bottom: 30px;
+}
+
+.select option {
+    background: white;
+    color: black;
+    padding: 3px 0;
+}
+
+
