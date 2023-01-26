@@ -1,13 +1,19 @@
 package com.bearbnb.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.bearbnb.dto.LodgingDto;
+import com.bearbnb.mapper.LodgingMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 public class mainController {
+
+    @Autowired
+    LodgingMapper lodgingMapper;
 
     @RequestMapping("/")
     public String index() throws Exception {
@@ -25,5 +31,10 @@ public class mainController {
     @RequestMapping("/user")
     public String user() {
         return "user";
+    }
+
+    @RequestMapping(value = "lodgingList")
+    public List<LodgingDto> lodgingList() {
+        return lodgingMapper.lodgingList();
     }
 }

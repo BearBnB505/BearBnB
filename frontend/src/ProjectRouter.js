@@ -50,7 +50,7 @@ function ProjectRouter(props) {
 
                     {/* 메인 */}
                     <Route index element={<Main />} />
-                    <Route path={"lodgingDetail"} element={<LodgingDetail/>}/>
+                    <Route path={"lodgingDetail/:idx"} element={<LodgingDetail/>}/>
 
                     {/* 메세지알림 */}
                     <Route path={"message"} element={<Message/>}/>
