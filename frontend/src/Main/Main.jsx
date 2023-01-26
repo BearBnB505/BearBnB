@@ -38,7 +38,7 @@ function Main(props) {
                             return (
                                 <li style={styles.lodgingList}>
                                     <Link to={`/lodgingDetail/${item.idx}`}>
-                                        <MainContents idx={item.idx} title={item.lodgingName} />
+                                        <MainContents idx={item.idx} title={item.lodgingName} concept={item.lodgingConcept}/>
                                     </Link>
                                 </li>
                             )

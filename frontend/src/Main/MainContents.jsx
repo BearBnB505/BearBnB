@@ -58,7 +58,7 @@ function MainContents(props) {
             <div className={"text-start mt-2"}>
                 <span><b>{props.title}</b></span><br/>
                 <span><b>주소, 한국</b></span><br/>
-                <span className={"text-muted"}>바다 전망</span><br/>
+                <span className={"text-muted"}>{props.concept}</span><br/>
                 <span className={"text-muted"}>1월 24일~29일</span><br/>
                 <span><b>₩311,640</b> /박</span>
             </div>
