@@ -1,9 +1,10 @@
-import React from "react";
-import Table from 'react-bootstrap/Table';
+import React, {useEffect, useState} from "react";
+import {Table} from 'react-bootstrap';
 import {Container} from "react-bootstrap";
-
+import axios from "axios";
 
 function Table1() {
+
     return (
         <Container className="panel" style={styles.container}>
             <br />
@@ -62,9 +63,7 @@ function Table1() {
                 </tbody>
             </Table>
         </Container>
-
     );
-
 }
 
 export default Table1;

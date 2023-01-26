@@ -49,8 +49,7 @@ function Join(){
             setBirthMessage('')
             setIsBirth('success')
         }
-    },[])
-
+    },[]);
 
     // 이메일 형식 체크
     const onChangeEmail = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
