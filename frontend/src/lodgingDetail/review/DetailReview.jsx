@@ -1,10 +1,10 @@
 import React from "react";
 import ReviewComment from "./ReviewComment";
 
-function DetailReview(){
+function DetailReview(props){
   return(
     <div className={'CommentStyleBox'}>
-      <ReviewComment/>
+      <ReviewComment userId={props.userId}/>
       <ReviewComment/>
       <ReviewComment/>
       <ReviewComment/>

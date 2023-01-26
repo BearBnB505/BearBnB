@@ -3,10 +3,21 @@
 
 <mapper namespace="com.bearbnb.mapper.LodgingMapper">
 
-    <!--  내정보 가져오기  -->
     <select id="lodgingList" resultType="com.bearbnb.dto.LodgingDto">
         <![CDATA[
         SELECT * FROM lodging
+        ]]>
+    </select>
+
+    <select id="lodgingDetail" resultType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        SELECT * FROM lodging WHERE idx = #{idx} AND deleted_yn = 'N'
+        ]]>
+    </select>
+
+    <select id="reviewDetail" resultType="com.bearbnb.dto.ReviewDto">
+        <![CDATA[
+        SELECT * FROM review WHERE idx = #{idx} AND deleted_yn = 'N'
         ]]>
     </select>
 

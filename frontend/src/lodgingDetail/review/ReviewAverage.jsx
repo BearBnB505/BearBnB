@@ -15,7 +15,7 @@ function ReviewAverage(props){
       <hr style={{marginTop:60}}/>
       <ReviewTitle/>
       <ReviewAverageForm/>
-      <DetailReview/>
+      <DetailReview userId={props.userId} />
       <Button className={'ReviewBtn'} variant="dark" onClick={() => setModalShow(true)}>후기 모두 보기</Button>
         <ModalReview
             show={modalShow}

@@ -1,7 +1,7 @@
 import React from "react";
 import '../lodgingDetail.css';
 
-function HostHouse(){
+function HostHouse(props){
   return(
     <div>
       <hr/>
@@ -10,19 +10,19 @@ function HostHouse(){
       <div className={'HouseLine2'}>
         <hr/>
         <p>침실</p>
-        <p>30개</p>
+        <p>{props.bedroomNum}</p>
         <hr/>
       </div>
       <div className={'HouseLine2'}>
         <hr/>
         <p>침대</p>
-        <p>30개</p>
+        <p>{props.bedNum}</p>
         <hr/>
       </div>
       <div className={'HouseLine2'}>
         <hr/>
         <p>욕실</p>
-        <p>30개</p>
+        <p>{props.bathroomNum}</p>
         <hr/>
       </div>
     </div>

@@ -3,7 +3,7 @@ import HostInroTitle from "./HostInroTitle";
 import HostAvg from "./HostAvg";
 import HostIntroContents from "./HostIntroContents";
 
-function HostIntroduce(){
+function HostIntroduce(props){
   return(
     <div>
       <HostInroTitle/>
