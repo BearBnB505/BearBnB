@@ -32,6 +32,10 @@ function Header(props) {
                                     <Login />
                                 </DropdownItem>
                                 <DropdownItem href={"/join"}>회원가입</DropdownItem>
+                                <DropdownItem href={"/message"}>
+                                    <span>메세지알림</span>
+                                    <span className="badge bg-primary rounded-pill float-end">2</span>
+                                </DropdownItem>
                                 <DropdownItem href={"/mypage"}>마이페이지</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>

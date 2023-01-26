@@ -28,7 +28,7 @@ function BookingCancel() {
                     exit="exit" className={"container mt-5"}>
             <div className={"mb-5"}>
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/mypage">마이페이지</Breadcrumb.Item>
+                    <Breadcrumb.Item href="../mypage">마이페이지</Breadcrumb.Item>
                     <Breadcrumb.Item active>예약취소 확인</Breadcrumb.Item>
                 </Breadcrumb>
                 <h2 className={"fw-bold"}>예약취소 확인</h2>
@@ -45,8 +45,8 @@ function BookingCancel() {
                     <div>
                         {bookingCancleWait.map((item) => {
                             return <BookingCancleWait idx={item.idx} lodging_name={item.lodging_name}
-                                                book_state={item.book_state}
-                                                book_dt={item.book_dt} pay_cost={item.pay_cost}/>
+                                                      book_state={item.book_state}
+                                                      book_dt={item.book_dt} pay_cost={item.pay_cost}/>
                         })}
                     </div>
                 </Tab>
@@ -55,8 +55,8 @@ function BookingCancel() {
                     <div>
                         {bookingCancle.map((item) => {
                             return <BookingCancleItem idx={item.idx} lodging_name={item.lodging_name}
-                                                book_state={item.book_state}
-                                                book_dt={item.book_dt} pay_cost={item.pay_cost}/>
+                                                      book_state={item.book_state}
+                                                      book_dt={item.book_dt} pay_cost={item.pay_cost}/>
                         })}
                     </div>
                 </Tab>

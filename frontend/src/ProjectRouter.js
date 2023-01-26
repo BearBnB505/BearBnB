@@ -34,7 +34,15 @@ import GuestCount from "./GuestCount";
 import LodgingPayment from "./lodging_payment/LodgingPayment";
 import LodgingPaymentEnd from "./lodging_payment/LodgingPaymentEnd";
 import LodgingPaymentFailure from "./lodging_payment/LodgingPaymentFailure";
+import Message from "./Message/Message";
 import Join from "./Join";
+import Table1 from "./components/Table1";
+import Table2 from "./components/Table2";
+import Table3 from "./components/Table3";
+import Table4 from "./components/Table4";
+import Navbar from "./components/Navbar";
+import HouseInfo from "./houseInfoUpdate/HouseInfo";
+import HostInfo from "./hostinfo/HostInfo";
 
 function ProjectRouter(props) {
     return (
@@ -44,8 +52,11 @@ function ProjectRouter(props) {
 
                     {/* 메인 */}
                     <Route index element={<Main />} />
-                    <Route path={"lodgingDetail"} element={<LodgingDetail/>}/>
+                    <Route path={"lodgingDetail/:idx"} element={<LodgingDetail/>}/>
+                    <Route path={"hostInfo"} element={<HostInfo/>}/>
 
+                    {/* 메세지알림 */}
+                    <Route path={"message"} element={<Message/>}/>
 
                     {/* 일반회원 마이페이지 */}
                     <Route path={"mypage"} element={<Mypage/>}/>
@@ -90,7 +101,17 @@ function ProjectRouter(props) {
                     {/* 회원가입 */}
                     <Route path={"join"} element={<Join/>}/>
 
-                    {/**/}
+                    {/*  */}
+
+
+                </Route>
+
+                {/* 관리자페이지 */}
+                <Route path={"/admin"} element={<Navbar/>}>
+                    <Route index element={<Table1 />} />
+                    <Route path={"lodging"} element={<Table2/>}/>
+                    <Route path={"report"} element={<Table3/>}/>
+                    <Route path={"sales"} element={<Table4/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -1,26 +1,12 @@
-import React, {useState, Component, useRef} from "react";
+import React, {useState, Component, useRef, useEffect} from "react";
 import Slider from "react-slick";
 
 import "./slick.css";
 import "./slick-theme.css";
+import axios from "axios";
+import moment from "moment";
 
 function MainContents(props) {
-    // const { items } = props;
-    // const [index, setIndex] = useState(0);
-    //
-    // const handleSelect = (selectedIndex, e) => {
-    //     //React-bootstrap carousel has an indexing error that causes blank slides
-    //     //(probably happens when you customize it).
-    //     //You need to account for it in this callback...
-    //     //adjust index to 0 if selectedIndex is greater than index of last slide or
-    //     //it is less than zero
-    //     //remember slide indexes are zero-based
-    //     if (selectedIndex >= items.length || selectedIndex < 0 ){
-    //         setIndex(0);
-    //     } else if (selectedIndex !== index) {
-    //         setIndex(selectedIndex);
-    //     }
-    // };
 
     const settings = {
         dots: true,
@@ -34,6 +20,9 @@ function MainContents(props) {
         width: 25,
         // opacity: .60
     };
+
+    const checkInDt = moment(props.data.checkInDt).format('M월 D일');
+    const checkOutDt = moment(props.data.checkOutDt).format('M월 D일');
 
     return (
         <div style={{width: 300}} className={"contents"} id={"main-contents"}>
@@ -71,10 +60,11 @@ function MainContents(props) {
             </div>
 
             <div className={"text-start mt-2"}>
-                <span><b>주소, 한국</b></span><br/>
-                <span className={"text-muted"}>바다 전망</span><br/>
-                <span className={"text-muted"}>1월 24일~29일</span><br/>
-                <span><b>₩311,640</b> /박</span>
+                <span><b>{props.data.lodgingName}</b></span><br/>
+                <span><b>{props.data.addr}, 한국</b></span><br/>
+                <span className={"text-muted"}>{props.data.lodgingConcept}</span><br/>
+                <span className={"text-muted"}>{checkInDt} ~ {checkOutDt}</span><br/>
+                <span><b>₩{props.data.cost}</b> /박</span>
             </div>
         </div>
     );

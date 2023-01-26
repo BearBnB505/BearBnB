@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class LodgingDto {
+    private int idx;
     private String lodgingNum;
     private String userId;
     private String certifyImg;

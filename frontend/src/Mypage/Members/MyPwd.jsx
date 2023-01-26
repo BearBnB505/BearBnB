@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import Form from 'react-bootstrap/Form';
 import {FloatingLabel, InputGroup} from "react-bootstrap";
+import Anima from "../animaData";
+import {motion} from "framer-motion";
 
 function MyPwd() {
     const [pwd, setPwd] = useState("");
@@ -11,7 +13,10 @@ function MyPwd() {
 
     return (
         <div className={"mb-3"}>
-            <div>
+            <motion.div
+                variants={Anima}
+                initial={"hidden"}
+                animate={"visible"}>
                 <InputGroup size="lg">
                     <FloatingLabel
                         controlId="floatingInput"
@@ -21,7 +26,7 @@ function MyPwd() {
                         <Form.Control value={pwd} onChange={onChangePwd}
                                       placeholder={"*******"}></Form.Control>
                     </FloatingLabel></InputGroup>
-            </div>
+            </motion.div>
             <div className={"mt-2"}>
                 <button className={"btn btn-dark btn-lg"}>저장</button>
             </div>

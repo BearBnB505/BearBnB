@@ -4,6 +4,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose, faPencil,  faStar} from "@fortawesome/free-solid-svg-icons";
 import Anima from "./animaData";
 import { motion } from "framer-motion";
+import {Link} from "react-router-dom";
+import "./Style.css";
 
 const review = [
     {
@@ -43,7 +45,7 @@ function Review() {
                     exit="exit" className={"container mt-5"}>
             <div className={"mb-5"}>
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/mypage">마이페이지</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to={"../mypage"}>마이페이지</Link></Breadcrumb.Item>
                     <Breadcrumb.Item active>내가 작성한 후기</Breadcrumb.Item>
                 </Breadcrumb>
                 <h2 className={"fw-bold"}>내가 작성한 후기</h2>
@@ -68,19 +70,22 @@ export default Review;
 
 function ReviewItem({lodging_name, comment, review_create_dt}) {
     return (
-        <ul className={"list-group mb-4"} style={styles.ul}>
-            <li className={"list-group-item p-4"} style={styles.li}>
-                <div>
-                    <span className={"fs-5 fw-bold me-1"}>{lodging_name}</span>
-                    <span className="me-2">
-                         <FontAwesomeIcon icon={faStar} size="1x"/> 4.97/5
+        <ul className={"list-group mb-4"} style={style.ul}>
+            <li className={"list-group-item p-4"} style={style.li}>
+                <div className={"mb-3"}>
+                    <span className={"fs-5 fw-bold me-2"}>{lodging_name}</span>
+                    <span className={"me-2 blueColor"}>
+                         <FontAwesomeIcon icon={faStar} size="1x" className={"me-2 blueColor"}/>4.97 / 5
                     </span>
                     <small className={"text-secondary"}>{review_create_dt}</small>
                 </div>
-                <div>{comment}</div>
+                <div className={"mb-2"}>{comment}</div>
                 <div>
                     <button type="button" className="btn btn-outline-secondary btn-sm my-2 me-2" title="Edit">
-                        <span><FontAwesomeIcon icon={faPencil} size="1x"/> 후기수정</span>
+
+                        <span>
+                            <FontAwesomeIcon icon={faPencil} size="1x"/> 후기수정
+                        </span>
                     </button>
                     <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit">
                         <span><FontAwesomeIcon icon={faClose} size="1x"/> 후기삭제</span>
@@ -91,7 +96,7 @@ function ReviewItem({lodging_name, comment, review_create_dt}) {
     );
 }
 
-const styles = {
+const style = {
     ul: {
         border: "none",
         display: "block",

@@ -1,11 +1,15 @@
-.w1000 {
-    width: 1000px;
+.w1200 {
+    width: 1200px;
 }
 a {
     text-decoration: none;
-    color: black;
+    color: #2E2E2E;
 }
 
 a:hover {
+    color: #3f73d2;
+}
+
+.blueColor {
     color: #3f73d2;
 }

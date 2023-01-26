@@ -231,17 +231,6 @@
     grid-template-rows: 200px auto 120px;
 }
 
-.IntroBtn{
-    width: 190px;
-    height: 50px;
-    background-color: white;
-    color: black;
-    font-weight: bold;
-    /*position: relative;*/
-    /*right: -90px;*/
-    /*top:-150px*/
-}
-
 .IntroText1{
     overflow: hidden;
     text-overflow: ellipsis;
