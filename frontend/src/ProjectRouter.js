@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./Layout";
-import Main from "./Main/Main";
+import Main from "frontend/src/Main/Main";
 import LodgingDetail from "./lodgingDetail/LodgingDetail";
 import Mypage from "./Mypage/Mypage";
 import Members from "./Mypage/Members";

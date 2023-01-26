@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 function BookingCancel() {
 
-    const bookingCancle = [
+    const bookingCancel = [
         {idx: 1, lodging_name: "해운대 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
         {idx: 2, lodging_name: "제주도 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
         {idx: 3, lodging_name: "해운대 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
@@ -16,7 +16,7 @@ function BookingCancel() {
         {idx: 6, lodging_name: "해운대 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
     ]
 
-    const bookingCancleWait = [
+    const bookingCancelWait = [
         {idx: 1, lodging_name: "해운대 신라 호텔", book_state: "취소대기", book_dt: "2023-01-17", pay_cost: "560,200원"},
         {idx: 2, lodging_name: "제주도 신라 호텔", book_state: "취소대기", book_dt: "2023-01-17", pay_cost: "560,200원"},
     ]
@@ -43,8 +43,8 @@ function BookingCancel() {
             >
                 <Tab eventKey="tab1" title="취소 승인 대기 (2건)">
                     <div>
-                        {bookingCancleWait.map((item) => {
-                            return <BookingCancleWait idx={item.idx} lodging_name={item.lodging_name}
+                        {bookingCancelWait.map((item) => {
+                            return <BookingCancelWait idx={item.idx} lodging_name={item.lodging_name}
                                                       book_state={item.book_state}
                                                       book_dt={item.book_dt} pay_cost={item.pay_cost}/>
                         })}
@@ -53,8 +53,8 @@ function BookingCancel() {
 
                 <Tab eventKey="tab2" title="취소완료 확인 (10건)">
                     <div>
-                        {bookingCancle.map((item) => {
-                            return <BookingCancleItem idx={item.idx} lodging_name={item.lodging_name}
+                        {bookingCancel.map((item) => {
+                            return <BookingCancelItem idx={item.idx} lodging_name={item.lodging_name}
                                                       book_state={item.book_state}
                                                       book_dt={item.book_dt} pay_cost={item.pay_cost}/>
                         })}
@@ -71,7 +71,7 @@ function BookingCancel() {
 
 export default BookingCancel;
 
-function BookingCancleWait({lodging_name, book_state, book_dt, pay_cost}) {
+function BookingCancelWait({lodging_name, book_state, book_dt, pay_cost}) {
     return (
         <ul className={"list-group mb-4"} style={styles.ul}>
             <li className={"list-group-item p-4"} style={styles.li}>
@@ -89,7 +89,7 @@ function BookingCancleWait({lodging_name, book_state, book_dt, pay_cost}) {
     );
 }
 
-function BookingCancleItem({lodging_name, book_state, book_dt, pay_cost}) {
+function BookingCancelItem({lodging_name, book_state, book_dt, pay_cost}) {
     return (
         <ul className={"list-group mb-4"} style={styles.ul}>
             <li className={"list-group-item p-4"} style={styles.li}>
