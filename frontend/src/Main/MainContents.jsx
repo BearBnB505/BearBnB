@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "./slick.css";
 import "./slick-theme.css";
 import axios from "axios";
+import moment from "moment";
 
 function MainContents(props) {
 
@@ -19,6 +20,9 @@ function MainContents(props) {
         width: 25,
         // opacity: .60
     };
+
+    const checkInDt = moment(props.data.checkInDt).format('M월 D일');
+    const checkOutDt = moment(props.data.checkOutDt).format('M월 D일');
 
     return (
         <div style={{width: 300}} className={"contents"} id={"main-contents"}>
@@ -56,11 +60,11 @@ function MainContents(props) {
             </div>
 
             <div className={"text-start mt-2"}>
-                <span><b>{props.title}</b></span><br/>
-                <span><b>주소, 한국</b></span><br/>
-                <span className={"text-muted"}>바다 전망</span><br/>
-                <span className={"text-muted"}>1월 24일~29일</span><br/>
-                <span><b>₩311,640</b> /박</span>
+                <span><b>{props.data.lodgingName}</b></span><br/>
+                <span><b>{props.data.addr}, 한국</b></span><br/>
+                <span className={"text-muted"}>{props.data.lodgingConcept}</span><br/>
+                <span className={"text-muted"}>{checkInDt} ~ {checkOutDt}</span><br/>
+                <span><b>₩{props.data.cost}</b> /박</span>
             </div>
         </div>
     );
