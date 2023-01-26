@@ -43,8 +43,7 @@ function HostIntroContents() {
             {/*<div className={'IntroTextLine1'}>숙박 중 게스트와의 교류</div>*/}
             <div className={'mb-2'}>숙박 중 게스트와의 교류</div>
 
-            {/*<Button style={{gridColumn: 2 / 4, marginLeft:30}} className={'IntroBtn'} variant="dark">호스트에게 연락하기</Button>*/}
-            <Button href={"/hostInfo"} className={'IntroBtn my-3'} variant="dark">호스트에게 연락하기</Button>
+            <Button href={"/hostInfo"} className={'fw-bold my-3 px-3 py-2'} variant="outline-dark">호스트에게 연락하기</Button>
           </div>
 
 
