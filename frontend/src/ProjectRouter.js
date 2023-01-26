@@ -41,6 +41,8 @@ import Table2 from "./components/Table2";
 import Table3 from "./components/Table3";
 import Table4 from "./components/Table4";
 import Navbar from "./components/Navbar";
+import HouseInfo from "./houseInfoUpdate/HouseInfo";
+import HostInfo from "./hostinfo/HostInfo";
 
 function ProjectRouter(props) {
     return (
@@ -51,6 +53,7 @@ function ProjectRouter(props) {
                     {/* 메인 */}
                     <Route index element={<Main />} />
                     <Route path={"lodgingDetail/:idx"} element={<LodgingDetail/>}/>
+                    <Route path={"hostInfo"} element={<HostInfo/>}/>
 
                     {/* 메세지알림 */}
                     <Route path={"message"} element={<Message/>}/>
