@@ -8,5 +8,6 @@ import java.util.Optional;
 
 @Mapper
 public interface MemberMapper {
-    public Optional<MembersDto> findUser(@Param("userId") String userId, @Param("social") boolean social);
+//    public Optional<MembersDto> findById(@Param("userId") String userId, @Param("social") boolean social);
+    public Optional<MembersDto> findById(@Param("userId") String userId);
 }
