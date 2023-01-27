@@ -6,23 +6,25 @@ import Container from 'react-bootstrap/Container';
 import React, {useState} from "react";
 import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
 import DropdownItem from "react-bootstrap/DropdownItem";
+import DropdownMenu from "react-bootstrap/DropdownMenu";
 
 function Login() {
     const [show, setShow] = useState(false);
 
     return (
-        <div>
-            <a onClick={() => setShow(true)}>
+        <>
+            <DropdownItem href={"#"} onClick={() => setShow(true)}>
                 로그인
-            </a>
+            </DropdownItem>
+
             <Modal
                 show={show}
                 onHide={() => setShow(false)}
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-                <ModalHeader closeButton={true}>
-                    <ModalTitle>로그인</ModalTitle>
+                <ModalHeader className={'d-flex'} closeButton={true}>
+                    <ModalTitle className={'flex-grow-1 text-center ps-4'}>로그인</ModalTitle>
                 </ModalHeader>
                 <ModalBody>
                     <Container className="container d-flex justify-content-center my-3">
@@ -48,7 +50,7 @@ function Login() {
                 </ModalBody>
             </Modal>
 
-        </div>
+        </>
     );
 }
 
