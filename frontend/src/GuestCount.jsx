@@ -119,7 +119,7 @@ function GuestCount() {
                         {/*반려동물*/}
                         <div className="row justify-content-between mt-3 p-1 mb-3">
                             <div className="col-6 fs-5" >
-                                반려동물<p style={{color:"gray", fontSize:"15px", textDecorationLine: "underline"}}>반려동물을 동반하시나요?</p>
+                                반려동물<p style={{color:"gray", fontSize:"13px", textDecorationLine: "underline"}}>반려동물을 동반하시나요?</p>
                             </div>
                             <div className="col-1 p-0">
                                 <img src="/concept/minusIcon.png" style={styles.img} onClick={PetMinus}/>

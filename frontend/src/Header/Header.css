@@ -11,3 +11,8 @@
 .header-modal div {
     border-radius: 0 !important;
 }
+
+.selectGuest div {
+    border-radius: 25px !important;
+    border: none;
+}
