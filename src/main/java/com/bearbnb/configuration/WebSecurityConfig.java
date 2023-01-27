@@ -90,9 +90,10 @@ public class WebSecurityConfig {
 
                 .and()
                 .authorizeRequests()
-//                .antMatchers("/").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/lodgingList").permitAll()
 //                .antMatchers("/login").hasRole("USER")
-                .antMatchers("/auth/**").permitAll()
+//                .antMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated()
 
                 .and()
