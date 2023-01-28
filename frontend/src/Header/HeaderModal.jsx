@@ -1,17 +1,30 @@
-import React, {useState} from "react";
-import {Button, Dropdown, Modal, ModalBody} from "react-bootstrap";
+import React, {useState, useRef} from "react";
+import {ButtonGroup, Dropdown, Modal, ModalBody, NavDropdown} from "react-bootstrap";
 
 import './Header.css';
 import {Link} from "react-router-dom";
 import DropdownToggle from "react-bootstrap/DropdownToggle";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import DropdownItem from "react-bootstrap/DropdownItem";
+import Overlay from 'react-bootstrap/Overlay';
+
+import Popover from 'react-bootstrap/Popover';
+
+// import "rsuite/dist/rsuite.min.css";
+// import {
+//     Button,
+//     Popover,
+//     Whisper
+// } from "rsuite";
+
+import $ from "jquery";
 
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import GuestCount from "../GuestCount";
 import Login from "../Login";
 import Join from "../Join";
+import {setTranslate3d} from "rsuite/cjs/List/helper/utils";
 
 function HeaderModal(props) {
     const styles = {
@@ -25,11 +38,17 @@ function HeaderModal(props) {
             width: 160
         },
         nav2PillEnd: {
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
             borderTopRightRadius: 25,
             borderBottomRightRadius: 25,
-            width: 220
+            borderLeft: "none",
+            width: 220,
+            // position: "absolute"
         },
     }
+
+    const target = useRef(null);
 
     const [show1, setShow1] = useState(false);
     const [show2, setShow2] = useState(false);
@@ -44,10 +63,21 @@ function HeaderModal(props) {
         setShow2(false);
     }
 
-    const selectGuest = () => {
+    const selectGuest1 = () => {
         setShow1(true);
         setShow2(true);
+        selectGuest2();
     }
+
+    const selectGuest2 = () => {
+        setShow2(true);
+    }
+
+    // $(document).ready(function () {
+    //     $('#btn-who').on('click', function () {
+    //         $('#selectGuest2').addClass('');
+    //     })
+    // })
 
     return (
         <>
@@ -56,7 +86,7 @@ function HeaderModal(props) {
 
                     <button type={"button"} id={"btn-where"} className={"btn btn-outline-secondary px-3 py-1"} style={styles.pillStart} onClick={selectSpot}>어디든지</button>
                     <button type={"button"} className={"btn btn-outline-secondary px-3 py-1"} onClick={selectDate}>언제든 일주일</button>
-                    <button type={"button"} id={"btn-who"} className={"btn btn-outline-secondary px-3 py-1"} style={styles.nav1PillEnd} onClick={selectGuest}>
+                    <button type={"button"} id={"btn-who"} className={"btn btn-outline-secondary px-3 py-1"} style={styles.nav1PillEnd} onClick={selectGuest1}>
                         <div className={"row"}>
                             <div className={"col-8 m-0 px-0 py-2"}>
                                 게스트 추가
@@ -108,27 +138,67 @@ function HeaderModal(props) {
                                 <button type={"button"} className={"btn btn-outline-secondary px-3 py-2"} onClick={selectDate}>체크인</button>
                                 <button type={"button"} className={"btn btn-outline-secondary px-3 py-2"} onClick={selectDate}>체크아웃</button>
 
-
-
-                                <button type={"button"} className={"btn btn-outline-secondary py-2"} onClick={selectGuest} style={styles.nav2PillEnd}>
-                                    <div className={"row"}>
-                                        <div className={"col-4 my-auto ms-3"}>
-                                            여행자
-                                        </div>
-                                        <div className={"col-6 ms-3"}>
-                                            <a type={"button"} className={"btn btn-primary"} style={{borderRadius:25}}>
-                                                <div className={"row px-1"}>
-                                                    <div className={"col-1"}>
-                                                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{width: 12, paddingTop: 4}}/>
+                                <div>
+                                    <button ref={target} type={"button"} className={"btn btn-outline-secondary py-2"} style={styles.nav2PillEnd} onClick={selectGuest2}>
+                                        <div className={"row"}>
+                                            <div className={"col-4 my-auto ms-3"}>
+                                                여행자
+                                            </div>
+                                            <div className={"col-6 ms-3"}>
+                                                <a type={"button"} className={"btn btn-primary"} style={{borderRadius:25}}>
+                                                    <div className={"row px-1"}>
+                                                        <div className={"col-1"}>
+                                                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{width: 12, paddingTop: 4}}/>
+                                                        </div>
+                                                        <div className={"col-6 p-0 ms-1 me-2"}>
+                                                            <span>검색</span>
+                                                        </div>
                                                     </div>
-                                                    <div className={"col-6 p-0 ms-1 me-2"}>
-                                                        <span>검색</span>
-                                                    </div>
-                                                </div>
-                                            </a>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </button>
+                                    </button>
+
+                                    <Overlay
+                                        show={show2}
+                                        onHide={() => setShow2(false)}
+                                        placement={"bottom"}
+                                        target={target.current}
+                                    >
+                                        <Popover className={"selectGuest2"} style={{width:450, borderRadius:30, maxWidth:800}}>
+                                            <GuestCount/>
+                                        </Popover>
+                                    </Overlay>
+
+                                    {/*<Whisper*/}
+                                    {/*    trigger="active"*/}
+                                    {/*    placement={"bottom"}*/}
+                                    {/*    speaker={*/}
+                                    {/*        <Popover arrow={false} style={{marginTop:20, borderRadius:30}}>*/}
+                                    {/*            <GuestCount/>*/}
+                                    {/*        </Popover>*/}
+                                    {/*    }>*/}
+                                    {/*    <button id={"selectGuest2"} type={"button"} className={"btn btn-outline-secondary py-2"} style={styles.nav2PillEnd} onClick={selectGuest2}>*/}
+                                    {/*        <div className={"row"}>*/}
+                                    {/*            <div className={"col-4 my-auto ms-3"}>*/}
+                                    {/*                여행자*/}
+                                    {/*            </div>*/}
+                                    {/*            <div className={"col-6 ms-3"}>*/}
+                                    {/*                <a type={"button"} className={"btn btn-primary"} style={{borderRadius:25}}>*/}
+                                    {/*                    <div className={"row px-1"}>*/}
+                                    {/*                        <div className={"col-1"}>*/}
+                                    {/*                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{width: 12, paddingTop: 4}}/>*/}
+                                    {/*                        </div>*/}
+                                    {/*                        <div className={"col-6 p-0 ms-1 me-2"}>*/}
+                                    {/*                            <span>검색</span>*/}
+                                    {/*                        </div>*/}
+                                    {/*                    </div>*/}
+                                    {/*                </a>*/}
+                                    {/*            </div>*/}
+                                    {/*        </div>*/}
+                                    {/*    </button>*/}
+                                    {/*</Whisper>*/}
+                                </div>
 
                             </div>
                         </div>
@@ -136,17 +206,6 @@ function HeaderModal(props) {
                 </ModalBody>
             </Modal>
 
-            <Modal
-                show={show2}
-                onHide={() => setShow2(false)}
-                animation={false}
-                style={{marginTop: 120, marginLeft: 150}}
-                dialogClassName={'selectGuest'}
-            >
-                <ModalBody className={"shadow"}>
-                    <GuestCount/>
-                </ModalBody>
-            </Modal>
 
         </>
     );

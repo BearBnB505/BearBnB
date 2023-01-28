@@ -10,9 +10,25 @@
 
 .header-modal div {
     border-radius: 0 !important;
+    max-height: 300px;
 }
 
 .selectGuest div {
     border-radius: 25px !important;
-    border: none;
+}
+
+.selectGuest {
+    transform: translate3d(476px, 136px, 0px) !important;
+}
+
+.popover .popover-arrow {
+    display: none;
+}
+
+.popover {
+    /*position:relative!important;*/
+    left:50%!important;
+    top:20%!important;
+    transform: translate3d(0,0,0)!important;
+    margin: 0!important;
 }
