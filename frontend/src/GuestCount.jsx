@@ -49,7 +49,6 @@ function GuestCount(props) {
     }
     function AdultMinus() {
         if (adultCount <= 0) {
-            setAdultCount(0);
             setCountZero1(true);
         }
         else if (adultCount == 1) {
@@ -69,7 +68,6 @@ function GuestCount(props) {
     }
     function ChildMinus() {
         if (childCount <= 0) {
-            setChildCount(0);
             setCountZero2(true);
         }
         else if (childCount == 1) {
@@ -88,7 +86,6 @@ function GuestCount(props) {
     }
     function PetMinus() {
         if (petCount <= 0) {
-            setPetCount(0);
             setCountZero3(true);
         }
         else if (petCount == 1) {
@@ -119,7 +116,7 @@ function GuestCount(props) {
                                 <p className={"mt-2 mb-0"} style={{color:"gray", fontSize:"14px"}}>만 2세 이상</p>
                             </div>
                         <div className = "col-1 p-0 align-self-center">
-                                <img src="/concept/minusIcon.png" style={styles.img} onClick={AdultMinus} alt="-" className={countZero1 ? "opacity-25" : "opacity-100"}/>
+                                <img src="/concept/minusIcon.png" style={styles.img} onClick={AdultMinus} alt="-" className={countZero1 ? "opacity-25 disabled" : "opacity-100"}/>
                         </div>
                         <div className={"col-1 p-0 align-self-center"}>
                             <input type={"text"} value={adultCount} style={styles.input} />
@@ -139,7 +136,7 @@ function GuestCount(props) {
                             <p className={"mt-2 mb-0"} style={{color:"gray", fontSize:"14px"}}>만 2세 미만</p>
                         </div>
                         <div className="col-1 p-0 align-self-center">
-                            <img src="/concept/minusIcon.png" style={styles.img} onClick={ChildMinus} alt="-" className={countZero2 ? "opacity-25" : "opacity-100"}/>
+                            <img src="/concept/minusIcon.png" style={styles.img} onClick={ChildMinus} alt="-" className={countZero2 ? "opacity-25 disabled" : "opacity-100"}/>
                         </div>
                         <div className="col-1 p-0 align-self-center">
                             <input type={"text"} value={childCount} style={styles.input} />
@@ -159,7 +156,7 @@ function GuestCount(props) {
                             <p className={"mt-2 mb-0"} style={{color:"gray", fontSize:"13px", textDecorationLine: "underline", cursor: "pointer"}} onClick={handleButtonClick}>보조동물을 동반하시나요?</p>
                         </div>
                         <div className="col-1 p-0 align-self-center">
-                            <img src="/concept/minusIcon.png" style={styles.img} onClick={PetMinus} alt="-" className={countZero3 ? "opacity-25" : "opacity-100"}/>
+                            <img src="/concept/minusIcon.png" style={styles.img} onClick={PetMinus} alt="-" className={countZero3 ? "opacity-25 disabled" : "opacity-100"}/>
                         </div>
                         <div className="col-1 p-0 align-self-center">
                             <input type={"text"} value={petCount} style={styles.input} />
