@@ -3,12 +3,15 @@ import {Link} from "react-router-dom";
 import {Modal, ModalBody, ModalHeader} from "react-bootstrap";
 import "./Header/Header.css"
 
-function GuestCount() {
+function GuestCount(props) {
 
     const [adultCount , setAdultCount] = useState(0);
     const [childCount , setChildCount] = useState(0);
     const [petCount , setPetCount] = useState(0);
     const [showGuide , setShowGuide] = useState(false);
+    const [countZero1, setCountZero1] = useState(true);
+    const [countZero2, setCountZero2] = useState(true);
+    const [countZero3, setCountZero3] = useState(true);
 
     const styles = {
         con : {
@@ -40,40 +43,61 @@ function GuestCount() {
     }
 
     //성인 수
-    function AdultPlus(){
-        setAdultCount(adultCount+1);
+    function AdultPlus() {
+        setAdultCount(adultCount + 1);
+        setCountZero1(false);
     }
-    function AdultMinus(){
-        if(adultCount<=0){
+    function AdultMinus() {
+        if (adultCount <= 0) {
             setAdultCount(0);
+            setCountZero1(true);
+        }
+        else if (adultCount == 1) {
+            setAdultCount(adultCount - 1);
+            setCountZero1(true);
         }
         else {
             setAdultCount(adultCount - 1);
+            setCountZero1(false);
         }
     }
 
     // 유아 수
-    function ChildPlus(){
-        setChildCount(childCount+1);
+    function ChildPlus() {
+        setChildCount(childCount + 1);
+        setCountZero2(false);
     }
-    function ChildMinus(){
-        if(childCount<=0){
+    function ChildMinus() {
+        if (childCount <= 0) {
             setChildCount(0);
+            setCountZero2(true);
+        }
+        else if (childCount == 1) {
+            setChildCount(childCount - 1);
+            setCountZero2(true);
         }
         else {
             setChildCount(childCount - 1);
+            setCountZero2(false);
         }
     }
     // 반려동물 수
-    function PetPlus(){
-        setPetCount(petCount+1);
+    function PetPlus() {
+        setPetCount(petCount + 1);
+        setCountZero3(false);
     }
-    function PetMinus(){
-        if(petCount<=0){
+    function PetMinus() {
+        if (petCount <= 0) {
             setPetCount(0);
+            setCountZero3(true);
+        }
+        else if (petCount == 1) {
+            setPetCount(petCount - 1);
+            setCountZero3(true);
         }
         else {
             setPetCount(petCount - 1);
+            setCountZero3(false);
         }
     }
 
@@ -81,7 +105,7 @@ function GuestCount() {
         setShowGuide(true);
     };
 
-    return(
+    return (
         <div className ={"ps-4"}>
             <div style={styles.con}>
                 {/*<p className={"fw-bold"} style={styles.font}>숙소 기본 정보를 알려주세요</p>*/}
@@ -95,7 +119,7 @@ function GuestCount() {
                                 <p className={"mt-2 mb-0"} style={{color:"gray", fontSize:"14px"}}>만 2세 이상</p>
                             </div>
                         <div className = "col-1 p-0 align-self-center">
-                                <img src="/concept/minusIcon.png" style={styles.img} onClick={AdultMinus} alt="-"/>
+                                <img src="/concept/minusIcon.png" style={styles.img} onClick={AdultMinus} alt="-" className={countZero1 ? "opacity-25" : "opacity-100"}/>
                         </div>
                         <div className={"col-1 p-0 align-self-center"}>
                             <input type={"text"} value={adultCount} style={styles.input} />
@@ -115,7 +139,7 @@ function GuestCount() {
                             <p className={"mt-2 mb-0"} style={{color:"gray", fontSize:"14px"}}>만 2세 미만</p>
                         </div>
                         <div className="col-1 p-0 align-self-center">
-                            <img src="/concept/minusIcon.png" style={styles.img} onClick={ChildMinus} alt="-"/>
+                            <img src="/concept/minusIcon.png" style={styles.img} onClick={ChildMinus} alt="-" className={countZero2 ? "opacity-25" : "opacity-100"}/>
                         </div>
                         <div className="col-1 p-0 align-self-center">
                             <input type={"text"} value={childCount} style={styles.input} />
@@ -135,7 +159,7 @@ function GuestCount() {
                             <p className={"mt-2 mb-0"} style={{color:"gray", fontSize:"13px", textDecorationLine: "underline", cursor: "pointer"}} onClick={handleButtonClick}>보조동물을 동반하시나요?</p>
                         </div>
                         <div className="col-1 p-0 align-self-center">
-                            <img src="/concept/minusIcon.png" style={styles.img} onClick={PetMinus} alt="-"/>
+                            <img src="/concept/minusIcon.png" style={styles.img} onClick={PetMinus} alt="-" className={countZero3 ? "opacity-25" : "opacity-100"}/>
                         </div>
                         <div className="col-1 p-0 align-self-center">
                             <input type={"text"} value={petCount} style={styles.input} />
