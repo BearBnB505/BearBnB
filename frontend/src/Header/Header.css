@@ -26,3 +26,7 @@
     border-color: lightgray;
     border-width: 1px;
 }
+
+.modalGuide {
+    max-width: 600px;
+}
