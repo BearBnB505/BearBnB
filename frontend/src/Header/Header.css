@@ -13,22 +13,16 @@
     max-height: 300px;
 }
 
-.selectGuest div {
-    border-radius: 25px !important;
-}
-
-.selectGuest {
-    transform: translate3d(476px, 136px, 0px) !important;
-}
 
 .popover .popover-arrow {
     display: none;
 }
 
 .popover {
-    /*position:relative!important;*/
-    left:50%!important;
-    top:20%!important;
+    position:absolute !important;
+    left:38.5% !important;
+    top:15.5% !important;
     transform: translate3d(0,0,0)!important;
-    margin: 0!important;
+    border-color: lightgray;
+    border-width: 1px;
 }

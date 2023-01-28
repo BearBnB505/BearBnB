@@ -9,7 +9,7 @@ function GuestCount() {
 
     const styles = {
         con : {
-
+            width: 370
         },
         font : {
             position : "flex",
@@ -29,10 +29,9 @@ function GuestCount() {
             fontSize: "20px"
         },
         hr:{
-            width :"350px",
+            width :"340px",
             textAlign: "center",
-            margin:"auto",
-
+            marginLeft: 6
         }
     }
 
@@ -75,69 +74,74 @@ function GuestCount() {
     }
 
     return(
-        <div className ={"container px-4"}>
-            <div className={"row"} >
-                <div className={"col"} style={styles.con}>
-                    {/*<p className={"fw-bold"} style={styles.font}>숙소 기본 정보를 알려주세요</p>*/}
-                    {/*<p className={"fs-5 fw-light"}>숙소에 머물 수 있는 게스트 수, 침실 수, 침대 수, 욕실 수를 지정해주세요 </p>*/}
-                    <div className = "col-sm-12">
-                        {/*성인*/}
-                        <div className="row justify-content-between mt-4 p-1 mb-3">
-                                <div className="col-6 fs-5" >
-                                    성인<br/> <p style={{color:"gray", fontSize:"17px"}}>만 2세 미만</p>
-                                </div>
-                            <div className = "col-1 p-0">
-                                    <img src="/concept/minusIcon.png" style={styles.img} onClick={AdultMinus}/>
+        <div className ={"ps-4"}>
+            <div style={styles.con}>
+                {/*<p className={"fw-bold"} style={styles.font}>숙소 기본 정보를 알려주세요</p>*/}
+                {/*<p className={"fs-5 fw-light"}>숙소에 머물 수 있는 게스트 수, 침실 수, 침대 수, 욕실 수를 지정해주세요 </p>*/}
+                <div className = "col-11">
+                    {/* 성인 */}
+                    <div className="row justify-content-between mt-4 p-2 mb-2">
+                            <div className="col-6">
+                                <span className={"fw-bold"} style={{fontSize:"17px"}}>성인</span>
+                                <br/>
+                                <p className={"mt-2 mb-0"} style={{color:"gray", fontSize:"14px"}}>만 2세 이상</p>
                             </div>
-                            <div className={"col-1 p-0"}>
-                                <input type={"text"} value={adultCount} style={styles.input} />
-                            </div>
-                            <div className={"col-1 p-0"}>
-                                <img src="/concept/plusIcon.png" style={styles.img} onClick={AdultPlus}/>
-                            </div>
+                        <div className = "col-1 p-0 align-self-center">
+                                <img src="/concept/minusIcon.png" style={styles.img} onClick={AdultMinus} alt="-"/>
                         </div>
-
-                        <hr style={styles.hr}/>
-
-                        {/*유아*/}
-                        <div className="row justify-content-between mt-3 p-1 mb-3">
-                            <div className="col-6 fs-5" >
-                                유아 <br/> <p style={{color:"gray", fontSize:"17px"}}>만 2세 미만</p>
-                            </div>
-                            <div className="col-1 p-0">
-                                <img src="/concept/minusIcon.png" style={styles.img} onClick={ChildMinus}/>
-                            </div>
-                            <div className="col-1 p-0">
-                                <input type={"text"} value={childCount} style={styles.input} />
-                            </div>
-                            <div className="col-1 p-0">
-                                <img src="/concept/plusIcon.png" style={styles.img} onClick={ChildPlus}/>
-                            </div>
+                        <div className={"col-1 p-0 align-self-center"}>
+                            <input type={"text"} value={adultCount} style={styles.input} />
                         </div>
-                        <hr style={styles.hr}/>
-
-                        {/*반려동물*/}
-                        <div className="row justify-content-between mt-3 p-1 mb-3">
-                            <div className="col-6 fs-5" >
-                                반려동물<p style={{color:"gray", fontSize:"13px", textDecorationLine: "underline"}}>반려동물을 동반하시나요?</p>
-                            </div>
-                            <div className="col-1 p-0">
-                                <img src="/concept/minusIcon.png" style={styles.img} onClick={PetMinus}/>
-                            </div>
-                            <div className="col-1 p-0">
-                                <input type={"text"} value={petCount} style={styles.input} />
-                            </div>
-                            <div className="col-1 p-0">
-                                <img src="/concept/plusIcon.png" style={styles.img} onClick={PetPlus}/>
-                            </div>
+                        <div className={"col-1 p-0 align-self-center"}>
+                            <img src="/concept/plusIcon.png" style={styles.img} onClick={AdultPlus} alt="+"/>
                         </div>
                     </div>
-                    {/*<div>*/}
-                    {/*    <Link to ={"/lodgingLocationDetail"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>*/}
-                    {/*    <Link to = {"/lodgingBedSelect"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>*/}
-                    {/*</div>*/}
+
+                    <hr style={styles.hr}/>
+
+                    {/* 유아 */}
+                    <div className="row justify-content-between mt-3 p-2 mb-2">
+                        <div className="col-6">
+                            <span className={"fw-bold"} style={{fontSize:"17px"}}>유아</span>
+                            <br/>
+                            <p className={"mt-2 mb-0"} style={{color:"gray", fontSize:"14px"}}>만 2세 미만</p>
+                        </div>
+                        <div className="col-1 p-0 align-self-center">
+                            <img src="/concept/minusIcon.png" style={styles.img} onClick={ChildMinus} alt="-"/>
+                        </div>
+                        <div className="col-1 p-0 align-self-center">
+                            <input type={"text"} value={childCount} style={styles.input} />
+                        </div>
+                        <div className="col-1 p-0 align-self-center">
+                            <img src="/concept/plusIcon.png" style={styles.img} onClick={ChildPlus} alt="+"/>
+                        </div>
+                    </div>
+
+                    <hr style={styles.hr}/>
+
+                    {/* 반려동물 */}
+                    <div className="row justify-content-between mt-3 p-2 mb-4">
+                        <div className="col-6 pe-0">
+                            <span className={"fw-bold"} style={{fontSize:"17px"}}>반려동물</span>
+                            <br/>
+                            <p className={"mt-2 mb-0"} style={{color:"gray", fontSize:"13px", textDecorationLine: "underline"}}>반려동물을 동반하시나요?</p>
+                        </div>
+                        <div className="col-1 p-0 align-self-center">
+                            <img src="/concept/minusIcon.png" style={styles.img} onClick={PetMinus} alt="-"/>
+                        </div>
+                        <div className="col-1 p-0 align-self-center">
+                            <input type={"text"} value={petCount} style={styles.input} />
+                        </div>
+                        <div className="col-1 p-0 align-self-center">
+                            <img src="/concept/plusIcon.png" style={styles.img} onClick={PetPlus} alt="+"/>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                {/*<div>*/}
+                {/*    <Link to ={"/lodgingLocationDetail"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>*/}
+                {/*    <Link to = {"/lodgingBedSelect"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>*/}
+                {/*</div>*/}
+        </div>
         </div>
 
     );

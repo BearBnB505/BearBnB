@@ -52,25 +52,28 @@ function HeaderModal(props) {
 
     const [show1, setShow1] = useState(false);
     const [show2, setShow2] = useState(false);
+    const [show3, setShow3] = useState(false);
 
     const selectSpot = () => {
         setShow1(true);
         setShow2(false);
+        setShow3(false);
     }
 
     const selectDate = () => {
         setShow1(true);
         setShow2(false);
+        setShow3(true);
     }
 
     const selectGuest1 = () => {
         setShow1(true);
-        setShow2(true);
         selectGuest2();
     }
 
     const selectGuest2 = () => {
         setShow2(true);
+        setShow3(false);
     }
 
     // $(document).ready(function () {
@@ -136,69 +139,81 @@ function HeaderModal(props) {
                             <div className={"btn-group sidenav dropdown"} role={"group"} id={"menu"}>
                                 <button type={"button"} className={"btn btn-outline-secondary px-3 py-2"} style={styles.pillStart} onClick={selectSpot}>여행지</button>
                                 <button type={"button"} className={"btn btn-outline-secondary px-3 py-2"} onClick={selectDate}>체크인</button>
-                                <button type={"button"} className={"btn btn-outline-secondary px-3 py-2"} onClick={selectDate}>체크아웃</button>
+                                <button ref={target}  type={"button"} className={" btn btn-outline-secondary px-3 py-2"} onClick={selectDate}>체크아웃</button>
 
-                                <div>
-                                    <button ref={target} type={"button"} className={"btn btn-outline-secondary py-2"} style={styles.nav2PillEnd} onClick={selectGuest2}>
-                                        <div className={"row"}>
-                                            <div className={"col-4 my-auto ms-3"}>
-                                                여행자
-                                            </div>
-                                            <div className={"col-6 ms-3"}>
-                                                <a type={"button"} className={"btn btn-primary"} style={{borderRadius:25}}>
-                                                    <div className={"row px-1"}>
-                                                        <div className={"col-1"}>
-                                                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{width: 12, paddingTop: 4}}/>
-                                                        </div>
-                                                        <div className={"col-6 p-0 ms-1 me-2"}>
-                                                            <span>검색</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
+                                <button ref={target} type={"button"} className={" btn btn-outline-secondary py-2"} style={styles.nav2PillEnd} onClick={selectGuest2}>
+                                    <div className={"row"}>
+                                        <div className={"col-4 my-auto ms-3"}>
+                                            여행자
                                         </div>
-                                    </button>
+                                        <div className={"col-6 ms-3"}>
+                                            <a type={"button"} className={"btn btn-primary"} style={{borderRadius:25}}>
+                                                <div className={"row px-1"}>
+                                                    <div className={"col-1"}>
+                                                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{width: 12, paddingTop: 4}}/>
+                                                    </div>
+                                                    <div className={"col-6 p-0 ms-1 me-2"}>
+                                                        <span>검색</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </button>
 
-                                    <Overlay
-                                        show={show2}
-                                        onHide={() => setShow2(false)}
-                                        placement={"bottom"}
-                                        target={target.current}
-                                    >
-                                        <Popover className={"selectGuest2"} style={{width:450, borderRadius:30, maxWidth:800}}>
-                                            <GuestCount/>
-                                        </Popover>
-                                    </Overlay>
+                                <Overlay
+                                    show={show2}
+                                    onHide={() => setShow2(false)}
+                                    placement={"bottom"}
+                                    target={target.current}
+                                >
+                                    <Popover className={"shadow-lg"} style={{width:403, borderRadius:30, maxWidth:800, marginLeft:200}}>
+                                        <GuestCount/>
+                                    </Popover>
+                                </Overlay>
 
-                                    {/*<Whisper*/}
-                                    {/*    trigger="active"*/}
-                                    {/*    placement={"bottom"}*/}
-                                    {/*    speaker={*/}
-                                    {/*        <Popover arrow={false} style={{marginTop:20, borderRadius:30}}>*/}
-                                    {/*            <GuestCount/>*/}
-                                    {/*        </Popover>*/}
-                                    {/*    }>*/}
-                                    {/*    <button id={"selectGuest2"} type={"button"} className={"btn btn-outline-secondary py-2"} style={styles.nav2PillEnd} onClick={selectGuest2}>*/}
-                                    {/*        <div className={"row"}>*/}
-                                    {/*            <div className={"col-4 my-auto ms-3"}>*/}
-                                    {/*                여행자*/}
-                                    {/*            </div>*/}
-                                    {/*            <div className={"col-6 ms-3"}>*/}
-                                    {/*                <a type={"button"} className={"btn btn-primary"} style={{borderRadius:25}}>*/}
-                                    {/*                    <div className={"row px-1"}>*/}
-                                    {/*                        <div className={"col-1"}>*/}
-                                    {/*                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{width: 12, paddingTop: 4}}/>*/}
-                                    {/*                        </div>*/}
-                                    {/*                        <div className={"col-6 p-0 ms-1 me-2"}>*/}
-                                    {/*                            <span>검색</span>*/}
-                                    {/*                        </div>*/}
-                                    {/*                    </div>*/}
-                                    {/*                </a>*/}
-                                    {/*            </div>*/}
-                                    {/*        </div>*/}
-                                    {/*    </button>*/}
-                                    {/*</Whisper>*/}
-                                </div>
+                                <Overlay
+                                    show={show3}
+                                    onHide={() => setShow3(false)}
+                                    placement={"bottom"}
+                                    target={target.current}
+                                >
+                                    <Popover className={"shadow-lg"} style={{width:800, borderRadius:30, maxWidth:800}}>
+                                        <div>
+                                            test
+                                        </div>
+                                    </Popover>
+                                </Overlay>
+
+                                {/*<Whisper*/}
+                                {/*    trigger="active"*/}
+                                {/*    placement={"bottom"}*/}
+                                {/*    speaker={*/}
+                                {/*        <Popover arrow={false} style={{marginTop:20, borderRadius:30}}>*/}
+                                {/*            <GuestCount/>*/}
+                                {/*        </Popover>*/}
+                                {/*    }>*/}
+                                {/*    <button id={"selectGuest2"} type={"button"} className={"btn btn-outline-secondary py-2"} style={styles.nav2PillEnd} onClick={selectGuest2}>*/}
+                                {/*        <div className={"row"}>*/}
+                                {/*            <div className={"col-4 my-auto ms-3"}>*/}
+                                {/*                여행자*/}
+                                {/*            </div>*/}
+                                {/*            <div className={"col-6 ms-3"}>*/}
+                                {/*                <a type={"button"} className={"btn btn-primary"} style={{borderRadius:25}}>*/}
+                                {/*                    <div className={"row px-1"}>*/}
+                                {/*                        <div className={"col-1"}>*/}
+                                {/*                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{width: 12, paddingTop: 4}}/>*/}
+                                {/*                        </div>*/}
+                                {/*                        <div className={"col-6 p-0 ms-1 me-2"}>*/}
+                                {/*                            <span>검색</span>*/}
+                                {/*                        </div>*/}
+                                {/*                    </div>*/}
+                                {/*                </a>*/}
+                                {/*            </div>*/}
+                                {/*        </div>*/}
+                                {/*    </button>*/}
+                                {/*</Whisper>*/}
+
 
                             </div>
                         </div>
