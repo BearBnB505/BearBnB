@@ -40,6 +40,7 @@ import HostMyPageHostInfo from "./HostMypage/HostMyPageHostInfo";
 import HostMyPageReview from "./HostMypage/HostMyPageReview";
 import HostMyPageBooking from "./HostMypage/HostMyPageBooking";
 import GuestInfoModal from "./HostMypage/GuestInfoModal";
+import HostMyPageRevenue from "./HostMypage/HostMyPageRevenue";
 
 function ProjectRouter(props) {
     return (
@@ -104,6 +105,8 @@ function ProjectRouter(props) {
                     <Route path={"hostMyPageReview"} element={<HostMyPageReview/>}/>
                     <Route path={"hostMyPageBooking"} element={<HostMyPageBooking/>}/>
                     <Route path={"guestInfoModal"} element={<GuestInfoModal/>}/>
+                    <Route path={"hostMyPageRevenue"} element={<HostMyPageRevenue/>}/>
+                    <Route path={"hostMyPageLodging"} element={<HostMyPageRevenue/>}/>
 
                 </Route>
             </Routes>
