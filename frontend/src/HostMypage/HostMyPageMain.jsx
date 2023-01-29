@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "C:/Users/admin/Desktop/BearBnB/frontend/src/Mypage/Style.css";
-import Card from "C:/Users/admin/Desktop/BearBnB/frontend/src/Mypage/Card.jsx";
+import styles from "C:/InteliJ/BearBnB/frontend/src/Mypage/Style.css";
+import Card from "C:/InteliJ/BearBnB/frontend/src/Mypage/Card.jsx";
 import {
     faCamera, faUser, faHeart, faCalendarCheck, faCalendarMinus, faUserCog, faList, faRightFromBracket,faHouse,faSackDollar
 } from "@fortawesome/free-solid-svg-icons";
 import {Link, Outlet} from "react-router-dom";
-import Anima from "C:/Users/admin/Desktop/BearBnB/frontend/src/Mypage/animaData.jsx";
+import Anima from "C:/InteliJ/BearBnB/frontend/src/Mypage/animaData.jsx";
 import {motion} from "framer-motion";
 
 
@@ -20,7 +20,7 @@ function HostMyPageMain(props) {
                 <h5><strong>유리 정</strong>, gradispo@gmail.com</h5>
             </div>
             <div className={"row"}>
-                <Link className={"col-sm-4"} to={"#"}><Card id={"1"} icon={faUser} title={"호스트정보관리"}
+                <Link className={"col-sm-4"} to={"/hostMyPageHostInfo"}><Card id={"1"} icon={faUser} title={"호스트정보관리"}
                                                                    content={"소개, 사용언어 등을 수정합니다"}/></Link>
                 <Link style={styles.a} className={"col-sm-4"} to={"#"}><Card id={"2"} icon={faHouse}
                                                                                    title={"숙소관리"}
