@@ -37,6 +37,7 @@ import LodgingPaymentFailure from "./lodging_payment/LodgingPaymentFailure";
 import Join from "./Join";
 import HostMyPageMain from "./HostMypage/HostMyPageMain";
 import HostMyPageHostInfo from "./HostMypage/HostMyPageHostInfo";
+import HostMyPageReview from "./HostMypage/HostMyPageReview";
 
 function ProjectRouter(props) {
     return (
@@ -98,6 +99,7 @@ function ProjectRouter(props) {
                     {/* 호스트 마이페이지*/}
                     <Route path={"hostMyPageMain"} element={<HostMyPageMain/>}/>
                     <Route path={"hostMyPageHostInfo"} element={<HostMyPageHostInfo/>}/>
+                    <Route path={"hostMyPageReview"} element={<HostMyPageReview/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
