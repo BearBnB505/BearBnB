@@ -22,7 +22,7 @@ function HostMyPageMain(props) {
             <div className={"row"}>
                 <Link className={"col-sm-4"} to={"/hostMyPageHostInfo"}><Card id={"1"} icon={faUser} title={"호스트정보관리"}
                                                                    content={"소개, 사용언어 등을 수정합니다"}/></Link>
-                <Link style={styles.a} className={"col-sm-4"} to={"#"}><Card id={"2"} icon={faHouse}
+                <Link style={styles.a} className={"col-sm-4"} to={"/hostMyPageLodging"}><Card id={"2"} icon={faHouse}
                                                                                    title={"숙소관리"}
                                                                                    content={"새로운 숙소 등록, 등록된 숙소를 관리합니다."}/></Link>
                 <Link className={"col-sm-4"} to={"/hostMyPageBooking"}><Card id={"3"} icon={faCalendarCheck} title={"예약관리"}
