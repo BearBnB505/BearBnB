@@ -38,6 +38,8 @@ import Join from "./Join";
 import HostMyPageMain from "./HostMypage/HostMyPageMain";
 import HostMyPageHostInfo from "./HostMypage/HostMyPageHostInfo";
 import HostMyPageReview from "./HostMypage/HostMyPageReview";
+import HostMyPageBooking from "./HostMypage/HostMyPageBooking";
+import GuestInfoModal from "./HostMypage/GuestInfoModal";
 
 function ProjectRouter(props) {
     return (
@@ -100,6 +102,9 @@ function ProjectRouter(props) {
                     <Route path={"hostMyPageMain"} element={<HostMyPageMain/>}/>
                     <Route path={"hostMyPageHostInfo"} element={<HostMyPageHostInfo/>}/>
                     <Route path={"hostMyPageReview"} element={<HostMyPageReview/>}/>
+                    <Route path={"hostMyPageBooking"} element={<HostMyPageBooking/>}/>
+                    <Route path={"guestInfoModal"} element={<GuestInfoModal/>}/>
+
                 </Route>
             </Routes>
         </BrowserRouter>

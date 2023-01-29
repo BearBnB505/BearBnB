@@ -17,7 +17,7 @@ function HostMyPageHostInfo(props) {
             exit="exit" className={"container mt-5 show-center bg-lightRed"}>
             <div className={"row mb-5 ms-5"}>
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/mypage">호스트마이페이지</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/hostMyPageMain">호스트마이페이지</Breadcrumb.Item>
                     <Breadcrumb.Item active>호스트 정보 수정</Breadcrumb.Item>
                 </Breadcrumb>
                 <h3 className={"fw-bold"}>호스트 정보 수정</h3>
