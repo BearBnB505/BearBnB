@@ -155,6 +155,15 @@ function LodgingPayment(props){
                                     {navigate("/lodgingPaymentEnd")}
                                 });
                             }}
+
+                            // 주문 중 취소를 했을 때 오류 발생 페이지로 이동한다.
+                            onCancel={function (data)  {
+                                {navigate("/lodgingPaymentFailure")}
+                    }}
+                            onError={function (err){
+                                alert('결제 중 에러발생')
+                                window.location.href = "/lodgingPaymentFailure";
+                            }}
                         />
                     </PayPalScriptProvider>
                 </div>
