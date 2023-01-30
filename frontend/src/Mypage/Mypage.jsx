@@ -66,4 +66,3 @@ function createCard(props) {
 
 export default Mypage;
 
-
