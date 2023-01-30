@@ -3,11 +3,19 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import {Link} from "react-router-dom";
 import Popover from "react-bootstrap/Popover";
 import GuestCount from "../GuestCount";
+import { useNavigate } from 'react-router-dom';
 import Overlay from "react-bootstrap/Overlay";
 
 import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
 import LodgingPayPal from "./LodgingPayPal";
 import PaypalApp from "./LodgingPayPal";
+
+
+const amount = "0.01"; //계산되는 달러가격 여기에 표시된다.
+const currency = "USD";
+const style = {"layout":"vertical"};
+
+
 // 확인 및 결제 페이지
 function LodgingPayment(props){
 
@@ -24,24 +32,13 @@ function LodgingPayment(props){
         }
     }
 
-    // const initialOptions = {
-    //     "client-id": "AelKrwx59EQIuE4_2aa69nqfooRHj2Q41Ko9IDTlD72BtjVbT_p3jaawmaQ16ciIL6m86So_MRYxxY4t",
-    //     currency: "USD",
-    //     intent: "capture",
-    //     "data-client-token": "BiIyB3=O",
-    // };
 
-    const initialOptions = {
-        "client-id": "test",
-        currency: "USD",
-        intent: "capture",
-        "data-client-token": "abc123xyz==",
-    };
+    const navigate = useNavigate();
 
     //모달창 띄우기 안띄우기
     const [showGuestCount, setShowGuestCount] = useState(false);
     // 성인수
-    const [adult, setAdult] = useState(props.adultCount);
+    const [adult, setAdult] = useState(5);
     // 유아수
     const [kids, setKids] = useState(0);
     // 반려동물수
@@ -121,13 +118,45 @@ function LodgingPayment(props){
                     <div className={'col-3'}>
                         <p style={{fontSize:"23px"}}> &#8361; 150000 </p>
                     </div>
-                    <button className={'btn btn-danger mt-5 col-3 mx-6 fs-5'} style={{marginLeft : "600px"}}>예약하기</button>
-                    <PayPalScriptProvider options={{ "client-id": "AelKrwx59EQIuE4_2aa69nqfooRHj2Q41Ko9IDTlD72BtjVbT_p3jaawmaQ16ciIL6m86So_MRYxxY4t" }}>
-                        <PayPalButtons style={{ layout: "horizontal" }} />
+                    {/*<PayPalScriptProvider options={{ "client-id": "AelKrwx59EQIuE4_2aa69nqfooRHj2Q41Ko9IDTlD72BtjVbT_p3jaawmaQ16ciIL6m86So_MRYxxY4t" }}>*/}
+                    {/*    <PayPalButtons style={{ layout: "horizontal" }} />*/}
+                    {/*</PayPalScriptProvider>*/}
+
+
+                    <PayPalScriptProvider options={{"client-id":"AelKrwx59EQIuE4_2aa69nqfooRHj2Q41Ko9IDTlD72BtjVbT_p3jaawmaQ16ciIL6m86So_MRYxxY4t"}}>
+                        <PayPalButtons
+                            style={style}
+                            disabled={false}
+                            forceReRender={[amount, currency, style]}
+                            fundingSource={undefined}
+                            createOrder={(data, actions) => {
+                                return actions.order
+                                    .create({
+                                        purchase_units: [
+                                            {
+                                                amount: {
+                                                    currency_code: currency,
+                                                    value: amount,
+                                                },
+                                            },
+                                        ],
+                                    })
+                                    .then((orderId) => {
+                                        // Your code here after create the order
+                                        return orderId;
+                                    });
+                            }}
+
+
+                            onApprove={function (data, actions) {
+                                return actions.order.capture().then(function () {
+                                    // Your code here after capture the order
+                                    // 결제 완료 확인 창이 뜬다.
+                                    {navigate("/lodgingPaymentEnd")}
+                                });
+                            }}
+                        />
                     </PayPalScriptProvider>
-
-
-                    {/*<PaypalApp/>*/}
                 </div>
             </div>
         </div>
