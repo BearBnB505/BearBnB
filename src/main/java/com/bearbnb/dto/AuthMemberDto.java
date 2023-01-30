@@ -16,7 +16,6 @@ public class AuthMemberDto extends User {
 
     private String userId;
     private String name;
-    private String userCode;
     private boolean fromSocial;
 
 

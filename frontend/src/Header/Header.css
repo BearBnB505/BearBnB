@@ -10,4 +10,23 @@
 
 .header-modal div {
     border-radius: 0 !important;
+    max-height: 300px;
+}
+
+
+.popover .popover-arrow {
+    display: none;
+}
+
+.popover {
+    position:absolute !important;
+    left:38.5% !important;
+    top:15.5% !important;
+    transform: translate3d(0,0,0)!important;
+    border-color: lightgray;
+    border-width: 1px;
+}
+
+.modalGuide {
+    max-width: 600px;
 }

@@ -8,6 +8,8 @@ import DropdownToggle from "react-bootstrap/DropdownToggle";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import DropdownItem from "react-bootstrap/DropdownItem";
 import HeaderModal from "./HeaderModal";
+import Login from "../Login";
+import Join from "../Join";
 
 function Header(props) {
 
@@ -26,8 +28,8 @@ function Header(props) {
                             </DropdownToggle>
 
                             <DropdownMenu align={"end"}>
-                                <DropdownItem href={"#"}>로그인</DropdownItem>
-                                <DropdownItem href={"/join"}>회원가입</DropdownItem>
+                                <Login />
+                                <Join />
                                 <DropdownItem href={"/message"}>
                                     <span>메세지알림</span>
                                     <span className="badge bg-primary rounded-pill float-end">2</span>

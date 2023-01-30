@@ -4,7 +4,7 @@
 <mapper namespace="com.bearbnb.mapper.MemberMapper">
 
 <!--  내정보 가져오기  -->
-    <select id="findUser" parameterType="map" resultType="com.bearbnb.dto.MembersDto">
+    <select id="findById" parameterType="map" resultType="com.bearbnb.dto.MembersDto">
         <![CDATA[
         SELECT * FROM members WHERE user_id = #{userId}
         ]]>
