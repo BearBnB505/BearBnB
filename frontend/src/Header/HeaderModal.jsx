@@ -14,6 +14,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import GuestCount from "../GuestCount";
 import Login from "../Login";
 import Join from "../Join";
+import Calendar from "../Calendar";
+import DatePicker from "react-datepicker";
 
 function HeaderModal(props) {
     const styles = {
@@ -74,6 +76,9 @@ function HeaderModal(props) {
         setShowChooseDate(false);
     }
 
+    const [dateRange, setDateRange] = useState([null, null]);
+    const [startDate, endDate] = dateRange;
+
     return (
         <>
             <div className={"nav-item"} id={"nav-first"}>
@@ -133,7 +138,10 @@ function HeaderModal(props) {
                         <div className={"container d-flex justify-content-center"}>
                             <div className={"btn-group sidenav dropdown"} role={"group"} id={"menu"}>
                                 <button type={"button"} className={"btn btn-outline-secondary px-3 py-2"} style={styles.nav2PillStart} onClick={selectSpot}>여행지</button>
-                                <button type={"button"} className={"btn btn-outline-secondary px-3 py-2"} onClick={selectDate} style={styles.navDate}>체크인</button>
+
+                                <button type={"button"} className={"btn btn-outline-secondary px-3 py-2"} onClick={selectDate} style={styles.navDate}>
+                                    체크인
+                                </button>
                                 <button ref={target}  type={"button"} className={" btn btn-outline-secondary px-3 py-2"} onClick={selectDate} style={styles.navDate}>체크아웃</button>
 
                                 <button ref={target} type={"button"} className={" btn btn-outline-secondary py-2"} style={styles.nav2PillEnd} onClick={selectGuest2}>
@@ -173,10 +181,8 @@ function HeaderModal(props) {
                                     placement={"bottom"}
                                     target={target.current}
                                 >
-                                    <Popover className={"shadow-lg"} style={{width: 800, height: 400, borderRadius:30, maxWidth:800, marginLeft:-170}}>
-                                        <div>
-                                            <h1>test</h1>
-                                        </div>
+                                    <Popover className={"shadow-lg"} style={{width: 800, height: 420, borderRadius:30, maxWidth:800, marginLeft:-170}}>
+                                        <Calendar/>
                                     </Popover>
                                 </Overlay>
 

@@ -4,7 +4,7 @@ body {
 
 .header-modal {
     width: 1920px;
-    max-width: 100vw;
+    max-width: 1920px;
     border: none;
     top: -17px;
     margin: 0;
