@@ -46,7 +46,7 @@ import HostInfo from "./hostinfo/HostInfo";
 import HostMyPageMain from "./HostMypage/HostMyPageMain";
 import HostMyPageHostInfo from "./HostMypage/HostMyPageHostInfo";
 import HostMyPageReview from "./HostMypage/HostMyPageReview";
-import HostMyPageBooking from "./HostMypage/HostMyPageBooking";
+import HostMyPageBooking from "./HostMypage/HostBookingPage/HostMyPageBooking";
 import GuestInfoModal from "./HostMypage/GuestInfoModal";
 import HostMyPageRevenue from "./HostMypage/HostMyPageRevenue";
 import HostMyPageLodging from "./HostMypage/HostMyPageLodging";
