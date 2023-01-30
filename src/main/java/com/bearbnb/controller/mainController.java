@@ -36,4 +36,12 @@ public class mainController {
     public List<LodgingDto> lodgingList() {
         return lodgingMapper.lodgingList();
     }
+
+    @RequestMapping(value="/paymentInsert",method = RequestMethod.POST)
+    public void paymentInsert(@RequestParam String userId, @RequestParam Integer adultNum, @RequestParam Integer babyNum, @RequestParam Integer petNum) throws Exception{
+        System.out.println(userId);
+        System.out.println(adultNum);
+        System.out.println(babyNum);
+        System.out.println(petNum);
+    }
 }
