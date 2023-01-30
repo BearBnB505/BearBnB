@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Breadcrumb, Tab, Tabs} from "react-bootstrap";
 import {faPencil, faList, faClose} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import Anima from "C:/InteliJ/BearBnB/frontend/src/Mypage/animaData";
+import Anima from "../Mypage/animaData";
 import { motion } from "framer-motion";
 import HostUserInfoModal from "./HostUserInfoModal";
 import Guest from "../guest";

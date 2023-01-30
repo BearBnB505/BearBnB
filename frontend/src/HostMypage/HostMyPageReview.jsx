@@ -2,7 +2,7 @@ import React from "react";
 import {Breadcrumb, Tabs} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose, faPencil,  faStar} from "@fortawesome/free-solid-svg-icons";
-import Anima from "C:/InteliJ/BearBnB/frontend/src/Mypage/animaData";
+import Anima from "../Mypage/animaData";
 import { motion } from "framer-motion";
 
 const review = [

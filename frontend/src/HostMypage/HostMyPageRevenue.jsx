@@ -4,7 +4,7 @@ import React from "react";
 import {Breadcrumb, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose, faPencil} from "@fortawesome/free-solid-svg-icons";
-import Anima from "C:/InteliJ/BearBnB/frontend/src/Mypage/animaData";
+import Anima from "../Mypage/animaData";
 import { motion } from "framer-motion";
 
 const complain = [

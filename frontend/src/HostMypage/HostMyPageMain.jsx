@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "C:/InteliJ/BearBnB/frontend/src/Mypage/Style.css";
-import Card from "C:/InteliJ/BearBnB/frontend/src/Mypage/Card.jsx";
+import styles from "../Mypage/Style.css";
+import Card from "../Mypage/Card.jsx";
 import {
     faCamera, faUser, faHeart, faCalendarCheck, faCalendarMinus, faUserCog, faList, faRightFromBracket,faHouse,faSackDollar
 } from "@fortawesome/free-solid-svg-icons";
 import {Link, Outlet} from "react-router-dom";
-import Anima from "C:/InteliJ/BearBnB/frontend/src/Mypage/animaData.jsx";
+import Anima from "../Mypage/animaData.jsx";
 import {motion} from "framer-motion";
 
 

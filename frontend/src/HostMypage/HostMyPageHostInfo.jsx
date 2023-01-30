@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Breadcrumb} from "react-bootstrap";
 import { motion } from "framer-motion";
-import Anima from "C:/InteliJ/BearBnB/frontend/src/Mypage/animaData";
+import Anima from "../Mypage/animaData";
 import MyLanguages from "./HostMembers/MyLanguages";
 import MyIntoduce from "./HostMembers/MyIntoduce";
 
