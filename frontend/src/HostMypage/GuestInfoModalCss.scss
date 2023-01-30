@@ -1,0 +1,10 @@
+#property p {
+    height: 24px;
+    text-align: justify;
+
+    &:after {
+        content: "";
+        display: inline-block;
+        width: 100%;
+    }
+}

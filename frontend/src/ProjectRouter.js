@@ -51,6 +51,8 @@ import GuestInfoModal from "./HostMypage/GuestInfoModal";
 import HostMyPageRevenue from "./HostMypage/HostMyPageRevenue";
 import HostMyPageLodging from "./HostMypage/HostMyPageLodging";
 
+import './App.css';
+
 function ProjectRouter(props) {
     return (
         <BrowserRouter>

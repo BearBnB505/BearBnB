@@ -12,7 +12,7 @@ import Payment from "./payment/Payment";
 function LodgingDetail(){
 
     return(
-        <div style={{display:"grid", justifyContent:"center"}}>
+        <div style={{display:"grid", justifyContent:"center", width: 1900}}>
             <div className={'mx-auto'} style={{width: 1230}}>
                 <LodgingDetailTitle/>
                 <HostImg/>
