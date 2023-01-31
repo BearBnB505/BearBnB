@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import HouseConceptForm from "./HouseConceptForm";
 import BedNRestroomForm from "./BedNRestroomForm";
 import $ from "jquery";
+import axios from "axios";
 
 const BedNRestroom=()=>{
   const [roomNumInfo, SetRoomNumInfo] = useState(false);
@@ -25,6 +26,20 @@ const BedNRestroom=()=>{
 
   });
 
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/CallLodgingList')
+      .then((req) => {
+        const {data} = req;
+        setData(data);
+      })
+      .catch((err) => {
+        console.log("통신 오류");
+      })
+  }, []);
+
+
   return(
     <div>
       <div className={'HNameFrame5'} id={'BNRr'}>
@@ -32,9 +47,27 @@ const BedNRestroom=()=>{
         <button className={'BasicInfoBtn'} id={'BNRrBtn'} onClick={() => {
           SetRoomNumInfo(!roomNumInfo)
         }}>{roomNumInfo ? "취소" : "수정"}</button>
-        <p className={'HNameLine3'}>침실 : {bedroomNum}</p>
-        <p className={'HNameLine3'} style={{gridRow:3}}>침대 : {bedNum}</p>
-        <p className={'HNameLine3'} style={{gridRow:4}}>욕실 : {restroomNum}</p>
+        {
+          data.map((item) => {
+            return (
+              <p className={'HNameLine3'}>침실 : {item.bedroomNum}</p>
+            )
+          })
+        }
+        {
+          data.map((item) => {
+            return (
+              <p className={'HNameLine3'} style={{gridRow:3}}>침대 : {item.bedNum}</p>
+            )
+          })
+        }
+        {
+          data.map((item) => {
+            return (
+              <p className={'HNameLine3'} style={{gridRow:4}}>욕실 : {item.bathroomNum}</p>
+            )
+          })
+        }
       </div>
       {roomNumInfo && <BedNRestroomForm SetRoomNumInfo={SetRoomNumInfo}
                                         SetBedNum={SetBedNum}

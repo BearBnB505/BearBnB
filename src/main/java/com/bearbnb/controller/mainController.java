@@ -2,18 +2,29 @@ package com.bearbnb.controller;
 
 import com.bearbnb.dto.LodgingDto;
 import com.bearbnb.mapper.LodgingMapper;
+import com.bearbnb.service.HostUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@ComponentScan(basePackages = {"com.bearbnb.service.HostUpdateService"})
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 public class mainController {
 
     @Autowired
     LodgingMapper lodgingMapper;
+
+    @Autowired
+    LodgingMapper CallLodgingMapper;
+
+    @Autowired
+    HostUpdateService hostUpdateService;
+
+
 
     @RequestMapping("/")
     public String index() throws Exception {
@@ -35,6 +46,21 @@ public class mainController {
 
     @RequestMapping(value = "lodgingList")
     public List<LodgingDto> lodgingList() {
+
         return lodgingMapper.lodgingList();
     }
+
+    @RequestMapping(value = "CallLodgingList")
+    public List<LodgingDto> CallLodgingList() {
+        return CallLodgingMapper.CallLodgingList();
+    }
+
+
+    @RequestMapping(value = "/UpdateLodgingList", method = RequestMethod.POST)
+    public String UpdateLodgingList(@RequestParam("lodgingName") String lodgingName) throws Exception {
+        return hostUpdateService.hostLodgingUpdate(lodgingName);
+//        return "리턴값";
+    }
+
 }
+

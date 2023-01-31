@@ -38,16 +38,16 @@ const HouseConceptForm=(props)=>{
         </Dropdown.Menu>
       </Dropdown>
 
-      <h6>회원님의 숙소의 이용 할 수 있는 공간의 형태를 선택하세요.</h6>
-      <Dropdown as={ButtonGroup} className={'HDropdown'}>
-        <Button className={'ConceptBtn'} variant="dark">{space}</Button>
-        <Dropdown.Toggle style={{backgroundColor:"white", color:"black"}} split variant="dark" />
-        <Dropdown.Menu className="super-colors">
-          <Dropdown.Item as="button" onClick={()=>{setSpace(space='개인실')}}>개인실</Dropdown.Item>
-          <Dropdown.Item as="button" onClick={()=>{setSpace(space='다인실')}}>다인실</Dropdown.Item>
-          <Dropdown.Item as="button" onClick={()=>{setSpace(space='공간 전체')}}>공간 전체</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+      {/*<h6>회원님의 숙소의 이용 할 수 있는 공간의 형태를 선택하세요.</h6>*/}
+      {/*<Dropdown as={ButtonGroup} className={'HDropdown'}>*/}
+      {/*  <Button className={'ConceptBtn'} variant="dark">{space}</Button>*/}
+      {/*  <Dropdown.Toggle style={{backgroundColor:"white", color:"black"}} split variant="dark" />*/}
+      {/*  <Dropdown.Menu className="super-colors">*/}
+      {/*    <Dropdown.Item as="button" onClick={()=>{setSpace(space='개인실')}}>개인실</Dropdown.Item>*/}
+      {/*    <Dropdown.Item as="button" onClick={()=>{setSpace(space='다인실')}}>다인실</Dropdown.Item>*/}
+      {/*    <Dropdown.Item as="button" onClick={()=>{setSpace(space='공간 전체')}}>공간 전체</Dropdown.Item>*/}
+      {/*  </Dropdown.Menu>*/}
+      {/*</Dropdown>*/}
 
       <hr/>
       <div className={'HNameFrame2'}>

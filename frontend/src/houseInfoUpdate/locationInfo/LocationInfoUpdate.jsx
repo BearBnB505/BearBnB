@@ -14,7 +14,7 @@ const LocationInfoUpdate = () => {
         위치
       </div>
       <Add/>
-      <LocationIntro/>
+      {/*<LocationIntro/>*/}
     </div>
   )
 }

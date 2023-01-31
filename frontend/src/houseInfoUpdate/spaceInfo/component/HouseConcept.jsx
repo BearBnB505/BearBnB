@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import HouseConceptForm from "./HouseConceptForm";
 import $ from "jquery";
+import axios from "axios";
 
 const HouseConcept=()=>{
   const [houseConcept, setHouseConcept] = useState(false);
@@ -19,6 +20,18 @@ const HouseConcept=()=>{
     });
   });
 
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/CallLodgingList')
+      .then((req) => {
+        const {data} = req;
+        setData(data);
+      })
+      .catch((err) => {
+        console.log("통신 오류");
+      })
+  }, []);
 
   return(
     <div>
@@ -27,8 +40,13 @@ const HouseConcept=()=>{
         <button className={'BasicInfoBtn'} id={'ConceptBtn'} onClick={() => {
           setHouseConcept(!houseConcept)
         }}>{houseConcept ? "취소" : "수정"}</button>
-        <p className={'HNameLine3'}>설정되지 않음</p>
-        <p className={'HNameLine3'} style={{gridRow:3}}>숙소 종류: 개인실</p>
+        {
+          data.map((item) => {
+            return (
+              <p className={'HNameLine3'}>{item.lodgingConcept}</p>
+          )
+          })
+        }
       </div>
       {houseConcept && <HouseConceptForm setHouseConcept={setHouseConcept}/>}
       <hr/>

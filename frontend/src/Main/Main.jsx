@@ -31,19 +31,19 @@ function Main(props) {
         <div className={"container"}>
             <MainCategory/>
 
-            <div>
+            <div>{
+              data.map((item) => {
+                return (
+                  <li style={styles.lodgingList}>
+                    <Link to={`/lodgingDetail/${item.idx}`}>
+                      <MainContents idx={item.idx} data={item} />
+                    </Link>
+                  </li>
+                )
+              })
+            }
                 <ul className={"d-flex justify-content-between"}>
-                    {
-                        data.map((item) => {
-                            return (
-                                <li style={styles.lodgingList}>
-                                    <Link to={`/lodgingDetail/${item.idx}`}>
-                                        <MainContents idx={item.idx} data={item} />
-                                    </Link>
-                                </li>
-                            )
-                        })
-                    }
+
                 </ul>
             </div>
 

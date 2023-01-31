@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import HouseIntroForm from "./HouseIntroForm";
 import $ from "jquery";
+import axios from "axios";
 
 const HouseIntro=()=>{
   const [houseIntro, setHouseIntro] = useState(false);
@@ -19,6 +20,19 @@ const HouseIntro=()=>{
     });
   });
 
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/CallLodgingList')
+      .then((req) => {
+        const {data} = req;
+        setData(data);
+      })
+      .catch((err) => {
+        console.log("통신 오류");
+      })
+  }, []);
+
   return (
     <div>
       <div className={'HNameFrame3'} id={'HouseIntro'}>
@@ -26,7 +40,13 @@ const HouseIntro=()=>{
         <button className={'BasicInfoBtn'} id={'HouseIntroBtn'} onClick={() => {
           setHouseIntro(!houseIntro)
         }}>{houseIntro ? "취소" : "수정"}</button>
-        <p className={'HNameLine3'}>중심부에 위치하면서도 조용한 숙소에서 편안한 시간을 보내세요.</p>
+        {
+          data.map((item) => {
+            return (
+            <p className={'HNameLine3'}>{item.introLodging}</p>
+            )
+          })
+        }
       </div>
       {houseIntro && <HouseIntroForm setHouseIntro={setHouseIntro}/>}
       <hr/>

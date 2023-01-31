@@ -7,5 +7,12 @@ import java.util.List;
 
 @Mapper
 public interface LodgingMapper {
+
+
     List<LodgingDto> lodgingList();
+
+    List<LodgingDto> CallLodgingList();
+
+
+    void lodgingUpdate(LodgingDto lodgingUpdate);
 }

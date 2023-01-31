@@ -264,6 +264,12 @@
     position: relative;
     margin-top: 10px;
 }
+
+
+.lodgingName{
+    width: 500px;
+    height: 45px;
+}
 /*#toggle-check{*/
 /*    border-radius: 30px;*/
 /*}*/

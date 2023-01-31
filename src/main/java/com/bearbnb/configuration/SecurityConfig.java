@@ -16,13 +16,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/user").hasRole("USER")
-                .antMatchers("/admin").hasRole("ADMIN");
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/**").permitAll();
+//                .antMatchers("/user").hasRole("USER")
+//                .antMatchers("/admin").hasRole("ADMIN");
 
         http.formLogin();
         http.logout();
