@@ -14,7 +14,10 @@ import axios from "axios";
 
 
 
-const amount = "0.01"; //계산되는 달러가격 여기에 표시된다.
+const amount = 0.01; //계산되는 달러가격 여기에 표시된다.
+const inputAmount = amount * 1000;
+console.log(inputAmount)
+
 const currency = "USD";
 const style = {"layout":"vertical"};
 
@@ -34,6 +37,7 @@ function LodgingPayment(props){
             // backgroundColor :"#fafafa"
         }
     }
+
 
 
     const navigate = useNavigate();
@@ -126,25 +130,7 @@ function LodgingPayment(props){
                     {/*</PayPalScriptProvider>*/}
 
 
-                    <button onClick={()=>{
-                        axios.post("http://localhost:8080/paymentInsert",null,
-                            {params:{
-                                    userId : "yuri",
-                                    adultNum : 1,
-                                    babyNum : 1,
-                                    petNum : 1,
-                                }}
-                        )
-                            .then((req)=>{
-                                console.log('post방식으로 성공');
-                                console.log(req);
-                            })
-                            .catch((err)=>{
-                                console.log("error발생");
-                            });
-                    }}>
-ajax연결테스트
-                    </button>
+                    {/*<button onClick={sendDataPost}>ajax데이터 전송테스트</button>*/}
 
                     <PayPalScriptProvider options={{"client-id":"AelKrwx59EQIuE4_2aa69nqfooRHj2Q41Ko9IDTlD72BtjVbT_p3jaawmaQ16ciIL6m86So_MRYxxY4t"}}>
                         <PayPalButtons
@@ -176,22 +162,28 @@ ajax연결테스트
                                     
                                     // 결제 완료 확인 페이지로 전환
                                     {navigate("/lodgingPaymentEnd")}
-                                    // axios.get('/paymentInsert',{
-                                    //     params:{
-                                    //         userId : "YURI",
-                                    //         // lodgingNum : "1111",
-                                    //         // bookNum : "222",
-                                    //         // bookState : "예약중",
-                                    //         // payType : "paypal",
-                                    //         // bookCheckInDt : "2022-11-11",
-                                    //         // bookCheckOutDt : "2022-11-22",
-                                    //         adultNum : {adult},
-                                    //         babyNum : {kids},
-                                    //         petNum : {pet}
-                                    //     }
-                                    // }).catch(function (){
-                                    //     console.log('통신오류')
-                                    // })
+                                    axios.post("http://localhost:8080/paymentInsert",null,
+                                        {params : {
+                                                userId : "bb",
+                                                lodgingNum : "9023013111111111",
+                                                bookNum: "9023222222222",
+                                                payType:"PAYPAL",
+                                                payCost: inputAmount,
+                                                bookState:"예약중",
+                                                bookCheckInDt:"2023-01-31",
+                                                bookCheckOutDt : "2023-02-10",
+                                                adultNum : adult,
+                                                babyNum : kids,
+                                                petNum : pet,
+                                            }}
+                                    )
+                                        .then((req)=>{
+                                            console.log("post방식으로 통신성공")
+                                            console.log(req); //데이터 넘어오는지 확인
+                                        })
+                                        .catch((err)=>{
+                                            console.log('error발생')
+                                        });
                                 });
                             }}
 

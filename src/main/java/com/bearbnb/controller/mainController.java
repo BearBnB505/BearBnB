@@ -27,6 +27,7 @@ public class mainController {
         test.add("스프링 내부 리액트 연동");
         return test;
     }
+
     @RequestMapping("/user")
     public String user() {
         return "user";
@@ -37,11 +38,6 @@ public class mainController {
         return lodgingMapper.lodgingList();
     }
 
-    @RequestMapping(value="/paymentInsert",method = RequestMethod.POST)
-    public void paymentInsert(@RequestParam String userId, @RequestParam Integer adultNum, @RequestParam Integer babyNum, @RequestParam Integer petNum) throws Exception{
-        System.out.println(userId);
-        System.out.println(adultNum);
-        System.out.println(babyNum);
-        System.out.println(petNum);
-    }
+
 }
+

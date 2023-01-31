@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bearbnb.mapper.PaymentMapper">
+    <insert id="paymentInsert" parameterType="com.bearbnb.dto.BookingDto">
+        <![CDATA[
+            insert into booking (user_id,lodging_num,book_num,book_state,book_dt,pay_type, pay_cost,pay_dt, book_check_in_dt, book_check_out_dt,adult_num,baby_num,pet_num)
+            values (#{userId},#{lodgingNum},#{bookNum},"예약중",now(),#{payType},#{payCost},now(),#{bookCheckInDt}, #{bookCheckOutDt}, #{adultNum}, #{babyNum}, #{petNum})
+    ]]>
+    </insert>
+</mapper>
