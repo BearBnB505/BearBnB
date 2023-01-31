@@ -1,6 +1,4 @@
-import React, {useState} from "react";
-// import { RangeDatePicker } from "react-google-flight-datepicker";
-// import "react-google-flight-datepicker/dist/main.css";
+import React, {useEffect, useState} from "react";
 
 import moment, {now} from "moment";
 
@@ -8,16 +6,10 @@ import 'react-date-range/dist/styles.css'; // main css file
 // import 'react-date-range/dist/theme/default.css'; // theme css file
 import './default.scss'
 
-import { DateRange, DateRangePicker } from 'react-date-range';
+import { DateRange } from 'react-date-range';
 
 
 export default function Calendar(props) {
-
-    // const [dateRange, setDateRange] = useState([null, null]);
-    // // const [startDate, endDate] = dateRange;
-    //
-    // const [startDate, setStartDate] = useState(new Date(null));
-    // const [endDate, setEndDate] = useState(new Date(null));
 
     const [state, setState] = useState([
         {
@@ -27,10 +19,13 @@ export default function Calendar(props) {
         },
     ]);
 
+    useEffect(() => {
+        props.dateValue([null, null]);
+    },[]);
+
 
     const chooseDate = (item) => {
         setState([item.selection]);
-        // console.log([item.selection]);
         props.dateValue([item.selection.startDate, item.selection.endDate]);
     }
 
@@ -48,6 +43,8 @@ export default function Calendar(props) {
                 endDatePlaceholder={"체크아웃"}
                 showMonthAndYearPickers={false}
                 fixedHeight={true}
+                defaultStaticRanges={{}}
+
             />
         </div>
     );

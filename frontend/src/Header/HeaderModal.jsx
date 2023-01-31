@@ -83,17 +83,19 @@ function HeaderModal(props) {
         setShowChooseDate(false);
     }
 
-    let [chooseDate, setChooseDate] = useState(['']);
+    let [chooseDate, setChooseDate] = useState([]);
     let [selectGuest, setSelectGuest] = useState([0, 0, 0]);
 
     console.log(chooseDate);
-    let startDate = null;
-    let endDate = null;
+    // let startDate = null;
+    // let endDate = null;
+
+
+
+    let startDate = moment(chooseDate[0]).format('M월 D일');
+    let endDate = moment(chooseDate[1]).format('M월 D일');
 
     console.log(startDate);
-
-    startDate = moment(chooseDate[0]).format('M월 D일');
-    endDate = moment(chooseDate[1]).format('M월 D일');
 
     let adultCount = selectGuest[0];
     let childCount = selectGuest[1];
@@ -172,13 +174,13 @@ function HeaderModal(props) {
                                 <button type={"button"} className={"btn-nav btn px-3 py-2"} onClick={selectDate} style={styles.navDate}>
                                     <div className={"text-start"}>
                                         <label htmlFor="checkIn" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>체크인</label>
-                                        <input type="text" id={"checkIn"} className={"border-0 p-0 disabled"} placeholder={"날짜 추가"} style={styles.navInput} value={startDate == 'null' ? '' : startDate}/>
+                                        <input type="text" id={"checkIn"} className={"border-0 p-0 disabled"} placeholder={"날짜 추가"} style={styles.navInput} value={startDate === 'Invalid date' ? '' : startDate}/>
                                     </div>
                                 </button>
                                 <button ref={target} type={"button"} className={"btn-nav btn px-3 py-2"} onClick={selectDate} style={styles.navDate}>
                                     <div className={"text-start"}>
                                         <label htmlFor="checkOut" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>체크아웃</label>
-                                        <input type="text" id={"checkOut"} className={"border-0 p-0"} placeholder={"날짜 추가"} style={styles.navInput} value={endDate}/>
+                                        <input type="text" id={"checkOut"} className={"border-0 p-0"} placeholder={"날짜 추가"} style={styles.navInput} value={endDate === 'Invalid date' ? '' : endDate}/>
                                     </div>
                                 </button>
 
