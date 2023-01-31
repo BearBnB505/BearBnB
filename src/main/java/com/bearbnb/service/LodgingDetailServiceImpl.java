@@ -1,7 +1,6 @@
 package com.bearbnb.service;
 
-import com.bearbnb.dto.LodgingDto;
-import com.bearbnb.dto.ReviewDto;
+import com.bearbnb.dto.*;
 import com.bearbnb.mapper.LodgingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +20,29 @@ public class LodgingDetailServiceImpl implements LodgingDetailService {
     }
 
     @Override
-    public ReviewDto reviewDetail(int idx) throws Exception {
-        ReviewDto review = lodgingMapper.ReviewDetail(idx);
+    public List<PhotoDto> photoDetail(String lodgingNum) throws Exception {
+        List<PhotoDto> photo = lodgingMapper.photoDetail(lodgingNum);
+        return photo;
+    }
+
+    @Override
+    public List<ReviewDto> reviewDetail(String lodgingNum) throws Exception {
+        List<ReviewDto> review = lodgingMapper.reviewDetail(lodgingNum);
+        lodgingMapper.reviewTotalCount(lodgingNum);
         return review;
+    }
+
+
+    @Override
+    public List<ComfortsDto> comfortsDetail(String lodgingNum) throws Exception {
+        List<ComfortsDto> comforts = lodgingMapper.comfortsDetail(lodgingNum);
+        return comforts;
+    }
+
+    @Override
+    public MembersDto membersDetail(String userId) throws Exception {
+        MembersDto members = lodgingMapper.membersDetail(userId);
+        return members;
     }
 
 }

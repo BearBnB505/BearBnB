@@ -1,6 +1,6 @@
 import React from "react";
 
-function ReviewTitle(props){
+function ReviewTitle(){
   return(
     <div className={'ReviewAvgTitleBox'}>
       <div style= {{position:"relative", left:-8}}>&#x2B50;</div>

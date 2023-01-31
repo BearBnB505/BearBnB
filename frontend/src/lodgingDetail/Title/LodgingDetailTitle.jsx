@@ -1,11 +1,10 @@
 import React from "react";
 import '../lodgingDetail.css';
-import {Container} from "react-bootstrap";
 
 function LodgingDetailTitle(props){
   return(
     <div className={'oneLine'}>
-      <div className={'TLine1'}>{props.lodging_name}</div>
+      <div className={'TLine1'}>{props.lodgingName}</div>
       <div>&#x2B50;</div>
 
       <div className={'aTag'}>4.71</div>

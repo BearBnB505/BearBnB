@@ -6,7 +6,7 @@ import HostIntroContents from "./HostIntroContents";
 function HostIntroduce(props){
   return(
     <div>
-      <HostInroTitle/>
+      <HostInroTitle userId={props.userId} joinDt={props.joinDt}/>
       <HostAvg/>
       <HostIntroContents/>
 
