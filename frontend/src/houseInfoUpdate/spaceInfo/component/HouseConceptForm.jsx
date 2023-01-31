@@ -8,12 +8,15 @@ const HouseConceptForm=(props)=>{
 
   const [data, setData] = useState([]);
 
+    let [concept, setConcept] = useState('');
+
   useEffect(() => {
     axios.get('http://localhost:8080/CallLodgingList')
       .then((req) => {
         const {data} = req;
         setData(data);
-        console.log(data);
+        console.log(data[0].lodgingConcept);
+        setConcept(data[0].lodgingConcept);
       })
       .catch((err) => {
         console.log("통신 오류");
@@ -22,7 +25,7 @@ const HouseConceptForm=(props)=>{
 
 
 
-  let [concept, setConcept] = useState('');
+  // let [concept, setConcept] = useState('');
   let [space, setSpace] = useState('선택하기');
 
 
