@@ -13,16 +13,18 @@ const HouseConceptForm=(props)=>{
       .then((req) => {
         const {data} = req;
         setData(data);
-        console.log(data);
+        console.log(data[0].lodgingConcept);
+
       })
       .catch((err) => {
         console.log("통신 오류");
       })
   }, []);
 
-
+  let conceptInit = data[0].lodgingConcept;
 
   let [concept, setConcept] = useState('');
+
   let [space, setSpace] = useState('선택하기');
 
 
