@@ -25,14 +25,19 @@ export default function Calendar(props) {
             endDate : new Date(""),
             key: "selection",
         },
-    ])
+    ]);
+
+    const chooseDate = (item) => {
+        setState([item.selection]);
+        props.dateValue([item.selection.startDate, item.selection.endDate]);
+    }
 
     return (
         <div className={"container d-flex justify-content-center mt-4"}>
             <DateRange
                 minDate={new Date(now())}
                 editableDateInputs={true}
-                onChange={(item) => setState([item.selection])}
+                onChange={chooseDate}
                 moveRangeOnFirstSelection={false}
                 ranges={state}
                 months={2}

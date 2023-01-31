@@ -98,6 +98,8 @@ function GuestCount(props) {
         }
     }
 
+    // props.guestValue([adultCount, childCount, petCount]);
+
     const handleButtonClick = () => {
         setShowGuide(true);
     };

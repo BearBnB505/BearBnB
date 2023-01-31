@@ -16,6 +16,7 @@ import Login from "../Login";
 import Join from "../Join";
 import Calendar from "../Calendar/Calendar";
 import DatePicker from "react-datepicker";
+import moment from "moment";
 
 function HeaderModal(props) {
     const styles = {
@@ -82,10 +83,21 @@ function HeaderModal(props) {
         setShowChooseDate(false);
     }
 
-    const [dateRange, setDateRange] = useState([null, null]);
-    // const [startDate, endDate] = dateRange;
-    let [startDate, setStartDate] = useState();
-    let [endDate, setEndDate] = useState();
+    let [chooseDate, setChooseDate] = useState([]);
+    let [selectGuest, setSelectGuest] = useState([]);
+
+    // console.log(chooseDate);
+    let startDate = '';
+    let endDate = '';
+
+    startDate = moment(chooseDate[0]).format('M월 D일');
+    endDate = moment(chooseDate[1]).format('M월 D일');
+
+    // let adultCount = selectGuest[0];
+    // let childCount = selectGuest[1];
+    // let petCount = selectGuest[2];
+    //
+    // console.log(adultCount);
 
     return (
         <>
@@ -159,13 +171,13 @@ function HeaderModal(props) {
                                 <button type={"button"} className={"btn-nav btn px-3 py-2"} onClick={selectDate} style={styles.navDate}>
                                     <div className={"text-start"}>
                                         <label htmlFor="checkIn" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>체크인</label>
-                                        <input type="text" id={"checkIn"} className={"border-0 p-0 disabled"} placeholder={"날짜 추가"} style={styles.navInput}/>
+                                        <input type="text" id={"checkIn"} className={"border-0 p-0 disabled"} placeholder={"날짜 추가"} style={styles.navInput} value={startDate}/>
                                     </div>
                                 </button>
                                 <button ref={target} type={"button"} className={"btn-nav btn px-3 py-2"} onClick={selectDate} style={styles.navDate}>
                                     <div className={"text-start"}>
                                         <label htmlFor="checkOut" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>체크아웃</label>
-                                        <input type="text" id={"checkOut"} className={"border-0 p-0"} placeholder={"날짜 추가"} style={styles.navInput}/>
+                                        <input type="text" id={"checkOut"} className={"border-0 p-0"} placeholder={"날짜 추가"} style={styles.navInput} value={endDate}/>
                                     </div>
                                 </button>
 
@@ -174,7 +186,7 @@ function HeaderModal(props) {
                                         <div className={"col-4 my-auto ms-2"}>
                                             <div className={"text-start"}>
                                                 <label htmlFor="checkIn" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>여행자</label>
-                                                <input type="text" id={"checkIn"} className={"border-0 p-0 disabled"} placeholder={"게스트 추가"} style={styles.navInput}/>
+                                                <input type="text" id={"checkIn"} className={"border-0 p-0 disabled"} placeholder={"게스트 추가"} style={styles.navInput} />
                                             </div>
                                         </div>
                                         <div className={"col-6 ms-4 d-flex align-content-center"}>
@@ -199,7 +211,7 @@ function HeaderModal(props) {
                                     target={target.current}
                                 >
                                     <Popover className={"shadow-lg"} style={{width:403, borderRadius:30, maxWidth:800, marginLeft:170}}>
-                                        <GuestCount/>
+                                        <GuestCount guestValue={setSelectGuest}/>
                                     </Popover>
                                 </Overlay>
 
@@ -210,8 +222,7 @@ function HeaderModal(props) {
                                     target={target.current}
                                 >
                                     <Popover className={"shadow-lg"} style={{width: 800, height: 460, borderRadius:30, maxWidth:800, marginLeft:-170}}>
-                                        <Calendar startDateValue={startDate} endDateValue={endDate}/>
-                                        key {startDate}
+                                        <Calendar dateValue={setChooseDate} />
                                     </Popover>
                                 </Overlay>
 
