@@ -5,25 +5,24 @@ import React, {useState} from "react";
 import moment, {now} from "moment";
 
 import 'react-date-range/dist/styles.css'; // main css file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+// import 'react-date-range/dist/theme/default.css'; // theme css file
+import './default.scss'
 
-import "react-datepicker/dist/react-datepicker.css";
-import {addDays, getDate} from "date-fns"
-import { DateRange } from 'react-date-range';
+import { DateRange, DateRangePicker } from 'react-date-range';
 
 
-export default function Calendar() {
+export default function Calendar(props) {
 
     // const [dateRange, setDateRange] = useState([null, null]);
     // // const [startDate, endDate] = dateRange;
     //
-    // const [startDate, setStartDate] = useState(null);
-    // const [endDate, setEndDate] = useState(null);
+    // const [startDate, setStartDate] = useState(new Date(null));
+    // const [endDate, setEndDate] = useState(new Date(null));
 
     const [state, setState] = useState([
         {
-            startDate: new Date(),
-            endDate: addDays(new Date(), 1),
+            startDate : null,
+            endDate : new Date(""),
             key: "selection",
         },
     ])
@@ -31,7 +30,6 @@ export default function Calendar() {
     return (
         <div className={"container d-flex justify-content-center mt-4"}>
             <DateRange
-                // minDate={Date.now()}
                 minDate={new Date(now())}
                 editableDateInputs={true}
                 onChange={(item) => setState([item.selection])}
@@ -39,8 +37,11 @@ export default function Calendar() {
                 ranges={state}
                 months={2}
                 direction="horizontal"
+                startDatePlaceholder={"체크인"}
+                endDatePlaceholder={"체크아웃"}
+                showMonthAndYearPickers={false}
+                fixedHeight={true}
             />
-
         </div>
     );
 }

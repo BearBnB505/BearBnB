@@ -33,3 +33,20 @@ body {
 .modalGuide {
     max-width: 600px;
 }
+
+.btn-nav {
+    color: black;
+    border: 1px solid lightslategray;
+}
+
+.btn-nav:hover {
+    background-color: transparent;
+    color: black;
+    border: 1px solid lightslategray;
+}
+
+
+input:focus {
+    outline:none;
+    caret-color: transparent;
+}

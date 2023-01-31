@@ -19,7 +19,7 @@ function Main(props) {
         axios.get('http://localhost:8080/lodgingList')
             .then((req) => {
                 const {data} = req;
-                console.log(data);
+                // console.log(data);
                 setData(data);
             })
             .catch((err) => {

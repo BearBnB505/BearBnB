@@ -25,7 +25,7 @@ function MainContents(props) {
     const checkOutDt = moment(props.data.checkOutDt).format('M월 D일');
 
     return (
-        <div style={{width: 300}} className={"contents"} id={"main-contents"}>
+        <div style={{width: 250}} className={"contents"} id={"main-contents"}>
             <div className={"position-relative"} >
                 <div className={"position-absolute top-0 end-0 me-2 mt-2"} style={{zIndex: 1}}>
                     <a href="#" type={"button"}><img src="/img/btnKeep.png" alt="" style={keep}/></a>
@@ -36,7 +36,7 @@ function MainContents(props) {
                             className="d-block w-100"
                             src="https://a0.muscache.com/im/pictures/c0dd551b-e328-4958-9209-9fa66ac47217.jpg?im_w=1200"
                             alt="First slide"
-                            style={{height: 300}}
+                            style={{height: 250}}
                         />
                     </div>
                     <div>
@@ -44,7 +44,7 @@ function MainContents(props) {
                             className="d-block w-100"
                             src="https://a0.muscache.com/im/pictures/03389803-26cf-4de3-bfc8-6dadeb41df40.jpg?im_w=1440"
                             alt="Second slide"
-                            style={{height: 300}}
+                            style={{height: 250}}
                         />
                     </div>
                     <div>
@@ -52,7 +52,7 @@ function MainContents(props) {
                             className="d-block w-100"
                             src="https://a0.muscache.com/im/pictures/a8d45b2e-8bbe-4e05-85fb-36cbce7e79cc.jpg?im_w=1440"
                             alt="Third slide"
-                            style={{height: 300}}
+                            style={{height: 250}}
                         />
                         <img src="" alt=""/>
                     </div>
