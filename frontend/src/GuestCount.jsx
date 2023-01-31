@@ -46,6 +46,7 @@ function GuestCount(props) {
     function AdultPlus() {
         setAdultCount(adultCount + 1);
         setCountZero1(false);
+        props.guestValue([adultCount + 1, childCount, petCount]);
     }
     function AdultMinus() {
         if (adultCount <= 0) {
@@ -53,10 +54,12 @@ function GuestCount(props) {
         }
         else if (adultCount == 1) {
             setAdultCount(adultCount - 1);
+            props.guestValue([adultCount, childCount, petCount]);
             setCountZero1(true);
         }
         else {
             setAdultCount(adultCount - 1);
+            props.guestValue([adultCount, childCount, petCount]);
             setCountZero1(false);
         }
     }
@@ -97,8 +100,6 @@ function GuestCount(props) {
             setCountZero3(false);
         }
     }
-
-    // props.guestValue([adultCount, childCount, petCount]);
 
     const handleButtonClick = () => {
         setShowGuide(true);

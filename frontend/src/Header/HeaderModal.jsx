@@ -93,11 +93,11 @@ function HeaderModal(props) {
     startDate = moment(chooseDate[0]).format('M월 D일');
     endDate = moment(chooseDate[1]).format('M월 D일');
 
-    // let adultCount = selectGuest[0];
-    // let childCount = selectGuest[1];
-    // let petCount = selectGuest[2];
-    //
-    // console.log(adultCount);
+    let adultCount = selectGuest[0];
+    let childCount = selectGuest[1];
+    let petCount = selectGuest[2];
+
+    console.log(adultCount);
 
     return (
         <>
