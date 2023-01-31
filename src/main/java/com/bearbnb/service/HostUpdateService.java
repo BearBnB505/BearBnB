@@ -1,6 +1,8 @@
 package com.bearbnb.service;
 
+import com.bearbnb.dto.LodgingDto;
+
 public interface HostUpdateService {
 
-    String hostLodgingUpdate(String lodgingName) throws Exception;
+    void hostLodgingUpdate(LodgingDto lodging) throws Exception;
 }

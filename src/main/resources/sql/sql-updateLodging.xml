@@ -5,9 +5,11 @@
 
 
     <update id="hostLodgingUpdate" parameterType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
         update lodging
-        set lodging_name = ${lodgingName}
+        set lodging_name = '${lodgingName}'
         where user_id = 'tester1'
+        ]]>
     </update>
 
 

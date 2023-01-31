@@ -8,14 +8,13 @@ import com.bearbnb.dto.LodgingDto;
 @Service
 public class HostUpdateServiceImpl implements HostUpdateService{
     @Autowired
-    LodgingMapper lodgingMapper;
+    private LodgingMapper lodgingMapper;
 
     @Override
-    public String hostLodgingUpdate(String lodgingName) throws Exception{
-        LodgingDto lodgingUpdate = new LodgingDto();
-        lodgingUpdate.setLodgingName(lodgingName);
+    public void hostLodgingUpdate(LodgingDto lodging) throws Exception{
+//        LodgingDto lodgingUpdate = new LodgingDto();
+//        lodgingUpdate.setLodgingName(lodgingName);
 
-        lodgingMapper.lodgingUpdate(lodgingUpdate);
-        return lodgingName;
+        lodgingMapper.hostLodgingUpdate(lodging);
     }
 }

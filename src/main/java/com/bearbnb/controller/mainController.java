@@ -22,7 +22,7 @@ public class mainController {
     LodgingMapper CallLodgingMapper;
 
     @Autowired
-    HostUpdateService hostUpdateService;
+    private HostUpdateService hostUpdateService;
 
 
 
@@ -57,8 +57,10 @@ public class mainController {
 
 
     @RequestMapping(value = "/UpdateLodgingList", method = RequestMethod.POST)
-    public String UpdateLodgingList(@RequestParam("lodgingName") String lodgingName) throws Exception {
-        return hostUpdateService.hostLodgingUpdate(lodgingName);
+    public String UpdateLodgingList(LodgingDto lodging) throws Exception {
+        hostUpdateService.hostLodgingUpdate(lodging);
+
+        return "redirect:/UpdateLodgingList";
 //        return "리턴값";
     }
 

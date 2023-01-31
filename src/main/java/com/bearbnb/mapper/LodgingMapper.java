@@ -14,5 +14,5 @@ public interface LodgingMapper {
     List<LodgingDto> CallLodgingList();
 
 
-    void lodgingUpdate(LodgingDto lodgingUpdate);
+    void hostLodgingUpdate(LodgingDto lodging);
 }
