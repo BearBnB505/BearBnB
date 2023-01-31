@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Button} from "react-bootstrap";
+import axios from "axios";
 
 const BedNRestroomForm=(props)=>{
 
@@ -54,6 +55,20 @@ const BedNRestroomForm=(props)=>{
     }
   }
 
+  function SetBedNBath(){
+    axios.post('http://localhost:8080/UpdateLodgingBedNBath', null, {
+      params: (
+        {bedNum: props.bedNum, bedroomNum: props.bedroomNum,bathroomNum: props.restroomNum}
+      )
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   return(
     <div>
       <div className={'HNameFrame1'} style={{marginTop:30}}>
@@ -100,7 +115,7 @@ const BedNRestroomForm=(props)=>{
       <hr/>
       <div className={'HNameFrame2'}>
         <button className={'BasicInfoBtn'} id={'BNRrFormBtn2'} style={{width:70}} onClick={() => {props.setHouseConcept(false)}}>취소</button>
-        <Button className={'BasicInfoBtn3'} variant="outline-dark">저장하기</Button>
+        <Button className={'BasicInfoBtn3'} variant="outline-dark" onClick={SetBedNBath}>저장하기</Button>
       </div>
       <hr/>
     </div>

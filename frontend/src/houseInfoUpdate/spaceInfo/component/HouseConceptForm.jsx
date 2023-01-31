@@ -6,9 +6,10 @@ import axios from "axios";
 
 const HouseConceptForm=(props)=>{
 
-  const [data, setData] = useState([]);
 
   let [concept, setConcept] = useState('');
+
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     axios.get('http://localhost:8080/CallLodgingList')

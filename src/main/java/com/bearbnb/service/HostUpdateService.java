@@ -9,4 +9,6 @@ public interface HostUpdateService {
     void UpdateLodgingIntro(LodgingDto lodging);
 
     void UpdateLodgingConcept(LodgingDto lodging);
+
+    void UpdateLodgingBedNBath(LodgingDto lodging);
 }

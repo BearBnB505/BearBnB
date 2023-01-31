@@ -33,11 +33,17 @@ const BedNRestroom=()=>{
       .then((req) => {
         const {data} = req;
         setData(data);
+        SetBedNum(data[0].bedNum);
+        SetBedroomNum(data[0].bedroomNum);
+        SetRestroomNum(data[0].bathroomNum);
       })
       .catch((err) => {
         console.log("통신 오류");
       })
   }, []);
+
+
+
 
 
   return(
@@ -54,13 +60,8 @@ const BedNRestroom=()=>{
             )
           })
         }
-        {
-          data.map((item) => {
-            return (
-              <p className={'HNameLine3'} style={{gridRow:3}}>침대 : {item.bedNum}</p>
-            )
-          })
-        }
+              <p className={'HNameLine3'} style={{gridRow:3}}>침대 : {bedNum}</p>
+
         {
           data.map((item) => {
             return (

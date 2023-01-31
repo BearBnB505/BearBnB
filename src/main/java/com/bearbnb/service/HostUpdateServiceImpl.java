@@ -27,4 +27,9 @@ public class HostUpdateServiceImpl implements HostUpdateService{
         lodgingMapper.LodgingConceptUpdate(lodging);
 
     }
+
+    @Override
+    public void UpdateLodgingBedNBath(LodgingDto lodging) {
+        lodgingMapper.LodgingBedNBathUpdate(lodging);
+    }
 }

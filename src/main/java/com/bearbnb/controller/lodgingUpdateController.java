@@ -53,6 +53,13 @@ public class lodgingUpdateController {
         return "redirect:/UpdateLodgingList";
     }
 
+    @RequestMapping(value = "/UpdateLodgingBedNBath", method = RequestMethod.POST)
+    public String UpdateLodgingBedNBath(LodgingDto lodging) throws Exception {
+        hostUpdateService.UpdateLodgingBedNBath(lodging);
+
+        return "redirect:/UpdateLodgingList";
+    }
+
 
 }
 
