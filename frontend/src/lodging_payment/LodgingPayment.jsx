@@ -38,6 +38,35 @@ function LodgingPayment(props){
         }
     }
 
+    const now = new Date();
+    let year = (now.getFullYear()).toString();
+    // 년 두 글자
+    let removeYear = year.slice(2,4);
+    let month = (now.getMonth() + 1).toString();
+
+    // 월이 10이하일 경우 앞에 0을 붙인다
+    const newMonth = (month<10)? 0+month : month
+
+    let day = (now.getDate()).toString();
+
+    //년월일 6자리 글자
+    let dayday = removeYear + newMonth + day;
+
+
+    //랜덤 숫자 11자리
+    const random=[];
+
+    for (let i = 0; i < 11; i++) {
+        const randomNum = Math.floor(Math.random()*10);
+        random.push(randomNum)
+    }
+
+    const dayPlusRandom = dayday + random;
+    // 예약번호 => 날짜6자리 + 랜덤 숫자 11자리
+    const BookNum = dayPlusRandom.split(',').join("");
+    console.log(BookNum);
+
+
 
 
     const navigate = useNavigate();
@@ -164,9 +193,9 @@ function LodgingPayment(props){
                                     {navigate("/lodgingPaymentEnd")}
                                     axios.post("http://localhost:8080/paymentInsert",null,
                                         {params : {
-                                                userId : "bb",
+                                                userId : "예약번호테스트",
                                                 lodgingNum : "9023013111111111",
-                                                bookNum: "9023222222222",
+                                                bookNum: BookNum,
                                                 payType:"PAYPAL",
                                                 payCost: inputAmount,
                                                 bookState:"예약중",
