@@ -15,8 +15,7 @@ function HouseNameForm(props) {
   }
 
   const clickSave = () => {
-    console.log(name);
-    axios.post('http://localhost:8080/UpdateLodgingList', null, {
+    axios.post('http://localhost:8080/UpdateLodgingName', null, {
       params: ({lodgingName: name})
     })
       .then((response) => {
@@ -26,68 +25,6 @@ function HouseNameForm(props) {
       .catch(function (error) {
         console.log(error);
       });
-
-
-    // $(document).ready(function () {
-    //   $('#NameUpdateBtn').on('click', function () {
-    //     console.log(name);
-    //     // alert(name);
-    //     // axios.post('http://localhost:8080/UpdateLodgingList', null, {
-    //     //   params: {
-    //     //     lodgingName: name
-    //     //   }
-    //     // })
-    //     //   .then((response) => {
-    //     //     console.log(response);
-    //     //   })
-    //     //   .catch(function (error) {
-    //     //   console.log(error);
-    //     // })
-    //
-    //
-    //     // $(document).ready(function () {
-    //     //   $('#NameUpdateBtn').on('click', function () {
-    //     //
-    //     //     axios.post('http://localhost:8080/UpdateLodgingList', {lodgingName: 'asdf'})
-    //     //       .then((response) => {
-    //     //         console.log(response);
-    //     //       })
-    //     //       .catch(function (error) {
-    //     //         console.log(error);
-    //     //       })
-    //
-    //
-    //     // axios.get('http://localhost:8080/UpdateLodgingList')
-    //     //   .then(function (response){
-    //     //     console.log(response);
-    //     //     console.log('성공');
-    //     //   }).catch(function (error){
-    //     //     console.log('실패');
-    //     // })
-    //
-    //
-    //
-    //
-    //     // axios.post('http://localhost:8080/UpdateLodgingList', {
-    //     //   lodgingName: {name},
-    //     // })
-    //     //   .then(response => {
-    //     //     console.log(response);
-    //     //   })
-    //     //   .catch(error => {
-    //     //     console.log(error);
-    //     //   });
-    //
-    //
-    //     // axios.post('http://localhost:8080/UpdateLodgingList',{'lodgingName:':'assadfdf'})
-    //     //   .then(response => {
-    //     //     console.log(response);
-    //     //   }).catch(error =>{
-    //     //     console.log('ㅠㅠ');
-    //     //     console.log(error);
-    //     // })
-    //   });
-    // });
   }
 
 

@@ -12,5 +12,21 @@
         ]]>
     </update>
 
+    <update id="LodgingIntroUpdate" parameterType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        update lodging
+        set intro_lodging = '${introLodging}'
+        where user_id = 'tester1'
+        ]]>
+    </update>
+
+    <update id="LodgingConceptUpdate" parameterType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        update lodging
+        set lodging_concept = '${lodgingConcept}'
+        where user_id = 'tester1'
+        ]]>
+    </update>
+
 
 </mapper>

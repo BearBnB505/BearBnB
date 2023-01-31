@@ -1,11 +1,46 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import {Button, ButtonGroup} from "react-bootstrap";
+import axios from "axios";
 
 const HouseConceptForm=(props)=>{
-  let [concept, setConcept] = useState('선택하기');
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/CallLodgingList')
+      .then((req) => {
+        const {data} = req;
+        setData(data);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log("통신 오류");
+      })
+  }, []);
+
+
+
+  let [concept, setConcept] = useState('');
   let [space, setSpace] = useState('선택하기');
+
+
+  const SetHouseConcept=()=>{
+    axios.post('http://localhost:8080/UpdateLodgingConcept', null, {
+      params: ({lodgingConcept: concept})
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+
+
+
 
   return(
     <div>
@@ -52,7 +87,7 @@ const HouseConceptForm=(props)=>{
       <hr/>
       <div className={'HNameFrame2'}>
         <button className={'BasicInfoBtn'} id={'ConceptFormBtn2'} style={{width:70}} onClick={() => {props.setHouseConcept(false)}}>취소</button>
-        <Button className={'BasicInfoBtn3'} variant="outline-dark">저장하기</Button>
+        <Button className={'BasicInfoBtn3'} variant="outline-dark" onClick={SetHouseConcept}>저장하기</Button>
       </div>
       <hr/>
     </div>

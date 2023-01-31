@@ -50,19 +50,18 @@ public class mainController {
         return lodgingMapper.lodgingList();
     }
 
-    @RequestMapping(value = "CallLodgingList")
-    public List<LodgingDto> CallLodgingList() {
-        return CallLodgingMapper.CallLodgingList();
-    }
-
-
-    @RequestMapping(value = "/UpdateLodgingList", method = RequestMethod.POST)
-    public String UpdateLodgingList(LodgingDto lodging) throws Exception {
-        hostUpdateService.hostLodgingUpdate(lodging);
-
-        return "redirect:/UpdateLodgingList";
-//        return "리턴값";
-    }
+//    @RequestMapping(value = "CallLodgingList")
+//    public List<LodgingDto> CallLodgingList() {
+//        return CallLodgingMapper.CallLodgingList();
+//    }
+//
+//
+//    @RequestMapping(value = "/UpdateLodgingList", method = RequestMethod.POST)
+//    public String UpdateLodgingList(LodgingDto lodging) throws Exception {
+//        hostUpdateService.hostLodgingUpdate(lodging);
+//
+//        return "redirect:/UpdateLodgingList";
+//    }
 
 }
 

@@ -4,7 +4,7 @@ import $ from "jquery";
 import axios from "axios";
 
 const HouseConcept=()=>{
-  const [houseConcept, setHouseConcept] = useState(false);
+  // const [houseConcept, setHouseConcept] = useState(false);
 
   $(document).ready(function () {
     $('#ConceptBtn').on('click', function () {
@@ -32,6 +32,11 @@ const HouseConcept=()=>{
         console.log("통신 오류");
       })
   }, []);
+
+
+  const [houseConcept, setHouseConcept] = useState(false);
+
+
 
   return(
     <div>

@@ -1,8 +1,29 @@
-import React from "react";
+import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
 import {Button, FloatingLabel} from "react-bootstrap";
+import axios from "axios";
 
 const HouseIntroForm=(props)=>{
+
+
+  const [intro, setIntro] = useState('')
+
+  function onChange(e) {
+    setIntro(e.target.value);
+  }
+
+  const SetHouseIntro=()=>{
+    axios.post('http://localhost:8080/UpdateLodgingIntro', null, {
+      params: ({introLodging: intro})
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   return(
     <div>
       <div className={'HNameFrame1'}>
@@ -15,6 +36,7 @@ const HouseIntroForm=(props)=>{
 
       <FloatingLabel controlId="HouseInfoText" label="내용">
         <Form.Control
+          onChange={onChange}
           as="textarea"
           placeholder="Leave a comment here"
           style={{ height: '200px' }}
@@ -26,7 +48,7 @@ const HouseIntroForm=(props)=>{
       <hr/>
       <div className={'HNameFrame2'}>
         <button className={'BasicInfoBtn'} id={'HouseIntroFormBtn2'} style={{width:70}} onClick={() => {props.setHouseIntro(false)}}>취소</button>
-        <Button className={'BasicInfoBtn3'} variant="outline-dark">저장하기</Button>
+        <Button className={'BasicInfoBtn3'} variant="outline-dark" onClick={SetHouseIntro}>저장하기</Button>
       </div>
       <hr/>
     </div>
