@@ -27,8 +27,10 @@ export default function Calendar(props) {
         },
     ]);
 
+
     const chooseDate = (item) => {
         setState([item.selection]);
+        // console.log([item.selection]);
         props.dateValue([item.selection.startDate, item.selection.endDate]);
     }
 

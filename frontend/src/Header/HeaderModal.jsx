@@ -83,12 +83,14 @@ function HeaderModal(props) {
         setShowChooseDate(false);
     }
 
-    let [chooseDate, setChooseDate] = useState([]);
-    let [selectGuest, setSelectGuest] = useState([]);
+    let [chooseDate, setChooseDate] = useState(['']);
+    let [selectGuest, setSelectGuest] = useState([0, 0, 0]);
 
-    // console.log(chooseDate);
-    let startDate = '';
-    let endDate = '';
+    console.log(chooseDate);
+    let startDate = null;
+    let endDate = null;
+
+    console.log(startDate);
 
     startDate = moment(chooseDate[0]).format('M월 D일');
     endDate = moment(chooseDate[1]).format('M월 D일');
@@ -97,7 +99,6 @@ function HeaderModal(props) {
     let childCount = selectGuest[1];
     let petCount = selectGuest[2];
 
-    console.log(adultCount);
 
     return (
         <>
@@ -171,7 +172,7 @@ function HeaderModal(props) {
                                 <button type={"button"} className={"btn-nav btn px-3 py-2"} onClick={selectDate} style={styles.navDate}>
                                     <div className={"text-start"}>
                                         <label htmlFor="checkIn" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>체크인</label>
-                                        <input type="text" id={"checkIn"} className={"border-0 p-0 disabled"} placeholder={"날짜 추가"} style={styles.navInput} value={startDate}/>
+                                        <input type="text" id={"checkIn"} className={"border-0 p-0 disabled"} placeholder={"날짜 추가"} style={styles.navInput} value={startDate == 'null' ? '' : startDate}/>
                                     </div>
                                 </button>
                                 <button ref={target} type={"button"} className={"btn-nav btn px-3 py-2"} onClick={selectDate} style={styles.navDate}>
@@ -186,7 +187,7 @@ function HeaderModal(props) {
                                         <div className={"col-4 my-auto ms-2"}>
                                             <div className={"text-start"}>
                                                 <label htmlFor="checkIn" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>여행자</label>
-                                                <input type="text" id={"checkIn"} className={"border-0 p-0 disabled"} placeholder={"게스트 추가"} style={styles.navInput} />
+                                                <input type="text" id={"checkIn"} className={"border-0 p-0 disabled"} placeholder={"게스트 추가"} style={styles.navInput} value={adultCount === 0 ? '' : (childCount === 0 ? `성인 ${adultCount}명` : `성인 ${adultCount}명, 유아 ${childCount}명`)}/>
                                             </div>
                                         </div>
                                         <div className={"col-6 ms-4 d-flex align-content-center"}>

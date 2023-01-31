@@ -52,14 +52,14 @@ function GuestCount(props) {
         if (adultCount <= 0) {
             setCountZero1(true);
         }
-        else if (adultCount == 1) {
+        else if (adultCount === 1) {
             setAdultCount(adultCount - 1);
-            props.guestValue([adultCount, childCount, petCount]);
+            props.guestValue([adultCount - 1, childCount, petCount]);
             setCountZero1(true);
         }
         else {
             setAdultCount(adultCount - 1);
-            props.guestValue([adultCount, childCount, petCount]);
+            props.guestValue([adultCount - 1, childCount, petCount]);
             setCountZero1(false);
         }
     }
@@ -68,36 +68,42 @@ function GuestCount(props) {
     function ChildPlus() {
         setChildCount(childCount + 1);
         setCountZero2(false);
+        props.guestValue([adultCount, childCount + 1, petCount]);
     }
     function ChildMinus() {
         if (childCount <= 0) {
             setCountZero2(true);
         }
-        else if (childCount == 1) {
+        else if (childCount === 1) {
             setChildCount(childCount - 1);
             setCountZero2(true);
+            props.guestValue([adultCount, childCount - 1, petCount]);
         }
         else {
             setChildCount(childCount - 1);
             setCountZero2(false);
+            props.guestValue([adultCount, childCount - 1, petCount]);
         }
     }
     // 반려동물 수
     function PetPlus() {
         setPetCount(petCount + 1);
         setCountZero3(false);
+        props.guestValue([adultCount, childCount, petCount + 1]);
     }
     function PetMinus() {
         if (petCount <= 0) {
             setCountZero3(true);
         }
-        else if (petCount == 1) {
+        else if (petCount === 1) {
             setPetCount(petCount - 1);
             setCountZero3(true);
+            props.guestValue([adultCount, childCount, petCount - 1]);
         }
         else {
             setPetCount(petCount - 1);
             setCountZero3(false);
+            props.guestValue([adultCount, childCount, petCount - 1]);
         }
     }
 
