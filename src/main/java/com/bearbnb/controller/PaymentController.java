@@ -1,9 +1,15 @@
 package com.bearbnb.controller;
 
 import com.bearbnb.dto.BookingDto;
+import com.bearbnb.dto.LodgingDto;
+import com.bearbnb.mapper.LodgingMapper;
+import com.bearbnb.mapper.PaymentMapper;
 import com.bearbnb.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
@@ -11,11 +17,9 @@ public class PaymentController {
     @Autowired
     PaymentService paymentService;
 
-//    @RequestMapping(value = "/paymentInsert", method = RequestMethod.POST)
-//    public void paymentInsert(@RequestBody BookingDto booking) throws Exception {
-//        paymentService.paymentInsert(booking);
-//
-//    }
+    @Autowired
+    PaymentMapper paymentMapper;
+
 
     @RequestMapping(value = "/paymentInsert", method = RequestMethod.POST)
     public void paymentInsert(
@@ -29,9 +33,7 @@ public class PaymentController {
             @RequestParam("bookCheckOutDt") String bookCheckOutDt,
             @RequestParam("adultNum") int adultNum,
             @RequestParam("babyNum") int babyNum,
-            @RequestParam("petNum") int petNum
-
-            ) throws Exception {
+            @RequestParam("petNum") int petNum) throws Exception {
         System.out.println(userId);
         System.out.println(lodgingNum);
         System.out.println(bookNum);
@@ -47,6 +49,13 @@ public class PaymentController {
         paymentService.paymentInsert(userId,lodgingNum,bookNum,payType,payCost,bookState,bookCheckInDt,bookCheckOutDt,adultNum,babyNum,petNum);
 
     }
+
+
+    @RequestMapping(value = "/paymentLodgingInfoList")
+    public List<LodgingDto> paymentLodgingInfoList(){
+        return paymentMapper.paymentLodgingInfoList();
+    }
+
 }
 
 
