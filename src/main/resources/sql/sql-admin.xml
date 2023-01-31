@@ -3,10 +3,31 @@
 
 <mapper namespace="com.bearbnb.mapper.AdminMapper">
 
-    <!--  내정보 가져오기  -->
+    <!--  맴버 리스트 가져오기  -->
     <select id="memberList" resultType="com.bearbnb.dto.MembersDto">
         <![CDATA[
         SELECT * FROM members
+        ]]>
+    </select>
+
+<!--    숙소 리스트 가져오기-->
+    <select id="lodgingList" resultType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+            SELECT * FROM lodging
+            ]]>
+    </select>
+
+<!--    신고관리 리스트 가져오기-->
+    <select id="complainList" resultType="com.bearbnb.dto.ComplainDto">
+        <![CDATA[
+        SELECT * FROM complain
+        ]]>
+    </select>
+
+<!--    매출관리 리스트 가져오기-->
+    <select id="bookingList" resultType="com.bearbnb.dto.BookingDto">
+        <![CDATA[
+        SELECT * FROM booking
         ]]>
     </select>
 

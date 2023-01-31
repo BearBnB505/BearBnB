@@ -1,9 +1,25 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Table from 'react-bootstrap/Table';
 import {Container} from "react-bootstrap";
 import Navbar from "./Navbar";
+import axios from "axios";
 
-function Table1() {
+function Table4() {
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/adminBookingList')
+            .then((req) => {
+                const {data} = req;
+                console.log(data);
+                setData(data);
+            })
+            .catch((err) => {
+                console.log("통신 오류");
+            })
+    }, []);
+
 
     return (
         <Container className="panel" style={styles.container}>
@@ -20,7 +36,19 @@ function Table1() {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+
+                {
+                    data.map((item,index) => {
+                        return (
+                            <tr>
+                                <td>{index + 1}</td>
+                                <td>{"게스트"}</td>
+                                <td>{item.name}</td>
+                            </tr>
+                        )
+                    })
+                }
+                {/*<tr>
                     <td>2022</td>
                     <td>1월</td>
                     <td>10,000</td>
@@ -79,7 +107,7 @@ function Table1() {
                     <td>2022</td>
                     <td>12월</td>
                     <td>10,000</td>
-                </tr>
+                </tr>*/}
 
                 </tbody>
             </Table>
@@ -88,7 +116,7 @@ function Table1() {
 
 }
 
-export default Table1;
+export default Table4;
 
 const styles ={
     container:{

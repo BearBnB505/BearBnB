@@ -5,6 +5,20 @@ import axios from "axios";
 
 function Table1() {
 
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/adminMemberList')
+            .then((req) => {
+                const {data} = req;
+                console.log(data);
+                setData(data);
+            })
+            .catch((err) => {
+                console.log("통신 오류");
+            })
+    }, []);
+
     return (
         <Container className="panel" style={styles.container}>
             <br />
@@ -23,43 +37,59 @@ function Table1() {
                     <th>상태</th>
                 </tr>
                 </thead>
+
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>호스트/게스트</td>
-                    <td>이나라</td>
-                    <td>bbb</td>
-                    <td>010-111-4444</td>
-                    <td>nara@gmail.com</td>
-                    <td>활동중</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>게스트</td>
-                    <td>박진수</td>
-                    <td>ccc</td>
-                    <td>010-111-2222</td>
-                    <td>gingin@gmail.com</td>
-                    <td>탈퇴</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>게스트</td>
-                    <td>박진수</td>
-                    <td>ccc</td>
-                    <td>010-111-2222</td>
-                    <td>gingin@gmail.com</td>
-                    <td>활동중</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>게스트</td>
-                    <td>박진수</td>
-                    <td>ccc</td>
-                    <td>010-111-2222</td>
-                    <td>gingin@gmail.com</td>
-                    <td>탈퇴</td>
-                </tr>
+                {
+                    data.map((item,index) => {
+                        return (
+                            <tr>
+                                <td>{index + 1}</td>
+                                <td>{"게스트"}</td>
+                                <td>{item.name}</td>
+                                <td>{item.userId}</td>
+                                <td>{item.tel}</td>
+                                <td>{'이메일'}</td>
+                                <td>{'활동중'}</td>
+                            </tr>
+                            )
+                    })
+                }
+                {/*<tr>*/}
+                {/*    <td>1</td>*/}
+                {/*    <td>호스트/게스트</td>*/}
+                {/*    <td>이나라</td>*/}
+                {/*    <td>bbb</td>*/}
+                {/*    <td>010-111-4444</td>*/}
+                {/*    <td>nara@gmail.com</td>*/}
+                {/*    <td>활동중</td>*/}
+                {/*</tr>*/}
+                {/*<tr>*/}
+                {/*    <td>2</td>*/}
+                {/*    <td>게스트</td>*/}
+                {/*    <td>박진수</td>*/}
+                {/*    <td>ccc</td>*/}
+                {/*    <td>010-111-2222</td>*/}
+                {/*    <td>gingin@gmail.com</td>*/}
+                {/*    <td>탈퇴</td>*/}
+                {/*</tr>*/}
+                {/*<tr>*/}
+                {/*    <td>3</td>*/}
+                {/*    <td>게스트</td>*/}
+                {/*    <td>박진수</td>*/}
+                {/*    <td>ccc</td>*/}
+                {/*    <td>010-111-2222</td>*/}
+                {/*    <td>gingin@gmail.com</td>*/}
+                {/*    <td>활동중</td>*/}
+                {/*</tr>*/}
+                {/*<tr>*/}
+                {/*    <td>4</td>*/}
+                {/*    <td>게스트</td>*/}
+                {/*    <td>박진수</td>*/}
+                {/*    <td>ccc</td>*/}
+                {/*    <td>010-111-2222</td>*/}
+                {/*    <td>gingin@gmail.com</td>*/}
+                {/*    <td>탈퇴</td>*/}
+                {/*</tr>*/}
                 </tbody>
             </Table>
         </Container>
