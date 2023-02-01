@@ -40,7 +40,7 @@ function LodgingDetail() {
                     <div className={"pb-4"}>
                         <h4 className={"fw-bold mb-4"}>위치</h4>
                         
-                        <Map/>
+                        {/*<Map/>*/}
                     </div>
                     <hr/>
                 </div>
