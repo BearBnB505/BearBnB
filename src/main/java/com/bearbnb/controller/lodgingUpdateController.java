@@ -76,7 +76,7 @@ public class lodgingUpdateController {
     public List<ComfortsDto> UpdateComfortsList(@RequestBody List<ComfortsDto> ComfortBox){
 
         System.out.println(ComfortBox);
-//        hostUpdateService.UpdateComfortsList(ComfortBox);
+        hostUpdateService.UpdateComfortsList(ComfortBox);
 
         return ComfortBox;
 //        return ComfortBox.toString();

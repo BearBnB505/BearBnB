@@ -13,11 +13,9 @@
     </select>
 
     <update id="ComfortListUpdate" parameterType="com.bearbnb.dto.ComfortsDto">
-        <![CDATA[
-        update lodging
+        update comforts
         set usable_yn= 'N'
-        where lodging_num = '${lodgingNum}' and comfort_id = '${comfortId}'
-        ]]>
+        where lodging_num = #{lodgingNum} and comfort_id = #{comfortId}
     </update>
 
 </mapper>

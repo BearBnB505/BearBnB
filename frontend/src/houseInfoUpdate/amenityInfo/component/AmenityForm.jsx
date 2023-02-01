@@ -427,8 +427,9 @@ const AmenityForm = (props) => {
     ]
     // const test2 = JSON.stringify(test);
     // console.log(`json 문자열 : ${test2}`);
+    axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-    axios.post('http://localhost:8080/UpdateComfortsList', test, null)
+    axios.post('http://localhost:8080/UpdateComfortsList', test)
       .then((response) => {
         console.log(response);
       })
