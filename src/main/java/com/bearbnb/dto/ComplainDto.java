@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class ComplainDto {
+    private int idx;
     private String userId;
     private String lodgingNum;
     private String reason;

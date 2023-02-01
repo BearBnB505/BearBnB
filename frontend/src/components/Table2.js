@@ -14,6 +14,7 @@ function Table2() {
                 const {data} = req;
                 console.log(data);
                 setData(data);
+
             })
             .catch((err) => {
                 console.log("통신 오류");
@@ -47,7 +48,8 @@ function Table2() {
                     data.map((item,index) => {
                         return (
                             <tr>
-                                <td>{index + 1}</td>
+                                {/*<td>{index + 1}</td>*/}
+                                <td>{item.idx}</td>
                                 <td>{item.lodgingNum}</td>
                                 <td>{item.lodgingName}</td>
                                 <td>{item.userId}</td>
@@ -63,45 +65,7 @@ function Table2() {
                     })
                 }
 
-                {/*<tr>
-                    <td>1</td>
-                    <td>a24553ee</td>
-                    <td>서울숲집</td>
-                    <td>bbb</td>
-                    <td>010-111-4444</td>
-                    <td>nara@gmail.com</td>
-                    <td>2022-11-02</td>
-                    <td>3.1</td>
-                    <td>7</td>
-                    <td>확인하기</td>
-                    <td>영업중</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>a24553ee</td>
-                    <td>서울숲집</td>
-                    <td>bbb</td>
-                    <td>010-111-4444</td>
-                    <td>nara@gmail.com</td>
-                    <td>2022-11-02</td>
-                    <td>4.8</td>
-                    <td>1</td>
-                    <td>확인하기</td>
-                    <td>승인대기</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>a24553ee</td>
-                    <td>서울숲집</td>
-                    <td>bbb</td>
-                    <td>010-111-4444</td>
-                    <td>nara@gmail.com</td>
-                    <td>2022-11-02</td>
-                    <td>3.9</td>
-                    <td>3</td>
-                    <td>확인하기</td>
-                    <td>영업정지</td>
-                </tr>*/}
+
 
                 </tbody>
             </Table>

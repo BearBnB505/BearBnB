@@ -7,6 +7,7 @@
     <select id="memberList" resultType="com.bearbnb.dto.MembersDto">
         <![CDATA[
         SELECT * FROM members
+        ORDER BY idx DESC
         ]]>
     </select>
 
@@ -14,6 +15,7 @@
     <select id="lodgingList" resultType="com.bearbnb.dto.LodgingDto">
         <![CDATA[
             SELECT * FROM lodging
+            ORDER BY idx DESC
             ]]>
     </select>
 
@@ -21,6 +23,7 @@
     <select id="complainList" resultType="com.bearbnb.dto.ComplainDto">
         <![CDATA[
         SELECT * FROM complain
+        ORDER BY idx DESC
         ]]>
     </select>
 
@@ -28,6 +31,7 @@
     <select id="bookingList" resultType="com.bearbnb.dto.BookingDto">
         <![CDATA[
         SELECT * FROM booking
+        ORDER BY idx DESC
         ]]>
     </select>
 

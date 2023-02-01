@@ -30,13 +30,12 @@ function Table3() {
                 <thead>
                 <tr>
                     <th>번호</th>
+                    <th>신고자아이디</th>
                     <th>숙소번호</th>
-                    <th>숙소명</th>
-                    <th>호스트아이디</th>
-                    <th>게스트아이디</th>
-                    <th>숙소주소</th>
+                    <th>사유</th>
+                    <th>정확한 사유</th>
                     <th>신고날짜</th>
-                    <th></th>
+                    <th>해결여부</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -45,47 +44,19 @@ function Table3() {
                     data.map((item,index) => {
                         return (
                             <tr>
-                                <td>{index + 1}</td>
-                                <td>{"게스트"}</td>
-                                <td>{item.name}</td>
+                                {/*<td>{index + 1}</td>*/}
+                                <td>{item.idx}</td>
                                 <td>{item.userId}</td>
-                                <td>{item.tel}</td>
-                                <td>{'이메일'}</td>
-                                <td>{'활동중'}</td>
+                                <td>{item.lodgingNum}</td>
+                                <td>{item.reason}</td>
+                                <td>{item.reasonDetail}</td>
+                                <td>{item.complainDt}</td>
+                                <td>{item.deleteYn}</td>
                             </tr>
                         )
                     })
                 }
-                {/*<tr>*/}
-                {/*    <td>1</td>*/}
-                {/*    <td>a24553ee</td>*/}
-                {/*    <td>서울숲집</td>*/}
-                {/*    <td>bbb</td>*/}
-                {/*    <td>ccc</td>*/}
-                {/*    <td>서울강남</td>*/}
-                {/*    <td>2022-11-02</td>*/}
-                {/*    <td>자세히보기</td>*/}
-                {/*</tr>*/}
-                {/*<tr>*/}
-                {/*    <td>2</td>*/}
-                {/*    <td>a24553ee</td>*/}
-                {/*    <td>서울숲집</td>*/}
-                {/*    <td>bbb</td>*/}
-                {/*    <td>ccc</td>*/}
-                {/*    <td>서울강남</td>*/}
-                {/*    <td>2022-11-02</td>*/}
-                {/*    <td>자세히보기</td>*/}
-                {/*</tr>*/}
-                {/*<tr>*/}
-                {/*    <td>3</td>*/}
-                {/*    <td>a24553ee</td>*/}
-                {/*    <td>서울숲집</td>*/}
-                {/*    <td>bbb</td>*/}
-                {/*    <td>ccc</td>*/}
-                {/*    <td>서울강남</td>*/}
-                {/*    <td>2022-11-02</td>*/}
-                {/*    <td>자세히보기</td>*/}
-                {/*</tr>*/}
+
 
                 </tbody>
             </Table>

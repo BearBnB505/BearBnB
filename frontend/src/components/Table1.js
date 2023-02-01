@@ -43,7 +43,8 @@ function Table1() {
                     data.map((item,index) => {
                         return (
                             <tr>
-                                <td>{index + 1}</td>
+                                {/*<td>{index + 1}</td>*/}
+                                <td>{item.idx}</td>
                                 <td>{"게스트"}</td>
                                 <td>{item.name}</td>
                                 <td>{item.userId}</td>
@@ -54,42 +55,7 @@ function Table1() {
                             )
                     })
                 }
-                {/*<tr>*/}
-                {/*    <td>1</td>*/}
-                {/*    <td>호스트/게스트</td>*/}
-                {/*    <td>이나라</td>*/}
-                {/*    <td>bbb</td>*/}
-                {/*    <td>010-111-4444</td>*/}
-                {/*    <td>nara@gmail.com</td>*/}
-                {/*    <td>활동중</td>*/}
-                {/*</tr>*/}
-                {/*<tr>*/}
-                {/*    <td>2</td>*/}
-                {/*    <td>게스트</td>*/}
-                {/*    <td>박진수</td>*/}
-                {/*    <td>ccc</td>*/}
-                {/*    <td>010-111-2222</td>*/}
-                {/*    <td>gingin@gmail.com</td>*/}
-                {/*    <td>탈퇴</td>*/}
-                {/*</tr>*/}
-                {/*<tr>*/}
-                {/*    <td>3</td>*/}
-                {/*    <td>게스트</td>*/}
-                {/*    <td>박진수</td>*/}
-                {/*    <td>ccc</td>*/}
-                {/*    <td>010-111-2222</td>*/}
-                {/*    <td>gingin@gmail.com</td>*/}
-                {/*    <td>활동중</td>*/}
-                {/*</tr>*/}
-                {/*<tr>*/}
-                {/*    <td>4</td>*/}
-                {/*    <td>게스트</td>*/}
-                {/*    <td>박진수</td>*/}
-                {/*    <td>ccc</td>*/}
-                {/*    <td>010-111-2222</td>*/}
-                {/*    <td>gingin@gmail.com</td>*/}
-                {/*    <td>탈퇴</td>*/}
-                {/*</tr>*/}
+
                 </tbody>
             </Table>
         </Container>
