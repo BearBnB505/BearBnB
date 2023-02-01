@@ -1,10 +1,10 @@
 import React from "react";
 
-function ReviewComment(){
-  return(
+function ReviewComment(props){
+    return(
     <div className={'CommentBox'}>
       <img className={'ReviewUserImg'} src={"/hostImg/1.png"} alt={"hostImg"}></img>
-      <div className={'commentLine1'}>쥐순이</div>
+      <div className={'commentLine1'}>쥐돌이</div>
       <div className={'commentLine2'}>2022.11.21</div>
       <div></div>
       <div className={'CommentText'}>저희는 매우 행복합니다. 매우 멋진 전원주택이며 전망이 정말 좋습니다. Rahtut와 그의 동생은 모든 것을 처리하고 최고급
