@@ -21,8 +21,7 @@ public class mainController {
     @Autowired
     LodgingMapper CallLodgingMapper;
 
-    @Autowired
-    private HostUpdateService hostUpdateService;
+
 
 
 

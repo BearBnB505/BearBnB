@@ -1,7 +1,8 @@
-import React, {createContext, useState} from "react";
+import React, {createContext, useEffect, useState} from "react";
 import AddForm from "../../locationInfo/component/AddForm";
 import AmenityForm from "./AmenityForm";
 import $ from "jquery";
+import axios from "axios";
 
 
 const Amenity= ()=>{
@@ -49,6 +50,53 @@ const Amenity= ()=>{
 
   const [amenity, setAmenity] = useState(false);
 
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/comfortList')
+      .then((req) => {
+        const {data} = req;
+        setData(data);
+        data[0].usableYn === 'N' ? setBathtub(false) : setBathtub(true)
+        data[1].usableYn === 'N' ? setShower(false) : setShower(true)
+        data[2].usableYn === 'N' ? setTower(false) : setTower(true)
+        data[3].usableYn === 'N' ? setSoap(false) : setSoap(true)
+        data[4].usableYn === 'N' ? setTissue(false) : setTissue(true)
+        data[5].usableYn === 'N' ? setHairdryer(false) : setHairdryer(true)
+        data[6].usableYn === 'N' ? setShampoo(false) : setShampoo(true)
+        data[7].usableYn === 'N' ? setDryer(false) : setDryer(true)
+        data[8].usableYn === 'N' ? setCleaningSupplies(false) : setCleaningSupplies(true)
+        data[9].usableYn === 'N' ? setBed(false) : setBed(true)
+        data[10].usableYn === 'N' ? setBedSheet(false) : setBedSheet(true)
+        data[11].usableYn === 'N' ? setBedding(false) : setBedding(true)
+        data[12].usableYn === 'N' ? setAirCon(false) : setAirCon(true)
+        data[13].usableYn === 'N' ? setHeater(false) : setHeater(true)
+        data[14].usableYn === 'N' ? setInternet(false) : setInternet(true)
+        data[15].usableYn === 'N' ? setTv(false) : setTv(true)
+        data[16].usableYn === 'N' ? setRefrigerator(false) : setRefrigerator(true)
+        data[17].usableYn === 'N' ? setMicrowave(false) : setMicrowave(true)
+        data[18].usableYn === 'N' ? setGasStove(false) : setGasStove(true)
+        data[19].usableYn === 'N' ? setDinnerware(false) : setDinnerware(true)
+        data[20].usableYn === 'N' ? setFeeParking(false) : setFeeParking(true)
+        data[21].usableYn === 'N' ? setFreeParking(false) : setFreeParking(true)
+        data[22].usableYn === 'N' ? setCCTV(false) : setCCTV(true)
+        data[23].usableYn === 'N' ? setFireAlarm(false) : setFireAlarm(true)
+        data[24].usableYn === 'N' ? setCOAlarm(false) : setCOAlarm(true)
+        data[25].usableYn === 'N' ? setFireExtinguisher(false) : setFireExtinguisher(true)
+        data[26].usableYn === 'N' ? setFirstAidKit(false) : setFirstAidKit(true)
+        data[27].usableYn === 'N' ? setLongTerm(false) : setLongTerm(true)
+        data[28].usableYn === 'N' ? setPet(false) : setPet(true)
+        data[29].usableYn === 'N' ? setGuestOnlyDoor(false) : setGuestOnlyDoor(true)
+        data[30].usableYn === 'N' ? setBarbecue(false) : setBarbecue(true)
+        data[31].usableYn === 'N' ? setPool(false) : setPool(true)
+        data[32].usableYn === 'N' ? setBreakfast(false) : setBreakfast(true)
+      })
+      .catch((err) => {
+        console.log("통신 오류");
+      })
+  }, []);
+
+
 
 
   return(
@@ -64,7 +112,7 @@ const Amenity= ()=>{
         {bathtub && <div className={'HNameLine3'}>욕조</div>}
         {shower && <div className={'HNameLine3'}>샤워기</div>}
         {tower && <div className={'HNameLine3'}>수건</div>}
-        {soap && <div className={'HNameLine3'}>수건</div>}
+        {soap && <div className={'HNameLine3'}>비누</div>}
         {tissue && <div className={'HNameLine3'}>화장지</div>}
         {hairdryer && <div className={'HNameLine3'}>헤어드라이기</div>}
         {shampoo && <div className={'HNameLine3'}>샴푸</div>}

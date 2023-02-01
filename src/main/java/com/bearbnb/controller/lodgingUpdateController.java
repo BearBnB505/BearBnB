@@ -1,7 +1,9 @@
 package com.bearbnb.controller;
 
+import com.bearbnb.dto.ComfortsDto;
 import com.bearbnb.dto.LodgingDto;
 import com.bearbnb.mapper.LodgingMapper;
+import com.bearbnb.mapper.ComfortMapper;
 import com.bearbnb.service.HostUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,6 +24,8 @@ public class lodgingUpdateController {
     @Autowired
     LodgingMapper CallLodgingMapper;
     @Autowired
+    ComfortMapper comfortMapper;
+    @Autowired
     private HostUpdateService hostUpdateService;
 
 
@@ -30,6 +34,9 @@ public class lodgingUpdateController {
     public List<LodgingDto> CallLodgingList() {
         return CallLodgingMapper.CallLodgingList();
     }
+
+    @RequestMapping(value = "/comfortList")
+    public List<ComfortsDto> comfortList() {return comfortMapper.comfortList();}
 
 
     @RequestMapping(value = "/UpdateLodgingName", method = RequestMethod.POST)
@@ -59,6 +66,14 @@ public class lodgingUpdateController {
 
         return "redirect:/UpdateLodgingList";
     }
+
+    @RequestMapping(value = "/UpdateLodgingAmenity", method = RequestMethod.POST)
+    public String UpdateLodgingAmenity(LodgingDto lodging) throws Exception{
+        hostUpdateService.UpdateLodgingAmenity(lodging);
+        return "redirect:/UpdateLodgingList";
+    }
+
+
 
 
 }

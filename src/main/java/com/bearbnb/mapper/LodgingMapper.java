@@ -21,4 +21,6 @@ public interface LodgingMapper {
     void LodgingConceptUpdate(LodgingDto lodging);
 
     void LodgingBedNBathUpdate(LodgingDto lodging);
+
+    void LodgingAmenityUpdate(LodgingDto lodging);
 }

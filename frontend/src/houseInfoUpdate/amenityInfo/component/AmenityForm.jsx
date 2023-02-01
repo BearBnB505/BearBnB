@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, ToggleButton} from "react-bootstrap";
 import $ from "jquery";
+import axios from "axios";
 
 const AmenityForm=(props)=>{
 
@@ -54,7 +55,7 @@ const AmenityForm=(props)=>{
   const [poolChecked, setPoolChecked] = useState(false);
   const [breakfastChecked, setBreakfastChecked] = useState(false);
 
-
+  const [data, setData] = useState([]);
 
 
   $(document).ready(function () {
@@ -366,6 +367,63 @@ const AmenityForm=(props)=>{
       });
     }
   });
+
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/comfortList')
+      .then((req) => {
+        const {data} = req;
+        setData(data);
+        data[0].usableYn === 'N' ? setBathtubChecked(false) : setBathtubChecked(true)
+        data[1].usableYn === 'N' ? setShowerChecked(false) : setShowerChecked(true)
+        data[2].usableYn === 'N' ? setTowerChecked(false) : setTowerChecked(true)
+        data[3].usableYn === 'N' ? setSoapChecked(false) : setSoapChecked(true)
+        data[4].usableYn === 'N' ? setTissueChecked(false) : setTissueChecked(true)
+        data[5].usableYn === 'N' ? setHairdryerChecked(false) : setHairdryerChecked(true)
+        data[6].usableYn === 'N' ? setShampooChecked(false) : setShampooChecked(true)
+        data[7].usableYn === 'N' ? setDryerChecked(false) : setDryerChecked(true)
+        data[8].usableYn === 'N' ? setCleaningSuppliesChecked(false) : setCleaningSuppliesChecked(true)
+        data[9].usableYn === 'N' ? setBedChecked(false) : setBedChecked(true)
+        data[10].usableYn === 'N' ? setBedSheetChecked(false) : setBedSheetChecked(true)
+        data[11].usableYn === 'N' ? setBeddingChecked(false) : setBeddingChecked(true)
+        data[12].usableYn === 'N' ? setAirConChecked(false) : setAirConChecked(true)
+        data[13].usableYn === 'N' ? setHeaterChecked(false) : setHeaterChecked(true)
+        data[14].usableYn === 'N' ? setInternetChecked(false) : setInternetChecked(true)
+        data[15].usableYn === 'N' ? setTVChecked(false) : setTVChecked(true)
+        data[16].usableYn === 'N' ? setRefrigeratorChecked(false) : setRefrigeratorChecked(true)
+        data[17].usableYn === 'N' ? setMicrowaveChecked(false) : setMicrowaveChecked(true)
+        data[18].usableYn === 'N' ? setGasStoveChecked(false) : setGasStoveChecked(true)
+        data[19].usableYn === 'N' ? setDinnerwareChecked(false) : setDinnerwareChecked(true)
+        data[20].usableYn === 'N' ? setFeeParkingChecked(false) : setFeeParkingChecked(true)
+        data[21].usableYn === 'N' ? setFreeParkingChecked(false) : setFreeParkingChecked(true)
+        data[22].usableYn === 'N' ? setCCTVChecked(false) : setCCTVChecked(true)
+        data[23].usableYn === 'N' ? setFireAlarmChecked(false) : setFireAlarmChecked(true)
+        data[24].usableYn === 'N' ? setCOAlarmChecked(false) : setCOAlarmChecked(true)
+        data[25].usableYn === 'N' ? setFireExtinguisherChecked(false) : setFireExtinguisherChecked(true)
+        data[26].usableYn === 'N' ? setFirstAidKitChecked(false) : setFirstAidKitChecked(true)
+        data[27].usableYn === 'N' ? setLongTermChecked(false) : setLongTermChecked(true)
+        data[28].usableYn === 'N' ? setPetChecked(false) : setPetChecked(true)
+        data[29].usableYn === 'N' ? setGuestOnlyDoorChecked(false) : setGuestOnlyDoorChecked(true)
+        data[30].usableYn === 'N' ? setBarbecueChecked(false) : setBarbecueChecked(true)
+        data[31].usableYn === 'N' ? setPoolChecked(false) : setPoolChecked(true)
+        data[32].usableYn === 'N' ? setBreakfastChecked(false) : setBreakfastChecked(true)
+      })
+      .catch((err) => {
+        console.log("통신 오류");
+      })
+  }, []);
+
+  // const SetHouseIntro=()=>{
+  //   axios.post('http://localhost:8080/UpdateLodgingIntro', null, {
+  //     params: ({introLodging: intro})
+  //   })
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }
 
   return(
     <div>
