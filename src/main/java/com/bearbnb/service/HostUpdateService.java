@@ -1,9 +1,9 @@
 package com.bearbnb.service;
 
+import com.bearbnb.dto.ComfortsDto;
 import com.bearbnb.dto.LodgingDto;
-import com.google.gson.Gson;
 
-import java.util.Map;
+import java.util.List;
 
 public interface HostUpdateService {
 
@@ -15,5 +15,5 @@ public interface HostUpdateService {
 
     void UpdateLodgingBedNBath(LodgingDto lodging);
 
-    void UpdateComfortsList(String ComfortBox);
+    void UpdateComfortsList(List<ComfortsDto> ComfortBox);
 }

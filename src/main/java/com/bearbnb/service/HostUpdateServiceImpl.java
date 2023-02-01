@@ -1,10 +1,13 @@
 package com.bearbnb.service;
 
+import com.bearbnb.dto.ComfortsDto;
 import com.bearbnb.mapper.ComfortMapper;
 import com.bearbnb.mapper.LodgingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.bearbnb.dto.LodgingDto;
+
+import java.util.List;
 
 @Service
 public class HostUpdateServiceImpl implements HostUpdateService{
@@ -38,9 +41,7 @@ public class HostUpdateServiceImpl implements HostUpdateService{
     }
 
     @Override
-    public void UpdateComfortsList(String ComfortBox) {
-
-
+    public void UpdateComfortsList(List<ComfortsDto> ComfortBox) {
         comfortMapper.ComfortListUpdate(ComfortBox);
     }
 

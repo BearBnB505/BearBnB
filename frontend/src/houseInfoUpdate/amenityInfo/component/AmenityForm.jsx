@@ -421,13 +421,12 @@ const AmenityForm = (props) => {
 
   const SetHouseIntro=()=>{
     const test = [
-      {lodgingNum : data[0].lodgingNum, comfortId : data[0].comfortId, usableYn : props.bathtub},
-      {lodgingNum : data[1].lodgingNum, comfortId : data[1].comfortId, usableYn : props.shower},
-      {lodgingNum : data[2].lodgingNum, comfortId : data[2].comfortId, usableYn : props.tower}
+      {lodgingNum : data[0].lodgingNum, comfortId : data[0].comfortId, usableYn : props.bathtub}
+      // {lodgingNum : data[1].lodgingNum, comfortId : data[1].comfortId, usableYn : props.shower},
+      // {lodgingNum : data[2].lodgingNum, comfortId : data[2].comfortId, usableYn : props.tower}
     ]
-    const test2 = JSON.stringify(test);
-    console.log(`json 문자열 : ${test2}`);
-
+    // const test2 = JSON.stringify(test);
+    // console.log(`json 문자열 : ${test2}`);
 
     axios.post('http://localhost:8080/UpdateComfortsList', test, null)
       .then((response) => {

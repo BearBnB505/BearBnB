@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @ComponentScan(basePackages = {"com.bearbnb.service.HostUpdateService"})
@@ -74,12 +73,14 @@ public class lodgingUpdateController {
 //    }
 
     @RequestMapping(value = "/UpdateComfortsList", method = RequestMethod.POST)
-    public String UpdateComfortsList(@RequestBody List<ComfortsDto> ComfortBox){
+    public List<ComfortsDto> UpdateComfortsList(@RequestBody List<ComfortsDto> ComfortBox){
 
-        System.out.println("ComfortBox");
+        System.out.println(ComfortBox);
 //        hostUpdateService.UpdateComfortsList(ComfortBox);
 
-        return "test";
+        return ComfortBox;
+//        return ComfortBox.toString();
+
     }
 
 
