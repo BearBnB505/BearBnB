@@ -7,4 +7,5 @@ import java.util.List;
 @Mapper
 public interface ComfortMapper {
     List<ComfortsDto> comfortList();
+    void ComfortListUpdate(String ComfortBox);
 }

@@ -39,6 +39,7 @@ const BedNRestroom=()=>{
       })
       .catch((err) => {
         console.log("통신 오류");
+        console.log(err);
       })
   }, []);
 

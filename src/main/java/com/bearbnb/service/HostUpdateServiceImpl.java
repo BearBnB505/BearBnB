@@ -1,5 +1,6 @@
 package com.bearbnb.service;
 
+import com.bearbnb.mapper.ComfortMapper;
 import com.bearbnb.mapper.LodgingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,9 @@ import com.bearbnb.dto.LodgingDto;
 public class HostUpdateServiceImpl implements HostUpdateService{
     @Autowired
     private LodgingMapper lodgingMapper;
+
+    @Autowired
+    private ComfortMapper comfortMapper;
 
     @Override
     public void hostLodgingUpdate(LodgingDto lodging) throws Exception{
@@ -34,7 +38,11 @@ public class HostUpdateServiceImpl implements HostUpdateService{
     }
 
     @Override
-    public void UpdateLodgingAmenity(LodgingDto lodging) {
-        lodgingMapper.LodgingAmenityUpdate(lodging);
+    public void UpdateComfortsList(String ComfortBox) {
+
+
+        comfortMapper.ComfortListUpdate(ComfortBox);
     }
+
+
 }

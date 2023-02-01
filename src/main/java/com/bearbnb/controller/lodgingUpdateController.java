@@ -7,10 +7,7 @@ import com.bearbnb.mapper.ComfortMapper;
 import com.bearbnb.service.HostUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,13 +64,23 @@ public class lodgingUpdateController {
         return "redirect:/UpdateLodgingList";
     }
 
-    @RequestMapping(value = "/UpdateLodgingAmenity", method = RequestMethod.POST)
-    public String UpdateLodgingAmenity(LodgingDto lodging) throws Exception{
-        hostUpdateService.UpdateLodgingAmenity(lodging);
-        return "redirect:/UpdateLodgingList";
+//    @RequestMapping(value = "/UpdateComfortsList", method = RequestMethod.POST)
+//    public String UpdateComfortsList(@RequestParam("ComfortBox") String ComfortBox){
+//
+//        System.out.println(ComfortBox);
+////        hostUpdateService.UpdateComfortsList(comfortBox);
+//
+//        return "test";
+//    }
+
+    @RequestMapping(value = "/UpdateComfortsList", method = RequestMethod.POST)
+    public String UpdateComfortsList(@RequestBody List<ComfortsDto> ComfortBox){
+
+        System.out.println("ComfortBox");
+//        hostUpdateService.UpdateComfortsList(ComfortBox);
+
+        return "test";
     }
-
-
 
 
 }
