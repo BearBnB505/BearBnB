@@ -43,8 +43,6 @@ export default function Calendar(props) {
                 endDatePlaceholder={"체크아웃"}
                 showMonthAndYearPickers={false}
                 fixedHeight={true}
-                defaultStaticRanges={{}}
-
             />
         </div>
     );

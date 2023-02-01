@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {Modal, ModalBody, ModalHeader} from "react-bootstrap";
 import "./Header/Header.css"
@@ -41,6 +41,10 @@ function GuestCount(props) {
             marginLeft: 6
         }
     }
+
+    useEffect(() => {
+        props.guestValue([0, 0, 0]);
+    },[]);
 
     //성인 수
     function AdultPlus() {

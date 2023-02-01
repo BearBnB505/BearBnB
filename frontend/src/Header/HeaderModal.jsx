@@ -52,25 +52,32 @@ function HeaderModal(props) {
             width:90,
             fontSize:14
         },
+        navInputSpot: {
+            // cursor:"pointer",
+            width:180,
+            fontSize:14
+        },
     }
-
 
     const target = useRef(null);
 
     const [showExpandedHeader, setShowExpandedHeader] = useState(false);
     const [showGuestCount, setShowGuestCount] = useState(false);
     const [showChooseDate, setShowChooseDate] = useState(false);
+    const [showMap, setShowMap] = useState(false);
 
     const selectSpot = () => {
         setShowExpandedHeader(true);
         setShowGuestCount(false);
         setShowChooseDate(false);
+        setShowMap(true);
     }
 
     const selectDate = () => {
         setShowExpandedHeader(true);
         setShowGuestCount(false);
         setShowChooseDate(true);
+        setShowMap(false);
     }
 
     const selectGuest1 = () => {
@@ -81,21 +88,17 @@ function HeaderModal(props) {
     const selectGuest2 = () => {
         setShowGuestCount(true);
         setShowChooseDate(false);
+        setShowMap(false);
     }
 
     let [chooseDate, setChooseDate] = useState([]);
     let [selectGuest, setSelectGuest] = useState([0, 0, 0]);
 
-    console.log(chooseDate);
-    // let startDate = null;
-    // let endDate = null;
-
-
+    // console.log(chooseDate);
 
     let startDate = moment(chooseDate[0]).format('M월 D일');
     let endDate = moment(chooseDate[1]).format('M월 D일');
 
-    console.log(startDate);
 
     let adultCount = selectGuest[0];
     let childCount = selectGuest[1];
@@ -160,21 +163,22 @@ function HeaderModal(props) {
                     <nav className={"mb-2"} id={"nav-second"}>
                         <div className={"container d-flex justify-content-center"}>
                             <div className={"btn-group sidenav dropdown"} role={"group"} id={"menu"}>
-                                <button type={"button"} className={"btn-nav btn px-3 py-2"} style={styles.nav2PillStart} onClick={selectSpot}>
+
+                                <button ref={target} type={"button"} className={"btn-nav btn px-3 py-2"} style={styles.nav2PillStart} onClick={selectSpot}>
                                     <div className={"text-start"}>
                                         <div className={"row ps-3"}>
                                             <label htmlFor="chooseSpot" className={"fw-bold p-0"} style={{cursor:"pointer", fontSize:13}}>여행지</label>
                                         </div>
                                         <div className={"row ps-3"}>
-                                            <input type="text" id={"chooseSpot"} className={"border-0 p-0 disabled"} placeholder={"여행지 검색"} style={styles.navInput}/>
+                                            <input type="text" id={"chooseSpot"} className={"border-0 p-0"} placeholder={"여행지 검색"} style={styles.navInputSpot}/>
                                         </div>
                                     </div>
                                 </button>
 
-                                <button type={"button"} className={"btn-nav btn px-3 py-2"} onClick={selectDate} style={styles.navDate}>
+                                <button ref={target} type={"button"} className={"btn-nav btn px-3 py-2"} onClick={selectDate} style={styles.navDate}>
                                     <div className={"text-start"}>
                                         <label htmlFor="checkIn" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>체크인</label>
-                                        <input type="text" id={"checkIn"} className={"border-0 p-0 disabled"} placeholder={"날짜 추가"} style={styles.navInput} value={startDate === 'Invalid date' ? '' : startDate}/>
+                                        <input type="text" id={"checkIn"} className={"border-0 p-0"} placeholder={"날짜 추가"} style={styles.navInput} value={startDate === 'Invalid date' ? '' : startDate}/>
                                     </div>
                                 </button>
                                 <button ref={target} type={"button"} className={"btn-nav btn px-3 py-2"} onClick={selectDate} style={styles.navDate}>
@@ -188,8 +192,8 @@ function HeaderModal(props) {
                                     <div className={"row"}>
                                         <div className={"col-4 my-auto ms-2"}>
                                             <div className={"text-start"}>
-                                                <label htmlFor="checkIn" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>여행자</label>
-                                                <input type="text" id={"checkIn"} className={"border-0 p-0 disabled"} placeholder={"게스트 추가"} style={styles.navInput} value={adultCount === 0 ? '' : (childCount === 0 ? `성인 ${adultCount}명` : `성인 ${adultCount}명, 유아 ${childCount}명`)}/>
+                                                <label htmlFor="addGuest" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>여행자</label>
+                                                <input type="text" id={"addGuest"} className={"border-0 p-0"} placeholder={"게스트 추가"} style={styles.navInput} value={adultCount === 0 ? '' : (childCount === 0 ? `성인 ${adultCount}명` : `성인 ${adultCount}명, 유아 ${childCount}명`)}/>
                                             </div>
                                         </div>
                                         <div className={"col-6 ms-4 d-flex align-content-center"}>
@@ -229,6 +233,16 @@ function HeaderModal(props) {
                                     </Popover>
                                 </Overlay>
 
+                                <Overlay
+                                    show={showMap}
+                                    onHide={() => setShowMap(false)}
+                                    placement={"bottom"}
+                                    target={target.current}
+                                >
+                                    <Popover className={"shadow-lg"} style={{width: 500, height: 460, borderRadius:30, maxWidth:800, marginLeft:-170}}>
+                                        <h2>지역선택</h2>
+                                    </Popover>
+                                </Overlay>
 
                             </div>
                         </div>

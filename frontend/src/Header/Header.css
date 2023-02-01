@@ -45,8 +45,22 @@ body {
     border: 1px solid lightslategray;
 }
 
+input:focus#chooseSpot {
+    outline:none;
+    /*caret-color: transparent;*/
+}
 
-input:focus {
+input:focus#checkIn {
+    outline:none;
+    caret-color: transparent;
+}
+
+input:focus#checkOut {
+    outline:none;
+    caret-color: transparent;
+}
+
+input:focus#addGuest {
     outline:none;
     caret-color: transparent;
 }

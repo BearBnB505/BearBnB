@@ -37,3 +37,4 @@ out/
 .vscode/
 node_modules/
 frontend/src.7z
+frontend/src/GoogleMap/global_variables.js
