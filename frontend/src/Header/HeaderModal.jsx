@@ -17,6 +17,7 @@ import Join from "../Join";
 import Calendar from "../Calendar/Calendar";
 import DatePicker from "react-datepicker";
 import moment from "moment";
+import {GoogleMap, StandaloneSearchBox} from "@react-google-maps/api";
 
 function HeaderModal(props) {
     const styles = {
@@ -89,6 +90,10 @@ function HeaderModal(props) {
         setShowGuestCount(true);
         setShowChooseDate(false);
         setShowMap(false);
+    }
+
+    const search = () => {
+
     }
 
     let [chooseDate, setChooseDate] = useState([]);
@@ -170,6 +175,7 @@ function HeaderModal(props) {
                                             <label htmlFor="chooseSpot" className={"fw-bold p-0"} style={{cursor:"pointer", fontSize:13}}>여행지</label>
                                         </div>
                                         <div className={"row ps-3"}>
+                                            {/*여행지 검색 input*/}
                                             <input type="text" id={"chooseSpot"} className={"border-0 p-0"} placeholder={"여행지 검색"} style={styles.navInputSpot}/>
                                         </div>
                                     </div>
@@ -196,20 +202,30 @@ function HeaderModal(props) {
                                                 <input type="text" id={"addGuest"} className={"border-0 p-0"} placeholder={"게스트 추가"} style={styles.navInput} value={adultCount === 0 ? '' : (childCount === 0 ? `성인 ${adultCount}명` : `성인 ${adultCount}명, 유아 ${childCount}명`)}/>
                                             </div>
                                         </div>
-                                        <div className={"col-6 ms-4 d-flex align-content-center"}>
-                                            <a type={"button"} className={"btn btn-primary"} style={{borderRadius:25}}>
-                                                <div className={"row px-1 pt-1"}>
-                                                    <div className={"col-1"}>
-                                                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{width: 12, paddingTop: 4}}/>
-                                                    </div>
-                                                    <div className={"col-6 p-0 ms-1 me-2 "}>
-                                                        <span>검색</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
+                                        {/*<div className={"col-6 ms-4 d-flex align-content-center"}>*/}
+                                        {/*    <a type={"button"} className={"btn btn-primary"} style={{borderRadius:25}}>*/}
+                                        {/*        <div className={"row px-1 pt-1"}>*/}
+                                        {/*            <div className={"col-1"}>*/}
+                                        {/*                <FontAwesomeIcon icon={faMagnifyingGlass} style={{width: 12, paddingTop: 4}}/>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className={"col-6 p-0 ms-1 me-2 "}>*/}
+                                        {/*                <span>검색</span>*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*    </a>*/}
+                                        {/*</div>*/}
                                     </div>
                                 </button>
+                                <a type={"button"} className={"btn btn-primary position-absolute"} style={{borderRadius:25, height: 45, left: 600, top: 10, zIndex: 9999}} onClick={search}>
+                                        <div className={"row px-1 pt-1"}>
+                                            <div className={"col-1"}>
+                                                <FontAwesomeIcon icon={faMagnifyingGlass} style={{width: 12, paddingTop: 4}}/>
+                                            </div>
+                                            <div className={"col-6 p-0 ms-1 me-2 "}>
+                                                <span>검색</span>
+                                            </div>
+                                        </div>
+                                </a>
 
                                 <Overlay
                                     show={showGuestCount}

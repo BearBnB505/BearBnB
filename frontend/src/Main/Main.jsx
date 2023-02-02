@@ -4,6 +4,7 @@ import "./slick.css";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import MainCategory from "./MainCategory";
+import Keep from "./Keep";
 
 function Main(props) {
 
@@ -11,6 +12,10 @@ function Main(props) {
         lodgingList: {
             listStyleType: "none",
         },
+        keep: {
+            width: 25,
+            // opacity: .60
+        }
     };
 
     const [data, setData] = useState([]);
@@ -37,6 +42,9 @@ function Main(props) {
                         data.map((item) => {
                             return (
                                 <li style={styles.lodgingList}>
+                                    <div className={"position-absolute"} style={{zIndex:1, marginLeft:215, marginTop:8}}>
+                                        <Keep idx={item.idx}/>
+                                    </div>
                                     <Link to={`/lodgingDetail/${item.idx}`} style={{color: "black"}}>
                                         <MainContents idx={item.idx} data={item} />
                                     </Link>

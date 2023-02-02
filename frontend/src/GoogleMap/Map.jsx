@@ -3,7 +3,7 @@ import * as gvar from './global_variables'
 import React, {useCallback, useEffect, useState} from "react";
 import {
     GoogleMap,
-    MarkerF,
+    MarkerF, StandaloneSearchBox,
     useJsApiLoader
 } from "@react-google-maps/api";
 
@@ -73,6 +73,10 @@ function Map(props) {
             },
         ],
     };
+
+    function handleLoad() {}
+
+    function handlePlacesChanged() {}
 
     return isLoaded ? (
         <div>

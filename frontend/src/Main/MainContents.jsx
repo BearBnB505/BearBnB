@@ -27,9 +27,9 @@ function MainContents(props) {
     return (
         <div style={{width: 250}} className={"contents"} id={"main-contents"}>
             <div className={"position-relative"} >
-                <div className={"position-absolute top-0 end-0 me-2 mt-2"} style={{zIndex: 1}}>
-                    <a href="#" type={"button"}><img src="/img/btnKeep.png" alt="" style={keep}/></a>
-                </div>
+                {/*<div className={"position-absolute top-0 end-0 me-2 mt-2"} style={{zIndex: 1}}>*/}
+                {/*    <img src="/img/btnKeep.png" alt="" style={keep} onClick={''}/>*/}
+                {/*</div>*/}
                 <Slider {...settings}>
                     <div>
                         <img
