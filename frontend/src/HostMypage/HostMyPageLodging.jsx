@@ -45,7 +45,8 @@ function HostMyPageLodging() {
                 <tbody className={'text-center'}>
                 {complain.map((item) => {
                     return <ComplainList idx={item.idx} lodging_name={item.lodging_name} state={item.state} bed={item.bed} bedroom={item.bedroom} bathroom={item.bathroom} location={item.location} last_update={item.last_update}/>
-                })}
+                })
+                }
                 </tbody>
             </table>
 

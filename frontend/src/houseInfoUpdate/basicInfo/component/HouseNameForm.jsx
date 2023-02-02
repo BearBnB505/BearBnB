@@ -8,10 +8,11 @@ import lodgingName from "../../../lodging_reg/LodgingName";
 
 function HouseNameForm(props) {
 
-  // const [name, setName] = useState('')
+  const [textCount, setTextCount] = useState('0')
 
   function onChange(e) {
     props.setLodgingName(e.target.value);
+    setTextCount(e.target.value.length)
   }
 
   const clickSave = () => {
@@ -22,7 +23,6 @@ function HouseNameForm(props) {
     })
       .then((response) => {
         console.log(response);
-        // props.setLodgingName.toString();
       })
       .catch(function (error) {
         console.log(error);
@@ -45,9 +45,10 @@ function HouseNameForm(props) {
         className={'HNameForm'}
         aria-describedby="TextCapacity"
         onChange={onChange}
+        maxLength={'50'}
       />
       <Form.Text id="TextCapacity" muted>
-        0/50
+        {textCount}/50
       </Form.Text>
       <hr/>
 

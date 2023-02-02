@@ -7,9 +7,11 @@ const HouseIntroForm=(props)=>{
 
 
   // const [intro, setIntro] = useState('')
+  const [textCount, setTextCount] = useState('')
 
   function onChange(e) {
     props.setIntroLodging(e.target.value);
+    setTextCount(e.target.value.length);
   }
 
   const SetHouseIntro=()=>{
@@ -35,16 +37,17 @@ const HouseIntroForm=(props)=>{
         <p className={'HNameLine2'}>게스트가 숙박에 대해 상상해 볼 수 있도록 숙소의 장점을 포함한 숙소 정보를 제공해 주세요.</p>
       </div>
 
-      <FloatingLabel controlId="HouseInfoText" label="내용">
+      <FloatingLabel controlId="HouseInfoText">
         <Form.Control
           onChange={onChange}
           as="textarea"
           placeholder="Leave a comment here"
           style={{ height: '200px' }}
+          maxLength={'500'}
         />
       </FloatingLabel>
       <Form.Text id="HouseInfoText" muted>
-        0/500
+        {textCount}/500
       </Form.Text>
       <hr/>
       <div className={'HNameFrame2'}>
