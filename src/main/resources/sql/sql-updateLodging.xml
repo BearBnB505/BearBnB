@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bearbnb.mapper.LodgingMapper">
+
+
+    <update id="hostLodgingUpdate" parameterType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        update lodging
+        set lodging_name = '${lodgingName}'
+        where user_id = 'tester1'
+        ]]>
+    </update>
+
+    <update id="LodgingIntroUpdate" parameterType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        update lodging
+        set intro_lodging = '${introLodging}'
+        where user_id = 'tester1'
+        ]]>
+    </update>
+
+    <update id="LodgingConceptUpdate" parameterType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        update lodging
+        set lodging_concept = '${lodgingConcept}'
+        where user_id = 'tester1'
+        ]]>
+    </update>
+
+
+    <update id="LodgingBedNBathUpdate" parameterType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        update lodging
+        set bed_num = '${bedNum}', bedroom_num = '${bedroomNum}', bathroom_num = '${bathroomNum}'
+        where user_id = 'tester1'
+        ]]>
+    </update>
+
+    <update id="LodgingAmenityUpdate" parameterType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        update lodging
+        set usable_yn= '${bedNum}'
+        where lodging_num = '2301151111111111' and
+        ]]>
+    </update>
+
+    <update id="CapacityUpdate" parameterType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        update lodging
+        set people_num= '${peopleNum}'
+        where user_id = 'tester1'
+        ]]>
+    </update>
+
+
+
+</mapper>

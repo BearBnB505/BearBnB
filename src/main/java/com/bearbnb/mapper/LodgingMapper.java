@@ -8,6 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface LodgingMapper {
+
     List<LodgingDto> lodgingList();
 
     LodgingDto lodgingDetail(int idx) throws Exception;
@@ -22,4 +23,15 @@ public interface LodgingMapper {
 
     void reviewTotalCount(String lodgingNum) throws Exception;
 
+    List<LodgingDto> CallLodgingList();
+
+    void hostLodgingUpdate(LodgingDto lodging);
+
+    void LodgingIntroUpdate(LodgingDto lodging);
+
+    void LodgingConceptUpdate(LodgingDto lodging);
+
+    void LodgingBedNBathUpdate(LodgingDto lodging);
+
+    void CapacityUpdate(LodgingDto lodging);
 }

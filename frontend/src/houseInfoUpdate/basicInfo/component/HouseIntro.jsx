@@ -1,9 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import HouseIntroForm from "./HouseIntroForm";
 import $ from "jquery";
+import axios from "axios";
 
-const HouseIntro=()=>{
+const HouseIntro = () => {
   const [houseIntro, setHouseIntro] = useState(false);
+  const [introLodging, setIntroLodging] = useState('')
+
 
   $(document).ready(function () {
     $('#HouseIntroBtn').on('click', function () {
@@ -17,7 +20,25 @@ const HouseIntro=()=>{
     $('#HouseIntroFormBtn2').on('click', function () {
       $('#HouseIntro').show();
     });
+
+    $('#HouseIntroFormBtn3').on('click', function () {
+      $('#HouseIntro').show();
+    });
   });
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/CallLodgingList')
+      .then((req) => {
+        const {data} = req;
+        setData(data);
+        setIntroLodging(data[0].introLodging)
+      })
+      .catch((err) => {
+        console.log("통신 오류");
+      })
+  }, []);
 
   return (
     <div>
@@ -26,9 +47,11 @@ const HouseIntro=()=>{
         <button className={'BasicInfoBtn'} id={'HouseIntroBtn'} onClick={() => {
           setHouseIntro(!houseIntro)
         }}>{houseIntro ? "취소" : "수정"}</button>
-        <p className={'HNameLine3'}>중심부에 위치하면서도 조용한 숙소에서 편안한 시간을 보내세요.</p>
+
+        <p className={'HNameLine3'}>{introLodging}</p>
+
       </div>
-      {houseIntro && <HouseIntroForm setHouseIntro={setHouseIntro}/>}
+      {houseIntro && <HouseIntroForm setHouseIntro={setHouseIntro} setIntroLodging={setIntroLodging} introLodging={introLodging}/>}
       <hr/>
     </div>
   )

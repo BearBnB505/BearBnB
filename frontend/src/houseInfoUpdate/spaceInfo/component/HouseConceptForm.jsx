@@ -1,11 +1,46 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import {Button, ButtonGroup} from "react-bootstrap";
+import axios from "axios";
 
 const HouseConceptForm=(props)=>{
-  let [concept, setConcept] = useState('선택하기');
+
+
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/CallLodgingList')
+      .then((req) => {
+        const {data} = req;
+        setData(data);
+      })
+      .catch((err) => {
+        console.log("통신 오류");
+      })
+  }, []);
+
+
   let [space, setSpace] = useState('선택하기');
+
+
+  const SetHouseConcept=()=>{
+    props.setHouseConcept(false)
+    axios.post('http://localhost:8080/UpdateLodgingConcept', null, {
+      params: ({lodgingConcept: props.concept})
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+
+
+
 
   return(
     <div>
@@ -21,38 +56,38 @@ const HouseConceptForm=(props)=>{
 
       <h6>회원님의 숙소에 가장 적합한 유형을 선택하세요.</h6>
       <Dropdown className={'HDropdown'} as={ButtonGroup}>
-        <Button className={'ConceptBtn'} variant="dark">{concept}</Button>
+        <Button className={'ConceptBtn'} variant="dark">{props.concept}</Button>
         <Dropdown.Toggle style={{backgroundColor:"white", color:"black"}} split variant="dark" />
         <Dropdown.Menu className="super-colors">
-            <Dropdown.Item as="button" onClick={()=>{setConcept(concept='주택')}}>주택</Dropdown.Item>
-            <Dropdown.Item as="button" onClick={()=>{setConcept(concept='아파트')}}>아파트</Dropdown.Item>
-            <Dropdown.Item as="button" onClick={()=>{setConcept(concept='통나무집')}}>통나무집</Dropdown.Item>
-            <Dropdown.Item as="button" onClick={()=>{setConcept(concept='해변가')}}>해변가</Dropdown.Item>
-            <Dropdown.Item as="button" onClick={()=>{setConcept(concept='수영장')}}>수영장</Dropdown.Item>
-            <Dropdown.Item as="button" onClick={()=>{setConcept(concept='한옥')}}>한옥</Dropdown.Item>
-            <Dropdown.Item as="button" onClick={()=>{setConcept(concept='캠핑장')}}>캠핑장</Dropdown.Item>
-            <Dropdown.Item as="button" onClick={()=>{setConcept(concept='농장')}}>농장</Dropdown.Item>
-            <Dropdown.Item as="button" onClick={()=>{setConcept(concept='호수')}}>호수</Dropdown.Item>
-            <Dropdown.Item as="button" onClick={()=>{setConcept(concept='북극')}}>북극</Dropdown.Item>
-            <Dropdown.Item as="button" onClick={()=>{setConcept(concept='캐슬')}}>캐슬</Dropdown.Item>
+            <Dropdown.Item as="button" onClick={()=>{props.setConcept('주택')}}>주택</Dropdown.Item>
+            <Dropdown.Item as="button" onClick={()=>{props.setConcept('아파트')}}>아파트</Dropdown.Item>
+            <Dropdown.Item as="button" onClick={()=>{props.setConcept('통나무집')}}>통나무집</Dropdown.Item>
+            <Dropdown.Item as="button" onClick={()=>{props.setConcept('해변가')}}>해변가</Dropdown.Item>
+            <Dropdown.Item as="button" onClick={()=>{props.setConcept('수영장')}}>수영장</Dropdown.Item>
+            <Dropdown.Item as="button" onClick={()=>{props.setConcept('한옥')}}>한옥</Dropdown.Item>
+            <Dropdown.Item as="button" onClick={()=>{props.setConcept('캠핑장')}}>캠핑장</Dropdown.Item>
+            <Dropdown.Item as="button" onClick={()=>{props.setConcept('농장')}}>농장</Dropdown.Item>
+            <Dropdown.Item as="button" onClick={()=>{props.setConcept('호수')}}>호수</Dropdown.Item>
+            <Dropdown.Item as="button" onClick={()=>{props.setConcept('북극')}}>북극</Dropdown.Item>
+            <Dropdown.Item as="button" onClick={()=>{props.setConcept('캐슬')}}>캐슬</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
 
-      <h6>회원님의 숙소의 이용 할 수 있는 공간의 형태를 선택하세요.</h6>
-      <Dropdown as={ButtonGroup} className={'HDropdown'}>
-        <Button className={'ConceptBtn'} variant="dark">{space}</Button>
-        <Dropdown.Toggle style={{backgroundColor:"white", color:"black"}} split variant="dark" />
-        <Dropdown.Menu className="super-colors">
-          <Dropdown.Item as="button" onClick={()=>{setSpace(space='개인실')}}>개인실</Dropdown.Item>
-          <Dropdown.Item as="button" onClick={()=>{setSpace(space='다인실')}}>다인실</Dropdown.Item>
-          <Dropdown.Item as="button" onClick={()=>{setSpace(space='공간 전체')}}>공간 전체</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+      {/*<h6>회원님의 숙소의 이용 할 수 있는 공간의 형태를 선택하세요.</h6>*/}
+      {/*<Dropdown as={ButtonGroup} className={'HDropdown'}>*/}
+      {/*  <Button className={'ConceptBtn'} variant="dark">{space}</Button>*/}
+      {/*  <Dropdown.Toggle style={{backgroundColor:"white", color:"black"}} split variant="dark" />*/}
+      {/*  <Dropdown.Menu className="super-colors">*/}
+      {/*    <Dropdown.Item as="button" onClick={()=>{setSpace(space='개인실')}}>개인실</Dropdown.Item>*/}
+      {/*    <Dropdown.Item as="button" onClick={()=>{setSpace(space='다인실')}}>다인실</Dropdown.Item>*/}
+      {/*    <Dropdown.Item as="button" onClick={()=>{setSpace(space='공간 전체')}}>공간 전체</Dropdown.Item>*/}
+      {/*  </Dropdown.Menu>*/}
+      {/*</Dropdown>*/}
 
       <hr/>
       <div className={'HNameFrame2'}>
         <button className={'BasicInfoBtn'} id={'ConceptFormBtn2'} style={{width:70}} onClick={() => {props.setHouseConcept(false)}}>취소</button>
-        <Button className={'BasicInfoBtn3'} variant="outline-dark">저장하기</Button>
+        <Button className={'BasicInfoBtn3'} id={'ConceptFormBtn3'} variant="outline-dark" onClick={SetHouseConcept}>저장하기</Button>
       </div>
       <hr/>
     </div>

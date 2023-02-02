@@ -120,6 +120,8 @@ function ProjectRouter(props) {
                     <Route path={"hostMyPageRevenue"} element={<HostMyPageRevenue/>}/>
                     <Route path={"hostMyPageLodging"} element={<HostMyPageLodging/>}/>
 
+                    {/*<HouseInfo/>*/}
+
                     {/*  */}
 
                 </Route>

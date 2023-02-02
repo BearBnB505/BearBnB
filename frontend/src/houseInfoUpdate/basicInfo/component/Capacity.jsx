@@ -1,37 +1,60 @@
-import React, {useState} from "react";
-
+import React, {useEffect, useState} from "react";
+import HouseIntroForm from "./HouseIntroForm";
+import axios from "axios";
+import CapacityForm from "./CapacityForm";
+import $ from "jquery";
 
 const Capacity = () => {
-  const [guestNum, setGuestNum] = useState(1);
+  const [capacity, setCapacity] = useState(false);
+  const [data, setData] = useState([]);
+  const [peopleNum, setPeopleNum] = useState('1')
 
-  function GuestPlus() {
-    setGuestNum(guestNum + 1);
-  }
+  $(document).ready(function () {
+    $('#BNRrBtn').on('click', function () {
+      $('#BNRr').hide();
+    });
 
-  function GuestMinus() {
-    if (guestNum <= 1) {
-      setGuestNum(1);
-    } else {
-      setGuestNum(guestNum - 1);
-    }
-  }
+    $('#BNRrFormBtn1').on('click', function () {
+      $('#BNRr').show();
+    });
+
+    $('#BNRrFormBtn2').on('click', function () {
+      $('#BNRr').show();
+    });
+
+    $('#BNRrFormBtn3').on('click', function () {
+      $('#BNRr').show();
+    });
+  });
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/CallLodgingList')
+      .then((req) => {
+        const {data} = req;
+        setData(data);
+        setPeopleNum(data[0].peopleNum);
+      })
+      .catch((err) => {
+        console.log("통신 오류");
+        console.log(err);
+      })
+  }, []);
 
   return (
     <div>
-      <div className={'HNameFrame4'}>
-        <p className={'HNameLine1'} style={{position: "relative", top: 8}}>게스트 수</p>
-        <button className={'BasicInfoBtn4'} style={{position: "relative", right: -8}} onClick={GuestMinus}>
-          <div style={{position: "relative", top: -3}}>-</div>
-        </button>
-        <div style={{textAlign: "center", position: "relative", top: 5, right: -3}}>{guestNum}</div>
-        <button className={'BasicInfoBtn4'} style={{position: "relative", right: -8}} onClick={GuestPlus}>
-          <div style={{position: "relative", top: -3}}>+</div>
-        </button>
+      <div id={'BNRr'}>
+        <div className={'HNameFrame3'} id={'HouseIntro'}>
+          <p className={'HNameLine1'}>수용 가능 인원</p>
+          <button className={'BasicInfoBtn'} id={'BNRrBtn'} onClick={() => {
+            setCapacity(!capacity)
+          }}>{capacity ? "취소" : "수정"}</button>
+          <p className={'HNameLine3'}>{peopleNum} 명</p>
+        </div>
       </div>
+      {capacity && <CapacityForm capacity={capacity} setCapacity={setCapacity} peopleNum={peopleNum} setPeopleNum={setPeopleNum}/>}
       <hr/>
     </div>
   )
 }
-
 
 export default Capacity;

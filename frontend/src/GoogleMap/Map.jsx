@@ -1,4 +1,4 @@
-import * as gvar from './global_variables'
+// import * as gvar from './global_variables'
 
 import React, {useCallback, useState} from "react";
 import {GoogleMap, useJsApiLoader} from "@react-google-maps/api";
@@ -17,7 +17,7 @@ function Map(props) {
 
     const {isLoaded} = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: gvar.BEE_API_KEY
+        // googleMapsApiKey: gvar.BEE_API_KEY
     })
 
     const [map, setMap] = useState(null);
