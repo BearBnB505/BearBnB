@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { storage } from "./firebase2";
 import DropzoneBasic from "./DropzoneBasic";
+import axios from "axios";
 
 const UploadTest = () => {
     const [image, setImage] = useState([]);
@@ -116,16 +117,37 @@ const UploadTest = () => {
                 console.log(url);
                 imageUrls.push(url);
 
-                if (index == oriImage.length - 1) {
-                    setImageUrl(imageUrls);
-                    imageUrls = [];
-                }
+                //선생님 코드 잠시 주석처리한다.
+                // if (index == oriImage.length - 1) {
+                //     setImageUrl(imageUrls);
+                // }
+
+                setImageUrl(imageUrls)
+
             });
         });
 
         console.log("파일을 업로드하는 행위");
         alert('저장되었습니다.')
         }
+        
+    //    controller로 보내기
+    const axiosData = ()=> axios({
+        url: 'http://localhost:8080/lodgingImageUrl',
+        method: 'post',
+        data: imageUrl,
+
+    })
+
+        .then(function (response) {
+            // your action after success
+            console.log(imageUrl[2])
+            console.log('데이터보내는 것 성공');
+        })
+        .catch(function (error) {
+            // your action on error success
+            console.log('데이터 전송 실패');
+        });
 
 
     return (
@@ -133,18 +155,21 @@ const UploadTest = () => {
             <div>
                 {/*<img width="400px" src={} alt="uploaded" />*/}
             </div>
-            upload
+
             {error && <div variant="danger">{error}</div>}
             <form onSubmit={onSubmit}>
                 <input type="file" onChange={handleImage} multiple />
                 <button onClick={onSubmit}>저장하기</button>
+                <button onClick={axiosData}>axios보내기</button>
                 {/*<button onClick={deleteFileImage}>삭제하기</button>*/}
             </form>
             {/*업로드 전 이미지*/}
+
+
             <img src={beforeImageUrl}/>
             {imageUrl && (
                 <div>
-                    <img width="400px" src={imageUrl} alt="uploaded" />
+                    <img width="400px" src={imageUrl}  />
                 </div>
             )}
         </div>
