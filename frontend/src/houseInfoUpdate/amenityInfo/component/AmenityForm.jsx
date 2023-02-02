@@ -383,32 +383,40 @@ const AmenityForm = (props) => {
         data[4].usableYn === 'N' ? setTissueChecked(false) : setTissueChecked(true)
         data[5].usableYn === 'N' ? setHairdryerChecked(false) : setHairdryerChecked(true)
         data[6].usableYn === 'N' ? setShampooChecked(false) : setShampooChecked(true)
-        data[7].usableYn === 'N' ? setDryerChecked(false) : setDryerChecked(true)
-        data[8].usableYn === 'N' ? setCleaningSuppliesChecked(false) : setCleaningSuppliesChecked(true)
-        data[9].usableYn === 'N' ? setBedChecked(false) : setBedChecked(true)
-        data[10].usableYn === 'N' ? setBedSheetChecked(false) : setBedSheetChecked(true)
-        data[11].usableYn === 'N' ? setBeddingChecked(false) : setBeddingChecked(true)
-        data[12].usableYn === 'N' ? setAirConChecked(false) : setAirConChecked(true)
-        data[13].usableYn === 'N' ? setHeaterChecked(false) : setHeaterChecked(true)
-        data[14].usableYn === 'N' ? setInternetChecked(false) : setInternetChecked(true)
-        data[15].usableYn === 'N' ? setTVChecked(false) : setTVChecked(true)
-        data[16].usableYn === 'N' ? setRefrigeratorChecked(false) : setRefrigeratorChecked(true)
-        data[17].usableYn === 'N' ? setMicrowaveChecked(false) : setMicrowaveChecked(true)
-        data[18].usableYn === 'N' ? setGasStoveChecked(false) : setGasStoveChecked(true)
-        data[19].usableYn === 'N' ? setDinnerwareChecked(false) : setDinnerwareChecked(true)
-        data[20].usableYn === 'N' ? setFeeParkingChecked(false) : setFeeParkingChecked(true)
-        data[21].usableYn === 'N' ? setFreeParkingChecked(false) : setFreeParkingChecked(true)
-        data[22].usableYn === 'N' ? setCCTVChecked(false) : setCCTVChecked(true)
-        data[23].usableYn === 'N' ? setFireAlarmChecked(false) : setFireAlarmChecked(true)
-        data[24].usableYn === 'N' ? setCOAlarmChecked(false) : setCOAlarmChecked(true)
-        data[25].usableYn === 'N' ? setFireExtinguisherChecked(false) : setFireExtinguisherChecked(true)
-        data[26].usableYn === 'N' ? setFirstAidKitChecked(false) : setFirstAidKitChecked(true)
-        data[27].usableYn === 'N' ? setLongTermChecked(false) : setLongTermChecked(true)
-        data[28].usableYn === 'N' ? setPetChecked(false) : setPetChecked(true)
-        data[29].usableYn === 'N' ? setGuestOnlyDoorChecked(false) : setGuestOnlyDoorChecked(true)
-        data[30].usableYn === 'N' ? setBarbecueChecked(false) : setBarbecueChecked(true)
-        data[31].usableYn === 'N' ? setPoolChecked(false) : setPoolChecked(true)
-        data[32].usableYn === 'N' ? setBreakfastChecked(false) : setBreakfastChecked(true)
+        data[7].usableYn === 'N' ? setWasherChecked(false) : setWasherChecked(true)
+        data[8].usableYn === 'N' ? setDryerChecked(false) : setDryerChecked(true)
+        data[9].usableYn === 'N' ? setCleaningSuppliesChecked(false) : setCleaningSuppliesChecked(true)
+
+        data[10].usableYn === 'N' ? setBedChecked(false) : setBedChecked(true)
+        data[11].usableYn === 'N' ? setBedSheetChecked(false) : setBedSheetChecked(true)
+        data[12].usableYn === 'N' ? setBeddingChecked(false) : setBeddingChecked(true)
+
+        data[13].usableYn === 'N' ? setAirConChecked(false) : setAirConChecked(true)
+        data[14].usableYn === 'N' ? setHeaterChecked(false) : setHeaterChecked(true)
+
+        data[15].usableYn === 'N' ? setInternetChecked(false) : setInternetChecked(true)
+        data[16].usableYn === 'N' ? setTVChecked(false) : setTVChecked(true)
+
+        data[17].usableYn === 'N' ? setRefrigeratorChecked(false) : setRefrigeratorChecked(true)
+        data[18].usableYn === 'N' ? setMicrowaveChecked(false) : setMicrowaveChecked(true)
+        data[19].usableYn === 'N' ? setGasStoveChecked(false) : setGasStoveChecked(true)
+        data[20].usableYn === 'N' ? setDinnerwareChecked(false) : setDinnerwareChecked(true)
+
+        data[21].usableYn === 'N' ? setFeeParkingChecked(false) : setFeeParkingChecked(true)
+        data[22].usableYn === 'N' ? setFreeParkingChecked(false) : setFreeParkingChecked(true)
+
+        data[23].usableYn === 'N' ? setCCTVChecked(false) : setCCTVChecked(true)
+        data[24].usableYn === 'N' ? setFireAlarmChecked(false) : setFireAlarmChecked(true)
+        data[25].usableYn === 'N' ? setCOAlarmChecked(false) : setCOAlarmChecked(true)
+        data[26].usableYn === 'N' ? setFireExtinguisherChecked(false) : setFireExtinguisherChecked(true)
+        data[27].usableYn === 'N' ? setFirstAidKitChecked(false) : setFirstAidKitChecked(true)
+
+        data[28].usableYn === 'N' ? setLongTermChecked(false) : setLongTermChecked(true)
+        data[29].usableYn === 'N' ? setPetChecked(false) : setPetChecked(true)
+        data[30].usableYn === 'N' ? setGuestOnlyDoorChecked(false) : setGuestOnlyDoorChecked(true)
+        data[31].usableYn === 'N' ? setBarbecueChecked(false) : setBarbecueChecked(true)
+        data[32].usableYn === 'N' ? setPoolChecked(false) : setPoolChecked(true)
+        data[33].usableYn === 'N' ? setBreakfastChecked(false) : setBreakfastChecked(true)
       })
       .catch((err) => {
         console.log("통신 오류");
@@ -419,16 +427,55 @@ const AmenityForm = (props) => {
 
 
 
-  const SetHouseIntro=()=>{
-    const test = [
-      {lodgingNum : data[0].lodgingNum, comfortId : data[0].comfortId, usableYn : props.bathtub}
-      // {lodgingNum : data[1].lodgingNum, comfortId : data[1].comfortId, usableYn : props.shower},
-      // {lodgingNum : data[2].lodgingNum, comfortId : data[2].comfortId, usableYn : props.tower}
+  const SetComfortListBtn=()=>{
+    const SetComfortList = [
+      {lodgingNum : data[0].lodgingNum, comfortId : data[0].comfortId, usableYn : props.bathtub},
+      {lodgingNum : data[1].lodgingNum, comfortId : data[1].comfortId, usableYn : props.shower},
+      {lodgingNum : data[2].lodgingNum, comfortId : data[2].comfortId, usableYn : props.tower},
+      {lodgingNum : data[3].lodgingNum, comfortId : data[3].comfortId, usableYn : props.soap},
+      {lodgingNum : data[4].lodgingNum, comfortId : data[4].comfortId, usableYn : props.tissue},
+      {lodgingNum : data[5].lodgingNum, comfortId : data[5].comfortId, usableYn : props.hairdryer},
+      {lodgingNum : data[6].lodgingNum, comfortId : data[6].comfortId, usableYn : props.shampoo},
+      {lodgingNum : data[7].lodgingNum, comfortId : data[7].comfortId, usableYn : props.washer},
+      {lodgingNum : data[8].lodgingNum, comfortId : data[8].comfortId, usableYn : props.dryer},
+      {lodgingNum : data[9].lodgingNum, comfortId : data[9].comfortId, usableYn : props.cleaningSupplies},
+
+      {lodgingNum : data[10].lodgingNum, comfortId : data[10].comfortId, usableYn : props.bed},
+      {lodgingNum : data[11].lodgingNum, comfortId : data[11].comfortId, usableYn : props.bedSheet},
+      {lodgingNum : data[12].lodgingNum, comfortId : data[12].comfortId, usableYn : props.bedding},
+
+      {lodgingNum : data[13].lodgingNum, comfortId : data[13].comfortId, usableYn : props.airCon},
+      {lodgingNum : data[14].lodgingNum, comfortId : data[14].comfortId, usableYn : props.heater},
+
+      {lodgingNum : data[15].lodgingNum, comfortId : data[15].comfortId, usableYn : props.internet},
+      {lodgingNum : data[16].lodgingNum, comfortId : data[16].comfortId, usableYn : props.tv},
+
+      {lodgingNum : data[17].lodgingNum, comfortId : data[17].comfortId, usableYn : props.refrigerator},
+      {lodgingNum : data[18].lodgingNum, comfortId : data[18].comfortId, usableYn : props.microwave},
+      {lodgingNum : data[19].lodgingNum, comfortId : data[19].comfortId, usableYn : props.gasStove},
+      {lodgingNum : data[20].lodgingNum, comfortId : data[20].comfortId, usableYn : props.dinnerware},
+
+      {lodgingNum : data[21].lodgingNum, comfortId : data[21].comfortId, usableYn : props.feeParking},
+      {lodgingNum : data[22].lodgingNum, comfortId : data[22].comfortId, usableYn : props.freeParking},
+
+      {lodgingNum : data[23].lodgingNum, comfortId : data[23].comfortId, usableYn : props.cctv},
+      {lodgingNum : data[24].lodgingNum, comfortId : data[24].comfortId, usableYn : props.fireAlarm},
+      {lodgingNum : data[25].lodgingNum, comfortId : data[25].comfortId, usableYn : props.coAlarm},
+      {lodgingNum : data[26].lodgingNum, comfortId : data[26].comfortId, usableYn : props.fireExtinguisher},
+      {lodgingNum : data[27].lodgingNum, comfortId : data[27].comfortId, usableYn : props.firstAidKit},
+
+      {lodgingNum : data[28].lodgingNum, comfortId : data[28].comfortId, usableYn : props.longTerm},
+      {lodgingNum : data[29].lodgingNum, comfortId : data[29].comfortId, usableYn : props.pet},
+      {lodgingNum : data[30].lodgingNum, comfortId : data[30].comfortId, usableYn : props.guestOnlyDoor},
+      {lodgingNum : data[31].lodgingNum, comfortId : data[31].comfortId, usableYn : props.barbecue},
+      {lodgingNum : data[32].lodgingNum, comfortId : data[32].comfortId, usableYn : props.pool},
+      {lodgingNum : data[33].lodgingNum, comfortId : data[33].comfortId, usableYn : props.breakfast}
     ]
+
     // const test2 = JSON.stringify(test);
     // console.log(`json 문자열 : ${test2}`);
 
-    axios.post('http://localhost:8080/UpdateComfortsList', test, null)
+    axios.post('http://localhost:8080/UpdateComfortsList', SetComfortList, null)
       .then((response) => {
         console.log(response);
       })
@@ -910,7 +957,7 @@ const AmenityForm = (props) => {
           props.setAmenity(false)
         }}>취소
         </button>
-        <Button className={'BasicInfoBtn3'} variant="outline-dark" onClick={SetHouseIntro}>저장하기</Button>
+        <Button className={'BasicInfoBtn3'} variant="outline-dark" onClick={SetComfortListBtn}>저장하기</Button>
       </div>
       <hr/>
 

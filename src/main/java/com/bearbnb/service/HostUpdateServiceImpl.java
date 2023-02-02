@@ -42,7 +42,11 @@ public class HostUpdateServiceImpl implements HostUpdateService{
 
     @Override
     public void UpdateComfortsList(List<ComfortsDto> ComfortBox) {
-        comfortMapper.ComfortListUpdate(ComfortBox);
+
+        for (ComfortsDto item : ComfortBox) {
+            comfortMapper.ComfortListUpdate(item);
+        }
+//        comfortMapper.ComfortListUpdate(ComfortBox);
     }
 
 
