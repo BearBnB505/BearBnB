@@ -1,5 +1,9 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import "../dropzone/Dropzone"
+import Dropzone from "../dropzone/Dropzone";
+import Posts from "../dropzone/Posts";
+import UploadTest from "../firebase/UploadTest";
 
 function LodgingImg(){
 
@@ -22,8 +26,10 @@ function LodgingImg(){
                     <img src ='/concept/imagePlus.png' style={{"width" : "50px", marginTop : "100px"}}/>
                 </div>
                 <div>
-                    
+                    {/*<Dropzone/>*/}
+                    <UploadTest/>
                 </div>
+                {/*<Posts/>*/}
             </div>
             <footer>
                 <Link to ={"/lodgingCategorySelect"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
