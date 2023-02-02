@@ -13,6 +13,7 @@ const HouseIntroForm=(props)=>{
   }
 
   const SetHouseIntro=()=>{
+    props.setHouseIntro(false)
     axios.post('http://localhost:8080/UpdateLodgingIntro', null, {
       params: ({introLodging: props.introLodging})
     })
@@ -48,7 +49,7 @@ const HouseIntroForm=(props)=>{
       <hr/>
       <div className={'HNameFrame2'}>
         <button className={'BasicInfoBtn'} id={'HouseIntroFormBtn2'} style={{width:70}} onClick={() => {props.setHouseIntro(false)}}>취소</button>
-        <Button className={'BasicInfoBtn3'} variant="outline-dark" onClick={SetHouseIntro}>저장하기</Button>
+        <Button className={'BasicInfoBtn3'} id={'HouseIntroFormBtn3'} variant="outline-dark" onClick={SetHouseIntro}>저장하기</Button>
       </div>
       <hr/>
     </div>

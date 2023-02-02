@@ -18,6 +18,10 @@ const HouseConcept = () => {
     $('#ConceptFormBtn2').on('click', function () {
       $('#HouseConcept').show();
     });
+
+    $('#ConceptFormBtn3').on('click', function () {
+      $('#HouseConcept').show();
+    });
   });
 
   const [data, setData] = useState([]);

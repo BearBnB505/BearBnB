@@ -21,6 +21,10 @@ const Capacity = () => {
     $('#BNRrFormBtn2').on('click', function () {
       $('#BNRr').show();
     });
+
+    $('#BNRrFormBtn3').on('click', function () {
+      $('#BNRr').show();
+    });
   });
 
   useEffect(() => {
@@ -44,7 +48,7 @@ const Capacity = () => {
           <button className={'BasicInfoBtn'} id={'BNRrBtn'} onClick={() => {
             setCapacity(!capacity)
           }}>{capacity ? "취소" : "수정"}</button>
-          <p className={'HNameLine3'}>{peopleNum}</p>
+          <p className={'HNameLine3'}>{peopleNum} 명</p>
         </div>
       </div>
       {capacity && <CapacityForm capacity={capacity} setCapacity={setCapacity} peopleNum={peopleNum} setPeopleNum={setPeopleNum}/>}

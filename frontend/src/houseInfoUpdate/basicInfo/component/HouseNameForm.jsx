@@ -15,6 +15,8 @@ function HouseNameForm(props) {
   }
 
   const clickSave = () => {
+    props.setHouseName(false)
+
     axios.post('http://localhost:8080/UpdateLodgingName', null, {
       params: ({lodgingName: props.lodgingName})
     })

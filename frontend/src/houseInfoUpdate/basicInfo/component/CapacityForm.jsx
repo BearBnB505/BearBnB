@@ -19,7 +19,8 @@ const CapacityForm = (props) => {
   }
 
   function CapacityBtn(){
-      axios.post('http://localhost:8080/UpdateCapacity', null, {
+    props.setCapacity(!props.capacity)
+    axios.post('http://localhost:8080/UpdateCapacity', null, {
         params: (
           {peopleNum: props.peopleNum}
         )
@@ -57,7 +58,7 @@ const CapacityForm = (props) => {
 
       <div className={'HNameFrame2'}>
         <button className={'BasicInfoBtn'} id={'BNRrFormBtn2'} style={{width:70}} onClick={() => {props.setCapacity(false)}}>취소</button>
-        <Button className={'BasicInfoBtn3'} variant="outline-dark" onClick={CapacityBtn}>저장하기</Button>
+        <Button className={'BasicInfoBtn3'} id={'BNRrFormBtn3'} variant="outline-dark" onClick={CapacityBtn}>저장하기</Button>
       </div>
       <hr/>
     </div>

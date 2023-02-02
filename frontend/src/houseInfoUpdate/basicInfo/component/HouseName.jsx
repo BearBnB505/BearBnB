@@ -21,7 +21,10 @@ function HouseName(props) {
 
     $('#HouseNameFormBtn2').on('click', function () {
       $('#HouseName').show();
+    });
 
+    $('#NameUpdateBtn').on('click', function () {
+      $('#HouseName').show();
     });
 
   });

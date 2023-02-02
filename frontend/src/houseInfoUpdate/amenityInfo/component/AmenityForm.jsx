@@ -428,6 +428,7 @@ const AmenityForm = (props) => {
 
 
   const SetComfortListBtn=()=>{
+    props.setAmenity(false)
     const SetComfortList = [
       {lodgingNum : data[0].lodgingNum, comfortId : data[0].comfortId, usableYn : props.bathtub},
       {lodgingNum : data[1].lodgingNum, comfortId : data[1].comfortId, usableYn : props.shower},

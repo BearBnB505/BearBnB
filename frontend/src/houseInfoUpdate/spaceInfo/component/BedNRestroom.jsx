@@ -23,6 +23,11 @@ const BedNRestroom = () => {
     $('#BNRrFormBtn2').on('click', function () {
       $('#BNRr1').show();
     });
+
+    $('#BNRrFormBtn3').on('click', function () {
+      $('#BNRr1').show();
+    });
+
   });
 
   const [data, setData] = useState([]);

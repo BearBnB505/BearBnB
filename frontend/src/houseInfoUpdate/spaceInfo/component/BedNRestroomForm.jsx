@@ -56,6 +56,7 @@ const BedNRestroomForm=(props)=>{
   }
 
   function SetBedNBath(){
+    props.SetRoomNumInfo(false)
     axios.post('http://localhost:8080/UpdateLodgingBedNBath', null, {
       params: (
         {bedNum: props.bedNum, bedroomNum: props.bedroomNum,bathroomNum: props.restroomNum}
@@ -115,7 +116,7 @@ const BedNRestroomForm=(props)=>{
       <hr/>
       <div className={'HNameFrame2'}>
         <button className={'BasicInfoBtn'} id={'BNRrFormBtn2'} style={{width:70}} onClick={() => {props.setHouseConcept(false)}}>취소</button>
-        <Button className={'BasicInfoBtn3'} variant="outline-dark" onClick={SetBedNBath}>저장하기</Button>
+        <Button className={'BasicInfoBtn3'} id={'BNRrFormBtn3'} variant="outline-dark" onClick={SetBedNBath}>저장하기</Button>
       </div>
       <hr/>
     </div>

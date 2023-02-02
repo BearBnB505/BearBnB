@@ -26,6 +26,7 @@ const HouseConceptForm=(props)=>{
 
 
   const SetHouseConcept=()=>{
+    props.setHouseConcept(false)
     axios.post('http://localhost:8080/UpdateLodgingConcept', null, {
       params: ({lodgingConcept: props.concept})
     })
@@ -86,7 +87,7 @@ const HouseConceptForm=(props)=>{
       <hr/>
       <div className={'HNameFrame2'}>
         <button className={'BasicInfoBtn'} id={'ConceptFormBtn2'} style={{width:70}} onClick={() => {props.setHouseConcept(false)}}>취소</button>
-        <Button className={'BasicInfoBtn3'} variant="outline-dark" onClick={SetHouseConcept}>저장하기</Button>
+        <Button className={'BasicInfoBtn3'} id={'ConceptFormBtn3'} variant="outline-dark" onClick={SetHouseConcept}>저장하기</Button>
       </div>
       <hr/>
     </div>

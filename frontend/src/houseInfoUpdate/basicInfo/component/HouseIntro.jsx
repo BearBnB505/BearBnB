@@ -20,6 +20,10 @@ const HouseIntro = () => {
     $('#HouseIntroFormBtn2').on('click', function () {
       $('#HouseIntro').show();
     });
+
+    $('#HouseIntroFormBtn3').on('click', function () {
+      $('#HouseIntro').show();
+    });
   });
 
   const [data, setData] = useState([]);
