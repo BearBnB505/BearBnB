@@ -5,15 +5,16 @@ import {Button} from "react-bootstrap";
 import DetailReview from "./DetailReview";
 import ModalReview from "./ModalReview";
 
-function ReviewAverage(props) {
+function ReviewAverage() {
 
     const [modalShow, setModalShow] = useState(false);
     return (
         <div>
             <hr style={{marginTop: 60}}/>
-            <ReviewTitle/>
-            <ReviewAverageForm/>
+            {/*<ReviewAverageForm/>*/}
+            {/*<ReviewTitle/>*/}
             <DetailReview />
+
             <Button className={'ReviewBtn'} variant="dark" onClick={() => setModalShow(true)}>후기 모두 보기</Button>
             <ModalReview
                 show={modalShow}

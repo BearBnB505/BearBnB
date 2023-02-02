@@ -20,6 +20,5 @@ public interface LodgingMapper {
 
     MembersDto membersDetail(String userId) throws Exception;
 
-    void reviewTotalCount(String lodgingNum) throws Exception;
-
+    ReviewDto reviewAvg(String lodgingNum) throws Exception;
 }

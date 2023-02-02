@@ -38,11 +38,20 @@
         ]]>
     </select>
 
-    <select id="reviewTotalCount" resultType="com.bearbnb.dto.ReviewDto">
+    <select id="reviewAvg" resultType="com.bearbnb.dto.ReviewDto">
         <![CDATA[
-        SELECT count(*)
+        SELECT
+               avg(cast(clean_grade as float)) as clean_grade,
+               avg(cast(accuracy_grade as float)) as accuracy_grade,
+               avg(cast(communication_grade as float)) as communication_grade,
+               avg(cast(location_grade as float)) as location_grade,
+               avg(cast(check_in_grade as float)) as check_in_grade,
+               avg(cast(cost_grade as float)) as cost_grade,
+               round((clean_grade + accuracy_grade + communication_grade + location_grade + check_in_grade + cost_grade) / 6, 1) as review_total,
+               count(*) as review_count
         FROM review
         WHERE lodging_num = #{lodgingNum}
+          AND deleted_yn = 'N'
         ]]>
     </select>
 
