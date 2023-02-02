@@ -16,4 +16,6 @@ public interface HostUpdateService {
     void UpdateLodgingBedNBath(LodgingDto lodging);
 
     void UpdateComfortsList(List<ComfortsDto> ComfortBox);
+
+    void UpdateCapacity(LodgingDto lodging);
 }

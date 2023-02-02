@@ -4,7 +4,7 @@ import BedNRestroomForm from "./BedNRestroomForm";
 import $ from "jquery";
 import axios from "axios";
 
-const BedNRestroom=()=>{
+const BedNRestroom = () => {
   const [roomNumInfo, SetRoomNumInfo] = useState(false);
   const [bedNum, SetBedNum] = useState(0);
   const [bedroomNum, SetBedroomNum] = useState(0);
@@ -12,18 +12,17 @@ const BedNRestroom=()=>{
 
 
   $(document).ready(function () {
-    $('#BNRrBtn').on('click', function () {
-      $('#BNRr').hide();
+    $('#BNRrBtn1').on('click', function () {
+      $('#BNRr1').hide();
     });
 
     $('#BNRrFormBtn1').on('click', function () {
-      $('#BNRr').show();
+      $('#BNRr1').show();
     });
 
     $('#BNRrFormBtn2').on('click', function () {
-      $('#BNRr').show();
+      $('#BNRr1').show();
     });
-
   });
 
   const [data, setData] = useState([]);
@@ -44,32 +43,18 @@ const BedNRestroom=()=>{
   }, []);
 
 
-
-
-
-  return(
+  return (
     <div>
-      <div className={'HNameFrame5'} id={'BNRr'}>
-        <p className={'HNameLine1'}>방 및 기타 공간</p>
-        <button className={'BasicInfoBtn'} id={'BNRrBtn'} onClick={() => {
-          SetRoomNumInfo(!roomNumInfo)
-        }}>{roomNumInfo ? "취소" : "수정"}</button>
-        {
-          data.map((item) => {
-            return (
-              <p className={'HNameLine3'}>침실 : {item.bedroomNum}</p>
-            )
-          })
-        }
-              <p className={'HNameLine3'} style={{gridRow:3}}>침대 : {bedNum}</p>
-
-        {
-          data.map((item) => {
-            return (
-              <p className={'HNameLine3'} style={{gridRow:4}}>욕실 : {item.bathroomNum}</p>
-            )
-          })
-        }
+      <div id={'BNRr1'}>
+        <div className={'HNameFrame5'}>
+          <p className={'HNameLine1'}>방 및 기타 공간</p>
+          <button className={'BasicInfoBtn'} id={'BNRrBtn1'} onClick={() => {
+            SetRoomNumInfo(!roomNumInfo)
+          }}>{roomNumInfo ? "취소" : "수정"}</button>
+          <p className={'HNameLine3'}>침실 : {bedroomNum}</p>
+          <p className={'HNameLine3'} style={{gridRow: 3}}>침대 : {bedNum}</p>
+          <p className={'HNameLine3'} style={{gridRow: 4}}>욕실 : {restroomNum}</p>
+        </div>
       </div>
       {roomNumInfo && <BedNRestroomForm SetRoomNumInfo={SetRoomNumInfo}
                                         SetBedNum={SetBedNum}

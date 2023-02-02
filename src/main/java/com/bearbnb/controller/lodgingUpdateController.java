@@ -63,14 +63,13 @@ public class lodgingUpdateController {
         return "redirect:/UpdateLodgingList";
     }
 
-//    @RequestMapping(value = "/UpdateComfortsList", method = RequestMethod.POST)
-//    public String UpdateComfortsList(@RequestParam("ComfortBox") String ComfortBox){
-//
-//        System.out.println(ComfortBox);
-////        hostUpdateService.UpdateComfortsList(comfortBox);
-//
-//        return "test";
-//    }
+    @RequestMapping(value = "/UpdateCapacity", method = RequestMethod.POST)
+    public String UpdateCapacity(LodgingDto lodging) throws Exception {
+        hostUpdateService.UpdateCapacity(lodging);
+
+        return "redirect:/UpdateLodgingList";
+    }
+
 
     @RequestMapping(value = "/UpdateComfortsList", method = RequestMethod.POST)
     public List<ComfortsDto> UpdateComfortsList(@RequestBody List<ComfortsDto> ComfortBox){
@@ -79,8 +78,6 @@ public class lodgingUpdateController {
         hostUpdateService.UpdateComfortsList(ComfortBox);
 
         return ComfortBox;
-//        return ComfortBox.toString();
-
     }
 
 

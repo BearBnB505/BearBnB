@@ -45,6 +45,14 @@
         ]]>
     </update>
 
+    <update id="CapacityUpdate" parameterType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        update lodging
+        set people_num= '${peopleNum}'
+        where user_id = 'tester1'
+        ]]>
+    </update>
+
 
 
 </mapper>

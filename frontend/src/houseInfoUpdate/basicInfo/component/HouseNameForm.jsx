@@ -8,19 +8,19 @@ import lodgingName from "../../../lodging_reg/LodgingName";
 
 function HouseNameForm(props) {
 
-  const [name, setName] = useState('')
+  // const [name, setName] = useState('')
 
   function onChange(e) {
-    setName(e.target.value);
+    props.setLodgingName(e.target.value);
   }
 
   const clickSave = () => {
     axios.post('http://localhost:8080/UpdateLodgingName', null, {
-      params: ({lodgingName: name})
+      params: ({lodgingName: props.lodgingName})
     })
       .then((response) => {
         console.log(response);
-        name.toString();
+        // props.setLodgingName.toString();
       })
       .catch(function (error) {
         console.log(error);
@@ -31,7 +31,7 @@ function HouseNameForm(props) {
   return (
     <div>
       <div className={'HNameFrame1'}>
-        <p className={'HNameLine1'}>숙소 제목</p>
+        <p className={'HNameLine1'}>숙소명</p>
         <button className={'BasicInfoBtn2'} id={'HouseNameFormBtn'} onClick={() => {
           props.setHouseName(false)
         }}>&#88;</button>
@@ -54,7 +54,6 @@ function HouseNameForm(props) {
           props.setHouseName(false)
         }}>취소
         </button>
-        {/*<Button id={'NameUpdateBtn'} className={'BasicInfoBtn3'} variant="outline-dark">저장하기</Button>*/}
         <Button id={'NameUpdateBtn'} className={'BasicInfoBtn3'} variant="outline-dark" onClick={clickSave}>저장하기</Button>
       </div>
       <hr/>

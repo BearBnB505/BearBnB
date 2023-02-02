@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import HouseIntroForm from "../basicInfo/component/HouseIntroForm";
 import HouseName from "../basicInfo/component/HouseName";
 import HouseIntro from "../basicInfo/component/HouseIntro";
-import Capacity from "../basicInfo/component/Capacity";
+import CapacityForm from "../basicInfo/component/CapacityForm";
 import Add from "./component/Add";
 import LocationIntro from "./component/LocationIntro";
 

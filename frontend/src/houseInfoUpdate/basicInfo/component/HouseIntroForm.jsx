@@ -6,15 +6,15 @@ import axios from "axios";
 const HouseIntroForm=(props)=>{
 
 
-  const [intro, setIntro] = useState('')
+  // const [intro, setIntro] = useState('')
 
   function onChange(e) {
-    setIntro(e.target.value);
+    props.setIntroLodging(e.target.value);
   }
 
   const SetHouseIntro=()=>{
     axios.post('http://localhost:8080/UpdateLodgingIntro', null, {
-      params: ({introLodging: intro})
+      params: ({introLodging: props.introLodging})
     })
       .then((response) => {
         console.log(response);

@@ -49,5 +49,10 @@ public class HostUpdateServiceImpl implements HostUpdateService{
 //        comfortMapper.ComfortListUpdate(ComfortBox);
     }
 
+    @Override
+    public void UpdateCapacity(LodgingDto lodging) {
+        lodgingMapper.CapacityUpdate(lodging);
+    }
+
 
 }

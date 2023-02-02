@@ -12,7 +12,6 @@
         ]]>
     </select>
 
-
     <update id="ComfortListUpdate" parameterType="com.bearbnb.dto.ComfortsDto">
         <![CDATA[
         update comforts
@@ -20,26 +19,5 @@
         where lodging_num = '${lodgingNum}' and comfort_id = '${comfortId}'
         ]]>
     </update>
-
-<!--    <update id="ComfortListUpdate" parameterType="com.bearbnb.dto.ComfortsDto">-->
-<!--        <![CDATA[-->
-<!--        CASE-->
-<!--            WHEN '${usableYn}' == 'false' THEN SELECT comforts SET usable_yn = 'N' WHERE lodging_num = '${lodgingNum}' and comfort_id = '${comfortId}'-->
-<!--            ELSE UPDATE comforts SET usable_yn = 'T' WHERE lodging_num = '${lodgingNum}' and comfort_id = '${comfortId}'-->
-<!--        END-->
-<!--        ]]>-->
-<!--    </update>-->
-
-<!--    <update id="ComfortListUpdate" parameterType="com.bearbnb.dto.ComfortsDto">-->
-<!--        <![CDATA[-->
-<!--        CASE-->
-<!--            WHEN '${usableYn}' == 'false' THEN '${usableYn}' = 'N'-->
-<!--            ELSE '${usableYn}' = 'Y'-->
-<!--        END-->
-<!--        update comforts-->
-<!--        set usable_yn= '${usableYn}'-->
-<!--        where lodging_num = '${lodgingNum}' and comfort_id = '${comfortId}'-->
-<!--        ]]>-->
-<!--    </update>-->
 
 </mapper>

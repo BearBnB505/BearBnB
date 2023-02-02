@@ -8,6 +8,7 @@ import MainContents from "../../../Main/MainContents";
 
 function HouseName(props) {
   const [houseName, setHouseName] = useState(false);
+  const [lodgingName, setLodgingName] = useState('');
 
   $(document).ready(function () {
     $('#HouseNameBtn').on('click', function () {
@@ -33,6 +34,7 @@ function HouseName(props) {
       .then((req) => {
         const {data} = req;
         setData(data);
+        setLodgingName(data[0].lodgingName)
       })
       .catch((err) => {
         console.log("통신 오류");
@@ -40,34 +42,26 @@ function HouseName(props) {
   }, []);
 
 
-
   return (
     <div>
       <div className={'HNameFrame3'} id={'HouseName'}>
-        <p className={'HNameLine1'}></p>
-        <button id={'HouseNameBtn'} className={'BasicInfoBtn'}  onClick={() => {
+        <p className={'HNameLine1'}>숙소명</p>
+        <button id={'HouseNameBtn'} className={'BasicInfoBtn'} onClick={() => {
           setHouseName(!houseName)
         }}>{houseName ? "취소" : "수정"}</button>
-        {
-          data.map((item) => {
-            return (
-              <p className={'HNameLine3'}>{item.lodgingName}</p>
-            )
-          })
-        }
+
+        <p className={'HNameLine3'}>{lodgingName}</p>
+
       </div>
-      {houseName && <HouseNameForm setHouseName={setHouseName}/>}
+      {houseName && <HouseNameForm setHouseName={setHouseName} lodgingName={lodgingName} setLodgingName={setLodgingName}/>}
       <hr/>
     </div>
   )
 }
 
 
-
-
 //
 //
-
 
 
 export default HouseName;

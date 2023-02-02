@@ -22,4 +22,5 @@ public interface LodgingMapper {
 
     void LodgingBedNBathUpdate(LodgingDto lodging);
 
+    void CapacityUpdate(LodgingDto lodging);
 }
