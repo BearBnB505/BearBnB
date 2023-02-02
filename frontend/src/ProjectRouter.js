@@ -101,7 +101,7 @@ function ProjectRouter(props) {
                     {/*<Route path={"lodgingHostInfoTest"} element={<LodgingHostInfoTest/>}/>*/}
 
 
-                    {/* 예매 */}
+                    {/* 예약 */}
                     <Route path = {"lodgingPayment" } element={<LodgingPayment/>}/>
                     <Route path = {"lodgingPaymentEnd" } element={<LodgingPaymentEnd/>}/>
                     <Route path = {"lodgingPaymentFailure" } element={<LodgingPaymentFailure/>}/>
@@ -121,6 +121,8 @@ function ProjectRouter(props) {
                     <Route path={"hostMyPageLodging"} element={<HostMyPageLodging/>}/>
 
                     {/*<HouseInfo/>*/}
+                    <Route path={"HouseInfoUpdate"} element={<HouseInfo/>}/>
+
 
                     {/*  */}
 

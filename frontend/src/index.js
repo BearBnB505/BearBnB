@@ -9,9 +9,9 @@ import HouseInfo from "./houseInfoUpdate/HouseInfo";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        {/*<ProjectRouter/>*/}
+        <ProjectRouter/>
         {/*<App />*/}
-      <HouseInfo/>
+      {/*<HouseInfo/>*/}
     </React.StrictMode>
 
 );

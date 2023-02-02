@@ -1,17 +1,33 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Breadcrumb, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose, faPencil} from "@fortawesome/free-solid-svg-icons";
 import Anima from "../Mypage/animaData";
 import { motion } from "framer-motion";
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 const complain = [
     {idx: 1, lodging_name: "바다가 보이는 아름다운 집", state:<button className={'btn btn-primary'}>승인완료</button>, bedroom: 2, bed: 2, bathroom:1, location : "부산 해운대", last_update:"2022-12-03"},
     {idx: 2, lodging_name: "산이 한 눈에 보이는 집", state:<button className={'btn btn-danger'}>심사 중</button>, bedroom: 3, bed: 4, bathroom:2, location : "경기도 오산", last_update:"2022-12-06"},
 ]
 
+
+
+
 function HostMyPageLodging() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:8080/lodgingList')
+      .then((req) => {
+        const {data} = req;
+        // console.log(data);
+        setData(data);
+      })
+      .catch((err) => {
+        console.log("통신 오류");
+      })
+  }, []);
     return (
         <motion.div variants={Anima}
                     initial="hidden"
@@ -43,10 +59,17 @@ function HostMyPageLodging() {
                 </tr>
                 </thead>
                 <tbody className={'text-center'}>
-                {complain.map((item) => {
-                    return <ComplainList idx={item.idx} lodging_name={item.lodging_name} state={item.state} bed={item.bed} bedroom={item.bedroom} bathroom={item.bathroom} location={item.location} last_update={item.last_update}/>
+
+                {/*{complain.map((item) => {*/}
+                {/*    return <ComplainList idx={item.idx} lodging_name={item.lodging_name} state={item.state} bed={item.bed} bedroom={item.bedroom} bathroom={item.bathroom} location={item.location} last_update={item.last_update}/>*/}
+                {/*})*/}
+                {/*}*/}
+
+                {data.map((item) => {
+                  return <ComplainList idx={item.idx} lodging_name={item.lodgingName} state={item.regState} bed={item.bedNum} bedroom={item.bedroomNum} bathroom={item.bathroomNum} location={item.addr} last_update={item.createDt} lodging_num = {item.lodgingNum}/>
                 })
                 }
+
                 </tbody>
             </table>
 
@@ -65,12 +88,12 @@ function HostMyPageLodging() {
 
 export default HostMyPageLodging;
 
-function ComplainList({idx, lodging_name, state, bedroom, bed,bathroom,location,last_update }) {
+function ComplainList({idx, lodging_name, state, bedroom, bed,bathroom,location,last_update,lodging_num }) {
     return (
         <tr>
             <td>{idx}</td>
-            <td>{lodging_name}</td>
-            <td>{state}</td>
+            <a href={'HouseInfoUpdate'}>{lodging_name}</a>
+          {state == '승인완료' ? <td><button className={'btn btn-primary'}>승인완료</button> </td>: <td><button className={'btn btn-danger'}>심사 중</button></td>}
             <td>{bedroom}</td>
             <td>{bed}</td>
             <td>{bathroom}</td>
