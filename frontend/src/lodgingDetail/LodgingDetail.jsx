@@ -25,7 +25,10 @@ function LodgingDetail(props) {
     const [members, setMembers] = useState([]);
     const {idx} = useParams();
 
-    let [chooseDate, setChooseDate] = useState([]);
+    const [chooseDate, setChooseDate] = useState([]);
+    // const [lat, setLat] = useState(0);
+    // const [lng, setLng] = useState(0);
+
 
     useEffect(() => {
         axios.get(`http://localhost:8080/lodgingDetail/${idx}`)
@@ -33,15 +36,21 @@ function LodgingDetail(props) {
                 const {data} = req;
                 console.log(data);
                 setLodging(data.lodging);
-                setPhoto(data.photo);
-                setReview(data.review);
-                setComforts(data.comforts);
+                // setPhoto(data.photo);
+                // setReview(data.review);
+                // setComforts(data.comforts);
                 setMembers(data.members);
+
+                // setLat(data.lodging.latitude);
+                // setLng(data.lodging.longitude);
+                // console.log(data.lodging.latitude);
+
             })
             .catch((err) => {
                 console.log("통신 오류");
             })
     }, []);
+
 
     return(
         <div style={{display:"grid", justifyContent:"center", width: 1900}}>
@@ -72,11 +81,11 @@ function LodgingDetail(props) {
                     <div className={"pb-4"}>
                         <h4 className={"fw-bold mb-4"}>위치</h4>
                         
-                        {/*<Map/>*/}
+                        <Map lat={parseFloat(lodging.latitude)} lng={parseFloat(lodging.longitude)}/>
                     </div>
+                    <hr/>
                 </div>
 
-                <ReviewAverage />
                 <HostIntroduce userId={lodging.userId} joinDt={members.joinDt}/>
             </div>
 
