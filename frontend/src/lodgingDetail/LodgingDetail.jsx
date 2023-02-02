@@ -13,7 +13,7 @@ import Calendar from "../Calendar/Calendar";
 import Map from "../GoogleMap/Map";
 
 import axios from "axios";
-import {useParams} from "react-router";
+import {useLocation, useParams} from "react-router";
 
 
 function LodgingDetail(props) {
@@ -26,9 +26,13 @@ function LodgingDetail(props) {
     const {idx} = useParams();
 
     const [chooseDate, setChooseDate] = useState([]);
-    const [lat, setLat] = useState(0.0);
-    const [lng, setLng] = useState(0.0);
 
+    const location = useLocation();
+    const lat = parseFloat(location.state.lat);
+    const lng = parseFloat(location.state.lng);
+
+    // const [lat, setLat] = useState(0.0);
+    // const [lng, setLng] = useState(0.0);
 
     useEffect(() => {
         axios.get(`http://localhost:8080/lodgingDetail/${idx}`)
@@ -40,14 +44,13 @@ function LodgingDetail(props) {
                 // setReview(data.review);
                 // setComforts(data.comforts);
                 setMembers(data.members);
-
-                setLat(data.lodging.latitude);
-                setLng(data.lodging.longitude);
             })
             .catch((err) => {
                 console.log("통신 오류");
             })
     }, []);
+
+    console.log(lat);
 
     return(
         <div style={{display:"grid", justifyContent:"center", width: 1900}}>
@@ -78,7 +81,7 @@ function LodgingDetail(props) {
                     <div className={"pb-4"}>
                         <h4 className={"fw-bold mb-4"}>위치</h4>
                         
-                        <Map lat={lat} lng={lng}/>
+                        <Map lat={lat} lng={lng} zoom={18}/>
                     </div>
                     <hr/>
                 </div>

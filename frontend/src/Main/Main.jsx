@@ -45,7 +45,7 @@ function Main(props) {
                                     <div className={"position-absolute"} style={{zIndex:1, marginLeft:215, marginTop:8}}>
                                         <Keep idx={item.idx}/>
                                     </div>
-                                    <Link to={`/lodgingDetail/${item.idx}`} style={{color: "black"}}>
+                                    <Link to={`/lodgingDetail/${item.idx}`} style={{color: "black"}} state={{lat: `${item.latitude}`, lng: `${item.longitude}`}}>
                                         <MainContents idx={item.idx} data={item} />
                                     </Link>
                                 </li>

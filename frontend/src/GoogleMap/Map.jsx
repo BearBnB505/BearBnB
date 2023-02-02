@@ -12,25 +12,28 @@ const containerStyle = {
     height: 500,
 };
 
+const zoom = 18;
 
 function Map(props) {
 
-    const [zoomLevel, setZoomLevel] = useState(10);
+    // const [zoomLevel, setZoomLevel] = useState(18);
+    // const [lat, setLat] = useState(props.lat);
+    // const [lng, setLng] = useState(props.lng);
+    //
+    // console.log(lat +"/" + lng);
 
-    useEffect(() => {
-        setZoomLevel(18);
-    }, [])
-
+    // useEffect(() => {
+    //     setZoomLevel(props.zoom);
+    // }, []);
 
     const center = {
-        lat: props.lat,
-        lng: props.lng,
+        lat: props.lat, lng: props.lng
     };
 
     const {isLoaded} = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: gvar.BEE_API_KEY
-    })
+    });
 
     const [map, setMap] = useState(null);
 
@@ -38,11 +41,11 @@ function Map(props) {
         const bounds = new window.google.maps.LatLngBounds(center);
         map.fitBounds(bounds);
         setMap(map);
-    }, [])
+    }, []);
 
     const onUnmount = useCallback(function callback(map) {
         setMap(null)
-    }, [])
+    }, []);
 
     const styles = {
         default: [],
@@ -74,16 +77,16 @@ function Map(props) {
         ],
     };
 
-    function handleLoad() {}
-
-    function handlePlacesChanged() {}
+    // function handleLoad() {}
+    //
+    // function handlePlacesChanged() {}
 
     return isLoaded ? (
         <div>
             <GoogleMap
                 mapContainerStyle={containerStyle}
-                center={{lat: props.lat, lng: props.lng}}
-                zoom={zoomLevel}
+                center={center}
+                zoom={zoom}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
                 options={{styles:styles.hide}}
