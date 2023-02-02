@@ -26,8 +26,8 @@ function LodgingDetail(props) {
     const {idx} = useParams();
 
     const [chooseDate, setChooseDate] = useState([]);
-    // const [lat, setLat] = useState(0);
-    // const [lng, setLng] = useState(0);
+    const [lat, setLat] = useState(0.0);
+    const [lng, setLng] = useState(0.0);
 
 
     useEffect(() => {
@@ -41,16 +41,13 @@ function LodgingDetail(props) {
                 // setComforts(data.comforts);
                 setMembers(data.members);
 
-                // setLat(data.lodging.latitude);
-                // setLng(data.lodging.longitude);
-                // console.log(data.lodging.latitude);
-
+                setLat(data.lodging.latitude);
+                setLng(data.lodging.longitude);
             })
             .catch((err) => {
                 console.log("통신 오류");
             })
     }, []);
-
 
     return(
         <div style={{display:"grid", justifyContent:"center", width: 1900}}>
@@ -81,7 +78,7 @@ function LodgingDetail(props) {
                     <div className={"pb-4"}>
                         <h4 className={"fw-bold mb-4"}>위치</h4>
                         
-                        <Map lat={parseFloat(lodging.latitude)} lng={parseFloat(lodging.longitude)}/>
+                        <Map lat={lat} lng={lng}/>
                     </div>
                     <hr/>
                 </div>

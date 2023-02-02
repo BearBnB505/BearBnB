@@ -1,7 +1,11 @@
 import * as gvar from './global_variables'
 
-import React, {useCallback, useState} from "react";
-import {GoogleMap, LoadScript, useJsApiLoader} from "@react-google-maps/api";
+import React, {useCallback, useEffect, useState} from "react";
+import {
+    GoogleMap,
+    MarkerF,
+    useJsApiLoader
+} from "@react-google-maps/api";
 
 const containerStyle = {
     width: 1230,
@@ -10,11 +14,17 @@ const containerStyle = {
 
 
 function Map(props) {
-    console.log(props.lat);
+
+    const [zoomLevel, setZoomLevel] = useState(10);
+
+    useEffect(() => {
+        setZoomLevel(18);
+    }, [])
+
 
     const center = {
-        lat: parseFloat(props.lat),
-        lng: parseFloat(props.lng),
+        lat: props.lat,
+        lng: props.lng,
     };
 
     const {isLoaded} = useJsApiLoader({
@@ -34,35 +44,56 @@ function Map(props) {
         setMap(null)
     }, [])
 
+    const styles = {
+        default: [],
+        hide: [
+            {
+                featureType: "poi.business",
+                stylers: [{ visibility: "off" }],
+            },
+            {
+                featureType: "poi.medical",
+                stylers: [{ visibility: "off" }],
+            },
+            {
+                featureType: "poi.school",
+                stylers: [{ visibility: "off" }],
+            },
+            {
+                featureType: "poi.sports_complex",
+                stylers: [{ visibility: "off" }],
+            },
+            {
+                featureType: "poi.place_of_worship",
+                stylers: [{ visibility: "off" }],
+            },
+            {
+                featureType: "poi.government",
+                stylers: [{ visibility: "off" }],
+            },
+        ],
+    };
 
     return isLoaded ? (
         <div>
             <GoogleMap
                 mapContainerStyle={containerStyle}
-                center={center}
-                zoom={18}
+                center={{lat: props.lat, lng: props.lng}}
+                zoom={zoomLevel}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
+                options={{styles:styles.hide}}
             >
-                <></>
+                <MarkerF
+                    position={center}
+                    // draggable
+                    // onDragEnd={onDragEnd}
+                    // onLoad={onMarkerLoad}
+                />
             </GoogleMap>
         </div>
     ) : <></>
 
-    // return (
-    //     <LoadScript
-    //         googleMapsApiKey={gvar.BEE_API_KEY}
-    //     >
-    //         <GoogleMap
-    //             mapContainerStyle={containerStyle}
-    //             center={center}
-    //             zoom={18}
-    //             onLoad={onLoad}
-    //             onUnmount={onUnmount}
-    //         >
-    //         </GoogleMap>
-    //     </LoadScript>
-    // )
 }
 
 export default React.memo(Map);
