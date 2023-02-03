@@ -12,6 +12,14 @@
         ]]>
     </select>
 
+    <select id="AllLodgingList" resultType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        SELECT *
+        FROM lodging
+        ORDER BY create_dt DESC
+        ]]>
+    </select>
+
     <!--    숙소 관련 정보 수정 하기 -->
     <update id="hostLodgingUpdate" parameterType="com.bearbnb.dto.LodgingDto">
         <![CDATA[

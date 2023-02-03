@@ -8,8 +8,11 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import './Lodging.css'
 
+
+
 import MainContents from "../Main/MainContents";
 import {number} from "prop-types";
+import {useLocation} from "react-router";
 
 
 function HostMyPageLodging() {
@@ -65,7 +68,9 @@ export default HostMyPageLodging;
 function ComplainList() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:8080/lodgingList')
+    // axios.put('http://localhost:8080/CallLodgingList',null,null)
+    axios.get('http://localhost:8080/AllLodgingList/')
+
       .then((req) => {
         const {data} = req;
         // console.log(data);
@@ -75,13 +80,17 @@ function ComplainList() {
         console.log("통신 오류");
       })
   }, []);
+
+
+
+
   return (
 
     data.map((item, index) => {
 
       return (
         <tr className={'LodgingLine'}>
-          <td>{index+1}</td>
+          <td>{data.length - index}</td>
           <Link to={`/hostMyPageLodging/HouseInfoUpdate/${item.lodgingNum}`} state={{lodgingNum: `${item.lodgingNum}`}} style={{color: "black"}}>
             {item.lodgingName}
           </Link>

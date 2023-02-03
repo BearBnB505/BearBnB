@@ -9,7 +9,7 @@ import java.util.List;
 public interface LodgingMapper {
 
     List<LodgingDto> lodgingList();
-
+    List<LodgingDto> AllLodgingList();
     List<LodgingDto> CallLodgingList(LodgingDto lodging);
 
 
@@ -35,4 +35,5 @@ public interface LodgingMapper {
     void LodgingBedNBathUpdate(LodgingDto lodging);
 
     void CapacityUpdate(LodgingDto lodging);
+
 }
