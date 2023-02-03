@@ -12,19 +12,7 @@ const containerStyle = {
     height: 500,
 };
 
-const zoom = 18;
-
 function Map(props) {
-
-    // const [zoomLevel, setZoomLevel] = useState(18);
-    // const [lat, setLat] = useState(props.lat);
-    // const [lng, setLng] = useState(props.lng);
-    //
-    // console.log(lat +"/" + lng);
-
-    // useEffect(() => {
-    //     setZoomLevel(props.zoom);
-    // }, []);
 
     const center = {
         lat: props.lat, lng: props.lng
@@ -39,7 +27,7 @@ function Map(props) {
 
     const onLoad = useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds(center);
-        map.fitBounds(bounds);
+        // map.fitBounds(bounds);  // Google Maps API is loading at max zoom
         setMap(map);
     }, []);
 
@@ -86,7 +74,7 @@ function Map(props) {
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
-                zoom={zoom}
+                zoom={18}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
                 options={{styles:styles.hide}}
