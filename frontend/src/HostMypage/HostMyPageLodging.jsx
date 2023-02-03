@@ -6,35 +6,17 @@ import Anima from "../Mypage/animaData";
 import {motion} from "framer-motion";
 import {Link} from "react-router-dom";
 import axios from "axios";
-import MainContents from "../Main/MainContents";
+import './Lodging.css'
 
-const complain = [
-  {
-    idx: 1,
-    lodging_name: "바다가 보이는 아름다운 집",
-    state: <button className={'btn btn-primary'}>승인완료</button>,
-    bedroom: 2,
-    bed: 2,
-    bathroom: 1,
-    location: "부산 해운대",
-    last_update: "2022-12-03"
-  },
-  {
-    idx: 2,
-    lodging_name: "산이 한 눈에 보이는 집",
-    state: <button className={'btn btn-danger'}>심사 중</button>,
-    bedroom: 3,
-    bed: 4,
-    bathroom: 2,
-    location: "경기도 오산",
-    last_update: "2022-12-06"
-  },
-]
+import MainContents from "../Main/MainContents";
+import {number} from "prop-types";
 
 
 function HostMyPageLodging() {
 
+
   return (
+
     <motion.div variants={Anima}
                 initial="hidden"
                 animate="visible"
@@ -55,7 +37,7 @@ function HostMyPageLodging() {
 
       <table className={"table table-hover table-striped"}>
         <thead className={'text-center'}>
-        <tr>
+        <tr className={'LodgingLine'}>
           <th>번호</th>
           <th>숙소명</th>
           <th>상태</th>
@@ -68,29 +50,11 @@ function HostMyPageLodging() {
         </thead>
         <tbody className={'text-center'}>
 
-        {/*{complain.map((item) => {*/}
-        {/*    return <ComplainList idx={item.idx} lodging_name={item.lodging_name} state={item.state} bed={item.bed} bedroom={item.bedroom} bathroom={item.bathroom} location={item.location} last_update={item.last_update}/>*/}
-        {/*})*/}
-        {/*}*/}
-
-        {/*{data.map((item) => {*/}
-        {/*  return <ComplainList idx={item.idx} lodging_name={item.lodgingName} state={item.regState} bed={item.bedNum} bedroom={item.bedroomNum} bathroom={item.bathroomNum} location={item.addr} last_update={item.createDt} lodging_num = {item.lodgingNum}/>*/}
-        {/*})*/}
-        {/*}*/}
         <ComplainList/>
-
 
         </tbody>
       </table>
 
-      {/*<div>*/}
-      {/*    <button type="button" className="btn btn-outline-secondary btn-sm my-2 me-2" title="Edit">*/}
-      {/*        <span><FontAwesomeIcon icon={faPencil} size="1x"/> 신고수정</span>*/}
-      {/*    </button>*/}
-      {/*    <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit">*/}
-      {/*        <span><FontAwesomeIcon icon={faClose} size="1x"/> 신고삭제</span>*/}
-      {/*    </button>*/}
-      {/*</div>*/}
 
     </motion.div>
   )
@@ -98,7 +62,7 @@ function HostMyPageLodging() {
 
 export default HostMyPageLodging;
 
-function ComplainList({idx, lodging_name, state, bedroom, bed, bathroom, location, last_update, lodging_num}) {
+function ComplainList() {
   const [data, setData] = useState([]);
   useEffect(() => {
     axios.get('http://localhost:8080/lodgingList')
@@ -113,23 +77,11 @@ function ComplainList({idx, lodging_name, state, bedroom, bed, bathroom, locatio
   }, []);
   return (
 
-    // <tr>
-    //     <td>{idx}</td>
-    //     <a href={'HouseInfoUpdate/'+{lodging_num}}>{lodging_name}</a>
-    //   {state == '승인완료' ? <td><button className={'btn btn-primary'}>승인완료</button> </td>: <td><button className={'btn btn-danger'}>심사 중</button></td>}
-    //     <td>{bedroom}</td>
-    //     <td>{bed}</td>
-    //     <td>{bathroom}</td>
-    //     <td>{location}</td>
-    //     <td>{last_update}</td>
-    // </tr>
+    data.map((item, index) => {
 
-
-    data.map((item) => {
       return (
-        <tr>
-
-          <td>{item.idx}</td>
+        <tr className={'LodgingLine'}>
+          <td>{index+1}</td>
           <Link to={`/hostMyPageLodging/HouseInfoUpdate/${item.lodgingNum}`} state={{lodgingNum: `${item.lodgingNum}`}} style={{color: "black"}}>
             {item.lodgingName}
           </Link>
