@@ -1,10 +1,9 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import ReviewContext from "../Context/ReviewContext";
+import {Button} from "react-bootstrap";
 
 function ReviewComment() {
-
     const review = useContext(ReviewContext);
-
     return (
         <>
             {review.map((item) => (
@@ -13,7 +12,8 @@ function ReviewComment() {
                     <div className={'commentLine1'}>{item.userId}</div>
                     <div className={'commentLine2'}>{item.reviewCreateDt}</div>
                     <div></div>
-                    <div className={'CommentText'}>{item.comment}
+                    <div className={'CommentText'}>
+                        {item.comment}
                     </div>
                 </div>
             ))}

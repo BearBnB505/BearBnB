@@ -3,6 +3,7 @@ import {useParams} from "react-router";
 import axios from "axios";
 import PhotoContext from "./Context/PhotoContext";
 import ReviewContext from "./Context/ReviewContext";
+import AvgContext from "./Context/AvgContext";
 import DetailAmenityContext from "./Context/DetailAmenityContext";
 
 
@@ -54,7 +55,8 @@ function LodgingDetail(props) {
 
             <div className={'mx-auto'} style={{width: 1230}}>
 
-                <LodgingDetailTitle idx={lodging.idx} lodgingName={lodging.lodgingName} addr={lodging.addr} reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
+                <LodgingDetailTitle idx={lodging.idx} lodgingName={lodging.lodgingName} addr={lodging.addr}
+                                    reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
 
                 <PhotoContext.Provider value={photo}>
                     <HostImg/>
@@ -82,10 +84,14 @@ function LodgingDetail(props) {
                 </div>
 
                 <ReviewTitle reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
-                <ReviewAverageForm cleanGrade={avg.cleanGrade} accuracyGrade={avg.accuracyGrade} communicationGrade={avg.communicationGrade} locationGrade={avg.locationGrade} checkInGrade={avg.checkInGrade} costGrade={avg.costGrade}/>
+                <ReviewAverageForm cleanGrade={avg.cleanGrade} accuracyGrade={avg.accuracyGrade}
+                                   communicationGrade={avg.communicationGrade} locationGrade={avg.locationGrade}
+                                   checkInGrade={avg.checkInGrade} costGrade={avg.costGrade}/>
 
                 <ReviewContext.Provider value={review}>
-                    <ReviewAverage/>
+                    <AvgContext.Provider value={avg}>
+                        <ReviewAverage/>
+                    </AvgContext.Provider>
                 </ReviewContext.Provider>
 
                 <div className={"pt-4"}>
@@ -96,7 +102,10 @@ function LodgingDetail(props) {
                     </div>
                 </div>
 
-                <HostIntroduce userId={lodging.userId} joinDt={members.joinDt} introHost={lodging.introHost} reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
+                <HostIntroduce userId={lodging.userId} joinDt={members.joinDt} introHost={lodging.introHost}
+                               reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
+
+
             </div>
 
         </div>

@@ -3,7 +3,7 @@ import {Button} from "react-bootstrap";
 
 function HostIntroContents(props) {
   return (
-    <div className={'container p-2'}>
+    <div className={'container p-2 mb-5'}>
       {/*<div className={'IntroContents'}>*/}
       <div className={'row'}>
         <div className={'col'}>
@@ -59,7 +59,6 @@ function HostIntroContents(props) {
         </div>
 
       </div>
-      <hr/>
     </div>
 
   )
