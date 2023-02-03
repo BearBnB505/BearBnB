@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 import {Button} from "react-bootstrap";
 import axios from "axios";
+import {useLocation} from "react-router";
 
 
 const CapacityForm = (props) => {
+  const location = useLocation();
+  const lodgingNum = location.state.lodgingNum;
 
 
   function GuestPlus() {
@@ -19,13 +22,10 @@ const CapacityForm = (props) => {
   }
 
   function CapacityBtn(){
+
     props.setCapacity(!props.capacity)
-    axios.post('http://localhost:8080/UpdateCapacity', null, {
-        params: (
-          {peopleNum: props.peopleNum}
-        )
-      })
-        .then((response) => {
+    axios.put('http://localhost:8080/UpdateCapacity', null, {params: ({lodgingNum: lodgingNum, peopleNum: props.peopleNum})})
+      .then((response) => {
           console.log(response);
         })
         .catch(function (error) {

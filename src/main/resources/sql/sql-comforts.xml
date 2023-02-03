@@ -12,6 +12,13 @@
         ]]>
     </select>
 
+    <update id="ComfortListUpdate" parameterType="com.bearbnb.dto.ComfortsDto">
+        <![CDATA[
+        update comforts
+        set usable_yn = IF ('${usableYn}' = 'true', 'Y', 'N')
+        where lodging_num = '${lodgingNum}' and comfort_id = '${comfortId}'
+        ]]>
+    </update>
 
 
 </mapper>

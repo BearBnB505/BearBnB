@@ -21,27 +21,30 @@
         ]]>
     </update>
 
-<!--    <update id="hostLodgingUpdate" parameterType="com.bearbnb.dto.LodgingDto">-->
-<!--        <![CDATA[-->
-<!--        update lodging-->
-<!--        set lodging_name = '${lodgingName}'-->
-<!--        WHERE lodging_num = '${lodgingNum}'-->
-<!--        ]]>-->
-<!--    </update>-->
+
 
     <update id="LodgingIntroUpdate" parameterType="com.bearbnb.dto.LodgingDto">
         <![CDATA[
         update lodging
         set intro_lodging = '${introLodging}'
-        where user_id = 'tester1'
+        where lodging_num = '${lodgingNum}'
         ]]>
     </update>
+
+    <update id="CapacityUpdate" parameterType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        update lodging
+        set people_num= '${peopleNum}'
+        where lodging_num = '${lodgingNum}'
+        ]]>
+    </update>
+
 
     <update id="LodgingConceptUpdate" parameterType="com.bearbnb.dto.LodgingDto">
         <![CDATA[
         update lodging
         set lodging_concept = '${lodgingConcept}'
-        where user_id = 'tester1'
+        where lodging_num = '${lodgingNum}'
         ]]>
     </update>
 
@@ -52,7 +55,7 @@
         set bed_num      = '${bedNum}',
             bedroom_num  = '${bedroomNum}',
             bathroom_num = '${bathroomNum}'
-        where user_id = 'tester1'
+        where lodging_num = '${lodgingNum}'
         ]]>
     </update>
 
@@ -60,17 +63,12 @@
         <![CDATA[
         update lodging
         set usable_yn= '${bedNum}'
-        where lodging_num = '2301151111111111' and
+--         where lodging_num = '2301151111111111' and
+        where lodging_num = '${lodgingNum}'
+
         ]]>
     </update>
 
-    <update id="CapacityUpdate" parameterType="com.bearbnb.dto.LodgingDto">
-        <![CDATA[
-        update lodging
-        set people_num= '${peopleNum}'
-        where user_id = 'tester1'
-        ]]>
-    </update>
 
 
 </mapper>

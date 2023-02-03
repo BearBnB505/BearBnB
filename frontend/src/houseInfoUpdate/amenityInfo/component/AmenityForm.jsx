@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Button, ToggleButton} from "react-bootstrap";
 import $ from "jquery";
 import axios from "axios";
+import {useLocation} from "react-router";
 
 const AmenityForm = (props) => {
 
@@ -56,6 +57,8 @@ const AmenityForm = (props) => {
   const [breakfastChecked, setBreakfastChecked] = useState(false);
 
   const [data, setData] = useState([]);
+  const location = useLocation();
+  const lodgingNum = location.state.lodgingNum;
 
   $(document).ready(function () {
     //욕실
@@ -372,7 +375,8 @@ const AmenityForm = (props) => {
 
 
   useEffect(() => {
-    axios.get('http://localhost:8080/comfortList')
+    axios.put('http://localhost:8080/comfortList/',null,{params: {lodgingNum: lodgingNum}})
+
       .then((req) => {
         const {data} = req;
         setData(data);
@@ -476,7 +480,16 @@ const AmenityForm = (props) => {
     // const test2 = JSON.stringify(test);
     // console.log(`json 문자열 : ${test2}`);
 
-    axios.post('http://localhost:8080/UpdateComfortsList', SetComfortList, null)
+    //  잠시 꺼둠//////////////////////////////
+    // axios.post('http://localhost:8080/UpdateComfortsList', SetComfortList, null)
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+
+    axios.put('http://localhost:8080/UpdateComfortsList', SetComfortList, null)
       .then((response) => {
         console.log(response);
       })

@@ -49,37 +49,39 @@ public class lodgingUpdateController {
         return "redirect:/UpdateLodgingList";
     }
 
-    @RequestMapping(value = "/UpdateLodgingIntro", method = RequestMethod.POST)
+    @RequestMapping(value = "/UpdateLodgingIntro", method = RequestMethod.PUT)
     public String UpdateLodgingIntro(LodgingDto lodging) throws Exception {
         hostUpdateService.UpdateLodgingIntro(lodging);
 
         return "redirect:/UpdateLodgingList";
     }
 
-    @RequestMapping(value = "/UpdateLodgingConcept", method = RequestMethod.POST)
-    public String UpdateLodgingConcept(LodgingDto lodging) throws Exception {
-        hostUpdateService.UpdateLodgingConcept(lodging);
-
-        return "redirect:/UpdateLodgingList";
-    }
-
-    @RequestMapping(value = "/UpdateLodgingBedNBath", method = RequestMethod.POST)
-    public String UpdateLodgingBedNBath(LodgingDto lodging) throws Exception {
-        hostUpdateService.UpdateLodgingBedNBath(lodging);
-
-        return "redirect:/UpdateLodgingList";
-    }
-
-    @RequestMapping(value = "/UpdateCapacity", method = RequestMethod.POST)
+    @RequestMapping(value = "/UpdateCapacity", method = RequestMethod.PUT)
     public String UpdateCapacity(LodgingDto lodging) throws Exception {
         hostUpdateService.UpdateCapacity(lodging);
 
         return "redirect:/UpdateLodgingList";
     }
 
+    @RequestMapping(value = "/UpdateLodgingConcept", method = RequestMethod.PUT)
+    public String UpdateLodgingConcept(LodgingDto lodging) throws Exception {
+        hostUpdateService.UpdateLodgingConcept(lodging);
 
-    @RequestMapping(value = "/UpdateComfortsList", method = RequestMethod.POST)
-    public List<ComfortsDto> UpdateComfortsList(@RequestBody List<ComfortsDto> ComfortBox){
+        return "redirect:/UpdateLodgingList";
+    }
+
+    @RequestMapping(value = "/UpdateLodgingBedNBath", method = RequestMethod.PUT)
+    public String UpdateLodgingBedNBath(LodgingDto lodging) throws Exception {
+        hostUpdateService.UpdateLodgingBedNBath(lodging);
+
+        return "redirect:/UpdateLodgingList";
+    }
+
+
+
+
+    @RequestMapping(value = "/UpdateComfortsList", method = RequestMethod.PUT)
+    public List<ComfortsDto> UpdateComfortsList(@RequestBody List<ComfortsDto> ComfortBox ){
 
         System.out.println(ComfortBox);
         hostUpdateService.UpdateComfortsList(ComfortBox);

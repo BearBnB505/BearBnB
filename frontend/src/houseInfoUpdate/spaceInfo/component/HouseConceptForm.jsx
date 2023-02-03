@@ -4,23 +4,26 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import {Button, ButtonGroup} from "react-bootstrap";
 import axios from "axios";
 import Form from 'react-bootstrap/Form';
+import {useLocation} from "react-router";
 
 const HouseConceptForm=(props)=>{
 
 
 
   const [data, setData] = useState([]);
+  const location = useLocation();
+  const lodgingNum = location.state.lodgingNum;
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/CallLodgingList')
-      .then((req) => {
-        const {data} = req;
-        setData(data);
-      })
-      .catch((err) => {
-        console.log("통신 오류");
-      })
-  }, []);
+  // useEffect(() => {
+  //   axios.get('http://localhost:8080/CallLodgingList')
+  //     .then((req) => {
+  //       const {data} = req;
+  //       setData(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log("통신 오류");
+  //     })
+  // }, []);
 
 
   let [space, setSpace] = useState('선택하기');
@@ -28,9 +31,8 @@ const HouseConceptForm=(props)=>{
 
   const SetHouseConcept=()=>{
     props.setHouseConcept(false)
-    axios.post('http://localhost:8080/UpdateLodgingConcept', null, {
-      params: ({lodgingConcept: props.concept})
-    })
+    axios.put('http://localhost:8080/UpdateLodgingConcept', null, {params: {lodgingNum: lodgingNum, lodgingConcept: props.concept}})
+
       .then((response) => {
         console.log(response);
       })

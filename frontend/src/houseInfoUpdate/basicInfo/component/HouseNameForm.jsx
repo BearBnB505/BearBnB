@@ -48,6 +48,8 @@ function HouseNameForm(props) {
         aria-describedby="TextCapacity"
         onChange={onChange}
         maxLength={'50'}
+        value={props.lodgingName}
+
       />
       <Form.Text id="TextCapacity" muted>
         {textCount}/50

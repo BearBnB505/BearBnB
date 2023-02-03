@@ -1,10 +1,13 @@
 import React, {useState} from "react";
 import {Button} from "react-bootstrap";
 import axios from "axios";
+import {useLocation} from "react-router";
 
 const BedNRestroomForm=(props)=>{
 
   const [guestNum, setGuestNum] = useState(1);
+  const location = useLocation();
+  const lodgingNum = location.state.lodgingNum;
 
   function GuestPlus() {
     setGuestNum(guestNum + 1);
@@ -57,11 +60,8 @@ const BedNRestroomForm=(props)=>{
 
   function SetBedNBath(){
     props.SetRoomNumInfo(false)
-    axios.post('http://localhost:8080/UpdateLodgingBedNBath', null, {
-      params: (
-        {bedNum: props.bedNum, bedroomNum: props.bedroomNum,bathroomNum: props.restroomNum}
-      )
-    })
+    axios.put('http://localhost:8080/UpdateLodgingBedNBath', null, {params: ({lodgingNum: lodgingNum, bedNum: props.bedNum, bedroomNum: props.bedroomNum,bathroomNum: props.restroomNum})})
+
       .then((response) => {
         console.log(response);
       })

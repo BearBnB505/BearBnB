@@ -2,12 +2,15 @@ import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
 import {Button, FloatingLabel} from "react-bootstrap";
 import axios from "axios";
+import {useLocation} from "react-router";
 
 const HouseIntroForm=(props)=>{
 
 
   // const [intro, setIntro] = useState('')
   const [textCount, setTextCount] = useState('')
+  const location = useLocation();
+  const lodgingNum = location.state.lodgingNum;
 
   function onChange(e) {
     props.setIntroLodging(e.target.value);
@@ -16,9 +19,8 @@ const HouseIntroForm=(props)=>{
 
   const SetHouseIntro=()=>{
     props.setHouseIntro(false)
-    axios.post('http://localhost:8080/UpdateLodgingIntro', null, {
-      params: ({introLodging: props.introLodging})
-    })
+    axios.put('http://localhost:8080/UpdateLodgingIntro', null, {params: {lodgingNum: lodgingNum,introLodging: props.introLodging}})
+
       .then((response) => {
         console.log(response);
       })
@@ -44,6 +46,7 @@ const HouseIntroForm=(props)=>{
           placeholder="Leave a comment here"
           style={{ height: '200px' }}
           maxLength={'500'}
+          value={props.introLodging}
         />
       </FloatingLabel>
       <Form.Text id="HouseInfoText" muted>
