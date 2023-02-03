@@ -25,12 +25,12 @@ function LodgingDetail(props) {
     const [members, setMembers] = useState([]);
     const {idx} = useParams();
 
-    const [chooseDate, setChooseDate] = useState([]);
+    const [chooseDate, setChooseDate] = useState([null, null]);
+    const [nightCount, setNightCount] = useState(0);
+
     let startDate = moment(chooseDate[0]).format('Y년 M월 D일');
     let endDate = moment(chooseDate[1]).format('Y년 M월 D일');
-    let nightCount = moment.duration(moment(chooseDate[1]).diff(moment(chooseDate[0]))).asDays();
 
-    // console.log(nightCount);
 
     const location = useLocation();
     const lat = parseFloat(location.state.lat);
@@ -55,6 +55,13 @@ function LodgingDetail(props) {
             })
     }, []);
 
+    useEffect(() => {
+        setNightCount(moment.duration(moment(chooseDate[1]).diff(moment(chooseDate[0]))).asDays());
+        // console.log(moment.duration(moment(chooseDate[1]).diff(moment(chooseDate[0]))).asDays());
+        console.log(chooseDate);
+        }, chooseDate);
+
+    // console.log(nightCount);
     // console.log(lat);
 
     return(
@@ -83,8 +90,8 @@ function LodgingDetail(props) {
 
                     </div>
 
-                    <div className={'col ms-4 me-5 mt-5'}>
-                        <Payment cost={lodging.cost} chooseDate={chooseDate}/>
+                    <div className={'col ms-4 me-5 mt-5'} style={{zIndex:2}}>
+                        <Payment cost={lodging.cost} chooseDate={chooseDate} nightCount={nightCount}/>
                     </div>
                 </div>
                 <ReviewAverage/>

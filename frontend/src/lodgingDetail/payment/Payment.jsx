@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Button, Dropdown, Popover, Tooltip} from "react-bootstrap";
 import moment from "moment";
 import GuestCount from "../../GuestCount";
@@ -6,6 +6,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import DropdownToggle from "react-bootstrap/DropdownToggle";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import Overlay from "react-bootstrap/Overlay";
+import Calendar from "../../Calendar/Calendar";
 
 function Payment(props) {
     const styles = {
@@ -24,60 +25,86 @@ function Payment(props) {
         },
         btnStyle: {
             color: "black",
-            border: "1px solid lightslategray"
+            border: "1px solid lightslategray",
+            borderBottomLeftRadius:0,
+            borderBottomRightRadius: 0,
+            width: 280
         },
         btnGuestStyle: {
             color: "black",
             border: "1px solid lightslategray",
             borderTopLeftRadius: 0,
             borderTopRightRadius: 0,
-            width:280.5,
+            width:280,
             fontSize:14,
             // paddingTop: 10,
             // paddingBottom: 10,
+        },
+        guestInput: {
+            cursor:"pointer",
+            width:280,
+            fontSize:14
         }
     }
 
-    let startDate = moment(props.chooseDate[0]).format('Y. M. D');
-    let endDate = moment(props.chooseDate[1]).format('Y. M. D');
+    let [chooseDate, setChooseDate] = useState(props.chooseDate);
+    const [nightCount, setNightCount] = useState(props.nightCount);
 
-    const target = useRef(null);
+    let startDate = moment(chooseDate[0]).format('Y. M. D');
+    let endDate = moment(chooseDate[1]).format('Y. M. D');
+    // let nightCount = moment.duration(moment(chooseDate[1]).diff(moment(chooseDate[0]))).asDays();
 
-    const [show, setShow] = useState(false);
+    useEffect(() => {
+        setNightCount(moment.duration(moment(chooseDate[1]).diff(moment(chooseDate[0]))).asDays());
+    }, chooseDate);
+
+    const total = props.cost * nightCount;
+    // console.log(total);
 
     let [selectGuest, setSelectGuest] = useState([0, 0, 0]);
+    let adultCount = selectGuest[0];
+    let childCount = selectGuest[1];
+    let petCount = selectGuest[2];
 
-    const countGuest = () => {
-        setShow(true);
-    }
+
     return (
         <div id={'aside'}>
             <div className={'container border shadow rounded-4 px-5 py-4 mb-4'}>
                 <div>
                     <div>
-                        <span className={'fs-4 fw-bold me-1'}>\{props.cost}</span>
+                        <span className={'fs-4 fw-bold me-1'}>&#92;{props.cost}</span>
                         <span>/박</span>
                     </div>
                     <div className={'btn-group-vertical container mx-0 px-0 my-3'}>
+
+                        <Dropdown drop={"start"}>
+                            <DropdownToggle variant={"none"} className={"text-start"} bsPrefix style={styles.btnStyle}>
+                                <div className={"row"}>
+                                    <div className={"col border-end"}>
+                                        <div className={'row'}>
+                                            <label htmlFor="checkIn" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>체크인</label>
+                                        </div>
+                                        <div className={'row'}>
+                                            <input type="text" id={"checkIn"} className={"border-0"} placeholder={"날짜 추가"} style={styles.navInput} value={startDate === 'Invalid date' ? '' : startDate}/>
+                                        </div>
+                                    </div>
+                                    <div className={"col"}>
+                                        <div className={'row'}>
+                                            <label htmlFor="checkOut" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>체크아웃</label>
+                                        </div>
+                                        <div className={'row'}>
+                                            <input type="text" id={"checkOut"} className={"border-0"} placeholder={"날짜 추가"} style={styles.navInput} value={endDate === 'Invalid date' ? '' : endDate}/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </DropdownToggle>
+                            <DropdownMenu>
+                                <Calendar dateValue={setChooseDate} countNights={setNightCount} />
+                            </DropdownMenu>
+                        </Dropdown>
+
                         <div className={'btn-group'}>
-                            <button className={'btn text-start py-2'} style={styles.btnStyle}>
-                                <div className={'row'}>
-                                    <label htmlFor="checkIn" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>체크인</label>
-                                </div>
-                                <div className={'row'}>
-                                    <input type="text" id={"checkIn"} className={"border-0"} placeholder={"날짜 추가"} style={styles.navInput} value={startDate === 'Invalid date' ? '' : startDate}/>
-                                </div>
-                            </button>
-                            <button className={'btn text-start'} style={styles.btnStyle}>
-                                <div className={'row'}>
-                                    <label htmlFor="checkOut" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>체크아웃</label>
-                                </div>
-                                <div className={'row'}>
-                                    <input type="text" id={"checkOut"} className={"border-0"} placeholder={"날짜 추가"} style={styles.navInput} value={endDate === 'Invalid date' ? '' : endDate}/>
-                                </div>
-                            </button>
-                        </div>
-                        <div className={'btn-group'}>
+
                             <Dropdown drop={"down-centered"}>
                                 <DropdownToggle variant={"none"} className={"text-start"} bsPrefix style={styles.btnGuestStyle}>
                                     <div>
@@ -85,7 +112,7 @@ function Payment(props) {
                                             <label htmlFor="addGuest" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>인원</label>
                                         </div>
                                         <div className={'row'}>
-                                            <input type="text" id={"addGuest"} className={"border-0"} placeholder={"게스트 추가"} style={styles.navInput}/>
+                                            <input type="text" id={"addGuest"} className={"border-0"} placeholder={"게스트 추가"} style={styles.guestInput} value={adultCount === 0 ? '' : (childCount === 0 ? `성인 ${adultCount}명` : `성인 ${adultCount}명, 유아 ${childCount}명`)}/>
                                         </div>
                                     </div>
                                 </DropdownToggle>
@@ -105,10 +132,10 @@ function Payment(props) {
 
                     <div className={'row'}>
                         <div className={'col-7'}>
-                            <span>\1박요금 x 숙박일수</span>
+                            <span>&#92;{props.cost} x {nightCount}박</span>
                         </div>
                         <div className={'col text-end'}>
-                            <span>total</span>
+                            <span>&#92;{total}</span>
                         </div>
                     </div>
                     <hr className={'my-4'}/>
@@ -118,7 +145,7 @@ function Payment(props) {
                             <p>총 합계</p>
                         </div>
                         <div className={'col text-end'}>
-                            <p>\금액</p>
+                            <p>&#92;{total}</p>
                         </div>
                     </div>
                 </div>

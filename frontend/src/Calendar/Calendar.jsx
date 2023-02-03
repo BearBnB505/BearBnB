@@ -23,10 +23,10 @@ export default function Calendar(props) {
         props.dateValue([null, null]);
     },[]);
 
-
     const chooseDate = (item) => {
         setState([item.selection]);
         props.dateValue([item.selection.startDate, item.selection.endDate]);
+        // props.countNights(moment.duration(moment(item.selection.endDate).diff(moment(item.selection.startDate))).asDays());
     }
 
     return (
