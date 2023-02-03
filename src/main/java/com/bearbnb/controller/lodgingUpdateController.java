@@ -35,6 +35,13 @@ public class lodgingUpdateController {
     public List<LodgingDto> AllLodgingList() {
         return CallLodgingMapper.AllLodgingList();
     }
+//페이지네이션 발버둥
+//    @RequestMapping(value = "/AllLodgingList")
+//    public List<LodgingDto> AllLodgingList(@RequestParam(required = false, defaultValue = "1") int pageNum) {
+//        PageInfo<LodgingDto> pageList = new PageInfo<>(hostUpdateService.selectPageList(pageNum),5);
+//        return CallLodgingMapper.AllLodgingList("pageList",pageList);
+//    }
+
 
 //    @RequestMapping(value = "CallLodgingList")
 //    public List<LodgingDto> CallLodgingList() {
