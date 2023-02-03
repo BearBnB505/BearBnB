@@ -4,11 +4,14 @@ import {Button} from "react-bootstrap";
 import axios from "axios";
 import $ from "jquery";
 import lodgingName from "../../../lodging_reg/LodgingName";
+import {useLocation} from "react-router";
 
 
 function HouseNameForm(props) {
 
   const [textCount, setTextCount] = useState('0')
+  const location = useLocation();
+  const lodgingNum = location.state.lodgingNum;
 
   function onChange(e) {
     props.setLodgingName(e.target.value);
@@ -18,9 +21,8 @@ function HouseNameForm(props) {
   const clickSave = () => {
     props.setHouseName(false)
 
-    axios.post('http://localhost:8080/UpdateLodgingName', null, {
-      params: ({lodgingName: props.lodgingName})
-    })
+    axios.put('http://localhost:8080/UpdateLodgingName/',null,{params: {lodgingNum: lodgingNum, lodgingName: props.lodgingName}})
+
       .then((response) => {
         console.log(response);
       })

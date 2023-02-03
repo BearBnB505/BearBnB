@@ -3,9 +3,12 @@ import HouseIntroForm from "../../basicInfo/component/HouseIntroForm";
 import AddForm from "./AddForm";
 import $ from "jquery";
 import axios from "axios";
+import {useLocation} from "react-router";
 
 const Add = () => {
   const [addIntro, setAddIntro] = useState(false);
+  const location = useLocation();
+  const lodgingNum = location.state.lodgingNum;
 
   $(document).ready(function () {
     $('#AddBtn').on('click', function () {
@@ -24,7 +27,7 @@ const Add = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/CallLodgingList')
+    axios.put('http://localhost:8080/CallLodgingList/',null,{params: {lodgingNum: lodgingNum}})
       .then((req) => {
         const {data} = req;
         setData(data);

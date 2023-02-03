@@ -26,16 +26,23 @@ public class lodgingUpdateController {
 
 
 
-    @RequestMapping(value = "CallLodgingList")
-    public List<LodgingDto> CallLodgingList() {
-        return CallLodgingMapper.CallLodgingList();
+    @RequestMapping(value = "CallLodgingList",method = RequestMethod.PUT)
+    public List<LodgingDto> CallLodgingList(LodgingDto lodging) {
+        return CallLodgingMapper.CallLodgingList(lodging);
     }
 
-    @RequestMapping(value = "/comfortList")
-    public List<ComfortsDto> comfortList() {return comfortMapper.comfortList();}
+//    @RequestMapping(value = "CallLodgingList")
+//    public List<LodgingDto> CallLodgingList() {
+//        return CallLodgingMapper.CallLodgingList();
+//    }
+
+    @RequestMapping(value = "/comfortList" ,method = RequestMethod.PUT)
+    public List<ComfortsDto> comfortList(LodgingDto lodging) {
+        return comfortMapper.comfortList(lodging);
+    }
 
 
-    @RequestMapping(value = "/UpdateLodgingName", method = RequestMethod.POST)
+    @RequestMapping(value = "/UpdateLodgingName", method = RequestMethod.PUT)
     public String UpdateLodgingList(LodgingDto lodging) throws Exception {
         hostUpdateService.hostLodgingUpdate(lodging);
 

@@ -3,14 +3,31 @@
 
 <mapper namespace="com.bearbnb.mapper.LodgingMapper">
 
+    <!--  숙소 리스트 가져오기  -->
+    <select id="CallLodgingList" resultType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        SELECT *
+        FROM lodging
+        WHERE lodging_num = '${lodgingNum}'
+        ]]>
+    </select>
 
+    <!--    숙소 관련 정보 수정 하기 -->
     <update id="hostLodgingUpdate" parameterType="com.bearbnb.dto.LodgingDto">
         <![CDATA[
         update lodging
         set lodging_name = '${lodgingName}'
-        where user_id = 'tester1'
+        where lodging_num = '${lodgingNum}'
         ]]>
     </update>
+
+<!--    <update id="hostLodgingUpdate" parameterType="com.bearbnb.dto.LodgingDto">-->
+<!--        <![CDATA[-->
+<!--        update lodging-->
+<!--        set lodging_name = '${lodgingName}'-->
+<!--        WHERE lodging_num = '${lodgingNum}'-->
+<!--        ]]>-->
+<!--    </update>-->
 
     <update id="LodgingIntroUpdate" parameterType="com.bearbnb.dto.LodgingDto">
         <![CDATA[
@@ -32,7 +49,9 @@
     <update id="LodgingBedNBathUpdate" parameterType="com.bearbnb.dto.LodgingDto">
         <![CDATA[
         update lodging
-        set bed_num = '${bedNum}', bedroom_num = '${bedroomNum}', bathroom_num = '${bathroomNum}'
+        set bed_num      = '${bedNum}',
+            bedroom_num  = '${bedroomNum}',
+            bathroom_num = '${bathroomNum}'
         where user_id = 'tester1'
         ]]>
     </update>
@@ -52,7 +71,6 @@
         where user_id = 'tester1'
         ]]>
     </update>
-
 
 
 </mapper>

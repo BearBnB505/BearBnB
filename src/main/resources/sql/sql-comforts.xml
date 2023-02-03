@@ -7,17 +7,11 @@
     <select id="comfortList" resultType="com.bearbnb.dto.ComfortsDto">
         <![CDATA[
         SELECT * FROM comforts
-        WHERE lodging_num = 2301151111111111
+        WHERE lodging_num = '${lodgingNum}'
         ORDER BY comfort_id ASC
         ]]>
     </select>
 
-    <update id="ComfortListUpdate" parameterType="com.bearbnb.dto.ComfortsDto">
-        <![CDATA[
-        update comforts
-        set usable_yn = IF ('${usableYn}' = 'true', 'Y', 'N')
-        where lodging_num = '${lodgingNum}' and comfort_id = '${comfortId}'
-        ]]>
-    </update>
+
 
 </mapper>

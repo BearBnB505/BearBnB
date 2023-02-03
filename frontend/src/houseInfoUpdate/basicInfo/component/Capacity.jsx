@@ -3,11 +3,15 @@ import HouseIntroForm from "./HouseIntroForm";
 import axios from "axios";
 import CapacityForm from "./CapacityForm";
 import $ from "jquery";
+import {useLocation} from "react-router";
 
 const Capacity = () => {
   const [capacity, setCapacity] = useState(false);
   const [data, setData] = useState([]);
   const [peopleNum, setPeopleNum] = useState('1')
+  const location = useLocation();
+  const lodgingNum = location.state.lodgingNum;
+
 
   $(document).ready(function () {
     $('#BNRrBtn').on('click', function () {
@@ -28,7 +32,7 @@ const Capacity = () => {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:8080/CallLodgingList')
+    axios.put('http://localhost:8080/CallLodgingList/',null,{params: {lodgingNum: lodgingNum}})
       .then((req) => {
         const {data} = req;
         setData(data);

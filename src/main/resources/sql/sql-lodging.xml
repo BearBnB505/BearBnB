@@ -8,6 +8,14 @@
         <![CDATA[
         SELECT *
         FROM lodging
+
+        ]]>
+    </select>
+
+    <select id="CallLodgingMapper" resultType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        SELECT *
+        FROM lodging
         ]]>
     </select>
 

@@ -2,7 +2,6 @@ package com.bearbnb.mapper;
 
 import com.bearbnb.dto.*;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,6 +9,9 @@ import java.util.List;
 public interface LodgingMapper {
 
     List<LodgingDto> lodgingList();
+
+    List<LodgingDto> CallLodgingList(LodgingDto lodging);
+
 
     LodgingDto lodgingDetail(int idx) throws Exception;
 
@@ -23,7 +25,6 @@ public interface LodgingMapper {
 
     void reviewTotalCount(String lodgingNum) throws Exception;
 
-    List<LodgingDto> CallLodgingList();
 
     void hostLodgingUpdate(LodgingDto lodging);
 

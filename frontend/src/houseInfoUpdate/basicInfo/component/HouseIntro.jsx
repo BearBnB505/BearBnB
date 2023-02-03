@@ -2,10 +2,14 @@ import React, {useEffect, useState} from "react";
 import HouseIntroForm from "./HouseIntroForm";
 import $ from "jquery";
 import axios from "axios";
+import {useLocation} from "react-router";
 
 const HouseIntro = () => {
   const [houseIntro, setHouseIntro] = useState(false);
   const [introLodging, setIntroLodging] = useState('')
+  const location = useLocation();
+  const lodgingNum = location.state.lodgingNum;
+
 
 
   $(document).ready(function () {
@@ -29,7 +33,7 @@ const HouseIntro = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/CallLodgingList')
+    axios.put('http://localhost:8080/CallLodgingList/',null,{params: {lodgingNum: lodgingNum}})
       .then((req) => {
         const {data} = req;
         setData(data);

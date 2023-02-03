@@ -4,11 +4,14 @@ import $ from "jquery";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import MainContents from "../../../Main/MainContents";
+import {useLocation} from "react-router";
 
 
 function HouseName(props) {
   const [houseName, setHouseName] = useState(false);
   const [lodgingName, setLodgingName] = useState('');
+  const location = useLocation();
+  const lodgingNum = location.state.lodgingNum;
 
   $(document).ready(function () {
     $('#HouseNameBtn').on('click', function () {
@@ -33,7 +36,7 @@ function HouseName(props) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/CallLodgingList')
+    axios.put('http://localhost:8080/CallLodgingList/',null,{params: {lodgingNum: lodgingNum}})
       .then((req) => {
         const {data} = req;
         setData(data);

@@ -3,6 +3,7 @@ import AddForm from "../../locationInfo/component/AddForm";
 import AmenityForm from "./AmenityForm";
 import $ from "jquery";
 import axios from "axios";
+import {useLocation} from "react-router";
 
 
 const Amenity= ()=>{
@@ -51,9 +52,12 @@ const Amenity= ()=>{
   const [amenity, setAmenity] = useState(false);
 
   const [data, setData] = useState([]);
+  const location = useLocation();
+  const lodgingNum = location.state.lodgingNum;
 
   useEffect(() => {
-    axios.get('http://localhost:8080/comfortList')
+    axios.put('http://localhost:8080/comfortList/',null,{params: {lodgingNum: lodgingNum}})
+
       .then((req) => {
         const {data} = req;
         setData(data);

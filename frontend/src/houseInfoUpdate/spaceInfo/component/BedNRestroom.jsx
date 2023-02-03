@@ -3,12 +3,15 @@ import HouseConceptForm from "./HouseConceptForm";
 import BedNRestroomForm from "./BedNRestroomForm";
 import $ from "jquery";
 import axios from "axios";
+import {useLocation} from "react-router";
 
 const BedNRestroom = () => {
   const [roomNumInfo, SetRoomNumInfo] = useState(false);
   const [bedNum, SetBedNum] = useState(0);
   const [bedroomNum, SetBedroomNum] = useState(0);
   const [restroomNum, SetRestroomNum] = useState(0);
+  const location = useLocation();
+  const lodgingNum = location.state.lodgingNum;
 
 
   $(document).ready(function () {
@@ -33,7 +36,7 @@ const BedNRestroom = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/CallLodgingList')
+    axios.put('http://localhost:8080/CallLodgingList/',null,{params: {lodgingNum: lodgingNum}})
       .then((req) => {
         const {data} = req;
         setData(data);
