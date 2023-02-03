@@ -5,6 +5,8 @@ import com.bearbnb.dto.LodgingDto;
 import com.bearbnb.mapper.LodgingMapper;
 import com.bearbnb.mapper.ComfortMapper;
 import com.bearbnb.service.HostUpdateService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
@@ -31,10 +33,29 @@ public class lodgingUpdateController {
         return CallLodgingMapper.CallLodgingList(lodging);
     }
 
+//    @RequestMapping(value = "/AllLodgingList")
+//    public List<LodgingDto> AllLodgingList() {
+//        return CallLodgingMapper.AllLodgingList();
+//    }
+
+
     @RequestMapping(value = "/AllLodgingList")
-    public List<LodgingDto> AllLodgingList() {
-        return CallLodgingMapper.AllLodgingList();
+    public List<LodgingDto> AllLodgingList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+                                           @RequestParam(value = "pageSize", defaultValue = "1") int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<LodgingDto> lodgingList = CallLodgingMapper.AllLodgingList();
+        PageInfo<LodgingDto> pageInfo = new PageInfo<>(lodgingList);
+
+        // 다음 페이지로 이동하는 기능
+        if(pageInfo.isHasNextPage()){
+            int nextPageNum = pageInfo.getNextPage();
+            PageHelper.startPage(nextPageNum, pageSize);
+            lodgingList = CallLodgingMapper.AllLodgingList();
+        }
+
+        return lodgingList;
     }
+
 //페이지네이션 발버둥
 //    @RequestMapping(value = "/AllLodgingList")
 //    public List<LodgingDto> AllLodgingList(@RequestParam(required = false, defaultValue = "1") int pageNum) {
