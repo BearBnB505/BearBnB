@@ -50,6 +50,7 @@ import HostMyPageBooking from "./HostMypage/HostBookingPage/HostMyPageBooking";
 import GuestInfoModal from "./HostMypage/GuestInfoModal";
 import HostMyPageRevenue from "./HostMypage/HostMyPageRevenue";
 import HostMyPageLodging from "./HostMypage/HostMyPageLodging";
+import LodgingChooseDate from "./lodging_reg/LodgingChooseDate";
 
 import './App.css';
 
@@ -96,6 +97,7 @@ function ProjectRouter(props) {
                     <Route path={"lodgingHostInfo"} element={<LodgingHostInfo/>}/>
                     <Route path = {"lodgingFinal" } element={<LodgingFinal/>}/>
                     <Route path={"lodgingHostId"} element={<LodgingHostId/>}/>
+                    <Route path = {"lodgingChooseDate" } element={<LodgingChooseDate/>}/>
 
                     {/*<Route path={"imgUploadBox"} element={<ImgUploadBox/>}/>*/}
                     {/*<Route path={"lodgingHostInfoTest"} element={<LodgingHostInfoTest/>}/>*/}
