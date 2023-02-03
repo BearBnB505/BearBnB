@@ -1,26 +1,58 @@
-import React from "react";
-import {Button, Dropdown} from "react-bootstrap";
+import React, {useRef, useState} from "react";
+import {Button, Dropdown, Popover, Tooltip} from "react-bootstrap";
+import moment from "moment";
+import GuestCount from "../../GuestCount";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import DropdownToggle from "react-bootstrap/DropdownToggle";
+import DropdownMenu from "react-bootstrap/DropdownMenu";
+import Overlay from "react-bootstrap/Overlay";
 
-function Payment(props){
-    return(
+function Payment(props) {
+    const styles = {
+        navDate: {
+            width: 120
+        },
+        navInput: {
+            cursor:"pointer",
+            width:120,
+            fontSize:14
+        },
+        navInputSpot: {
+            // cursor:"pointer",
+            width:180,
+            fontSize:14
+        },
+        btnStyle: {
+            color: "black",
+            border: "1px solid lightslategray"
+        },
+        btnGuestStyle: {
+            color: "black",
+            border: "1px solid lightslategray",
+            borderTopLeftRadius: 0,
+            borderTopRightRadius: 0,
+            width:280.5,
+            fontSize:14,
+            // paddingTop: 10,
+            // paddingBottom: 10,
+        }
+    }
+
+    let startDate = moment(props.chooseDate[0]).format('Y. M. D');
+    let endDate = moment(props.chooseDate[1]).format('Y. M. D');
+
+    const target = useRef(null);
+
+    const [show, setShow] = useState(false);
+
+    let [selectGuest, setSelectGuest] = useState([0, 0, 0]);
+
+    const countGuest = () => {
+        setShow(true);
+    }
+    return (
         <div id={'aside'}>
             <div className={'container border shadow rounded-4 px-5 py-4 mb-4'}>
-
-                {/*<div className={''}>요금을 확인하려면 날짜를 입력하세요.</div>*/}
-                {/*<div id="btn_group">*/}
-                {/*    <button id="test_btn1">테스트1</button>*/}
-                {/*    <button id="test_btn2">테스트2</button>*/}
-                {/*</div>*/}
-                {/*<Dropdown>*/}
-                {/*    <Dropdown.Toggle id="test_btn3">테스트2</Dropdown.Toggle>*/}
-                {/*    <Dropdown.Menu>*/}
-                {/*        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>*/}
-                {/*        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>*/}
-                {/*        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>*/}
-                {/*    </Dropdown.Menu>*/}
-                {/*</Dropdown>*/}
-                {/*<Button className={'paymentBtn'} variant="primary">예약 가능 여부 보기</Button>*/}
-
                 <div>
                     <div>
                         <span className={'fs-4 fw-bold me-1'}>\{props.cost}</span>
@@ -28,13 +60,44 @@ function Payment(props){
                     </div>
                     <div className={'btn-group-vertical container mx-0 px-0 my-3'}>
                         <div className={'btn-group'}>
-                            <button className={'btn btn-outline-dark text-start py-2'}>체크인</button>
-                            <button className={'btn btn-outline-dark text-start'}>체크아웃</button>
+                            <button className={'btn text-start py-2'} style={styles.btnStyle}>
+                                <div className={'row'}>
+                                    <label htmlFor="checkIn" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>체크인</label>
+                                </div>
+                                <div className={'row'}>
+                                    <input type="text" id={"checkIn"} className={"border-0"} placeholder={"날짜 추가"} style={styles.navInput} value={startDate === 'Invalid date' ? '' : startDate}/>
+                                </div>
+                            </button>
+                            <button className={'btn text-start'} style={styles.btnStyle}>
+                                <div className={'row'}>
+                                    <label htmlFor="checkOut" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>체크아웃</label>
+                                </div>
+                                <div className={'row'}>
+                                    <input type="text" id={"checkOut"} className={"border-0"} placeholder={"날짜 추가"} style={styles.navInput} value={endDate === 'Invalid date' ? '' : endDate}/>
+                                </div>
+                            </button>
                         </div>
                         <div className={'btn-group'}>
-                            <button className={'btn btn-outline-dark text-start py-2'}>인원</button>
+                            <Dropdown drop={"down-centered"}>
+                                <DropdownToggle variant={"none"} className={"text-start"} bsPrefix style={styles.btnGuestStyle}>
+                                    <div>
+                                        <div className={'row'}>
+                                            <label htmlFor="addGuest" className={"fw-bold"} style={{cursor:"pointer", fontSize:13}}>인원</label>
+                                        </div>
+                                        <div className={'row'}>
+                                            <input type="text" id={"addGuest"} className={"border-0"} placeholder={"게스트 추가"} style={styles.navInput}/>
+                                        </div>
+                                    </div>
+                                </DropdownToggle>
+
+                                <DropdownMenu>
+                                    <GuestCount guestValue={setSelectGuest}/>
+                                </DropdownMenu>
+                            </Dropdown>
+
                         </div>
                     </div>
+
 
                     <Button className={'w-100 py-2 mb-2'} variant="primary">예약하기</Button>
 
@@ -64,6 +127,7 @@ function Payment(props){
             <div className={'text-center'}>
                 <a href="#" id={'complainBtn'}><img className={'pe-3'} src="/img/complainBtn.png" alt="complain"/>숙소 신고하기</a>
             </div>
+
 
         </div>
     )

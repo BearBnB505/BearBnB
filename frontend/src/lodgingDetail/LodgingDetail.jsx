@@ -14,7 +14,7 @@ import Map from "../GoogleMap/Map";
 
 import axios from "axios";
 import {useLocation, useParams} from "react-router";
-
+import moment from "moment/moment";
 
 function LodgingDetail(props) {
 
@@ -26,6 +26,11 @@ function LodgingDetail(props) {
     const {idx} = useParams();
 
     const [chooseDate, setChooseDate] = useState([]);
+    let startDate = moment(chooseDate[0]).format('Y년 M월 D일');
+    let endDate = moment(chooseDate[1]).format('Y년 M월 D일');
+    let nightCount = moment.duration(moment(chooseDate[1]).diff(moment(chooseDate[0]))).asDays();
+
+    // console.log(nightCount);
 
     const location = useLocation();
     const lat = parseFloat(location.state.lat);
@@ -38,7 +43,7 @@ function LodgingDetail(props) {
         axios.get(`http://localhost:8080/lodgingDetail/${idx}`)
             .then((req) => {
                 const {data} = req;
-                console.log(data);
+                // console.log(data);
                 setLodging(data.lodging);
                 // setPhoto(data.photo);
                 // setReview(data.review);
@@ -50,7 +55,7 @@ function LodgingDetail(props) {
             })
     }, []);
 
-    console.log(lat);
+    // console.log(lat);
 
     return(
         <div style={{display:"grid", justifyContent:"center", width: 1900}}>
@@ -65,15 +70,21 @@ function LodgingDetail(props) {
                         <HostHouse bedroomNum={lodging.bedroomNum} bedNum={lodging.bedNum}
                                    bathroomNum={lodging.bathroomNum}/>
                         <DetailAmenity/>
+
                         <div className={"pt-5"}>
-                            <hr className={"py-5"}/>
+                            <hr className={"pt-4"}/>
+                            <h4 className={"fw-bold mb-3"}>여기서 {isNaN(nightCount) ? '' : `${nightCount}박`}</h4>
+                            <div className={"text-start"}>
+                                <input type="text" id={"checkIn"} className={"fs-6 text-muted border-0 p-0"} style={{width: 300}} placeholder={"날짜 추가"} value={startDate === 'Invalid date' ? '' : `${startDate} - ${endDate}`}/>
+                            </div>
+
                             <Calendar dateValue={setChooseDate} />
                         </div>
 
                     </div>
 
                     <div className={'col ms-4 me-5 mt-5'}>
-                        <Payment cost={lodging.cost}/>
+                        <Payment cost={lodging.cost} chooseDate={chooseDate}/>
                     </div>
                 </div>
                 <ReviewAverage/>
@@ -81,7 +92,7 @@ function LodgingDetail(props) {
                     <div className={"pb-4"}>
                         <h4 className={"fw-bold mb-4"}>위치</h4>
                         
-                        <Map lat={lat} lng={lng} zoom={18}/>
+                        <Map lat={lat} lng={lng} />
                     </div>
                     <hr/>
                 </div>
