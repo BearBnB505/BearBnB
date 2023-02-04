@@ -2,8 +2,7 @@ import React, {useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {hostIdUrl} from "./HostIdReducer";
-import Profile from "./redux_test/Profile";
-import LodgingFinal from "./LodgingFinal";
+import {login} from "./redux_test/user";
 
 function LodgingHostId(){
 
@@ -18,10 +17,6 @@ function LodgingHostId(){
 
     const handleImage = (event) => {
         setIdImageUrl(URL.createObjectURL(event.target.files[0]));
-    }
-
-    const initialState = {
-        idImageUrl : idImageUrl
     }
 
 
@@ -62,12 +57,9 @@ function LodgingHostId(){
                 {/*<LodgingFinal/>*/}
             </div>
             <footer style={styles.footer} className={"mt-5"}>
-                <button onClick={()=>{
-                    dispatch(hostIdUrl({idUrl:"ㅇㅇ"}))}}>테스트 버튼</button>
                 <Link to ={"#"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                <Link to = {"/lodgingWelcome"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={()=>{
-                    dispatch(hostIdUrl({idUrl:idImageUrl}))
-                }}>다음</button></Link>
+                <Link to = {"/lodgingWelcome"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={dispatch(login({guest: "내 이름", bedroom: 20, bed: "email@gmail.com", bathroom:'욕실'}))}
+                >다음</button></Link>
             </footer>
         </div>
     )

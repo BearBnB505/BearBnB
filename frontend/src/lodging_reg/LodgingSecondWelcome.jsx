@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import ReactPlayer from 'react-player'
+import {useSelector} from "react-redux";
 
 function LodgingWelcome(){
-
+    const bedSelect = useSelector((state)=>state.lodgingBedSelect.value);
     return(
         <div className={"container"}>
+            <p>침대 종류 : {bedSelect.bedSelect}</p>
             <div className = {"row justify-content-lg-between"} >
                 <div className={"col-5 my-auto"}>
                     <div style={{marginTop : "180px"}}>

@@ -1,5 +1,9 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import {lodgingBasicInfo} from "./HostIdReducer";
+import {useDispatch} from "react-redux";
+import Profile from "./redux_test/Profile";
+import Login from "../Login";
 
 function LodgingBasicInfo(){
 
@@ -7,7 +11,7 @@ function LodgingBasicInfo(){
     const [bedroomCount , setBedroomCount] = useState(1);
     const [bedCount , setBedCount] = useState(1);
     const [bathroomCount , setBathroomCount] = useState(1);
-
+    const dispatch = useDispatch();
     const styles = {
         con : {
             marginLeft : "250px"
@@ -19,10 +23,14 @@ function LodgingBasicInfo(){
             marginTop : "200px",
             fontSize:"40px",
         },
-        img : {
+        basicImg : {
             height : "25px",
             width : "25px",
-
+        },
+        notBasicImg : {
+            height : "25px",
+            width : "25px",
+            opacity: 0.3,
         },
         input : {
             border : "none",
@@ -69,7 +77,7 @@ function LodgingBasicInfo(){
         setBedCount(bedCount+1);
     }
     function BedMinus(){
-        if(guestCount<=1){
+        if(bedCount<=1){
             setBedCount(1);
         }
         else {
@@ -103,13 +111,13 @@ function LodgingBasicInfo(){
                                 게스트
                             </div>
                             <div className="col-1">
-                                <img src="/concept/minusIcon.png" style={styles.img} onClick={GuestMinus}/>
+                                <img src="/concept/minusIcon.png" style={guestCount>1 ? styles.basicImg : styles.notBasicImg} onClick={GuestMinus}/>
                             </div>
                             <div className="col-1">
                                 <input type={"text"} value={guestCount} style={styles.input} />
                             </div>
                             <div className="col-1">
-                                <img src="/concept/plusIcon.png" style={styles.img} onClick={GuestPlus}/>
+                                <img src="/concept/plusIcon.png" style={styles.basicImg} onClick={GuestPlus}/>
                             </div>
                         </div>
 
@@ -121,13 +129,13 @@ function LodgingBasicInfo(){
                                 침실
                             </div>
                             <div className="col-1">
-                                <img src="/concept/minusIcon.png" style={styles.img} onClick={BedroomMinus}/>
+                                <img src="/concept/minusIcon.png" style={bedroomCount>1 ? styles.basicImg : styles.notBasicImg} onClick={BedroomMinus}/>
                             </div>
                             <div className="col-1">
                                 <input type={"text"} value={bedroomCount} style={styles.input} />
                             </div>
                             <div className="col-1">
-                                <img src="/concept/plusIcon.png" style={styles.img} onClick={BedroomPlus}/>
+                                <img src="/concept/plusIcon.png" style={styles.basicImg} onClick={BedroomPlus}/>
                             </div>
                         </div>
                         <hr style={styles.hr}/>
@@ -138,13 +146,13 @@ function LodgingBasicInfo(){
                                 침대
                             </div>
                             <div className="col-1">
-                                <img src="/concept/minusIcon.png" style={styles.img} onClick={BedMinus}/>
+                                <img src="/concept/minusIcon.png" style={bedCount>1 ? styles.basicImg : styles.notBasicImg} onClick={BedMinus}/>
                             </div>
                             <div className="col-1">
                                 <input type={"text"} value={bedCount} style={styles.input} />
                             </div>
                             <div className="col-1">
-                                <img src="/concept/plusIcon.png" style={styles.img} onClick={BedPlus}/>
+                                <img src="/concept/plusIcon.png" style={styles.basicImg} onClick={BedPlus}/>
                             </div>
                         </div>
                         <hr style={styles.hr}/>
@@ -155,22 +163,23 @@ function LodgingBasicInfo(){
                                 욕실
                             </div>
                             <div className="col-1">
-                                <img src="/concept/minusIcon.png" style={styles.img} onClick={BathroomMinus}/>
+                                <img src="/concept/minusIcon.png" style={bathroomCount>1 ? styles.basicImg : styles.notBasicImg} onClick={BathroomMinus}/>
                             </div>
                             <div className="col-1">
                                 <input type={"text"} value={bathroomCount} style={styles.input} />
                             </div>
                             <div className="col-1">
-                                <img src="/concept/plusIcon.png" style={styles.img} onClick={BathroomPlus}/>
+                                <img src="/concept/plusIcon.png" style={styles.basicImg} onClick={BathroomPlus}/>
                             </div>
                         </div>
-
-
-
                     </div>
+                    <Profile/>
+                    <Login/>
                     <div>
                         <Link to ={"/lodgingLocationDetail"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                        <Link to = {"/lodgingBedSelect"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>
+                        <Link to = {"/lodgingBedSelect"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}
+                            onClick={()=>{
+                            dispatch(lodgingBasicInfo({bed:bedCount},{bathroom:bathroomCount},{guest:guestCount},{bedroom: bedroomCount}))}}>다음</button></Link>
                     </div>
                 </div>
             </div>

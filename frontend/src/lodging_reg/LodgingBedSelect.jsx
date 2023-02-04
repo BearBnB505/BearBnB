@@ -2,9 +2,17 @@
 import React, {useState} from 'react';
 import {Pressable, SafeAreaView, StyleSheet, Text} from 'react-native';
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {hostIdUrl, lodgingBedSelect} from "./HostIdReducer";
+import {useDispatch} from "react-redux";
 
 const LodgingBedSelect = () => {
     const [isSelect, setSelect] = useState([false, false,false, false,false]);
+    const [bedSelect, setBedSelect] = useState('');
+    const basicInfo = useSelector((state) => state.lodgingBasicInfo.value)
+    const user = useSelector((state)=>state.user.value)
+    const dispatch = useDispatch();
+
     const imgSrc = [
         {
             name : '싱글',
@@ -23,9 +31,17 @@ const LodgingBedSelect = () => {
         },
     ]
 
+    //출력 잘 되고 있다. 문제는 입력하는 파트인듯.
     const getButton = (id) => {
         return (
             <div className={"container"}>
+                <p>guest : {basicInfo.guest}</p>
+                <p>bedroom : {basicInfo.bedroom}</p>
+                <p>bathroom : {basicInfo.bathroom}</p>
+                <p>bed : {basicInfo.bed}</p>
+                {/*<p>bed : {user.name}</p>*/}
+                {/*<p>bed : {user.email}</p>*/}
+                {/*<p>bed : {user.age}</p>*/}
                 <Pressable
                     style={[
                         {backgroundColor: isSelect[id] ? 'gray' : 'white'},
@@ -39,12 +55,13 @@ const LodgingBedSelect = () => {
                             ...isSelect.slice(0, id),
                             !isSelect[id],
                             ...isSelect.slice(id + 1),
+                            setBedSelect(isSelect[id]!== true? imgSrc[id].name:''),
+                            console.log(bedSelect)
                         ]);
                     }}>
                     <div className={'container'}>
                         <div className={'row'}>
                             <div className={'col'}>
-                                {/*<img src={imgSrc[id].src} className={"mt-4"} style={styles.img}/>*/}
                                 <p style={{textAlign : "center"}} className={"mt-3 fs-5"}>{imgSrc[id].name}</p>
                             </div>
                         </div>
@@ -60,6 +77,7 @@ const LodgingBedSelect = () => {
     return (
         <div className={"container"}>
             <div className={"row"}>
+                {/*<p>{bedSelect}</p>*/}
                 <p style = {styles.font}> 침대 종류를 선택해주세요</p>
                 <div className={"row mx-auto"}>
                     <div className={"col-2 mt-5"}>
@@ -81,7 +99,8 @@ const LodgingBedSelect = () => {
             </div>
             <footer>
                 <Link to ={"/lodgingBasicInfo"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                <Link to = {"/lodgingSecondWelcome"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>
+                <Link to = {"/lodgingSecondWelcome"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={()=>{
+                    dispatch(lodgingBedSelect({bedSelect:bedSelect}))}}>다음</button></Link>
             </footer>
         </div>
     );
