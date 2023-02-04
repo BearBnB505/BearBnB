@@ -1,8 +1,12 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import ReactPlayer from 'react-player'
+import {useSelector} from "react-redux";
 
 function LodgingWelcome(){
+    const user = useSelector((state) => state.user.value);
+
+
 
     return(
         <div className={"container"}>

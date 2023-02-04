@@ -4,13 +4,17 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProjectRouter from "./ProjectRouter";
+import {Provider} from "react-redux";
+import store from "./lodging_reg/Store";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+    <Provider store={store}>
     <React.StrictMode>
         <ProjectRouter />
         {/*<App />*/}
     </React.StrictMode>
+    </Provider>
 
 );
 
