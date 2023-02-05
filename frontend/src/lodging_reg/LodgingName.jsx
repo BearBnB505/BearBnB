@@ -19,12 +19,6 @@ function LodgingName(){
         setInputCount(e.target.value.length);
     };
 
-    const styles={
-        font:{
-            margin:"auto",
-            display:"block"
-        }
-    }
 
     return(
         <div className={"container"}>

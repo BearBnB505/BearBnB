@@ -15,7 +15,18 @@ function LodgingImg(){
             fontSize : "27px",
             fontWeight : "bold",
             marginTop : "100px"
-        }
+        },
+        footer : {
+            position : "fixed",
+            zIndex : 1,
+            backgroundColor : "white",
+            left :0,
+            right : 0,
+            bottom : 0,
+            height : "5rem",
+            marginTop:"900px"
+
+        },
     }
 
     return(
@@ -28,14 +39,14 @@ function LodgingImg(){
                 <div className="col-4">
                     {/*<img src ='/concept/imagePlus.png' style={{"width" : "50px", marginTop : "100px"}} onClick={onCickImageUpload}/>*/}
                 </div>
-                <div>
+                <div style={{marginBottom:"200px"}}>
                     <UploadTest/>
                 </div>
                 {/*<Posts/>*/}
             </div>
-            <footer>
-                <Link to ={"/lodgingCategorySelect"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                <Link to = {"/lodgingName"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>
+            <footer style={styles.footer}>
+                <Link to ={"/lodgingCategorySelect"}><button className={"btn btn-light btn-lg position-absolute  bottom-0 ms-5 mb-3"} >이전</button></Link>
+                <Link to = {"/lodgingName"}><button className={"btn btn-primary btn-lg position-absolute end-0 bottom-0 me-5 mb-3 "}>다음</button></Link>
             </footer>
         </div>
     )

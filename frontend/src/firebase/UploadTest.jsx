@@ -133,8 +133,10 @@ const UploadTest = () => {
     console.log("beforeImageUrl");
     console.log(beforeImageUrl);
 
+    // 삭제 버튼을 누르면 미리보기에서 삭제가 되고 스토리지에 업로드도 되지 않는다.
     const handleDeleteImage = (id) => {
         setBeforeImageUrl(beforeImageUrl.filter((_, index) => index !== id));
+        setImage(image.filter((_, index) => index !== id));
     };
 
 
@@ -143,7 +145,7 @@ const UploadTest = () => {
 
             <div>
                 <img width="400px" src='/concept/imagePlus.png' alt="uploaded" onClick={onCickImageUpload}
-                     style={{"width": "50px", marginTop: "-100px", marginLeft: "700px"}}/>
+                        style={{"width": "50px", marginTop: "-100px", marginLeft: "700px"}}/>
             </div>
 
             {error && <div variant="danger">{error}</div>}
@@ -160,12 +162,16 @@ const UploadTest = () => {
             {/*<p>{beforeImageUrl}</p>*/}
 
             {/*업로드 전 이미지 보여주기 블로그에서 보고옴*/}
-            {beforeImageUrl.map((beforeImageUrl, id) => (
-                <div className={'image-before'} key={id}>
-                    <img src={beforeImageUrl} />)
-                    <button onClick={() => handleDeleteImage(id)}>삭제하기</button>
-                </div>
-            ))}
+            <div className={'container'}>
+                <dic className={'row'}>
+                    {beforeImageUrl.map((beforeImageUrl, id) => (
+                        <div className='col my-auto mt-5' key={id}>
+                            <img src={beforeImageUrl} style={{width: "400px" , borderRadius:"10px", boxShadow:"2px 3px 5px 0px"}}/>
+                            <button className={'btn btn-primary ms-3'} onClick={() => handleDeleteImage(id)}>X</button>
+                        </div>
+                    ))}
+                </dic>
+            </div>
 
             {/*{imageUrl && (*/}
             {/*    <div>*/}
