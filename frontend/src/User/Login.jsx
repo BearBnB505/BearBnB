@@ -7,11 +7,20 @@ import React, {useState} from "react";
 import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
 import DropdownItem from "react-bootstrap/DropdownItem";
 
-import * as AuthenticationService from "./AuthenticationService"
-import {response} from "express";
+import * as AuthenticationService from "../Auth/AuthenticationService"
+
+// import {useNavigate} from "react-router";
+// import {useDispatch} from "react-redux";
+//
+// import {loginUser} from "../Api/Users";
+// import {setRefreshToken} from "../Storage/Cookie";
+// import {SET_TOKEN} from "../Store/Auth";
 
 function Login() {
     const [show, setShow] = useState(false);
+
+    // const navigate = useNavigate();
+    // const dispatch = useDispatch();
 
     const [userId, setUserId] = useState();
     const [userPwd, setUserPwd] = useState();
@@ -38,6 +47,22 @@ function Login() {
             .catch(() => {
                 console.log('로그인 실패');
             })
+
+        // // 백으로 유저 정보 전달
+        // const onValid = async ({userId, userPwd}) => {
+        //     setUserPwd("");
+        //
+        //     const response = await loginUser({userId, userPwd});
+        //
+        //     if (response.status) {
+        //         setRefreshToken(response.json.refresh_token);
+        //         dispatch(SET_TOKEN(response.json.access_token));
+        //
+        //         return navigate("/");
+        //     } else {
+        //         console.log(response.json);
+        //     }
+        // }
     }
     
     return (
@@ -58,10 +83,10 @@ function Login() {
                 <ModalBody>
                     <Container className="container d-flex justify-content-center my-3">
                         <Form className={"w-75"}>
-                            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                            <Form.Group as={Row} className="mb-3" controlId="formPlaintextUserId">
                                 <Col sm>
                                     <Form.Control
-                                        type="password" placeholder="UserID"
+                                        type="text" placeholder="UserID"
                                         onChange={handleIdInput}
                                         value={userId}
                                     />

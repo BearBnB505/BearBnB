@@ -40,9 +40,11 @@ export function logout() {
 
 export function isUserLoggedIn() {
     let user = sessionStorage.getItem(USER_ID_SESSION_ATTRIBUTE_ID);
-    if (user === null) return '';
-    return user;
+    if (user === null) {
+        return false;
+    }
+    return true;
 }
 
 
-// export default AuthenticationService;
+export default AuthenticationService;

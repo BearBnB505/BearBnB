@@ -8,14 +8,15 @@ import DropdownToggle from "react-bootstrap/DropdownToggle";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import DropdownItem from "react-bootstrap/DropdownItem";
 import HeaderModal from "./HeaderModal";
-import Login from "../Auth/Login";
-import Join from "../Auth/Join";
+import Login from "../User/Login";
+import Join from "../User/Join";
 import * as AuthenticationService from "../Auth/AuthenticationService"
 
 function Header(props) {
 
     const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
 
+    console.log(isUserLoggedIn);
     return (
         <div className={"border-bottom pb-2"} id={"div-header"}>
             <nav className={"navbar navbar-expand-sm navbar-white bg-white mt-1 fixed"} id={"header_nav"}>
@@ -34,7 +35,7 @@ function Header(props) {
 
                             <DropdownMenu align={"end"}>
                                 {!isUserLoggedIn && <Login />}
-                                {isUserLoggedIn && <DropdownItem href={"/logout"} onClick={AuthenticationService.logout}>로그아웃</DropdownItem>}
+                                {isUserLoggedIn && <DropdownItem href={"/"} onClick={AuthenticationService.logout}>로그아웃</DropdownItem>}
                                 <Join />
                                 <DropdownItem href={"/message"}>
                                     <span>메세지알림</span>

@@ -12,8 +12,8 @@ import Popover from 'react-bootstrap/Popover';
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import GuestCount from "../GuestCount";
-import Login from "../Auth/Login";
-import Join from "../Auth/Join";
+import Login from "../User/Login";
+import Join from "../User/Join";
 
 function HeaderModal(props) {
     const styles = {
