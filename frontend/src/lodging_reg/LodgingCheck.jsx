@@ -1,8 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 
 function LodgingCheck(){
+    const cost = useSelector((state) => state.lodgingCost.value);
+    const name = useSelector((state) => state.lodgingName.value);
 
     const styles = {
         box : {
@@ -27,8 +30,8 @@ function LodgingCheck(){
                             <img src='/concept/house.jpg' style={{width :"300px"}}className={"ms-4"}/>
                             <div className={'row justify-content-evenly mt-3'}>
                                 <div className={'col-4 ms-3'}>
-                                    <p>집이름</p>
-                                    <p>100,000원</p>
+                                    <p>{name.lodgingName}</p>
+                                    <p>{cost.cost}</p>
                                 </div>
                                 <div className={'col-4'} >
                                     <p>신규⭐</p>

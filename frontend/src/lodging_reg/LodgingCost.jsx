@@ -1,9 +1,13 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {hostInfos} from "./Reducers/HostInfoReducer";
+import {costs} from "./Reducers/LodgingCostReducer";
 
 function LodgingCost(){
 
     const [cost, setCost] = useState(50000);
+    const dispatch = useDispatch();
 
     const styles = {
         border1:{
@@ -93,7 +97,8 @@ function LodgingCost(){
                 </div>
             <footer>
                 <Link to ={"/lodgingChooseDate"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                <Link to = {"/lodgingCheck"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>
+                <Link to = {"/lodgingCheck"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={()=>{
+                    dispatch(costs({cost:cost}))}}>다음</button></Link>
             </footer>
         </div>
         </div>
