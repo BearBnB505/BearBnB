@@ -3,6 +3,7 @@ import HostIdReducer from "./Reducers/HostIdReducer"
 import userReducer from './redux_test/user'
 import LodgingbedReducer from './Reducers/LodgingbedReducer'
 import BedSelectReducer from "./Reducers/BedSelectReducer";
+import LodgingNameReducer from "./Reducers/LodgingNameReducer";
 
 
 export default configureStore({
@@ -12,6 +13,7 @@ export default configureStore({
         lodgingConcept : HostIdReducer,
         lodgingBasicInfo : LodgingbedReducer,
         lodgingBedSelect : BedSelectReducer,
+        lodgingName : LodgingNameReducer,
 
     }
 })

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import * as PropTypes from "prop-types";
 import {Pressable} from "react-native";
+import {useSelector} from "react-redux";
 
 function Input(props) {
     return null;
@@ -62,7 +63,7 @@ function LodgingHostInfo(){
 
     // 글자 수 카운트
     const [inputCount, setInputCount] = useState(0);
-
+    const lodgingName = useSelector((state) => state.lodgingName.value)
     const onInputHandler = (e) => {
         setInputCount(e.target.value.length);
     };
@@ -89,6 +90,7 @@ function LodgingHostInfo(){
     const getButton = (id) => {
         return (
             <div className={"container"}>
+                <p>숙소설명 : {lodgingName.lodgingIntro}</p>
                 <Pressable
                     style={[
                         {backgroundColor: selectLanguage[id] ? 'pink' : 'white'},

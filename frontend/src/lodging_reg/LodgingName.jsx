@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import * as PropTypes from "prop-types";
+import {hostIdUrl} from "./Reducers/HostIdReducer";
+import {useDispatch} from "react-redux";
+import {lodgingNames} from "./Reducers/LodgingNameReducer";
 
 function Input(props) {
     return null;
@@ -14,10 +17,13 @@ Input.propTypes = {
 function LodgingName(){
 
     const [inputCount, setInputCount] = useState(0);
-
+    const [lodgingName, setLodgingName] = useState('');
+    const dispatch = useDispatch();
     const onInputHandler = (e) => {
         setInputCount(e.target.value.length);
+        setLodgingName(e.target.value);
     };
+    console.log(lodgingName);
 
 
     return(
@@ -34,7 +40,8 @@ function LodgingName(){
                 </div>
                 <footer>
                     <Link to ={"/lodgingImg"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                    <Link to = {"/lodgingIntro"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>
+                    <Link to = {"/lodgingIntro"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={()=>{
+                        dispatch(lodgingNames({lodgingName:lodgingName}))}}>다음</button></Link>
                 </footer>
             </div>
         </div>
