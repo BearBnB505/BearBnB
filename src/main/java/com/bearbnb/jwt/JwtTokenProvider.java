@@ -1,6 +1,6 @@
 package com.bearbnb.jwt;
 
-import com.bearbnb.dto.TokenDto;
+import com.bearbnb.dto.TokenInfo;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -34,7 +34,7 @@ public class JwtTokenProvider {
     }
 
 //    유저 정보를 가지고 AccessToken, RefreshToken 생성
-    public TokenDto generateTokenDto(Authentication authentication) {
+    public TokenInfo generateTokenDto(Authentication authentication) {
         // 권한 가져오기
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -57,7 +57,7 @@ public class JwtTokenProvider {
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
-        return TokenDto.builder()
+        return TokenInfo.builder()
                 .grantType("Bearer")
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)

@@ -8,8 +8,8 @@ import DropdownToggle from "react-bootstrap/DropdownToggle";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import DropdownItem from "react-bootstrap/DropdownItem";
 import HeaderModal from "./HeaderModal";
-import Login from "../Login";
-import Join from "../Join";
+import Login from "../Auth/Login";
+import Join from "../Auth/Join";
 
 function Header(props) {
 
@@ -24,7 +24,9 @@ function Header(props) {
                     <div className={"nav-item"}>
                         <Dropdown>
                             <DropdownToggle variant={"none"} bsPrefix style={{border:"none"}}>
-                                <a href="#" className={"nav-link"}><img src="/img/user.png" alt="user" style={{width: 35}}/></a>
+                                {/*<a href="#" className={"nav-link"}>*/}
+                                    <img src="/img/user.png" alt="user" style={{width: 35}}/>
+                                {/*</a>*/}
                             </DropdownToggle>
 
                             <DropdownMenu align={"end"}>

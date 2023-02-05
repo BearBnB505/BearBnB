@@ -1,9 +1,7 @@
 package com.bearbnb.service;
 
 import com.bearbnb.dto.MemberRequestDto;
-import com.bearbnb.dto.MemberResponseDto;
-import com.bearbnb.dto.MembersDto;
-import com.bearbnb.dto.TokenDto;
+import com.bearbnb.dto.TokenInfo;
 import com.bearbnb.jwt.JwtTokenProvider;
 import com.bearbnb.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +30,7 @@ public class AuthService {
 //        return MemberResponseDto.of(memberMapper.save(member));
 //    }
 
-    public TokenDto login(MemberRequestDto requestDto) {
+    public TokenInfo login(MemberRequestDto requestDto) {
         UsernamePasswordAuthenticationToken authenticationToken = requestDto.toAuthentication();
 
         Authentication authentication = managerBuilder.getObject().authenticate(authenticationToken);

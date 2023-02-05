@@ -1,8 +1,7 @@
 package com.bearbnb.controller;
 
 import com.bearbnb.dto.MemberRequestDto;
-import com.bearbnb.dto.MemberResponseDto;
-import com.bearbnb.dto.TokenDto;
+import com.bearbnb.dto.TokenInfo;
 import com.bearbnb.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,7 @@ public class AuthController {
 //    }
 
     @PostMapping("/login")
-    public ResponseEntity<TokenDto> login(@RequestBody MemberRequestDto requestDto) {
+    public ResponseEntity<TokenInfo> login(@RequestBody MemberRequestDto requestDto) {
         return ResponseEntity.ok(authService.login(requestDto));
     }
 }
