@@ -23,10 +23,6 @@ const UploadTest = () => {
         console.log(imageUrl);
     })
 
-    const deleteFileImage = () => {
-        URL.revokeObjectURL(image);
-        setImage("");
-    };
 
 
     const handleImage = (event) => {

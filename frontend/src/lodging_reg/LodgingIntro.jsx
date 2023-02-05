@@ -32,7 +32,7 @@ function LodgingIntro(){
             display:"block"
         }
     }
-    const lodgingName = useSelector((state) => state.lodgingName.value)
+    // const lodgingName = useSelector((state) => state.lodgingName.value)
     return(
         <div className={"container"}>
             <div className={"row"}>
@@ -48,9 +48,8 @@ function LodgingIntro(){
                 </div>
                 <footer>
                     <Link to ={"/lodgingName"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                    <Link to = {"/lodgingHostInfo"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={
-                        dispatch(lodgingNames({lodgingIntro:intro}))
-                    }>다음</button></Link>
+                    <Link to = {"/lodgingHostInfo"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={()=>{
+                        dispatch(lodgingNames({lodgingIntro:intro}))}}>다음</button></Link>
                 </footer>
             </div>
         </div>

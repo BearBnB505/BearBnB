@@ -2,7 +2,10 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import * as PropTypes from "prop-types";
 import {Pressable} from "react-native";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {lodgingNames} from "./Reducers/LodgingNameReducer";
+
+import {hostInfos} from "./Reducers/HostInfoReducer";
 
 function Input(props) {
     return null;
@@ -17,6 +20,8 @@ function LodgingHostInfo(){
     
     // 언어 선택
     const [selectLanguage, setSelectLanguage] = useState([false,false,false,false,false,false,false,false,false,false])
+    const [chooseLanguage, setChooseLanguage] = useState([]);
+
 
     const imgSrc = [
         {
@@ -63,10 +68,14 @@ function LodgingHostInfo(){
 
     // 글자 수 카운트
     const [inputCount, setInputCount] = useState(0);
-    const lodgingName = useSelector((state) => state.lodgingName.value)
+    const [hostIntro, setHostIntro] = useState('');
+    const lodgingIntro = useSelector((state) => state.lodgingName.value);
+    const dispatch= useDispatch();
     const onInputHandler = (e) => {
         setInputCount(e.target.value.length);
+        setHostIntro(e.target.value);
     };
+    // console.log(hostIntro)
 
     const styles={
         font:{
@@ -87,10 +96,13 @@ function LodgingHostInfo(){
             width : "150px",
         }
     }
+    const languages= new Array();
     const getButton = (id) => {
+
         return (
+
             <div className={"container"}>
-                <p>숙소설명 : {lodgingName.lodgingIntro}</p>
+                {/*<p>숙소설명 : {lodgingIntro.lodgingIntro}</p>*/}
                 <Pressable
                     style={[
                         {backgroundColor: selectLanguage[id] ? 'pink' : 'white'},
@@ -102,8 +114,24 @@ function LodgingHostInfo(){
                             ...selectLanguage.slice(0, id),
                             !selectLanguage[id],
                             ...selectLanguage.slice(id + 1),
+
+                            // languages.push(imgSrc[id].name)
+
+                            // languages.concat(imgSrc[id].name),
+                            // console.log(languages),
+                            console.log(imgSrc[id].name),
+                            // languages.push(selectLanguage[id]!== true? imgSrc[id].name:''),
+                            
+                            setChooseLanguage(imgSrc[id].name),
                         ]);
+                        // setChooseLanguage(selectLanguage[id]!== true? imgSrc[id].name:'')
+                        //     console.log(chooseLanguage)
+                        // setChooseLanguage(imgSrc[id].name)
+
+                        //     languages.push(selectLanguage[id]!== true? imgSrc[id].name:'');
                     }}>
+
+
                     <div className={'container'}>
                         <div className={'row'}>
                             <div className={'col'}>
@@ -113,11 +141,17 @@ function LodgingHostInfo(){
                         </div>
                     </div>
                 </Pressable>
-
             </div>
 
         );
     };
+
+    // setChooseLanguage(languages)
+    // console.log('언어선택 확인')
+    // console.log(languages)
+    console.log("languages")
+    console.log(languages)
+
 
     return(
         <div className={"container"}>
@@ -160,11 +194,11 @@ function LodgingHostInfo(){
                         </div>
                         <div className={"col-2 ms-5"} >
                             <img src='/concept/language/earth.png' style={{width:"130px", marginTop : "75px"}}/>
-                            <input type={'text'} style={{"marginTop" : '19px', width : "150px", textAlign : "center"}} placeholder={'기타'}></input>
+                            <input type={'text'} style={{"marginTop" : '19px', width : "150px", textAlign : "center"}} placeholder={'기타'} onChange={(e)=>{setChooseLanguage(e.target.value)}}></input>
                         </div>
                     </div>
                     <textarea className={'col-12 mx-auto mt-5 p-4'} style={{height:"300px", borderRadius:"10px", fontSize :"20px"}} 
-                              onChange={onInputHandler} maxLength="3000" placeholder={"소개를 해주세요"} />
+                                onChange={onInputHandler} maxLength="3000" placeholder={"소개를 해주세요"} />
                     <p>
                         <span style={{fontWeight:"bold", color: "gray"}}>{inputCount}</span>
                         <span style={{fontWeight:"bold", color: "gray"}}>/3000</span>
@@ -172,7 +206,8 @@ function LodgingHostInfo(){
                 </div>
                 <footer style={styles.footer} className={"mt-5"}>
                     <Link to ={"/lodgingIntro"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                    <Link to = {"/lodgingThirdWelcome"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>
+                    <Link to = {"/lodgingThirdWelcome"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}  onClick={()=>{
+                        dispatch(hostInfos({language:chooseLanguage, hostIntro:hostIntro}))}}>다음</button></Link>
                 </footer>
             </div>
         </div>

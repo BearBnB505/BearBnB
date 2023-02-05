@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const LodgingNameReducer = createSlice({
         name:"lodgingName",
-        initialState:{value: {lodgingName : '',lodgingIntro:''}},
+        initialState:{value: {lodgingName : '',lodgingIntro:'숙소'}},
         reducers:{
             lodgingNames:(state, action)=>{
                 state.value = action.payload

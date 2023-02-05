@@ -1,15 +1,18 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import ReactPlayer from 'react-player'
+import {useSelector} from "react-redux";
 
 function LodgingWelcome(){
-
+    const hostInfo = useSelector((state) => state.hostInfo.value)
     return(
         <div className={"container"}>
             <div className = {"row justify-content-lg-between"} >
                 <div className={"col-5 my-auto"}>
                     <div style={{marginTop : "180px"}}>
                         <p>3단계</p>
+                        <p>언어 : {hostInfo.language}</p>
+                        <p>소개 : {hostInfo.hostIntro}</p>
                         <p id={"title"} style = {{fontSize : "50px", fontWeight : "bold",}}>등록을 완료하세요</p><br/>
                         <p className={"lh-base fs-5"}>마지막 단계에서는 첫 예약에서 에어비앤비 이용 경험이 풍부한 게스트를 맞이할지 여부를 선택하고 1박 요금을 설정하실 수 있습니다. 몇 가지 간단한 질문에 답하고 난 후 준비가 되면 숙소 등록을 완료하세요.</p>
                     </div>
