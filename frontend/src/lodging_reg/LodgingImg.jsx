@@ -1,9 +1,14 @@
-import React from "react";
+import React, {useRef} from "react";
 import {Link} from "react-router-dom";
 import "../dropzone/Dropzone"
 import UploadTest from "../firebase/UploadTest";
 
 function LodgingImg(){
+
+    const imageInput = useRef();
+    const onCickImageUpload = () => {
+        imageInput.current.click();
+    };
 
     const styles = {
         font : {
@@ -18,13 +23,12 @@ function LodgingImg(){
             <div className="row justify-content-around" style={{marginLeft : "150px"}}>
                 <div className="col-5">
                     <p style={styles.font} className={"col mx-auto"}>5장 이상의 사진을 선택하세요</p>
-                    <p style={{color : "gray" ,fontSize : "20px"}}>드래그 하여 순서변경</p>
+                    <p style={{color : "gray" ,fontSize : "20px"}}>저장 전 사진을 확인해주세요</p>
                 </div>
                 <div className="col-4">
-                    <img src ='/concept/imagePlus.png' style={{"width" : "50px", marginTop : "100px"}}/>
+                    {/*<img src ='/concept/imagePlus.png' style={{"width" : "50px", marginTop : "100px"}} onClick={onCickImageUpload}/>*/}
                 </div>
                 <div>
-                    {/*<Dropzone/>*/}
                     <UploadTest/>
                 </div>
                 {/*<Posts/>*/}

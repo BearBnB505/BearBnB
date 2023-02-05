@@ -1,9 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useRef} from "react";
 import { storage } from "./firebase2";
 import DropzoneBasic from "./DropzoneBasic";
 import axios from "axios";
 
 const UploadTest = () => {
+
+
+    const imageInput = useRef();
+    const onCickImageUpload = () => {
+        imageInput.current.click();
+    };
+
     const [image, setImage] = useState([]);
     const [imageUrl, setImageUrl] = useState([]);
     const [error, setError] = useState("");
@@ -16,7 +23,7 @@ const UploadTest = () => {
         console.log(imageUrl);
     })
 
-    const deleteFileImage = () =>{
+    const deleteFileImage = () => {
         URL.revokeObjectURL(image);
         setImage("");
     };
@@ -24,25 +31,22 @@ const UploadTest = () => {
 
     const handleImage = (event) => {
         let images = [];
+        let beforeImages = [];
 
-        for(let i=0; i<event.target.files.length; i++){
+        for (let i = 0; i < event.target.files.length; i++) {
             images.push(event.target.files[i]);
-            setBeforeImageUrl(URL.createObjectURL(event.target.files[i]));
-        }
-        // console.log('images')
-        // console.log(images);
-        // const image = event.target.files[0];
-        // image[]= event.target.files;
-        // const image = new Array();
-        // for(let i=0; i<event.target.files; i++){
-        //     document.write("[" + i + "] : " + target.files[i] + "<br>");
-        // }
+            // setBeforeImageUrl(URL.createObjectURL(event.target.files[i]));
 
-        // const images = image.map((file,i)=>(
-        //     setImage(image)
-        // ))
+            beforeImages.push(URL.createObjectURL(event.target.files[i]));
+
+            // beforeImages.push(window.URL.createObjectURL(event.target.files[i]));
+        }
         setImage(images);
+
+        setBeforeImageUrl(beforeImages);
     };
+
+    // console.log(beforeImageUrl);//업로드 전 사진 url 확인
 
     console.log("image확인")
     console.log(image);
@@ -50,34 +54,11 @@ const UploadTest = () => {
     const onSubmit = (event) => {
         event.preventDefault();
         // setError("");
-        if (image.length<=4) {
+        if (image.length <= 4) {
             alert('5장 이상 선택해주세요')
-            setError("파일이 선택되지 않았습니다");
+            // setError("파일이 선택되지 않았습니다");
             return;
         }
-        // 업로드 처리
-        // const storageRef = storage.ref("BearBnB/");
-        // const imagesRef = storageRef.child(image[0].name);
-        // // const upLoadTask = imagesRef.put(image);
-        // imagesRef.put(image[0]).then((snapshot) => {
-        //     console.log("업로드 테스트");
-        // })
-
-        // for (let i = 0; i < image.length; i++) {
-        //     const storageRef = storage.ref("BearBnB/");
-        //     const imagesRef = storageRef.child(image[i].name);
-        //     const uploadTask = imagesRef.put(image[i]);
-        //     const ttt = test(uploadTask);
-        //
-        //     console.log(ttt);
-        //
-        //     // uploadTask.on('state_changed', null, null, async () => {
-        //     //     const url = await uploadTask.snapshot.ref.getDownloadURL();
-        //     //     console.log('uploadTask : ')
-        //     //     console.log(url);
-        //     //     imageUrlList.push(url);
-        //     // });
-        // }
 
         //이미지에 랜덤 이름 부여하기
         const now = new Date();
@@ -110,7 +91,7 @@ const UploadTest = () => {
 
         image.map((item, index, oriImage) => {
             const storageRef = storage.ref("BearBnB/");
-            const imagesRef = storageRef.child(imgName+item.name);
+            const imagesRef = storageRef.child(imgName + item.name);
             const uploadTask = imagesRef.put(item);
             uploadTask.on('state_changed', null, null, async () => {
                 const url = await uploadTask.snapshot.ref.getDownloadURL();
@@ -123,16 +104,15 @@ const UploadTest = () => {
                 // }
 
                 setImageUrl(imageUrls)
-
             });
         });
 
         console.log("파일을 업로드하는 행위");
         alert('저장되었습니다.')
-        }
-        
+    }
+
     //    controller로 보내기
-    const axiosData = ()=> axios({
+    const axiosData = () => axios({
         url: 'http://localhost:8080/lodgingImageUrl',
         method: 'post',
         data: imageUrl,
@@ -149,16 +129,26 @@ const UploadTest = () => {
             console.log('데이터 전송 실패');
         });
 
+    // 업로드 전 이미지 미리보기 url 확인
+    console.log("beforeImageUrl");
+    console.log(beforeImageUrl);
+
+    const handleDeleteImage = (id) => {
+        setBeforeImageUrl(beforeImageUrl.filter((_, index) => index !== id));
+    };
+
 
     return (
         <div>
+
             <div>
-                {/*<img width="400px" src={} alt="uploaded" />*/}
+                <img width="400px" src='/concept/imagePlus.png' alt="uploaded" onClick={onCickImageUpload}
+                     style={{"width": "50px", marginTop: "-100px", marginLeft: "700px"}}/>
             </div>
 
             {error && <div variant="danger">{error}</div>}
             <form onSubmit={onSubmit}>
-                <input type="file" onChange={handleImage} multiple />
+                <input type="file" onChange={handleImage} style={{display: "none"}} ref={imageInput} multiple/>
                 <button onClick={onSubmit}>저장하기</button>
                 <button onClick={axiosData}>axios보내기</button>
                 {/*<button onClick={deleteFileImage}>삭제하기</button>*/}
@@ -166,14 +156,27 @@ const UploadTest = () => {
             {/*업로드 전 이미지*/}
 
 
-            <img src={beforeImageUrl}/>
-            {imageUrl && (
-                <div>
-                    <img width="400px" src={imageUrl}  />
+            {/*<img src={beforeImageUrl}/>*/}
+            {/*<p>{beforeImageUrl}</p>*/}
+
+            {/*업로드 전 이미지 보여주기 블로그에서 보고옴*/}
+            {beforeImageUrl.map((beforeImageUrl, id) => (
+                <div className={'image-before'} key={id}>
+                    <img src={beforeImageUrl} />)
+                    <button onClick={() => handleDeleteImage(id)}>삭제하기</button>
                 </div>
-            )}
+            ))}
+
+            {/*{imageUrl && (*/}
+            {/*    <div>*/}
+            {/*        <img width="400px" src={imageUrl}  />*/}
+            {/*    </div>*/}
+            {/*)}*/}
+
+
         </div>
     );
 };
+
 
 export default UploadTest;
