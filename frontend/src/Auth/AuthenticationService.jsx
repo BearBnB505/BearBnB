@@ -18,11 +18,11 @@ export function registerSuccessfulLoginForJwt(userId, token) {
     setupAxiosInterceptors(createJWTToken(token))
 }
 
-function createJWTToken(token) {
+export function createJWTToken(token) {
     return 'Bearer' + token;
 }
 
-function setupAxiosInterceptors(token) {
+export function setupAxiosInterceptors(token) {
     axios.interceptors.request.use(
         (config) => {
             if (isUserLoggedIn()) {
@@ -31,6 +31,17 @@ function setupAxiosInterceptors(token) {
             return config
         }
     )
+}
+
+
+export function logout() {
+    sessionStorage.removeItem(USER_ID_SESSION_ATTRIBUTE_ID);
+}
+
+export function isUserLoggedIn() {
+    let user = sessionStorage.getItem(USER_ID_SESSION_ATTRIBUTE_ID);
+    if (user === null) return '';
+    return user;
 }
 
 

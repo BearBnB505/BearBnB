@@ -7,7 +7,6 @@ import React, {useState} from "react";
 import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
 import DropdownItem from "react-bootstrap/DropdownItem";
 
-// import AuthenticationService from "./AuthenticationService"
 import * as AuthenticationService from "./AuthenticationService"
 import {response} from "express";
 
@@ -33,7 +32,8 @@ function Login() {
         AuthenticationService
             .executeJwtAuthenticationService(userId, userPwd)
             .then((response) => {
-                AuthenticationService.registerSuccessfulLoginForJwt(userId, response.token)
+                AuthenticationService.registerSuccessfulLoginForJwt(userId, response.data.token);
+                setShow(false);
             })
             .catch(() => {
                 console.log('로그인 실패');

@@ -10,8 +10,11 @@ import DropdownItem from "react-bootstrap/DropdownItem";
 import HeaderModal from "./HeaderModal";
 import Login from "../Auth/Login";
 import Join from "../Auth/Join";
+import * as AuthenticationService from "../Auth/AuthenticationService"
 
 function Header(props) {
+
+    const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
 
     return (
         <div className={"border-bottom pb-2"} id={"div-header"}>
@@ -30,7 +33,8 @@ function Header(props) {
                             </DropdownToggle>
 
                             <DropdownMenu align={"end"}>
-                                <Login />
+                                {!isUserLoggedIn && <Login />}
+                                {isUserLoggedIn && <DropdownItem href={"/logout"} onClick={AuthenticationService.logout}>로그아웃</DropdownItem>}
                                 <Join />
                                 <DropdownItem href={"/message"}>
                                     <span>메세지알림</span>
