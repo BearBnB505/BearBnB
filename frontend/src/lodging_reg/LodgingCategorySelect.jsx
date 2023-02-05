@@ -208,6 +208,8 @@ const LoadingConcept = () => {
         );
     };
 
+    console.log(isSelect[0]);
+
     return (
         <div className={"container"}>
             <div className={"row"}>
@@ -327,7 +329,6 @@ const LoadingConcept = () => {
                     <Link to = {"/lodgingImg"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>
                 </footer>
             </div>
-
         </div>
     );
 };
