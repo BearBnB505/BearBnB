@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import {lodgingBasicInfo} from "./HostIdReducer";
+import {lodgingBasicInfo} from "./Reducers/HostIdReducer";
 import {useDispatch} from "react-redux";
 import Profile from "./redux_test/Profile";
 import Login from "../Login";
+import {login} from "./redux_test/user";
+import {basicInfo} from "./Reducers/LodgingbedReducer";
 
 function LodgingBasicInfo(){
 
@@ -11,7 +13,9 @@ function LodgingBasicInfo(){
     const [bedroomCount , setBedroomCount] = useState(1);
     const [bedCount , setBedCount] = useState(1);
     const [bathroomCount , setBathroomCount] = useState(1);
+
     const dispatch = useDispatch();
+
     const styles = {
         con : {
             marginLeft : "250px"
@@ -177,9 +181,9 @@ function LodgingBasicInfo(){
                     <Login/>
                     <div>
                         <Link to ={"/lodgingLocationDetail"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                        <Link to = {"/lodgingBedSelect"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}
-                            onClick={()=>{
-                            dispatch(lodgingBasicInfo({bed:bedCount},{bathroom:bathroomCount},{guest:guestCount},{bedroom: bedroomCount}))}}>다음</button></Link>
+                        <Link to = {"/lodgingBedSelect"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}onClick={() => {
+                            dispatch(basicInfo({guest:guestCount, bedroom: bedroomCount, bed: bedCount, bathroom: bathroomCount}))
+                        }}>다음</button></Link>
                     </div>
                 </div>
             </div>

@@ -3,13 +3,13 @@ import React, {useState} from 'react';
 import {Pressable, SafeAreaView, StyleSheet, Text} from 'react-native';
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {hostIdUrl, lodgingBedSelect} from "./HostIdReducer";
 import {useDispatch} from "react-redux";
+import {bedSelects} from "./Reducers/BedSelectReducer";
 
 const LodgingBedSelect = () => {
     const [isSelect, setSelect] = useState([false, false,false, false,false]);
     const [bedSelect, setBedSelect] = useState('');
-    const basicInfo = useSelector((state) => state.lodgingBasicInfo.value)
+    const lodgingBasicInfo = useSelector((state) => state.lodgingBasicInfo.value)
     const user = useSelector((state)=>state.user.value)
     const dispatch = useDispatch();
 
@@ -35,10 +35,10 @@ const LodgingBedSelect = () => {
     const getButton = (id) => {
         return (
             <div className={"container"}>
-                <p>guest : {basicInfo.guest}</p>
-                <p>bedroom : {basicInfo.bedroom}</p>
-                <p>bathroom : {basicInfo.bathroom}</p>
-                <p>bed : {basicInfo.bed}</p>
+                {/*<p>guest : {lodgingBasicInfo.guest}</p>*/}
+                {/*<p>bedroom : {lodgingBasicInfo.bedroom}</p>*/}
+                {/*<p>bathroom : {lodgingBasicInfo.bathroom}</p>*/}
+                {/*<p>bed : {lodgingBasicInfo.bed}</p>*/}
                 {/*<p>bed : {user.name}</p>*/}
                 {/*<p>bed : {user.email}</p>*/}
                 {/*<p>bed : {user.age}</p>*/}
@@ -100,7 +100,7 @@ const LodgingBedSelect = () => {
             <footer>
                 <Link to ={"/lodgingBasicInfo"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
                 <Link to = {"/lodgingSecondWelcome"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={()=>{
-                    dispatch(lodgingBedSelect({bedSelect:bedSelect}))}}>다음</button></Link>
+                    dispatch(bedSelects({bedSelects:bedSelect}))}}>다음</button></Link>
             </footer>
         </div>
     );

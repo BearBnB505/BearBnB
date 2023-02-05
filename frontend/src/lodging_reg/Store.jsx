@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import HostIdReducer from "./HostIdReducer"
+import HostIdReducer from "./Reducers/HostIdReducer"
 import userReducer from './redux_test/user'
+import LodgingbedReducer from './Reducers/LodgingbedReducer'
+import BedSelectReducer from "./Reducers/BedSelectReducer";
 
 
 export default configureStore({
@@ -8,7 +10,8 @@ export default configureStore({
         hostIdUrl: HostIdReducer,
         user: userReducer,
         lodgingConcept : HostIdReducer,
-        lodgingBasicInfo : HostIdReducer,
-        lodgingBedSelect:HostIdReducer,
+        lodgingBasicInfo : LodgingbedReducer,
+        lodgingBedSelect : BedSelectReducer,
+
     }
 })

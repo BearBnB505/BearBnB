@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Pressable, SafeAreaView, StyleSheet, Text} from 'react-native';
 import {Link} from "react-router-dom";
-import {hostIdUrl} from "./HostIdReducer";
+import {hostIdUrl} from "./Reducers/HostIdReducer";
 import {useDispatch} from "react-redux";
 
 

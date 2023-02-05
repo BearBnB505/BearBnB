@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {hostIdUrl} from "./HostIdReducer";
+import {hostIdUrl} from "./Reducers/HostIdReducer";
 
 
 function LodgingFinal(){

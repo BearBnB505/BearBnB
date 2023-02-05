@@ -8,7 +8,9 @@ export const userSlice = createSlice({
             state.value = action.payload
         },
     },
-});
+},
+);
 
 export default userSlice.reducer;
 export const { login } = userSlice.actions;
+
