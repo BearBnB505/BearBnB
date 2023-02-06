@@ -40,7 +40,7 @@ function Mypage(props) {
                 <Link className={"col-sm-6 col-md-6 col-lg-4"} to={"/bookingCancel"}>
                     <Card id={"5"} icon={faCalendarMinus} title={"예약취소 확인"} content={"내가 예약 취소한 내역을 확인합니다"}/>
                 </Link>
-                <Link className={"col-sm-6 col-md-6 col-lg-4"} to={"/members"}>
+                <Link className={"col-sm-6 col-md-6 col-lg-4"} to={"/hostMyPageMain"}>
                     <Card id={"6"} icon={faUserCog} title={"호스트"} content={"숙소 관리, 예약, 매출, 대금 신청"}/>
                 </Link>
                 <Link className={"col-sm-6 col-md-6 col-lg-4"} to={"/complain"}>
@@ -65,5 +65,4 @@ function createCard(props) {
 }
 
 export default Mypage;
-
 

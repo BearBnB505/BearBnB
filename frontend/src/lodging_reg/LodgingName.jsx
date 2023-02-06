@@ -15,6 +15,7 @@ function LodgingName(){
 
     const [inputCount, setInputCount] = useState(0);
 
+
     const onInputHandler = (e) => {
         setInputCount(e.target.value.length);
     };

@@ -44,6 +44,15 @@ import Navbar from "./components/Navbar";
 import HouseInfo from "./houseInfoUpdate/HouseInfo";
 import HostInfo from "./hostinfo/HostInfo";
 import DetailTable from "./components/DetailTable";
+import HostMyPageMain from "./HostMypage/HostMyPageMain";
+import HostMyPageHostInfo from "./HostMypage/HostMyPageHostInfo";
+import HostMyPageReview from "./HostMypage/HostMyPageReview";
+import HostMyPageBooking from "./HostMypage/HostBookingPage/HostMyPageBooking";
+import GuestInfoModal from "./HostMypage/GuestInfoModal";
+import HostMyPageRevenue from "./HostMypage/HostMyPageRevenue";
+import HostMyPageLodging from "./HostMypage/HostMyPageLodging";
+
+import './App.css';
 
 function ProjectRouter(props) {
     return (
@@ -93,7 +102,7 @@ function ProjectRouter(props) {
                     {/*<Route path={"lodgingHostInfoTest"} element={<LodgingHostInfoTest/>}/>*/}
 
 
-                    {/* 예매 */}
+                    {/* 예약 */}
                     <Route path = {"lodgingPayment" } element={<LodgingPayment/>}/>
                     <Route path = {"lodgingPaymentEnd" } element={<LodgingPaymentEnd/>}/>
                     <Route path = {"lodgingPaymentFailure" } element={<LodgingPaymentFailure/>}/>
@@ -102,8 +111,21 @@ function ProjectRouter(props) {
                     {/* 회원가입 */}
                     <Route path={"join"} element={<Join/>}/>
 
-                    {/*  */}
 
+                    {/* 호스트 마이페이지*/}
+                    <Route path={"hostMyPageMain"} element={<HostMyPageMain/>}/>
+                    <Route path={"hostMyPageHostInfo"} element={<HostMyPageHostInfo/>}/>
+                    <Route path={"hostMyPageReview"} element={<HostMyPageReview/>}/>
+                    <Route path={"hostMyPageBooking"} element={<HostMyPageBooking/>}/>
+                    <Route path={"guestInfoModal"} element={<GuestInfoModal/>}/>
+                    <Route path={"hostMyPageRevenue"} element={<HostMyPageRevenue/>}/>
+                    <Route path={"hostMyPageLodging"} element={<HostMyPageLodging/>}/>
+
+                    {/*<HouseInfo/>*/}
+                    <Route path={"hostMyPageLodging/HouseInfoUpdate/:lodgingNum"} element={<HouseInfo/>}/>
+
+
+                    {/*  */}
 
                 </Route>
 
@@ -121,3 +143,5 @@ function ProjectRouter(props) {
 }
 
 export default ProjectRouter;
+
+

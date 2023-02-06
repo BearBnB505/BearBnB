@@ -5,10 +5,17 @@ import './HouseInfo.css'
 import LocationInfoUpdate from "./locationInfo/LocationInfoUpdate";
 import SpaceInfoUpdate from "./spaceInfo/SpaceInfoUpdate";
 import AmenityInfoUpdate from "./amenityInfo/AmenityInfoUpdate";
+import {useLocation} from "react-router";
 
 function HouseInfo(){
+
+  const location = useLocation();
+  const lodgingNum = location.state.lodgingNum;
+
+  console.log(lodgingNum);
+
   return(
-    <div className={'HoseInfo'} >
+    <div className={'HouseInfo'} >
       <BasicInfoUpdate/>
       <LocationInfoUpdate/>
       <SpaceInfoUpdate/>

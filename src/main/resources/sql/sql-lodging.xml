@@ -6,8 +6,71 @@
     <!--  숙소 리스트 가져오기  -->
     <select id="lodgingList" resultType="com.bearbnb.dto.LodgingDto">
         <![CDATA[
-        SELECT * FROM lodging
+        SELECT *
+        FROM lodging
+
+        ]]>
+    </select>
+
+    <select id="CallLodgingMapper" resultType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        SELECT *
+        FROM lodging
+        ]]>
+    </select>
+
+    <select id="lodgingDetail" resultType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        SELECT *
+        FROM lodging
+        WHERE idx = #{idx}
+          AND deleted_yn = 'N'
+        ]]>
+    </select>
+
+    <select id="photoDetail" resultType="com.bearbnb.dto.PhotoDto">
+        <![CDATA[
+        SELECT *
+        FROM photo
+        WHERE lodging_num = #{lodgingNum}
+          AND deleted_yn = 'N'
+        ]]>
+    </select>
+
+    <select id="reviewDetail" resultType="com.bearbnb.dto.ReviewDto">
+        <![CDATA[
+        SELECT *
+        FROM review
+        WHERE lodging_num = #{lodgingNum}
+          AND deleted_yn = 'N'
+        ]]>
+    </select>
+
+    <select id="reviewTotalCount" resultType="com.bearbnb.dto.ReviewDto">
+        <![CDATA[
+        SELECT count(*)
+        FROM review
+        WHERE lodging_num = #{lodgingNum}
+        ]]>
+    </select>
+
+    <select id="comfortsDetail" resultType="com.bearbnb.dto.ComfortsDto">
+        <![CDATA[
+        SELECT *
+        FROM comforts
+        WHERE lodging_num = #{lodgingNum}
+          AND usable_yn = 'Y'
+        ]]>
+    </select>
+
+    <select id="membersDetail" resultType="com.bearbnb.dto.MembersDto">
+        <![CDATA[
+        SELECT *
+        FROM members
+        WHERE user_id = #{userId}
         ]]>
     </select>
 
 </mapper>
+
+

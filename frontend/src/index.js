@@ -4,12 +4,14 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProjectRouter from "./ProjectRouter";
+import HouseInfo from "./houseInfoUpdate/HouseInfo";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <ProjectRouter />
+        <ProjectRouter/>
         {/*<App />*/}
+      {/*<HouseInfo/>*/}
     </React.StrictMode>
 
 );

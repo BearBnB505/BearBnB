@@ -10,7 +10,7 @@ function Main(props) {
     const styles = {
         lodgingList: {
             listStyleType: "none",
-        }
+        },
     };
 
     const [data, setData] = useState([]);
@@ -19,7 +19,7 @@ function Main(props) {
         axios.get('http://localhost:8080/lodgingList')
             .then((req) => {
                 const {data} = req;
-                console.log(data);
+                // console.log(data);
                 setData(data);
             })
             .catch((err) => {
@@ -32,12 +32,12 @@ function Main(props) {
             <MainCategory/>
 
             <div>
-                <ul className={"d-flex justify-content-between"}>
+                <ul className={"ps-0 d-flex justify-content-between"}>
                     {
                         data.map((item) => {
                             return (
                                 <li style={styles.lodgingList}>
-                                    <Link to={`/lodgingDetail/${item.idx}`}>
+                                    <Link to={`/lodgingDetail/${item.idx}`} style={{color: "black"}}>
                                         <MainContents idx={item.idx} data={item} />
                                     </Link>
                                 </li>

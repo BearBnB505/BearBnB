@@ -3,7 +3,8 @@ import {Button, Container} from "react-bootstrap";
 import '../lodgingDetail.css';
 
 
-function HostImg () {
+function HostImg (props) {
+
   return (
     <div>
     <div className={'containerGrid'}>
