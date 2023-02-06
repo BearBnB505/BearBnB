@@ -22,9 +22,6 @@ public class RegLodgingServiceImpl implements RegLodgingService {
 
     @Override
     public LodgingDto insertLodgingTable(LodgingDto lodging) throws Exception{
-//        LodgingDto lodging = new LodgingDto();
-//        LodgingDto lodging = regLodgingMapper.insertLodgingTable();
-
         regLodgingMapper.insertLodgingTable(lodging);
         return lodging;
     }

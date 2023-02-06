@@ -86,7 +86,7 @@ const UploadTest = () => {
         console.log(imgName);
 
         image.map((item, index, oriImage) => {
-            const storageRef = storage.ref("BearBnB/");
+            const storageRef = storage.ref("BearBnB/hostId");
             const imagesRef = storageRef.child(imgName + item.name);
             const uploadTask = imagesRef.put(item);
             uploadTask.on('state_changed', null, null, async () => {

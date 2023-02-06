@@ -4,10 +4,8 @@ import ReactPlayer from 'react-player'
 import {useSelector} from "react-redux";
 
 function LodgingWelcome(){
-    const user = useSelector((state) => state.user.value);
-
-
-
+    const hostIdUrl = useSelector((state) => state.realHostId.value);
+    console.log(hostIdUrl)
     return(
         <div className={"container"}>
             <div className = {"row justify-content-lg-between"} >

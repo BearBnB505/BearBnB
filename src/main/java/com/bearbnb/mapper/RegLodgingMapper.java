@@ -8,6 +8,6 @@ import java.util.List;
 @Mapper
 public interface RegLodgingMapper {
     List<String> lodgingImageUrl() throws Exception;
-    LodgingDto insertLodgingTable(LodgingDto lodging) throws Exception;
+    void insertLodgingTable(LodgingDto lodging) throws Exception;
 
 }

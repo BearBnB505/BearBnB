@@ -17,6 +17,7 @@ function LodgingFinal(){
     const lodgingRealName = useSelector((state) => state.lodgingRealName.value);//언어와 호스트 소개
     const cost = useSelector((state) => state.lodgingCost.value);//언어와 호스트 소개
     const category = useSelector((state) => state.lodgingCategory.value);//언어와 호스트 소개
+    const hostId = useSelector((state)=>state.realHostId.value);
 
 
     // 숙소번호
@@ -63,8 +64,8 @@ function LodgingFinal(){
         },
         font :{
             position : 'absolute',
-            top : "30%",
-            left : "22%"
+            top : "40%",
+            left : "25%"
         },
     }
 
@@ -74,7 +75,7 @@ function LodgingFinal(){
             method: 'post',
             data: {
                 lodgingNum: lodgingNum,
-                certifyImg: '',
+                certifyImg: hostId.idUrl,
                 lodgingName: lodgingRealName.name,
                 introLodging:lodgingName.lodgingIntro,
                 lodgingConcept : concept.concept,
@@ -108,16 +109,15 @@ function LodgingFinal(){
         <div style = {styles.body}>
             <div className={'container'}>
             <div  className={'row'}>
-                <p>숙소이름 : {lodgingRealName.name}</p>
+                {/*<p>숙소이름 : {lodgingRealName.name}</p>*/}
                 <div className={'col-6'} style={styles.font}>
                     {/*<p style={{color: "white"}}> Name : {user.name} </p>*/}
                     <p style={{fontSize : "60px"}}>환영합니다</p>
-                    <p style={{fontSize : '30px'}}>베어비앤비 호스트가 되신 것을 진심으로 환영합니다. 숙소 호스팅을
+                    <p style={{fontSize : '28px'}}>베어비앤비 호스트가 되신 것을 진심으로 환영합니다. 숙소 호스팅을
                         통해 게스트에게 놀라운 경험을 선사하는데 동참해주셔서 감사합니다</p>
                     <p style = {{fontSize : '20px', color : '#D0B8A8'}}>베어비앤비 설립자 일동</p>
                     {/*<img src={userId.idUrl}/>*/}
                 </div>
-
             </div>
             </div>
             <footer>

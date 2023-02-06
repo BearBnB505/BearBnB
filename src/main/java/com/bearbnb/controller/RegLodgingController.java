@@ -22,10 +22,10 @@ public class RegLodgingController {
     RegLodgingService regLodgingService;
 
     @RequestMapping(value = "/insertLodgingTable", method = RequestMethod.POST)
-    public void insertLodgingTable(@RequestBody LodgingDto lodging) throws Exception{
-//        regLodgingService.insertLodgingTable(lodging);
-        System.out.println(lodging);
+    public String insertLodgingTable(@RequestBody LodgingDto lodging) throws Exception{
+        regLodgingService.insertLodgingTable(lodging);
 
+        return "redirect:/";
     }
 
 
