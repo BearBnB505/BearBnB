@@ -33,6 +33,11 @@ const Navbar = () =>{
                                 <Link className={"nav-link"} to="sales">매출관리</Link>
                                 {/*<a className="nav-link" href="#">매출관리</a>*/}
                             </li>
+                            <li className="nav-item">
+                                <Link className={"nav-link"} to="detail">상세페이지</Link>
+
+                            </li>
+
                         </ul>
                     </div>
                 </div>

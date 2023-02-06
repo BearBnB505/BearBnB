@@ -43,6 +43,7 @@ import Table4 from "./components/Table4";
 import Navbar from "./components/Navbar";
 import HouseInfo from "./houseInfoUpdate/HouseInfo";
 import HostInfo from "./hostinfo/HostInfo";
+import DetailTable from "./components/DetailTable";
 
 function ProjectRouter(props) {
     return (
@@ -112,6 +113,7 @@ function ProjectRouter(props) {
                     <Route path={"lodging"} element={<Table2/>}/>
                     <Route path={"report"} element={<Table3/>}/>
                     <Route path={"sales"} element={<Table4/>}/>
+                    <Route path={"detail"} element={<DetailTable/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

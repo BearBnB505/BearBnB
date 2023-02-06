@@ -57,7 +57,10 @@ function Table1() {
                 }
 
                 </tbody>
+
+
             </Table>
+
         </Container>
     );
 }
