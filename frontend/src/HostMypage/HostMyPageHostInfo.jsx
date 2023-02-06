@@ -1,15 +1,37 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Breadcrumb} from "react-bootstrap";
 import { motion } from "framer-motion";
 import Anima from "../Mypage/animaData";
 import MyLanguages from "./HostMembers/MyLanguages";
 import MyIntoduce from "./HostMembers/MyIntoduce";
+import axios from "axios";
 
 function HostMyPageHostInfo(props) {
     const [onClickLanguage, setOnClickLanguage] = useState(false);
     const [onClickIntroduce, setOnClickIntroduce] = useState(false);
 
+    const [language, setLanguage] = useState('');
+    const [introHost, setIntroHost] = useState('');
+
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        axios.get('http://localhost:8080/AllLodgingList/')
+
+          .then((req) => {
+              const {data} = req;
+              setData(data);
+              setLanguage(data[0].language)
+              setIntroHost(data[0].introHost)
+          })
+          .catch((err) => {
+              console.log("통신 오류");
+          })
+    }, []);
+
+
+
     return (
+
         <motion.div
             variants={Anima}
             initial="hidden"
@@ -29,28 +51,28 @@ function HostMyPageHostInfo(props) {
                     <div className={"row d-flex justify-content-between"}>
                         <div className={"col-sm-9"}>
                             <p className={"fw-bold"}>사용가능 언어</p>
-                            {/*<p className={"fw-lighter"}>주연 김</p>*/}
+                            <p className={"fw-lighter"}>{language}</p>
                         </div>
                         <div className={"col-sm-3"}>
                             <button className={"btn btn-link float-end"} onClick={() => {
                                 setOnClickLanguage(!onClickLanguage);
                             }}>{onClickLanguage ? "취소" : "수정"}</button>
                         </div>
-                        {onClickLanguage && <MyLanguages/>}
+                        {onClickLanguage && <MyLanguages language={language} setLanguage={setLanguage}/>}
                     </div>
                     <hr/>
                     {/*호스트 본인 소개*/}
                     <div className={"row d-flex justify-content-between"}>
                         <div className={"col-sm-9"}>
                             <p className={"fw-bold"}>본인 소개</p>
-                            {/*<p className={"fw-lighter"}>주연 김</p>*/}
+                            <p className={"fw-lighter"}>{introHost}</p>
                         </div>
                         <div className={"col-sm-3"}>
                             <button className={"btn btn-link float-end"} onClick={() => {
                                 setOnClickIntroduce(!onClickIntroduce);
                             }}>{onClickIntroduce ? "취소" : "수정"}</button>
                         </div>
-                        {onClickIntroduce && <MyIntoduce/>}
+                        {onClickIntroduce && <MyIntoduce introHost={introHost} setIntroHost={setIntroHost}/>}
                     </div>
                     <hr/>
 
