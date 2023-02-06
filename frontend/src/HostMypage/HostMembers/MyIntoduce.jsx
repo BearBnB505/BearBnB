@@ -1,13 +1,27 @@
 import React, {useState} from "react";
 import Form from 'react-bootstrap/Form';
 import {FloatingLabel, InputGroup} from "react-bootstrap";
+import axios from "axios";
 
-const MyIntroduce = () => {
+const MyIntroduce = (props) => {
     const [languages, setLanguages] = useState("");
 
     const onChangeLanguages = (e) => {
-        setLanguages(e.target.value);
+        props.setIntroHost(e.target.value);
     }
+
+  const clickSave = () => {
+
+    axios.put('http://localhost:8080/UpdateIntroHost',null,{params: {introHost: props.introHost}})
+
+      .then((response) => {
+        console.log(response);
+        console.log(props.introHost);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
     return (
         <div className={"mb-3"}>
@@ -24,7 +38,7 @@ const MyIntroduce = () => {
 
             </div>
             <div className={"mt-2"}>
-                <button className={"btn btn-dark btn-lg"}>저장</button>
+                <button className={"btn btn-dark btn-lg"} onClick={clickSave}>저장</button>
             </div>
         </div>
     )

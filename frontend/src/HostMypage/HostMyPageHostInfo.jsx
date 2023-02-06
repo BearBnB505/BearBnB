@@ -72,7 +72,7 @@ function HostMyPageHostInfo(props) {
                                 setOnClickIntroduce(!onClickIntroduce);
                             }}>{onClickIntroduce ? "취소" : "수정"}</button>
                         </div>
-                        {onClickIntroduce && <MyIntoduce introHost={introHost} setIntroHost={setIntroHost}/>}
+                        {onClickIntroduce && <MyIntoduce introHost={introHost} setIntroHost = {setIntroHost}/>}
                     </div>
                     <hr/>
 

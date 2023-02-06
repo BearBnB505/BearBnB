@@ -18,4 +18,8 @@ public interface HostUpdateService {
     void UpdateComfortsList(List<ComfortsDto> ComfortBox);
 
     void UpdateCapacity(LodgingDto lodging);
+
+    void UpdateLanguage(LodgingDto lodging);
+
+    void UpdateIntroHost(LodgingDto lodging);
 }

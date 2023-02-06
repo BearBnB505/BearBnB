@@ -36,4 +36,7 @@ public interface LodgingMapper {
 
     void CapacityUpdate(LodgingDto lodging);
 
+    void LanguageUpdate(LodgingDto lodging);
+
+    void IntroHostUpdate(LodgingDto lodging);
 }

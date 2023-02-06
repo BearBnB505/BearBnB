@@ -25,6 +25,17 @@ public class HostUpdateServiceImpl implements HostUpdateService{
         lodgingMapper.hostLodgingUpdate(lodging);
     }
 
+    @Override
+    public void UpdateLanguage(LodgingDto lodging) {
+        lodgingMapper.LanguageUpdate(lodging);
+    }
+
+    @Override
+    public void UpdateIntroHost(LodgingDto lodging) {
+        lodgingMapper.IntroHostUpdate(lodging);
+
+    }
+
     public void UpdateLodgingIntro(LodgingDto lodging) {
         lodgingMapper.LodgingIntroUpdate(lodging);
     }
@@ -53,6 +64,8 @@ public class HostUpdateServiceImpl implements HostUpdateService{
     public void UpdateCapacity(LodgingDto lodging) {
         lodgingMapper.CapacityUpdate(lodging);
     }
+
+
 
 
 }
