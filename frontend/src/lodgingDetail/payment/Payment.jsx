@@ -47,8 +47,10 @@ function Payment(props) {
         }
     }
 
-    let [chooseDate, setChooseDate] = useState(props.chooseDate);
-    const [nightCount, setNightCount] = useState(props.nightCount);
+    // let [chooseDate, setChooseDate] = useState(props.chooseDate);
+    // const [nightCount, setNightCount] = useState(props.nightCount);
+    let [chooseDate, setChooseDate] = useState([null, null]);
+    const [nightCount, setNightCount] = useState(0);
 
     let startDate = moment(chooseDate[0]).format('Y. M. D');
     let endDate = moment(chooseDate[1]).format('Y. M. D');
@@ -57,6 +59,8 @@ function Payment(props) {
     useEffect(() => {
         setNightCount(moment.duration(moment(chooseDate[1]).diff(moment(chooseDate[0]))).asDays());
     }, chooseDate);
+
+    console.log(nightCount);
 
     const total = props.cost * nightCount;
     // console.log(total);
@@ -126,28 +130,35 @@ function Payment(props) {
                     </div>
 
 
-                    <Button className={'w-100 py-2 mb-2'} variant="primary">예약하기</Button>
+                    {/*{`${nightCount} === NaN` ?*/}
+                    {/*    <Button className={'w-100 py-2 mb-2'} variant="primary">예약 가능 여부 보기</Button>*/}
+                    {/*    : <>*/}
+                        <Button className={'w-100 py-2 mb-2'} variant="primary">예약하기</Button>
 
-                    <p className={'text-center'} style={{fontSize:13}}>예약 확정 전에는 요금이 청구되지 않습니다.</p>
+                        <p className={'text-center'} style={{fontSize:13}}>예약 확정 전에는 요금이 청구되지 않습니다.</p>
 
-                    <div className={'row'}>
-                        <div className={'col-7'}>
-                            <span>&#92;{props.cost} x {nightCount}박</span>
+                    <div>
+                        <div className={'row'}>
+                            <div className={'col-7'}>
+                                <span>&#92;{props.cost} x {nightCount}박</span>
+                            </div>
+                            <div className={'col text-end'}>
+                                <span>&#92;{total}</span>
+                            </div>
                         </div>
-                        <div className={'col text-end'}>
-                            <span>&#92;{total}</span>
+                        <hr className={'my-4'}/>
+
+                        <div className={'row fw-bold'}>
+                            <div className={'col'}>
+                                <p>총 합계</p>
+                            </div>
+                            <div className={'col text-end'}>
+                                <p>&#92;{total}</p>
+                            </div>
                         </div>
                     </div>
-                    <hr className={'my-4'}/>
-
-                    <div className={'row fw-bold'}>
-                        <div className={'col'}>
-                            <p>총 합계</p>
-                        </div>
-                        <div className={'col text-end'}>
-                            <p>&#92;{total}</p>
-                        </div>
-                    </div>
+                    {/*    </>*/}
+                    {/*}*/}
                 </div>
             </div>
 
