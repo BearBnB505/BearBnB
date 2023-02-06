@@ -1,9 +1,25 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Table from 'react-bootstrap/Table';
 import {Container} from "react-bootstrap";
 import Navbar from "./Navbar";
+import axios from "axios";
 
-function Table1() {
+function Table2() {
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/adminLodgingList')
+            .then((req) => {
+                const {data} = req;
+                console.log(data);
+                setData(data);
+
+            })
+            .catch((err) => {
+                console.log("통신 오류");
+            })
+    }, []);
 
     return (
         <Container className="panel" style={styles.container}>
@@ -28,45 +44,28 @@ function Table1() {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>a24553ee</td>
-                    <td>서울숲집</td>
-                    <td>bbb</td>
-                    <td>010-111-4444</td>
-                    <td>nara@gmail.com</td>
-                    <td>2022-11-02</td>
-                    <td>3.1</td>
-                    <td>7</td>
-                    <td>확인하기</td>
-                    <td>영업중</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>a24553ee</td>
-                    <td>서울숲집</td>
-                    <td>bbb</td>
-                    <td>010-111-4444</td>
-                    <td>nara@gmail.com</td>
-                    <td>2022-11-02</td>
-                    <td>4.8</td>
-                    <td>1</td>
-                    <td>확인하기</td>
-                    <td>승인대기</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>a24553ee</td>
-                    <td>서울숲집</td>
-                    <td>bbb</td>
-                    <td>010-111-4444</td>
-                    <td>nara@gmail.com</td>
-                    <td>2022-11-02</td>
-                    <td>3.9</td>
-                    <td>3</td>
-                    <td>확인하기</td>
-                    <td>영업정지</td>
-                </tr>
+                {
+                    data.map((item,index) => {
+                        return (
+                            <tr>
+                                {/*<td>{index + 1}</td>*/}
+                                <td>{item.idx}</td>
+                                <td>{item.lodgingNum}</td>
+                                <td>{item.lodgingName}</td>
+                                <td>{item.userId}</td>
+                                <td>{item.tel}</td>
+                                <td>{'이메일'}</td>
+                                <td>{'신청날짜'}</td>
+                                <td>{'별점'}</td>
+                                <td>{'신고건수'}</td>
+                                <td>{'확인하기'}</td>
+                                <td>{'영업중'}</td>
+                            </tr>
+                        )
+                    })
+                }
+
+
 
                 </tbody>
             </Table>
@@ -76,7 +75,7 @@ function Table1() {
 
 }
 
-export default Table1;
+export default Table2;
 
 const styles ={
     container:{

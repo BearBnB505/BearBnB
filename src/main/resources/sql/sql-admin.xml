@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bearbnb.mapper.AdminMapper">
+
+    <!--  맴버 리스트 가져오기  -->
+    <select id="memberList" resultType="com.bearbnb.dto.MembersDto">
+        <![CDATA[
+        SELECT * FROM members
+        ORDER BY idx DESC
+        ]]>
+    </select>
+
+<!--    숙소 리스트 가져오기-->
+    <select id="lodgingList" resultType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+            SELECT * FROM lodging
+            ORDER BY idx DESC
+            ]]>
+    </select>
+
+<!--    신고관리 리스트 가져오기-->
+    <select id="complainList" resultType="com.bearbnb.dto.ComplainDto">
+        <![CDATA[
+        SELECT * FROM complain
+        ORDER BY idx DESC
+        ]]>
+    </select>
+
+<!--    매출관리 리스트 가져오기-->
+    <select id="bookingList" resultType="com.bearbnb.dto.BookingDto">
+        <![CDATA[
+        SELECT * FROM booking
+        ORDER BY idx DESC
+        ]]>
+    </select>
+
+</mapper>

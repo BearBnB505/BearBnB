@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class MembersDto {
+    private int idx;
     private String userId;
     private String pwd;
     private String userCode;  // 사용자 권한(user, host, admin)

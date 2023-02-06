@@ -1,9 +1,26 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Table from 'react-bootstrap/Table';
 import {Container} from "react-bootstrap";
 import Navbar from "./Navbar";
+import axios from "axios";
 
-function Table1() {
+function Table4() {
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/adminBookingList')
+            .then((req) => {
+                const {data} = req;
+                console.log(data);
+                setData(data);
+                // console.log(data[0].name)
+            })
+            .catch((err) => {
+                console.log("통신 오류");
+            })
+    }, []);
+
 
     return (
         <Container className="panel" style={styles.container}>
@@ -14,72 +31,26 @@ function Table1() {
             <Table className={"table table-striped table-hover table-bordered"} >
                 <thead>
                 <tr>
+                    <th>번호</th>
                     <th>년도</th>
-                    <th>월</th>
+                    <th>결제방법</th>
                     <th>수익</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>2022</td>
-                    <td>1월</td>
-                    <td>10,000</td>
-                </tr>
-                <tr>
-                    <td>2022</td>
-                    <td>2월</td>
-                    <td>10,000</td>
-                </tr>
-                <tr>
-                    <td>2022</td>
-                    <td>3월</td>
-                    <td>10,000</td>
-                </tr>
-                <tr>
-                    <td>2022</td>
-                    <td>4월</td>
-                    <td>10,000</td>
-                </tr>
-                <tr>
-                    <td>2022</td>
-                    <td>5월</td>
-                    <td>10,000</td>
-                </tr>
-                <tr>
-                    <td>2022</td>
-                    <td>6월</td>
-                    <td>10,000</td>
-                </tr>
-                <tr>
-                    <td>2022</td>
-                    <td>7월</td>
-                    <td>10,000</td>
-                </tr>
-                <tr>
-                    <td>2022</td>
-                    <td>8월</td>
-                    <td>10,000</td>
-                </tr>
-                <tr>
-                    <td>2022</td>
-                    <td>9월</td>
-                    <td>10,000</td>
-                </tr>
-                <tr>
-                    <td>2022</td>
-                    <td>10월</td>
-                    <td>10,000</td>
-                </tr>
-                <tr>
-                    <td>2022</td>
-                    <td>11월</td>
-                    <td>10,000</td>
-                </tr>
-                <tr>
-                    <td>2022</td>
-                    <td>12월</td>
-                    <td>10,000</td>
-                </tr>
+
+                {
+                    data.map((item,index) => {
+                        return (
+                            <tr>
+                                <td>{item.idx}</td>
+                                <td>{item.bookDt}</td>
+                                <td>{item.payType}</td>
+                                <td>{item.payCost}</td>
+                            </tr>
+                        )
+                    })
+                }
 
                 </tbody>
             </Table>
@@ -88,7 +59,7 @@ function Table1() {
 
 }
 
-export default Table1;
+export default Table4;
 
 const styles ={
     container:{
