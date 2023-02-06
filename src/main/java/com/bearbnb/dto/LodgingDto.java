@@ -14,6 +14,7 @@ public class LodgingDto {
     private String addr;
     private double latitude;
     private double longitude;
+    private String language;
     private String introHost;
     private String introLodging;
     private int cost;

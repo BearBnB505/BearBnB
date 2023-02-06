@@ -1,5 +1,6 @@
 package com.bearbnb.service;
 
+import com.bearbnb.dto.LodgingDto;
 import com.bearbnb.mapper.RegLodgingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,14 @@ public class RegLodgingServiceImpl implements RegLodgingService {
         List<String> list = null;
         list = regLodgingMapper.lodgingImageUrl();
         return list;
+    }
+
+    @Override
+    public LodgingDto insertLodgingTable(LodgingDto lodging) throws Exception{
+//        LodgingDto lodging = new LodgingDto();
+//        LodgingDto lodging = regLodgingMapper.insertLodgingTable();
+
+        regLodgingMapper.insertLodgingTable(lodging);
+        return lodging;
     }
 }

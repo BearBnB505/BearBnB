@@ -2,6 +2,7 @@ import React, {useRef} from "react";
 import {Link} from "react-router-dom";
 import "../dropzone/Dropzone"
 import UploadTest from "../firebase/UploadTest";
+import {useSelector} from "react-redux";
 
 function LodgingImg(){
 
@@ -9,7 +10,9 @@ function LodgingImg(){
     const onCickImageUpload = () => {
         imageInput.current.click();
     };
-
+    const category = useSelector((state) => state.lodgingCategory.value);
+    console.log("넘어온 category");
+    console.log(category);
     const styles = {
         font : {
             fontSize : "27px",

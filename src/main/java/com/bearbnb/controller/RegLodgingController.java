@@ -1,10 +1,9 @@
 package com.bearbnb.controller;
 
-import com.bearbnb.dto.ComfortsDto;
-import com.bearbnb.dto.MemberRequestDto;
-import com.bearbnb.dto.PhotoDto;
-import com.bearbnb.dto.TokenDto;
+import com.bearbnb.dto.*;
+import com.bearbnb.service.RegLodgingService;
 import org.json.JSONArray;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +18,16 @@ import java.util.Map;
 @RestController
 
 public class RegLodgingController {
+    @Autowired
+    RegLodgingService regLodgingService;
+
+    @RequestMapping(value = "/insertLodgingTable", method = RequestMethod.POST)
+    public void insertLodgingTable(@RequestBody LodgingDto lodging) throws Exception{
+        regLodgingService.insertLodgingTable(lodging);
+        System.out.println(lodging);
+
+    }
+
 
 
 //    @GetMapping("/lodgingImageUrl")
@@ -80,5 +89,7 @@ public class RegLodgingController {
 //
 //        return "bye";
 //    }
+
+
 
 }

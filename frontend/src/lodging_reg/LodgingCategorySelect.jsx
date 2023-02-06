@@ -3,6 +3,9 @@ import React, {useState} from 'react';
 import {Pressable, SafeAreaView, StyleSheet, Text} from 'react-native';
 import {Link} from "react-router-dom";
 import axios from "axios";
+import {lodgingNames} from "./Reducers/LodgingNameReducer";
+import {category} from "./Reducers/LodgingCategoryReducer";
+import {useDispatch} from "react-redux";
 
 const LoadingConcept = () => {
 
@@ -31,6 +34,7 @@ const LoadingConcept = () => {
 
         }
     }
+    const dispatch = useDispatch();
 
     const [isSelect, setSelect] = useState([false, false,false, false,false, false,false, false,false, false,false, false,false,false,false,false,false,
         false, false,false, false,false, false,false, false,false, false,false, false,false,false,false,false,false,]);
@@ -408,7 +412,8 @@ const LoadingConcept = () => {
 
                 <footer style={styles.footer} className={"mt-5"}>
                     <Link to ={"/lodgingBedSelect"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                    <Link to = {"/lodgingImg"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>
+                    <Link to = {"/lodgingImg"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={()=>{
+                        dispatch(category({category:categoryArray}))}}>다음</button></Link>
                 </footer>
             </div>
         </div>

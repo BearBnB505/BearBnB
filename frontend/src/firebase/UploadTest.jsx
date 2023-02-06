@@ -99,7 +99,7 @@ const UploadTest = () => {
                 //     setImageUrl(imageUrls);
                 // }
 
-                setImageUrl(imageUrls)
+                setImageUrl(imageUrls)//이 데이터를 db에 넣어야 한다.
             });
         });
 

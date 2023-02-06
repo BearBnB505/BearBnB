@@ -8,4 +8,14 @@
     values ('20202020', #{lodgingImageUrl})
 ]]>
     </insert>
+
+    <insert id="insertLodgingTable">
+        <![CDATA[
+            INSERT INTO lodging
+           (lodging_num, user_id, certify_img, lodging_name,lodging_concept, language, intro_host,intro_lodging
+           ,cost, people_num,bedroom_num,bed_num,bed_size,bathroom_num,reg_state,create_dt,deleted_yn)
+        values (#{lodgingNum},'테스트즁','아직',#{lodgingName},#{lodgingConcept},#{language},#{introHost},#{introLodging},
+                #{cost},#{peopleNum},#{bedroomNum},#{bedNum},#{bedSize},#{bathroomNum},'숙소승인전 ',NOW(),'N')
+        ]]>
+    </insert>
 </mapper>
