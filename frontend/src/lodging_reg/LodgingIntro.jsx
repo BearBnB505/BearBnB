@@ -4,6 +4,7 @@ import * as PropTypes from "prop-types";
 import {useDispatch, useSelector} from "react-redux";
 import {lodgingNames} from "./Reducers/LodgingNameReducer";
 
+
 function Input(props) {
     return null;
 }
@@ -17,7 +18,7 @@ function LodgingIntro(){
 
     const [inputCount, setInputCount] = useState(0);
     const [intro, setIntro] = useState('');
-
+    // const lodgingName = useSelector((state) => state.lodgingName.value);
     const onInputHandler = (e) => {
         setInputCount(e.target.value.length);
         setIntro(e.target.value);
@@ -37,7 +38,7 @@ function LodgingIntro(){
         <div className={"container"}>
             <div className={"row"}>
                 <div className={'col-7 mx-auto p-5'} style={{marginTop : "200px"}}>
-                    {/*<p>숙소이름 : {lodgingName.lodgingName}</p>*/}
+                    {/*<p>숙소이름 : {lodgingName.name}</p>*/}
                     <p style={{fontSize : "35px", fontWeight:"bold"}}>숙소 설명 작성하기</p>
                     <p style={{fontSize : "20px", color:"gray"}}>숙소의 특징과 장점을 알려주세요.</p>
                     <textarea className={'col-12 mx-auto p-3'} style={{height:"300px", borderRadius:"10px", fontSize :"20px"}} onChange={onInputHandler} maxLength="3000" />

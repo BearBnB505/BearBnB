@@ -102,7 +102,7 @@ function LodgingHostInfo(){
         return (
 
             <div className={"container"}>
-                {/*<p>숙소설명 : {lodgingIntro.lodgingIntro}</p>*/}
+                <p>숙소설명 : {lodgingIntro.lodgingIntro}</p>
                 <Pressable
                     style={[
                         {backgroundColor: selectLanguage[id] ? 'pink' : 'white'},

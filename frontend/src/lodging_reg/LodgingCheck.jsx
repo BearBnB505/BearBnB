@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 
 function LodgingCheck(){
     const cost = useSelector((state) => state.lodgingCost.value);
-    const name = useSelector((state) => state.lodgingName.value);
+    const name = useSelector((state) => state.lodgingRealName.value);
 
     const styles = {
         box : {
@@ -30,7 +30,7 @@ function LodgingCheck(){
                             <img src='/concept/house.jpg' style={{width :"300px"}}className={"ms-4"}/>
                             <div className={'row justify-content-evenly mt-3'}>
                                 <div className={'col-4 ms-3'}>
-                                    <p>{name.lodgingName}</p>
+                                    <p>{name.name}</p>
                                     <p>{cost.cost}</p>
                                 </div>
                                 <div className={'col-4'} >

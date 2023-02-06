@@ -23,7 +23,7 @@ public class RegLodgingController {
 
     @RequestMapping(value = "/insertLodgingTable", method = RequestMethod.POST)
     public void insertLodgingTable(@RequestBody LodgingDto lodging) throws Exception{
-        regLodgingService.insertLodgingTable(lodging);
+//        regLodgingService.insertLodgingTable(lodging);
         System.out.println(lodging);
 
     }

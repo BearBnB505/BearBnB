@@ -14,6 +14,7 @@ function LodgingFinal(){
     const basicInfo = useSelector((state) => state.lodgingBasicInfo.value);//언어와 호스트 소개
     const bedSelect = useSelector((state) => state.lodgingBedSelect.value);//언어와 호스트 소개
     const lodgingName = useSelector((state) => state.lodgingName.value);//언어와 호스트 소개
+    const lodgingRealName = useSelector((state) => state.lodgingRealName.value);//언어와 호스트 소개
     const cost = useSelector((state) => state.lodgingCost.value);//언어와 호스트 소개
     const category = useSelector((state) => state.lodgingCategory.value);//언어와 호스트 소개
 
@@ -74,7 +75,7 @@ function LodgingFinal(){
             data: {
                 lodgingNum: lodgingNum,
                 certifyImg: '',
-                lodgingName: lodgingName.lodgingName,
+                lodgingName: lodgingRealName.name,
                 introLodging:lodgingName.lodgingIntro,
                 lodgingConcept : concept.concept,
                 language : hostInfo.language,
@@ -95,12 +96,19 @@ function LodgingFinal(){
             });
     }
 
+        console.log('숙소이름')
+        console.log(lodgingRealName.name)
+
+
+        console.log('숙소설명')
+        console.log(lodgingName.lodgingIntro)
 
 
     return(
         <div style = {styles.body}>
             <div className={'container'}>
             <div  className={'row'}>
+                <p>숙소이름 : {lodgingRealName.name}</p>
                 <div className={'col-6'} style={styles.font}>
                     {/*<p style={{color: "white"}}> Name : {user.name} </p>*/}
                     <p style={{fontSize : "60px"}}>환영합니다</p>
