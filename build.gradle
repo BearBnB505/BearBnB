@@ -38,6 +38,16 @@ dependencies {
     implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
+
+
+//    jsonLibrary
+    // https://mvnrepository.com/artifact/net.sf.json-lib/json-lib
+//    implementation 'net.sf.json-lib:json-lib:2.4'
+    implementation 'org.json:json:20200518'
+    // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+
+
 }
 
 tasks.named('test') {

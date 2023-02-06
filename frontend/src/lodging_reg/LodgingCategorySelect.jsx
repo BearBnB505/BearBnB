@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import {Pressable, SafeAreaView, StyleSheet, Text} from 'react-native';
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 const LoadingConcept = () => {
 
@@ -37,144 +38,180 @@ const LoadingConcept = () => {
         {
             name : '무선인터넷',
             src : `https://cdn-icons-png.flaticon.com/128/159/159599.png`,
+            comfortId : 'ED101'
         },
         {
             name : 'TV',
-            src : 'https://cdn-icons-png.flaticon.com/128/3917/3917178.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/3917/3917178.png',
+            comfortId : 'ED102'
         },
         {
             name : '에어컨',
-            src : 'https://cdn-icons-png.flaticon.com/128/5557/5557928.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/5557/5557928.png',
+            comfortId : 'CD101'
+
         },
         {
             name : '난방',
-            src : 'https://cdn-icons-png.flaticon.com/128/637/637213.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/637/637213.png',
+            comfortId : 'CD102'
         },
         {
             name : '건물 내 무료주차',
-            src : 'https://cdn-icons-png.flaticon.com/128/6955/6955528.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/6955/6955528.png',
+            comfortId : 'PD101'
         },
         {
             name : '건물 내 유료주차',
-            src : 'https://cdn-icons-png.flaticon.com/128/6955/6955528.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/6955/6955528.png',
+            comfortId : 'PD102'
         },
         {
             name : '보안카메라',
-            src : 'https://cdn-icons-png.flaticon.com/128/1017/1017160.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/1017/1017160.png',
+            comfortId : 'SD101'
         },
         {
             name : '화재경보기',
-            src :'https://cdn-icons-png.flaticon.com/128/7857/7857330.png'
+            src :'https://cdn-icons-png.flaticon.com/128/7857/7857330.png',
+            comfortId : 'SD102'
         },
         {
             name : '일산화탄소경보기',
-            src : 'https://cdn-icons-png.flaticon.com/128/7857/7857351.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/7857/7857351.png',
+            comfortId : 'SD103'
         },
         {
             name : '소화기',
             src : 'https://cdn-icons-png.flaticon.com/128/4540/4540000.png',
+            comfortId : 'SD104'
         },
         {
             name: '구급상자',
-            src : 'https://cdn-icons-png.flaticon.com/128/862/862032.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/862/862032.png',
+            comfortId : 'SD105'
         },
 
         ///////////////////////////////////////////////////////////////
 
         {
             name : '욕조',
-            src : 'https://cdn-icons-png.flaticon.com/128/2963/2963979.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/2963/2963979.png',
+            comfortId : 'BD101'
         },
         {
             name: '샤워기',
-            src : 'https://cdn-icons-png.flaticon.com/128/5085/5085064.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/5085/5085064.png',
+            comfortId : 'BD102'
         },
         {
             name : '수건',
-            src : 'https://cdn-icons-png.flaticon.com/128/8072/8072328.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/8072/8072328.png',
+            comfortId : 'BD103'
         },
         {
             name : '비누',
             src : `https://cdn-icons-png.flaticon.com/128/3014/3014680.png`,
+            comfortId : 'BD104'
         },
         {
             name : '화장지',
-            src : 'https://cdn-icons-png.flaticon.com/128/3130/3130235.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/3130/3130235.png',
+            comfortId : 'BD105'
         },
         {
             name : '헤어드라이어',
-            src : 'https://cdn-icons-png.flaticon.com/128/2193/2193739.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/2193/2193739.png',
+            comfortId : 'BD106'
         },
         {
             name : '샴푸',
-            src : 'https://cdn-icons-png.flaticon.com/128/5163/5163413.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/5163/5163413.png',
+            comfortId : 'BD107'
         },
         {
             name : '세탁기',
-            src : 'https://cdn-icons-png.flaticon.com/128/114/114564.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/114/114564.png',
+            comfortId : 'BD108'
         },
         {
             name : '건조기',
-            src : 'https://cdn-icons-png.flaticon.com/128/3929/3929105.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/3929/3929105.png',
+            comfortId : 'BD109'
         },
         {
             name : '청소용품',
-            src : 'https://cdn-icons-png.flaticon.com/128/995/995053.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/995/995053.png',
+            comfortId : 'BD110'
         },
         {
             name : '침대',
-            src :'https://cdn-icons-png.flaticon.com/128/3159/3159436.png'
+            src :'https://cdn-icons-png.flaticon.com/128/3159/3159436.png',
+            comfortId : 'BD201'
         },
         {
             name : '침대시트',
-            src : 'https://cdn-icons-png.flaticon.com/128/2963/2963750.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/2963/2963750.png',
+            comfortId : 'BD202'
         },
         {
             name : '침구',
             src : 'https://cdn-icons-png.flaticon.com/128/9085/9085403.png',
+            comfortId : 'BD203'
         },
         {
             name: '냉장고',
-            src : 'https://cdn-icons-png.flaticon.com/128/395/395598.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/395/395598.png',
+            comfortId : 'KD101'
         },
         {
             name : '전자레인지',
-            src : 'https://cdn-icons-png.flaticon.com/128/2333/2333382.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/2333/2333382.png',
+            comfortId : 'KD102'
         },
         {
             name: '가스레인지인덕션',
-            src : 'https://cdn-icons-png.flaticon.com/128/1041/1041743.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/1041/1041743.png',
+            comfortId : 'KD103'
         },
         {
             name : '식기류',
-            src : 'https://cdn-icons-png.flaticon.com/128/3959/3959463.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/3959/3959463.png',
+            comfortId : 'KD104'
         },
         {
             name : '장기숙박가능',
-            src : 'https://cdn-icons-png.flaticon.com/128/3917/3917292.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/3917/3917292.png',
+            comfortId : 'SD201'
         },
         {
             name : '반려동물입실가능',
             src : 'https://cdn-icons-png.flaticon.com/128/5068/5068845.png',
+            comfortId : 'SD202'
         },
         {
             name: '게스트전용출입문',
-            src : 'https://cdn-icons-png.flaticon.com/128/9236/9236795.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/9236/9236795.png',
+            comfortId : 'SD203'
         },
         {
             name : '바베큐그릴',
-            src : 'https://cdn-icons-png.flaticon.com/128/2335/2335526.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/2335/2335526.png',
+            comfortId : 'SD204'
         },
         {
             name: '수영장',
-            src : 'https://cdn-icons-png.flaticon.com/128/2520/2520964.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/2520/2520964.png',
+            comfortId : 'SD205'
         },
         {
             name : '조식',
-            src : 'https://cdn-icons-png.flaticon.com/128/4872/4872787.png'
+            src : 'https://cdn-icons-png.flaticon.com/128/4872/4872787.png',
+            comfortId : 'SD206'
         },
     ]
 
+    const db =[];
     const getButton = (id) => {
         return (
             <div className={"container"}>
@@ -208,13 +245,57 @@ const LoadingConcept = () => {
         );
     };
 
-    console.log(isSelect[0]);
+    // const categoryArray= {comfortId:'', usableYn:''};
+    const categoryArray = [];
+    const arr = imgSrc.map((item, index) => {
+        // <Button style={styles.btn} disabledStyle={styles.btnD} disabled={item.disabled} onPress={() => btn(item, index)} />
+
+        // 선택 여부에 따라 배열에 Y 혹은 N을 입력한다. {comfortId:'', deletedYn:''} 형태이다.
+        if(isSelect[index]===true){
+            // categoryArray.push(imgSrc[index].comfortId)
+            // categoryArray.push('Y')
+            categoryArray.push({comfortId: imgSrc[index].comfortId, deletedYn:'Y'})
+
+        } else if(isSelect[index]===false){
+            // categoryArray.push(imgSrc[index].comfortId)
+            // categoryArray.push('N')
+            categoryArray.push({comfortId: imgSrc[index].comfortId, deletedYn:'N'})
+        }
+    })
+    console.log('categoryArray')
+    console.log(categoryArray)
+
+    console.log("categoryArray.comfortId");
+    console.log(categoryArray[0].comfortId);
+
+    const dbTest = () =>{
+
+        const url='http://localhost:8080/lodgingCategorySelectInsert';
+        const datas=categoryArray
+        axios
+            .post(url,  datas, {
+                headers: {
+                    "Content-Type": `application/json`,
+                },
+            })
+            .then((res) => {
+                console.log(res);
+                console.log('데이터 이동 성공')
+            }).catch(err=>{
+                console.log(err)
+        });
+
+    }
+
 
     return (
         <div className={"container"}>
             <div className={"row"}>
                 <div style={styles.font} className={"p-3"}>
                     <h3 className={"fw-bold"} style={{fontSize :"35px"}}>숙소 편의시설 정보를 추가하세요</h3>
+                    <button onClick={dbTest}>
+                        db테스트
+                    </button>
                     <p className={"fs-5 mt-4"} style={{color:"gray"}}>여기에 추가하려는 편의시설이 보이지 않더라도 걱정하지 마세요! 숙소를 등록한 후에 편의시설을 추가할 수 있습니다.</p>
                 </div>
                 <div className={"row"}>
@@ -324,6 +405,7 @@ const LoadingConcept = () => {
                         {getButton(33)}
                     </div>
                 </div>
+
                 <footer style={styles.footer} className={"mt-5"}>
                     <Link to ={"/lodgingBedSelect"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
                     <Link to = {"/lodgingImg"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>
@@ -333,15 +415,5 @@ const LoadingConcept = () => {
     );
 };
 
-// const styles = StyleSheet.create({
-//
-//     img :{
-//         width : "10px",
-//         display: "block",
-//         margin :"auto",
-//         textAlign : 'center'
-//
-//     }
-// });
 
 export default LoadingConcept;
