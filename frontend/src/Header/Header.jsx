@@ -14,9 +14,10 @@ import * as AuthenticationService from "../Auth/AuthenticationService"
 
 function Header(props) {
 
-    const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
+    // const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
 
-    console.log(isUserLoggedIn);
+    // console.log(isUserLoggedIn);
+
     return (
         <div className={"border-bottom pb-2"} id={"div-header"}>
             <nav className={"navbar navbar-expand-sm navbar-white bg-white mt-1 fixed"} id={"header_nav"}>
@@ -34,8 +35,9 @@ function Header(props) {
                             </DropdownToggle>
 
                             <DropdownMenu align={"end"}>
-                                {!isUserLoggedIn && <Login />}
-                                {isUserLoggedIn && <DropdownItem href={"/"} onClick={AuthenticationService.logout}>로그아웃</DropdownItem>}
+                                {/*{!isUserLoggedIn && <Login />}*/}
+                                {/*{isUserLoggedIn && <DropdownItem href={"/"} onClick={AuthenticationService.logout}>로그아웃</DropdownItem>}*/}
+                                <Login/>
                                 <Join />
                                 <DropdownItem href={"/message"}>
                                     <span>메세지알림</span>

@@ -9,18 +9,18 @@ import DropdownItem from "react-bootstrap/DropdownItem";
 
 import * as AuthenticationService from "../Auth/AuthenticationService"
 
-// import {useNavigate} from "react-router";
-// import {useDispatch} from "react-redux";
-//
-// import {loginUser} from "../Api/Users";
-// import {setRefreshToken} from "../Storage/Cookie";
-// import {SET_TOKEN} from "../Store/Auth";
+import {useNavigate} from "react-router";
+import {useDispatch} from "react-redux";
+
+import {loginUser} from "../Api/Users";
+import {setRefreshToken} from "../Storage/Cookie";
+import {SET_TOKEN} from "../Store/Auth";
 
 function Login() {
     const [show, setShow] = useState(false);
 
-    // const navigate = useNavigate();
-    // const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [userId, setUserId] = useState();
     const [userPwd, setUserPwd] = useState();
@@ -33,36 +33,36 @@ function Login() {
         setUserPwd(e.target.value);
     }
 
-    const loginClicked = () => {
-        // if (userId === 'tester2' && userPwd === '1111') {
-        //     console.log('로그인 성공');
-        // }
+    // const loginClicked = () => {
+    //     // if (userId === 'tester2' && userPwd === '1111') {
+    //     //     console.log('로그인 성공');
+    //     // }
+    //
+    //     // AuthenticationService
+    //     //     .executeJwtAuthenticationService(userId, userPwd)
+    //     //     .then((response) => {
+    //     //         AuthenticationService.registerSuccessfulLoginForJwt(userId, response.data.token);
+    //     //         setShow(false);
+    //     //     })
+    //     //     .catch(() => {
+    //     //         console.log('로그인 실패');
+    //     //     })
+    // }
 
-        AuthenticationService
-            .executeJwtAuthenticationService(userId, userPwd)
-            .then((response) => {
-                AuthenticationService.registerSuccessfulLoginForJwt(userId, response.data.token);
-                setShow(false);
-            })
-            .catch(() => {
-                console.log('로그인 실패');
-            })
+    // 백으로 유저 정보 전달
+    const loginClicked = async ({userId, userPwd}) => {
 
-        // // 백으로 유저 정보 전달
-        // const onValid = async ({userId, userPwd}) => {
-        //     setUserPwd("");
-        //
-        //     const response = await loginUser({userId, userPwd});
-        //
-        //     if (response.status) {
-        //         setRefreshToken(response.json.refresh_token);
-        //         dispatch(SET_TOKEN(response.json.access_token));
-        //
-        //         return navigate("/");
-        //     } else {
-        //         console.log(response.json);
-        //     }
-        // }
+        const response = await loginUser({userId, userPwd});
+
+        if (response.status) {
+            setRefreshToken(response.json.refresh_token);
+            dispatch(SET_TOKEN(response.json.accessToken));
+
+            return navigate("/");
+        } else {
+            console.log(response.json);
+        }
+        setUserPwd("");
     }
     
     return (

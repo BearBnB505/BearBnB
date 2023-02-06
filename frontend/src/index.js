@@ -11,15 +11,15 @@ import {Provider} from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    // <CookiesProvider>
-    //     <Provider store={store}>
-    //         <ProjectRouter />
-    //     </Provider>
-    // </CookiesProvider>
-    <React.StrictMode>
-        <ProjectRouter />
-        {/*<App />*/}
-    </React.StrictMode>
+    <CookiesProvider>
+        <Provider store={store}>
+            <ProjectRouter />
+        </Provider>
+    </CookiesProvider>
+    // <React.StrictMode>
+    //     <ProjectRouter />
+    //     {/*<App />*/}
+    // </React.StrictMode>
 
 );
 
