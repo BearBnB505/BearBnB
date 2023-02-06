@@ -9,10 +9,10 @@ import axios from "axios";
 import './Lodging.css'
 
 
-
 import MainContents from "../Main/MainContents";
 import {number} from "prop-types";
 import {useLocation} from "react-router";
+import PageNation from "./PageNation";
 
 
 function HostMyPageLodging() {
@@ -82,30 +82,38 @@ function ComplainList() {
   }, []);
 
 
-
-
   return (
 
     data.map((item, index) => {
 
       return (
-        <tr className={'LodgingLine'}>
-          <td>{data.length - index}</td>
-          <Link to={`/hostMyPageLodging/HouseInfoUpdate/${item.lodgingNum}`} state={{lodgingNum: `${item.lodgingNum}`}} style={{color: "black"}}>
-            {item.lodgingName}
-          </Link>
-          {/*<a href={`HouseInfoUpdate`} style={{color: "black"}}>*/}
-          {/*  ${item.lodgingName}*/}
-          {/*</a>*/}
-          {item.regState == '승인완료' ? <td><button className={'btn btn-primary'}>승인완료</button> </td>: <td><button className={'btn btn-danger'}>심사 중</button></td>}
-          <td>{item.bedroomNum}</td>
-          <td>{item.bedNum}</td>
-          <td>{item.bathroomNum}</td>
-          <td>{item.addr}</td>
-          <td>{item.createDt}</td>
-        </tr>
+        <div>
+          <tr className={'LodgingLine'}>
+            <td>{data.length - index}</td>
+            <Link to={`/hostMyPageLodging/HouseInfoUpdate/${item.lodgingNum}`}
+                  state={{lodgingNum: `${item.lodgingNum}`}} style={{color: "black"}}>
+              {item.lodgingName}
+            </Link>
+            {/*<a href={`HouseInfoUpdate`} style={{color: "black"}}>*/}
+            {/*  ${item.lodgingName}*/}
+            {/*</a>*/}
+            {item.regState == '승인완료' ? <td>
+              <button className={'btn btn-primary'}>승인완료</button>
+            </td> : <td>
+              <button className={'btn btn-danger'}>심사 중</button>
+            </td>}
+            <td>{item.bedroomNum}</td>
+            <td>{item.bedNum}</td>
+            <td>{item.bathroomNum}</td>
+            <td>{item.addr}</td>
+            <td>{item.createDt}</td>
+          </tr>
+          <PageNation/>
+        </div>
+
       )
     })
+
 
   )
 }

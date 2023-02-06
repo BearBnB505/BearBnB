@@ -46,13 +46,6 @@ public class lodgingUpdateController {
         List<LodgingDto> lodgingList = CallLodgingMapper.AllLodgingList();
         PageInfo<LodgingDto> pageInfo = new PageInfo<>(lodgingList);
 
-        // 다음 페이지로 이동하는 기능
-        if(pageInfo.isHasNextPage()){
-            int nextPageNum = pageInfo.getNextPage();
-            PageHelper.startPage(nextPageNum, pageSize);
-            lodgingList = CallLodgingMapper.AllLodgingList();
-        }
-
         return lodgingList;
     }
 
