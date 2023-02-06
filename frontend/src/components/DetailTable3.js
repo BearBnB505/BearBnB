@@ -1,77 +1,68 @@
 import React, {useEffect, useState} from "react";
-import {Table} from 'react-bootstrap';
+import Table from 'react-bootstrap/Table';
 import {Container} from "react-bootstrap";
+import Navbar from "./Navbar";
 import axios from "axios";
 
-function Table1() {
+function DetailTable1() {
 
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/adminMemberList')
+        axios.get('http://localhost:8080/adminBookingList')
             .then((req) => {
                 const {data} = req;
                 console.log(data);
                 setData(data);
+                // console.log(data[0].name)
             })
             .catch((err) => {
                 console.log("통신 오류");
             })
     }, []);
 
+
     return (
         <Container className="panel" style={styles.container}>
             <br />
             <br />
             <br />
-            <h4 >회원관리</h4>
+            <h4>회원관리수정페이지</h4>
             <Table className={"table table-striped table-hover table-bordered"} >
                 <thead>
                 <tr>
                     <th>번호</th>
-                    <th>캐릭터</th>
-                    <th>이름</th>
-                    <th>아이디</th>
-                    <th>전화번호</th>
-                    <th>이메일</th>
-                    <th>상태</th>
+                    <th>년도</th>
+                    <th>결제방법</th>
+                    <th>수익</th>
                 </tr>
                 </thead>
-
                 <tbody>
+
                 {
                     data.map((item,index) => {
                         return (
                             <tr>
-                                {/*<td>{index + 1}</td>*/}
                                 <td>{item.idx}</td>
-                                <td>{"게스트"}</td>
-                                <td>{item.name}</td>
-                                <td>{item.userId}</td>
-                                <td>{item.tel}</td>
-                                <td>{'이메일'}</td>
-                                <td>{'활동중'}</td>
+                                <td>{item.bookDt}</td>
+                                <td>{item.payType}</td>
+                                <td>{item.payCost}</td>
                             </tr>
-                            )
+                        )
                     })
                 }
 
                 </tbody>
-
-
             </Table>
-
-
-
         </Container>
     );
+
 }
 
-export default Table1;
+export default DetailTable1;
 
 const styles ={
     container:{
         width:1300,
     }
 }
-

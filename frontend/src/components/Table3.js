@@ -73,3 +73,4 @@ const styles ={
         width:1300,
     }
 }
+

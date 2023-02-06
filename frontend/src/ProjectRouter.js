@@ -136,6 +136,9 @@ function ProjectRouter(props) {
                     <Route path={"report"} element={<Table3/>}/>
                     <Route path={"sales"} element={<Table4/>}/>
                     <Route path={"detail"} element={<DetailTable/>}/>
+                    <Route path={"detail2"} element={<DetailTable2/>}/>
+                    <Route path={"detail3"} element={<DetailTable3/>}/>
+                    <Route path={"detail4"} element={<DetailTable4/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
