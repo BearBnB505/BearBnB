@@ -17,10 +17,12 @@
 
     <select id="bookingList"  resultType="com.bearbnb.dto.BookingDto">
         <![CDATA[
-        select book.*, lod.lodging_name
+        select book.*, lod.lodging_name, mem.name, mem.nation, mem.tel
         from booking book
-        join lodging lod
-        on book.lodging_num = lod.lodging_num
+                 join lodging lod
+                      on book.lodging_num = lod.lodging_num
+                 join members mem
+                      on book.user_id = mem.user_id
         where book.lodging_num='2301251111111113'
         ]]>
     </select>

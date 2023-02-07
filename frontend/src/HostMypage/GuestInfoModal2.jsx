@@ -1,7 +1,7 @@
 import React from "react";
 import "./GuestInfoModalCss.scss";
 
-function GuestInfoModal(props) {
+function GuestInfoModal2(props) {
 
     return (
         <div className={'container pb-2'}>
@@ -41,4 +41,4 @@ function GuestInfoModal(props) {
     );
 }
 
-export default GuestInfoModal;
+export default GuestInfoModal2;

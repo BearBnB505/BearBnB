@@ -113,8 +113,10 @@ function HostMyPageBooking() {
                 <div>
                     {waitArray.map((item, idx) => {
                         return <BookingWait key={idx} idx={item.idx} lodging_name={item.lodgingName}
-                                            book_state={item.bookState}
-                                            book_dt={item.bookDt} pay_cost={item.payCost} childValue={setKey}/>
+                                            book_num={item.bookNum} book_check_in_dt={item.bookCheckInDt} book_check_out_dt={item.bookCheckOutDt}
+                                            adult_num={item.adultNum} baby_num={item.babyNum} pet_num={item.petNum}
+                                            book_state={item.bookState} user_id={item.userId} user_name={item.name} user_tel={item.tel} user_nation={item.nation}
+                                            book_dt={item.bookDt} pay_cost={item.payCost} childValue={setKey} />
                     })}
                 </div>
             </Tab>
@@ -123,8 +125,10 @@ function HostMyPageBooking() {
                 <div>
                     {agreeArray.map((item,idx) => {
                         return <BookingItem key={idx} idx={item.idx} lodging_name={item.lodgingName}
-                                            book_state={item.bookState}
-                                            book_dt={item.bookDt} pay_cost={item.payCost}/>
+                                            book_num={item.bookNum} book_check_in_dt={item.bookCheckInDt} book_check_out_dt={item.bookCheckOutDt}
+                                            adult_num={item.adultNum} baby_num={item.babyNum} pet_num={item.petNum}
+                                            book_state={item.bookState} user_id={item.userId} user_name={item.name} user_tel={item.tel} user_nation={item.nation}
+                                            book_dt={item.bookDt} pay_cost={item.payCost} childValue={setKey}/>
                     })}
                 </div>
             </Tab>
@@ -133,8 +137,10 @@ function HostMyPageBooking() {
                 <div>
                     {rejectArray.map((item,idx) => {
                         return <BookingItem key={idx} idx={item.idx} lodging_name={item.lodgingName}
-                                            book_state={item.bookState}
-                                            book_dt={item.bookDt} pay_cost={item.payCost}/>
+                                            book_num={item.bookNum} book_check_in_dt={item.bookCheckInDt} book_check_out_dt={item.bookCheckOutDt}
+                                            adult_num={item.adultNum} baby_num={item.babyNum} pet_num={item.petNum}
+                                            book_state={item.bookState} user_id={item.userId} user_name={item.name} user_tel={item.tel} user_nation={item.nation}
+                                            book_dt={item.bookDt} pay_cost={item.payCost} childValue={setKey}/>
                     })}
                 </div>
             </Tab>
@@ -146,7 +152,9 @@ function HostMyPageBooking() {
 export default HostMyPageBooking;
 
 
-function BookingItem({lodging_name, book_state, book_dt, pay_cost}) {
+function BookingItem({lodging_name, book_state, book_dt, pay_cost, childValue,
+                       user_name,user_tel,user_nation, idx, user_id, setKey,
+                       book_check_in_dt,book_num,book_check_out_dt,adult_num,baby_num,pet_num}) {
   return (
     <ul className={"list-group mb-4"} style={styles.ul}>
       <li className={"list-group-item p-4"} style={styles.li}>
@@ -157,7 +165,13 @@ function BookingItem({lodging_name, book_state, book_dt, pay_cost}) {
         <div className={"mb-1"}>{lodging_name}</div>
         <div className={"mb-2"}>결제 금액 : {pay_cost}</div>
         <div>
-          <HostUserInfoModal/>
+          <HostUserInfoModal idx={idx} lodging_name={lodging_name} book_num={book_num}
+                              book_num={book_num} book_check_in_dt={book_check_in_dt}
+                              book_check_out_dt={book_check_out_dt}
+                              adult_num={adult_num} baby_num={baby_num} pet_num={pet_num}
+                              book_state={book_state} user_id={user_id} user_name={user_name} user_tel={user_tel}
+                              user_nation={user_nation}
+                              book_dt={book_dt} pay_cost={pay_cost} childValue={setKey}/>
         </div>
       </li>
     </ul>

@@ -5,7 +5,9 @@ import {faClose, faList} from "@fortawesome/free-solid-svg-icons";
 import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
 import GuestInfoModal from "../GuestInfoModal";
 
-function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue}) {
+function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
+                         user_name,user_tel,user_nation, idx, user_id, setKey,
+                         book_check_in_dt,book_num,book_check_out_dt,adult_num,baby_num,pet_num}) {
 
     const [show, setShow] = useState(false);
 
@@ -85,14 +87,19 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue}) 
                             <ModalHeader className={'d-flex'} closeButton={true}>
                                 <ModalTitle className={'flex-grow-1 text-center ps-4'}>예약내역</ModalTitle>
                             </ModalHeader>
-                            <ModalBody>
-                                <GuestInfoModal />
 
+                            <ModalBody>
+                                <GuestInfoModal idx={idx} lodging_name={lodging_name} book_num={book_num}
+                                                book_num={book_num} book_check_in_dt={book_check_in_dt} book_check_out_dt={book_check_out_dt}
+                                                adult_num={adult_num} baby_num={baby_num} pet_num={pet_num}
+                                                book_state={book_state} user_id={user_id} user_name={user_name} user_tel={user_tel} user_nation={user_nation}
+                                                book_dt={book_dt} pay_cost={pay_cost} childValue={setKey}/>
                                 <div className={'row justify-content-center mb-2'}>
                                     <button className={'col-3 btn btn-primary'} onClick={onClickConfirm}>승인</button>
                                     <button className={'col-3 btn btn-danger ms-5'} onClick={onClickReject}>거절</button>
                                 </div>
                             </ModalBody>
+
                         </Modal>
                     </div>
 

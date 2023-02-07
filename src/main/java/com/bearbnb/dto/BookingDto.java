@@ -21,4 +21,11 @@ public class BookingDto {
 //    lodgingDto
     private String lodgingName;
 
+//    membersDto
+    private String name;
+    private String nation;
+    private String tel;
+
+
+
 }
