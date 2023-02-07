@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface LodgingMapper {
-    List<LodgingDto> lodgingList();
+    List<LodgingDto> lodgingList(String category);
 
     LodgingDto lodgingDetail(int idx) throws Exception;
 

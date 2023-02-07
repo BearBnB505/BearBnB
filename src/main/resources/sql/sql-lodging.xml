@@ -8,6 +8,7 @@
         <![CDATA[
         SELECT *
         FROM lodging
+        WHERE lodging_concept = #{category}
         ]]>
     </select>
 

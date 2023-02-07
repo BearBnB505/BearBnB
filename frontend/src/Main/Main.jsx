@@ -20,9 +20,11 @@ function Main(props) {
     };
 
     const [data, setData] = useState([]);
+    const [category, setCategory] = useState('한옥');
+    console.log(category);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/lodgingList')
+        axios.get('http://localhost:8080/lodgingList', {params: {category: category}})
             .then((req) => {
                 const {data} = req;
                 // console.log(data);
@@ -31,11 +33,11 @@ function Main(props) {
             .catch((err) => {
                 console.log("통신 오류");
             })
-    }, []);
+    }, [category]);
 
     return (
         <div className={"container"} style={{width:1480, maxWidth:1800}}>
-            <MainCategory/>
+            <MainCategory categoryValue={setCategory}/>
 
             <div>
                 <ul className={"ps-1 d-flex flex-wrap"}>

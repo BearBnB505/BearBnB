@@ -33,9 +33,10 @@ public class mainController {
         return "user";
     }
 
-    @RequestMapping(value = "/lodgingList")
-    public List<LodgingDto> lodgingList() {
-        return lodgingMapper.lodgingList();
+    @RequestMapping(value = "/lodgingList", method = RequestMethod.GET)
+    public List<LodgingDto> lodgingList(@RequestParam("category") String category) {
+
+        return lodgingMapper.lodgingList(category);
     }
 
 }
