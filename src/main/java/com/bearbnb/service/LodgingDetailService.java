@@ -1,14 +1,12 @@
-package com.bearbnb.mapper;
+package com.bearbnb.service;
 
 import com.bearbnb.dto.*;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Mapper
-public interface LodgingMapper {
-    List<LodgingDto> lodgingList(String category);
+@Service
+public interface LodgingDetailService {
 
     LodgingDto lodgingDetail(int idx) throws Exception;
 
@@ -20,7 +18,4 @@ public interface LodgingMapper {
 
     MembersDto membersDetail(String userId) throws Exception;
 
-    void reviewTotalCount(String lodgingNum) throws Exception;
-
-    List<LodgingDto> searchLodgingList(String startDt, String endDt, int adultCount) throws Exception;
 }

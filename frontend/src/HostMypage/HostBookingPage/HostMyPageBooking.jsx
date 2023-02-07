@@ -1,11 +1,12 @@
 import React, {useState} from "react";
-import {Breadcrumb, Tab, Tabs} from "react-bootstrap";
+import {Breadcrumb, Modal, ModalBody, ModalHeader, ModalTitle, Tab, Tabs} from "react-bootstrap";
 import {faPencil, faList, faClose} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import Anima from "../Mypage/animaData";
+import Anima from "../../Mypage/animaData";
 import { motion } from "framer-motion";
-import HostUserInfoModal from "./HostUserInfoModal";
-import GuestInfoModalButton from "./GustInfoModalButton";
+import HostUserInfoModal from "../HostUserInfoModal";
+import GuestInfoModal from "../GuestInfoModal";
+import BookingWait from "./BookingWait";
 
 function HostMyPageBooking() {
 
@@ -16,19 +17,18 @@ function HostMyPageBooking() {
         {idx: 4, lodging_name: "제주도 신라 호텔", book_state: "예약완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
         {idx: 5, lodging_name: "제주도 신라 호텔", book_state: "예약완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
         {idx: 6, lodging_name: "해운대 신라 호텔", book_state: "예약완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
-    ]
+    ];
 
     const bookingWait = [
         {idx: 1, lodging_name: "해운대 신라 호텔", book_state: "승인대기", book_dt: "2023-01-17", pay_cost: "560,200원"},
         {idx: 2, lodging_name: "제주도 신라 호텔", book_state: "승인대기", book_dt: "2023-01-17", pay_cost: "560,200원"},
-    ]
+    ];
     const bookingCancel = [
-        {idx: 1, lodging_name: "해운대 신라 호텔", book_state: "예약거절", book_dt: "2023-01-17", pay_cost: "560,200원"},
-        {idx: 2, lodging_name: "제주도 신라 호텔", book_state: "예약거절", book_dt: "2023-01-17", pay_cost: "560,200원"},
-    ]
+        {idx: 1, lodging_name: "해운대 신라 호텔", book_state: "예약취소", book_dt: "2023-01-17", pay_cost: "560,200원"},
+        {idx: 2, lodging_name: "제주도 신라 호텔", book_state: "예약취소", book_dt: "2023-01-17", pay_cost: "560,200원"},
+    ];
 
-
-
+    let [key, setKey] = useState('tab1');
 
 
     return (
@@ -45,8 +45,8 @@ function HostMyPageBooking() {
             </div>
 
             <Tabs
-                defaultActiveKey="tab1"
-                transition={false}
+                activeKey={key}
+                onSelect={(k) => setKey(k)}
                 id="uncontrolled-tab-example"
                 className="mb-3"
                 justify
@@ -56,7 +56,7 @@ function HostMyPageBooking() {
                         {bookingWait.map((item) => {
                             return <BookingWait idx={item.idx} lodging_name={item.lodging_name}
                                                 book_state={item.book_state}
-                                                book_dt={item.book_dt} pay_cost={item.pay_cost}/>
+                                                book_dt={item.book_dt} pay_cost={item.pay_cost} childValue={setKey}/>
                         })}
                     </div>
                 </Tab>
@@ -70,7 +70,7 @@ function HostMyPageBooking() {
                         })}
                     </div>
                 </Tab>
-                <Tab eventKey="tab3" title="예약 거절">
+                <Tab eventKey="tab3" title="예약 취소">
                     <div>
                         {bookingCancel.map((item) => {
                             return <BookingItem idx={item.idx} lodging_name={item.lodging_name}
@@ -81,81 +81,24 @@ function HostMyPageBooking() {
                 </Tab>
             </Tabs>
         </motion.div>
-    )
-}
-
-
-export default HostMyPageBooking;
-
-function BookingWait({lodging_name, book_state, book_dt, pay_cost}) {
-
-
-    // 모달 팝업
-    const [modalOpen, setModalOpen] = useState(false);
-
-    const openModal = () => {
-        setModalOpen(true);
-    };
-    const closeModal = () => {
-        setModalOpen(false);
-    };
-    const onClickReject = () => {
-        if (window.confirm("정말 거절하시겠습니까?")) {
-            alert("거절되었습니다.");
-        }
-    };
-
-    return (
-
-
-        <ul className={"list-group mb-4"} style={styles.ul}>
-            <li className={"list-group-item p-4"} style={styles.li}>
-                <div><span className={"fs-5 fw-bold"}>{book_state}</span> <small
-                    className={"text-secondary"}>{book_dt}</small></div>
-                <div>{lodging_name}</div>
-                <div>결제 금액 : {pay_cost}</div>
-                <div>
-                    {/*모달창 삽입*/}
-                    <React.Fragment>
-                        <button type="button" onClick={openModal} className="btn btn-outline-secondary btn-sm my-2" title="Edit" onClick={openModal}>
-                            <span><FontAwesomeIcon icon={faList} size="1x"/> 상세내역</span>
-                        </button>
-                        <HostUserInfoModal open={modalOpen} close={closeModal} header="예약내역">
-                        </HostUserInfoModal>
-                    </React.Fragment>
-                    <button type="button" className="btn btn-outline-secondary btn-sm my-2 me-2 ms-2" title="Edit" onClick={onClickReject}>
-                        <span><FontAwesomeIcon icon={faClose} size="1x"/> 거절</span>
-                    </button>
-                </div>
-            </li>
-        </ul>
     );
 }
 
-function BookingItem({lodging_name, book_state, book_dt, pay_cost}) {
-    const [modalOpen, setModalOpen] = useState(false);
+export default HostMyPageBooking;
 
-    const openModal = () => {
-        setModalOpen(true);
-    };
-    const closeModal = () => {
-        setModalOpen(false);
-    };
+
+function BookingItem({lodging_name, book_state, book_dt, pay_cost}) {
     return (
         <ul className={"list-group mb-4"} style={styles.ul}>
             <li className={"list-group-item p-4"} style={styles.li}>
-                <div><span className={"fs-5 fw-bold"}>{book_state}</span> <small
-                    className={"text-secondary"}>{book_dt}</small></div>
-                <div>{lodging_name}</div>
-                <div>결제 금액 : {pay_cost}</div>
+                <div className={"mb-2"}>
+                    <span className={"fs-5 fw-bold me-2"}>{book_state}</span>
+                    <small className={"text-secondary"}>{book_dt}</small>
+                </div>
+                <div className={"mb-1"}>{lodging_name}</div>
+                <div className={"mb-2"}>결제 금액 : {pay_cost}</div>
                 <div>
-                    <React.Fragment>
-                        <button type="button" onClick={openModal} className="btn btn-outline-secondary btn-sm my-2" title="Edit" onClick={openModal}>
-                            <span><FontAwesomeIcon icon={faList} size="1x"/> 상세내역</span>
-                        </button>
-                        <HostUserInfoModal open={modalOpen} close={closeModal} header="예약내역">
-                        </HostUserInfoModal>
-                    </React.Fragment>
+                    <HostUserInfoModal/>
                 </div>
             </li>
         </ul>

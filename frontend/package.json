@@ -7,6 +7,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@paypal/react-paypal-js": "^7.8.2",
+    "@react-google-maps/api": "^2.18.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -19,6 +20,7 @@
     "date-fns": "^2.29.3",
     "express": "^4.18.2",
     "framer-motion": "^8.4.6",
+    "google-map-react": "^2.2.0",
     "http-proxy-middleware": "^2.0.6",
     "jquery": "^3.6.3",
     "moment": "^2.29.4",
@@ -26,6 +28,7 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
+    "react-date-range": "^1.4.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
@@ -42,6 +45,7 @@
     "sass": "^1.57.1",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.6",
+    "sweetalert2": "^11.7.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

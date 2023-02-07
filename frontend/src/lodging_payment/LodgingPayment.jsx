@@ -10,6 +10,8 @@ import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
 import LodgingPayPal from "./LodgingPayPal";
 import PaypalApp from "./LodgingPayPal";
 import axios from "axios";
+import {useLocation} from "react-router";
+import moment from "moment";
 
 
 const amount = 0.01; //계산되는 달러가격 여기에 표시된다.
@@ -23,20 +25,32 @@ const style = {"layout": "vertical"};
 // 확인 및 결제 페이지
 function LodgingPayment(props) {
 
+    // <div className={'row align-items-start mt-4'}>*/}
+    //     <div className = {'col-1'} style={{display:"block"}}>
+    //         {/*누르면 상세페이지로 이동*/}
+    //         <Link to={'#'}>
+    //             <img src='/leftArrow.png' style={{width :"20px", marginTop:15}}/>
+    //         </Link>
+    //     </div>
+    //     <div className={'col-3'}>
+    //         <p style={{fontSize:"35px", fontWeight:"bold"}}>확인 및 결제</p>
+    //     </div>
+    // </div>
 
-    const [data, setData] = useState([]);
-    useEffect(() => {
-        axios.get('http://localhost:8080/paymentLodgingInfoList')
-            .then((req) => {
-                const {data} = req;
-                console.log(data);
-                setData(data);
-                console.log(data[0].userId);
-            })
-            .catch((err) => {
-                console.log("통신 오류");
-            })
-    }, []);
+    const location = useLocation();
+    const chooseDate = location.state.chooseDate;
+    let startDate = moment(chooseDate[0]).format('Y년 M월 D일');
+    let endDate = moment(chooseDate[1]).format('Y년 M월 D일');
+
+    const dayCost = location.state.dayCost;
+
+    const [nightCount, setNightCount] = useState(location.state.nightCount);
+    const totalCost = location.state.totalCost;
+
+    const selectGuest = location.state.selectGuest;
+    let adultCount = selectGuest[0];
+    let childCount = selectGuest[1];
+    let petCount = selectGuest[2];
 
 
     const styles = {
@@ -46,7 +60,7 @@ function LodgingPayment(props) {
             borderRadius: "15px",
             height: "200px",
             width: "500px",
-            marginTop: "28px",
+            marginTop: "10px",
             // backgroundColor :"#fafafa"
         }
     }
@@ -93,26 +107,22 @@ function LodgingPayment(props) {
 
     return (
         <div className={'container'} style={{marginLeft: "600px"}}>
-            {
-                data.map((item) => {
-                    return (
-                        <div>
-                            <div className={'row align-items-start'}>
-                                <div className={'col-1'} style={{display: "block", marginTop: "100px"}} onClick={()=>{navigate(-1)}}>
+                            <div className={'row align-items-start mt-3'}>
+                                <div className={'col-1'} style={{display: "block", marginTop: 15}} onClick={()=>{navigate(-1)}}>
                                     {/*누르면 상세페이지로 이동*/}
                                     <img src='/leftArrow.png' style={{width: "20px"}}></img>
                                 </div>
                                 <div className={'col-3'}>
-                                    <p style={{fontSize: "35px", fontWeight: "bold", marginTop: "85px"}}>확인 및 결제</p>
+                                    <p style={{fontSize: "32px", fontWeight: "bold"}}>확인 및 결제</p>
                                 </div>
                             </div>
-                            <div className={'row align-items-start'} style={styles.box}>
+                            <div className={'row'} style={styles.box}>
                                 <div className={'col-5 my-auto mx-auto'}>
                                     <img src='/concept/background.jpg'
                                          style={{width: "200px", height: "140px", borderRadius: "20px", padding: 0}}/>
                                 </div>
                                 <div className={"col-6 my-auto"}>
-                                    <p className={'fs-5'}>{item.userId}</p>
+                                    <p className={'fs-5'}>숙소명</p>
                                     <p>★ 5.0</p>
                                 </div>
                             </div>
@@ -121,7 +131,7 @@ function LodgingPayment(props) {
                                 <div className={'row'}>
                                     <div className={'col-10'}>
                                         <p style={{fontSize: "20px", fontWeight: "bold", marginTop: "10px"}}>날짜</p>
-                                        <p style={{fontSize: "20px", marginTop: "-10px"}}>5월 17일 ~ 5월 19일</p>
+                                        <p style={{fontSize: "20px", marginTop: "-10px"}}>{startDate} ~ {endDate}</p>
                                     </div>
                                     <div className={'col-2'}>
                                         <p style={{
@@ -139,9 +149,9 @@ function LodgingPayment(props) {
                                             cursor: 'default'
                                         }}>게스트</p>
                                         <p style={{fontSize: "20px", marginTop: "-10px"}}>
-                                            {adult !== 0 ? "성인" + adult + "명 " : ""}
-                                            {kids !== 0 ? "유아" + kids + "명 " : ""}
-                                            {pet !== 0 ? "반려동물" + pet + "마리" : ""}
+                                            {adultCount !== 0 ? "성인" + adultCount + "명 " : ""}
+                                            {childCount !== 0 ? "유아" + childCount + "명 " : ""}
+                                            {petCount !== 0 ? "반려동물" + petCount + "마리" : ""}
                                         </p>
                                     </div>
                                     <div className={'col-2'}>
@@ -173,17 +183,15 @@ function LodgingPayment(props) {
                                     </div>
                                     <hr style={{width: "810px"}}/>
                                 </div>
-                                <p style={{fontSize: "27px", fontWeight: "bold", paddingTop: "20px"}}>요금 정보</p>
+                                <p style={{fontSize: "27px", fontWeight: "bold", paddingTop: "12px"}}>요금 정보</p>
                                 <div className={'row'}>
                                     <div className={'col-9'}>
-                                        <p style={{fontSize: "23px", color: "gray"}}> &#8361; props.data.cost x 3박 </p>
+                                        <p style={{fontSize: "23px", color: "gray"}}> &#8361; {dayCost} x {nightCount}박 </p>
                                     </div>
                                     <div className={'col-3'}>
-                                        <p style={{fontSize: "23px"}}> &#8361;요금 </p>
+                                        <p style={{fontSize: "23px"}}> &#8361; {totalCost} </p>
                                     </div>
-                                    {/*<PayPalScriptProvider options={{ "client-id": "AelKrwx59EQIuE4_2aa69nqfooRHj2Q41Ko9IDTlD72BtjVbT_p3jaawmaQ16ciIL6m86So_MRYxxY4t" }}>*/}
-                                    {/*    <PayPalButtons style={{ layout: "horizontal" }} />*/}
-                                    {/*</PayPalScriptProvider>*/}
+
 
 
                                     <PayPalScriptProvider
@@ -260,17 +268,8 @@ function LodgingPayment(props) {
                                     </PayPalScriptProvider>
                                 </div>
                             </div>
-                        </div>
-
-
-                    )
-                })
-            }
-
         </div>
-
     )
-
 }
 
 export default LodgingPayment;

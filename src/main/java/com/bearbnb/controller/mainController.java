@@ -1,6 +1,7 @@
 package com.bearbnb.controller;
 
 import com.bearbnb.dto.LodgingDto;
+import com.bearbnb.dto.MembersDto;
 import com.bearbnb.mapper.LodgingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,9 +34,15 @@ public class mainController {
         return "user";
     }
 
-    @RequestMapping(value = "/lodgingList")
-    public List<LodgingDto> lodgingList() {
-        return lodgingMapper.lodgingList();
+    @RequestMapping(value = "/lodgingList", method = RequestMethod.GET)
+    public List<LodgingDto> lodgingList(@RequestParam("category") String category) {
+
+        return lodgingMapper.lodgingList(category);
+    }
+
+    @RequestMapping(value = "/searchLodgingList", method = RequestMethod.GET)
+    public List<LodgingDto> searchLodgingList(@RequestParam("startDt") String startDt, @RequestParam("endDt") String endDt, @RequestParam("adultCount") int adultCount) throws Exception {
+        return lodgingMapper.searchLodgingList(startDt, endDt, adultCount);
     }
 
 

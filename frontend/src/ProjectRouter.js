@@ -46,10 +46,13 @@ import HostInfo from "./hostinfo/HostInfo";
 import HostMyPageMain from "./HostMypage/HostMyPageMain";
 import HostMyPageHostInfo from "./HostMypage/HostMyPageHostInfo";
 import HostMyPageReview from "./HostMypage/HostMyPageReview";
-import HostMyPageBooking from "./HostMypage/HostMyPageBooking";
+import HostMyPageBooking from "./HostMypage/HostBookingPage/HostMyPageBooking";
 import GuestInfoModal from "./HostMypage/GuestInfoModal";
 import HostMyPageRevenue from "./HostMypage/HostMyPageRevenue";
 import HostMyPageLodging from "./HostMypage/HostMyPageLodging";
+
+import './App.css';
+import SearchMap from "./GoogleMap/SearchMap";
 
 function ProjectRouter(props) {
     return (
@@ -61,6 +64,8 @@ function ProjectRouter(props) {
                     <Route index element={<Main />} />
                     <Route path={"lodgingDetail/:idx"} element={<LodgingDetail/>}/>
                     <Route path={"hostInfo"} element={<HostInfo/>}/>
+
+                    <Route path={"search"} element={<SearchMap/>}/>
 
                     {/* 메세지알림 */}
                     <Route path={"message"} element={<Message/>}/>
