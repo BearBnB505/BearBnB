@@ -244,7 +244,7 @@ function HeaderModal(props) {
                                     placement={"bottom"}
                                     target={target.current}
                                 >
-                                    <Popover className={"shadow-lg"} style={{width: 800, height: 460, borderRadius:30, maxWidth:800, marginLeft:-170}}>
+                                    <Popover className={"shadow-lg"} style={{width: 1050, height: 500, borderRadius:30, maxWidth:1100, marginLeft:-290}}>
                                         <Calendar dateValue={setChooseDate} />
                                     </Popover>
                                 </Overlay>

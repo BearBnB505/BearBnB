@@ -11,6 +11,7 @@ function Main(props) {
     const styles = {
         lodgingList: {
             listStyleType: "none",
+            margin:20
         },
         keep: {
             width: 25,
@@ -33,11 +34,11 @@ function Main(props) {
     }, []);
 
     return (
-        <div className={"container"}>
+        <div className={"container"} style={{width:1480, maxWidth:1800}}>
             <MainCategory/>
 
             <div>
-                <ul className={"ps-0 d-flex justify-content-between"}>
+                <ul className={"ps-1 d-flex flex-wrap"}>
                     {
                         data.map((item) => {
                             return (
