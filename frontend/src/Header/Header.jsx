@@ -13,13 +13,18 @@ import Join from "../User/Join";
 import {useLocation} from "react-router";
 import {CheckToken} from "../Auth/CheckToken";
 import Logout from "../User/Logout";
+import {useSelector} from "react-redux";
+import {SET_TOKEN} from "../Store/Auth";
 
 function Header(props) {
 
-    const location = useLocation();
-    const {isAuth} = CheckToken(location.key);
+    // const location = useLocation();
+    // const {isAuth} = CheckToken(location.key);
 
-    console.log(isAuth);
+    // const accessToken = useSelector(SET_TOKEN);
+    // console.log(accessToken);
+
+    // console.log(isAuth);
 
     return (
         <div className={"border-bottom pb-2"} id={"div-header"}>

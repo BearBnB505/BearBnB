@@ -14,8 +14,11 @@ import {useDispatch} from "react-redux";
 import {loginUser} from "../Api/Users";
 import {setRefreshToken} from "../Storage/Cookie";
 import {SET_TOKEN} from "../Store/Auth";
+import axios from "axios";
+import {setCookie} from "../Storage/Cookies";
 
 function Login() {
+
     const [show, setShow] = useState(false);
 
     const navigate = useNavigate();
@@ -32,26 +35,54 @@ function Login() {
         setUserPwd(e.target.value);
     }
 
-    // 백으로 유저 정보 전달
-    const loginClicked = async ({userId, userPwd}) => {
+    // // 백으로 유저 정보 전달
+    // const loginClicked = async ({userId: userId, pwd: userPwd}) => {
+    //
+    //     const response = await loginUser({userId: userId, pwd: userPwd});
+    //
+    //     if (response.status) {
+    //         // setRefreshToken(response.json.refresh_token);
+    //         // dispatch(SET_TOKEN(response.json.accessToken));
+    //
+    //         localStorage.setItem('refresh-token', response.json.refresh_token);
+    //
+    //         // console.log("로그인 성공");
+    //         // return navigate("/");
+    //     } else {
+    //         console.log(response.json);
+    //     }
+    //     setUserPwd("");
+    // }
 
-        const response = await loginUser({userId, userPwd});
+    const loginClicked = fetch("/auth/login", {
+        method: 'post',
+        headers: {
+            'content-type' : 'application/json'
+        },
+        body : JSON.stringify({
+            userId : userId,
+            pwd : userPwd
+        })
+        })
+        .then(res => res.json())
+        .then(token => {
+            const today = new Date();
+            const expireDate = today.setDate(today.getDate() * 7);
 
-        if (response.status) {
-            setRefreshToken(response.json.refresh_token);
-            dispatch(SET_TOKEN(response.json.accessToken));
+            setCookie('refreshToken', token.refreshToken, {
+                path: "/",
+                secure: true,
+                sameSite: 'strict',
+                expires: new Date(expireDate)
+            });
+            dispatch(SET_TOKEN({accessToken: token.accessToken}));
 
-            console.log("로그인 성공");
-            return navigate("/");
-        } else {
-            console.log(response.json);
-        }
-        setUserPwd("");
-    }
+            // window.location.href="/";
+        });
 
     return (
         <>
-            <DropdownItem href={"#"} onClick={() => setShow(true)}>
+            <DropdownItem onClick={() => setShow(true)}>
                 로그인
             </DropdownItem>
 
