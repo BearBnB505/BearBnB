@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import * as PropTypes from "prop-types";
 import {hostIdUrl} from "./Reducers/HostIdReducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {lodgingRealNames} from "./Reducers/LodgingRealNameReducer";
 
 function Input(props) {
@@ -23,7 +23,11 @@ function LodgingName(){
         setInputCount(e.target.value.length);
         setLodgingName(e.target.value);
     };
+
+    const lodgingImg = useSelector((state)=>state.lodgingImg.value);
     console.log(lodgingName);
+    console.log('서버데이터 확인용')
+    console.log(lodgingImg.url);
 
 
     return(

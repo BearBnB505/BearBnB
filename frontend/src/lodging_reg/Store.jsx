@@ -9,6 +9,7 @@ import LodgingCostReducer from "./Reducers/LodgingCostReducer";
 import LodgingCategoryReducer from "./Reducers/LodgingCategoryReducer";
 import LodgingRealNameReducer from "./Reducers/LodgingRealNameReducer";
 import RealHostIdReducer from "./Reducers/RealHostIdReducer";
+import LodgingImgReducer from "./Reducers/LodgingImgReducer";
 
 
 export default configureStore({
@@ -24,6 +25,7 @@ export default configureStore({
         lodgingCategory : LodgingCategoryReducer,
         lodgingRealName : LodgingRealNameReducer,
         realHostId : RealHostIdReducer,
+        lodgingImg:LodgingImgReducer,
 
     }
 })

@@ -2,10 +2,14 @@ import React, {useState, useEffect, useRef} from "react";
 import { storage } from "./firebase2";
 import DropzoneBasic from "./DropzoneBasic";
 import axios from "axios";
+import {useDispatch} from "react-redux";
+import {hostIdUrl} from "../lodging_reg/Reducers/HostIdReducer";
+import {lodgingImgs} from "../lodging_reg/Reducers/LodgingImgReducer";
+import {useNavigate} from "react-router-dom";
 
 const UploadTest = () => {
 
-
+    const navigate = useNavigate();
     const imageInput = useRef();
     const onCickImageUpload = () => {
         imageInput.current.click();
@@ -15,13 +19,22 @@ const UploadTest = () => {
     const [imageUrl, setImageUrl] = useState([]);
     const [error, setError] = useState("");
     const [beforeImageUrl, setBeforeImageUrl] = useState([]);
+    const dispatch = useDispatch();
+
 
     let imageUrls = [];
 
     useEffect(() => {
         console.log('useEffect 사용')
+        console.log('useEffect안의 imageUrl')
         console.log(imageUrl);
-    })
+
+        // if(imageUrl.length>=5){
+        //     dispatch(lodgingImgs({url:"ㄴㄴ"}))
+        //     console.log('dispatch이동성공')
+        // }
+
+    },)
 
 
 
@@ -86,13 +99,18 @@ const UploadTest = () => {
         console.log(imgName);
 
         image.map((item, index, oriImage) => {
-            const storageRef = storage.ref("BearBnB/hostId");
+            const storageRef = storage.ref("BearBnB/img");
             const imagesRef = storageRef.child(imgName + item.name);
             const uploadTask = imagesRef.put(item);
             uploadTask.on('state_changed', null, null, async () => {
                 const url = await uploadTask.snapshot.ref.getDownloadURL();
-                console.log(url);
-                imageUrls.push(url);
+                // console.log("url");
+                // imageUrls.push(url)
+                //현재 오류나는 코드
+                // imageUrls.push(url);
+                // console.log('map안의 url')
+                // console.log(url[item])
+                imageUrls.push({photo: url, deletedYn:'N'})
 
                 //선생님 코드 잠시 주석처리한다.
                 // if (index == oriImage.length - 1) {
@@ -103,9 +121,22 @@ const UploadTest = () => {
             });
         });
 
+
+        // dispatch(lodgingImgs({url:imageUrls}))
+        console.log('데이터보내는 것 성공');
+        console.log("imageUrl")
+        console.log(imageUrl)
+
         console.log("파일을 업로드하는 행위");
         alert('저장되었습니다.')
+        //여기 남겨놔
+        console.log("imageUrl")
+        console.log(imageUrl)
+        // dispatch(lodgingImgs({url:imageUrl}))
     }
+
+    console.log("imageUrls")
+    console.log(imageUrls)
 
     //    controller로 보내기
     const axiosData = () => axios({
@@ -117,8 +148,11 @@ const UploadTest = () => {
 
         .then(function (response) {
             // your action after success
+            console.log('then확인')
             console.log(imageUrl[2])
             console.log('데이터보내는 것 성공');
+            // dispatch(lodgingImgs({url:imageUrls}))
+            // console.log('데이터 이동 성공')
         })
         .catch(function (error) {
             // your action on error success
@@ -126,8 +160,8 @@ const UploadTest = () => {
         });
 
     // 업로드 전 이미지 미리보기 url 확인
-    console.log("beforeImageUrl");
-    console.log(beforeImageUrl);
+    // console.log("beforeImageUrl");
+    // console.log(beforeImageUrl);
 
     // 삭제 버튼을 누르면 미리보기에서 삭제가 되고 스토리지에 업로드도 되지 않는다.
     const handleDeleteImage = (id) => {
@@ -135,13 +169,17 @@ const UploadTest = () => {
         setImage(image.filter((_, index) => index !== id));
     };
 
+    const goNext = ()=>{
+        dispatch(lodgingImgs({url:imageUrl}))
+        navigate("/lodgingName")
+    }
 
     return (
         <div>
 
             <div>
                 <img width="400px" src='/concept/imagePlus.png' alt="uploaded" onClick={onCickImageUpload}
-                        style={{"width": "50px", marginTop: "-100px", marginLeft: "700px"}}/>
+                     style={{"width": "50px", marginTop: "-100px", marginLeft: "700px"}}/>
             </div>
 
             {error && <div variant="danger">{error}</div>}
@@ -168,6 +206,7 @@ const UploadTest = () => {
                     ))}
                 </dic>
             </div>
+            <button onClick={goNext}>다음페이지로</button>
 
             {/*{imageUrl && (*/}
             {/*    <div>*/}
