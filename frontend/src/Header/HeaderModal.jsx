@@ -19,7 +19,6 @@ import DatePicker from "react-datepicker";
 import moment from "moment";
 import {GoogleMap, StandaloneSearchBox} from "@react-google-maps/api";
 import {SearchMap} from "../GoogleMap/Map";
-import SearchBar from "../GoogleMap/SearchBar";
 import axios from "axios";
 
 function HeaderModal(props) {
@@ -266,8 +265,9 @@ function HeaderModal(props) {
                                 >
                                     <Popover className={"shadow-lg"} style={{width: 500, height: 460, borderRadius:30, maxWidth:800, marginLeft:-170}}>
                                         <div>
-                                            {/*<SearchBar map={map} mapApi={googlemaps}/>*/}
+                                            {/*<SearchMap map={map} mapApi={googlemaps}/>*/}
                                             {/*<SearchMap/>*/}
+                                            <SearchMap/>
                                         </div>
                                     </Popover>
                                 </Overlay>

@@ -92,3 +92,60 @@ function Map(props) {
 }
 
 export default React.memo(Map);
+
+
+export function SearchMap(props) {
+
+    const {isLoaded} = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: gvar.BEE_API_KEY
+    });
+
+    const [center, setCenter] = useState({lat: 37.5, lng: 127});
+    const [apiReady, setApiReady] = useState(false);
+    const [map, setMap] = useState(null);
+    const [googlemaps, setGooglemaps] = useState(null);
+
+    const onLoad = useCallback(function callback(map) {
+        const bounds = new window.google.maps.LatLngBounds(center);
+        // map.fitBounds(bounds);  // Google Maps API is loading at max zoom
+        setMap(map);
+    }, []);
+
+    const onUnmount = useCallback(function callback(map) {
+        setMap(null)
+    }, []);
+
+    const handleApiLoaded = (map, maps) => {
+        if (map && maps) {
+            setApiReady(true);
+            setMap(map);
+            setGooglemaps(maps);
+        }
+    };
+
+    return isLoaded ? (
+        <div>
+            <GoogleMap
+                mapContainerStyle={containerStyle}
+                bootstrapURLKeys={{
+                    libraries: 'places'
+                }}
+                defaultCenter={center}
+                zoom={18}
+                yesIWantToUseGoogleMapApiInternals
+                onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+                onLoad={onLoad}
+                onUnmount={onUnmount}
+                // options={{styles:styles.hide}}
+            >
+                {/*<MarkerF*/}
+                {/*    position={center}*/}
+                {/*    // draggable*/}
+                {/*    // onDragEnd={onDragEnd}*/}
+                {/*    // onLoad={onMarkerLoad}*/}
+                {/*/>*/}
+            </GoogleMap>
+        </div>
+    ) : <></>
+}
