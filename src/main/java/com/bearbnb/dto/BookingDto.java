@@ -17,4 +17,8 @@ public class BookingDto {
     private int adultNum;
     private int babyNum;
     private int petNum;
+
+//    lodgingDto
+    private String lodgingName;
+
 }

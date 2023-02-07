@@ -1,7 +1,9 @@
 package com.bearbnb.controller;
 
+import com.bearbnb.dto.BookingDto;
 import com.bearbnb.dto.ComfortsDto;
 import com.bearbnb.dto.LodgingDto;
+import com.bearbnb.mapper.BookingMapper;
 import com.bearbnb.mapper.LodgingMapper;
 import com.bearbnb.mapper.ComfortMapper;
 import com.bearbnb.service.HostUpdateService;
@@ -24,7 +26,19 @@ public class HostInfoController {
     @Autowired
     ComfortMapper comfortMapper;
     @Autowired
+    BookingMapper bookingMapper;
+    @Autowired
     private HostUpdateService hostUpdateService;
+
+//    @RequestMapping(value = "/bookingList")
+//    public List<BookingDto> bookingList(@RequestParam("bookState") String bookState) {
+//        return bookingMapper.bookingList(bookState);
+//    }
+
+    @RequestMapping(value = "/bookingList")
+    public List<BookingDto> bookingList() {
+        return bookingMapper.bookingList();
+    }
 
 
     @RequestMapping(value = "/UpdateLanguage", method = RequestMethod.PUT)
