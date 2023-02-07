@@ -29,8 +29,9 @@ public class RegLodgingController {
 
     @RequestMapping(value = "/insertCategory", method = RequestMethod.POST)
     public void insertCategory(@RequestBody String data ) throws Exception{
+        regLodgingService.insertCategory(data);
         System.out.println(data);
-        
+
 
 
 

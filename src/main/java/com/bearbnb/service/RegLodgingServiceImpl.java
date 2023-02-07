@@ -13,8 +13,21 @@ import java.util.List;
 @Service
 public class RegLodgingServiceImpl implements RegLodgingService {
 
-//    @Autowired
-//    RegLodgingMapper regLodgingMapper;
+    @Autowired
+    RegLodgingMapper regLodgingMapper;
+
+
+    @Override
+    public void insertCategory(String data) throws Exception{
+        List<PhotoDto> photos = new ArrayList<>();
+    }
+    private List<PhotoDto> getPhotoDtoList () throws Exception{
+        List<PhotoDto> photoDtoList = new ArrayList<>();
+        for(int i=0; ;i++){
+            PhotoDto photoDto = new PhotoDto();
+            photoDto.setLodgingNum();
+        }
+    }
 //
 //    @Override
 //    public List<String> lodgingImageUrl() throws Exception{
