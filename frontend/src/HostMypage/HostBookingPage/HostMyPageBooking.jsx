@@ -32,42 +32,7 @@ function HostMyPageBooking() {
 
   let [key, setKey] = useState('tab1');
 
-  const [bookingState, setBookingState] = useState('승인대기')
-
-  // const [data, setData] = useState([]);
-  //
-  // const [waitArray, setWaitArray] = useState([]);
-  // const [agreeArray, setAgreeArray] = useState([]);
-  // const [rejectArray, setreJectArray] = useState([]);
-
-
-
-  // useEffect(() => {
-  //   //전체 값을 넣는 배열에 데이터를 넣기
-  //   axios.get('http://localhost:8080/bookingList/')
-  //
-  //     .then((req) => {
-  //       const {data} = req;
-  //       console.log(data);
-  //       setData(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log("통신 오류");
-  //     })
-  // }, []);
-  //
-  //   let i = 0;
-  //
-  //   if (data[i].bookState.map == '승인대기') {
-  //     return   useEffect(() => setWaitArray(data[i].map));
-  //     }else if(data[i].bookState.map == '예약완료'){
-  //       return useEffect(() => setAgreeArray(data[i].map));
-  //   }else if(data[i].bookState.map == '예약취소'){
-  //       return useEffect(() => setAgreeArray(data[i].map));
-  //   }else{
-  //       return i++
-  //   }
-
+  const [bookingState, setBookingState] = useState("승인대기")
 
     // const [data, setData] = useState([]);
     const [waitArray, setWaitArray] = useState([]);
@@ -83,7 +48,7 @@ function HostMyPageBooking() {
               // setData(data);
 
               // dbArray를 기반으로 새로운 배열을 만듭니다.
-              const waitArray = data.filter(item => item.bookState === '승인대기');
+              const waitArray = data.filter(item => item.bookState === "승인대기");
               setWaitArray(waitArray);
               console.log(waitArray);
 
@@ -118,10 +83,9 @@ function HostMyPageBooking() {
     )
   }
 
+  const a = waitArray.length
 
   return (
-
-
     <motion.div variants={Anima}
                 initial="hidden"
                 animate="visible"
@@ -134,6 +98,9 @@ function HostMyPageBooking() {
             <h2 className={"fw-bold"}>예약내역 확인</h2>
         </div>
 
+
+
+
         <Tabs
             activeKey={key}
             onSelect={(k) => setKey(k)}
@@ -142,17 +109,17 @@ function HostMyPageBooking() {
             justify
         >
 
-            <Tab eventKey="tab1" title="예약승인 대기 (2건)">
+            <Tab eventKey="tab1" title={`예약승인 대기 (${waitArray.length}건)`} >
                 <div>
                     {waitArray.map((item, idx) => {
-                        return <BookingItem key={idx} idx={item.idx} lodging_name={item.lodgingName}
+                        return <BookingWait key={idx} idx={item.idx} lodging_name={item.lodgingName}
                                             book_state={item.bookState}
                                             book_dt={item.bookDt} pay_cost={item.payCost} childValue={setKey}/>
                     })}
                 </div>
             </Tab>
 
-            <Tab eventKey="tab2" title="예약완료 확인 (10건)" >
+            <Tab eventKey="tab2" title={`예약완료 확인 (${agreeArray.length}건)`}>
                 <div>
                     {agreeArray.map((item,idx) => {
                         return <BookingItem key={idx} idx={item.idx} lodging_name={item.lodgingName}
@@ -162,7 +129,7 @@ function HostMyPageBooking() {
                 </div>
             </Tab>
 
-            <Tab eventKey="tab3" title="예약 취소" >
+            <Tab eventKey="tab3" title={`예약취소 (${rejectArray.length}건)`} >
                 <div>
                     {rejectArray.map((item,idx) => {
                         return <BookingItem key={idx} idx={item.idx} lodging_name={item.lodgingName}
