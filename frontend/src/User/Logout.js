@@ -26,7 +26,7 @@ function Logout() {
         // if (data.status) {
         //     dispatch(DELETE_TOKEN());
         //     removeCookieToken();
-        //     removeCookie('refreshToken');
+            removeCookie('refreshToken');
         //     removeCookie('accessToken');
         //     return navigate('/');
         // } else {

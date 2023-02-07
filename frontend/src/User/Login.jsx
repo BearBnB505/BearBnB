@@ -16,6 +16,7 @@ import {setRefreshToken} from "../Storage/Cookie";
 import {SET_TOKEN} from "../Store/Auth";
 import axios from "axios";
 import {setCookie} from "../Storage/Cookies";
+import Swal from "sweetalert2";
 
 function Login() {
 
@@ -69,15 +70,26 @@ function Login() {
             const today = new Date();
             const expireDate = today.setDate(today.getDate() * 7);
 
-            setCookie('refreshToken', token.refreshToken, {
-                path: "/",
-                secure: true,
-                sameSite: 'strict',
-                expires: new Date(expireDate)
-            });
-            dispatch(SET_TOKEN({accessToken: token.accessToken}));
-
-            // window.location.href="/";
+            if (token.refreshToken != undefined) {
+                setCookie('refreshToken', token.refreshToken, {
+                    path: "/",
+                    secure: true,
+                    sameSite: 'strict',
+                    expires: new Date(expireDate)
+                });
+                dispatch(SET_TOKEN({accessToken: token.accessToken}));
+                setShow(false);
+            }
+            // else {
+            //     Swal.fire({
+            //         icon: 'error',
+            //         title: '로그인에 실패하였습니다.',
+            //         showConfirmButton: false,
+            //         timer: 1500
+            //     }).then(() => {
+            //         setShow(true);
+            //     })
+            // }
         });
 
     return (
