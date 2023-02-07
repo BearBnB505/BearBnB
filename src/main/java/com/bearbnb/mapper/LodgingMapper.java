@@ -22,4 +22,5 @@ public interface LodgingMapper {
 
     void reviewTotalCount(String lodgingNum) throws Exception;
 
+    List<LodgingDto> searchLodgingList(String startDt, String endDt, int adultCount) throws Exception;
 }

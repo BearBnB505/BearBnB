@@ -12,6 +12,15 @@
         ]]>
     </select>
 
+    <!--  헤더에서 숙소 검색  -->
+    <select id="searchLodgingList" resultType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        SELECT *
+        FROM lodging
+        WHERE (check_in_dt <= #{startDt}) AND (check_out_dt >= #{endDt}) AND (people_num >= #{adultCount})
+        ]]>
+    </select>
+
     <select id="lodgingDetail" resultType="com.bearbnb.dto.LodgingDto">
         <![CDATA[
         SELECT *
