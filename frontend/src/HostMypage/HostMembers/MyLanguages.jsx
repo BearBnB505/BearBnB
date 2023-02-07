@@ -13,7 +13,6 @@ const MyLanguages = (props) => {
   const clickSave = () => {
 
     axios.put('http://localhost:8080/UpdateLanguage',null,{params: {language: props.language}})
-
       .then((response) => {
         console.log(response);
       })
@@ -32,7 +31,7 @@ const MyLanguages = (props) => {
                         controlId="floatingInput"
                         label="사용가능 언어"
                         className="mb-3"
-                    ><Form.Control  onChange={onChangeLanguages} placeholder={"사용가능 언어"}></Form.Control>
+                    ><Form.Control  onChange={onChangeLanguages} placeholder={"사용가능 언어"} value={props.language}></Form.Control>
                     </FloatingLabel></InputGroup>
 
             </div>

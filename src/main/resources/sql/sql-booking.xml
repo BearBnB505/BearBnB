@@ -27,6 +27,15 @@
         ]]>
     </select>
 
+
+    <update id="BookingStateUpdate" parameterType="com.bearbnb.dto.BookingDto">
+        <![CDATA[
+        update booking
+        set book_state = "예약완료"
+        where idx = #{idx}
+        ]]>
+    </update>
+
 </mapper>
 
 

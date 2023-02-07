@@ -33,8 +33,9 @@ const MyIntroduce = (props) => {
                         controlId="floatingInput"
                         label="본인소개"
                         className="mb-3"
-                    ><Form.Control  onChange={onChangeLanguages} placeholder={"본인소개"}></Form.Control>
-                    </FloatingLabel></InputGroup>
+                    ><Form.Control value={props.introHost} onChange={onChangeLanguages} placeholder={"본인소개"}></Form.Control>
+                    </FloatingLabel>
+                </InputGroup>
 
             </div>
             <div className={"mt-2"}>

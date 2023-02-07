@@ -4,9 +4,10 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose, faList} from "@fortawesome/free-solid-svg-icons";
 import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
 import GuestInfoModal from "../GuestInfoModal";
+import axios from "axios";
 
 function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
-                         user_name,user_tel,user_nation, idx, user_id, setKey,
+                         user_name,user_tel,user_nation,user_id, setKey, idx,
                          book_check_in_dt,book_num,book_check_out_dt,adult_num,baby_num,pet_num}) {
 
     const [show, setShow] = useState(false);
@@ -19,6 +20,16 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
             timer: 1500
         }).then(() => {
             setShow(false);
+            axios.put('http://localhost:8080/UpdateBookingState',null,{params: {idx: idx }})
+              .then((response) => {
+                  console.log(response);
+              })
+              .catch(function (error) {
+                  console.log(error);
+                  console.log({idx});
+                  console.log({adult_num});
+              });
+
             childValue('tab2');
         })
     };
@@ -39,6 +50,7 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
                     icon: 'success'
                 }).then(() => {
                     setShow(false);
+
                     childValue('tab3');
                 })
             }

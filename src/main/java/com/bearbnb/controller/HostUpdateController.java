@@ -1,14 +1,11 @@
 package com.bearbnb.controller;
 
 import com.bearbnb.dto.BookingDto;
-import com.bearbnb.dto.ComfortsDto;
 import com.bearbnb.dto.LodgingDto;
 import com.bearbnb.mapper.BookingMapper;
 import com.bearbnb.mapper.LodgingMapper;
 import com.bearbnb.mapper.ComfortMapper;
 import com.bearbnb.service.HostUpdateService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +15,7 @@ import java.util.List;
 @ComponentScan(basePackages = {"com.bearbnb.service.HostUpdateService"})
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
-public class HostInfoController {
+public class HostUpdateController {
 
 
     @Autowired
@@ -51,6 +48,13 @@ public class HostInfoController {
     @RequestMapping(value = "/UpdateIntroHost", method = RequestMethod.PUT)
     public String UpdateIntroHost(LodgingDto lodging) throws Exception {
         hostUpdateService.UpdateIntroHost(lodging);
+
+        return "redirect:/UpdateLodgingList";
+    }
+
+    @RequestMapping(value = "/UpdateBookingState", method = RequestMethod.PUT)
+    public String UpdateBookingState(BookingDto booking) throws Exception {
+        hostUpdateService.UpdateBookingState(booking);
 
         return "redirect:/UpdateLodgingList";
     }

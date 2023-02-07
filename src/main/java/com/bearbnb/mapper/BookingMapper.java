@@ -7,4 +7,6 @@ import java.util.List;
 @Mapper
 public interface BookingMapper {
     List<BookingDto> bookingList();
+
+    void BookingStateUpdate(BookingDto booking);
 }
