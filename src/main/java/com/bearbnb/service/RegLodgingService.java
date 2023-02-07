@@ -7,5 +7,5 @@ import java.util.List;
 public interface RegLodgingService {
     List<String> lodgingImageUrl() throws Exception;
 
-    LodgingDto insertLodgingTable(LodgingDto lodging) throws Exception;
+    LodgingDto insertLodgingTable(Object obj) throws Exception;
 }

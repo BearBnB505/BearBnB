@@ -19,6 +19,7 @@ function LodgingFinal(){
     const category = useSelector((state) => state.lodgingCategory.value);//언어와 호스트 소개
     const hostId = useSelector((state)=>state.realHostId.value);
 
+
     //숙소이미지
     const lodgingImg = useSelector((state)=>state.lodgingImg.value);
 
@@ -64,16 +65,28 @@ function LodgingFinal(){
     console.log(lod)
     // alert(lodgingImg.url);
 
+    // lod.set('lodgingNum',lodgingNum)
+    // console.log("추가된 lod")
+    // console.log(lod)
+
     // const finalLodUrl = lod.push({lodgingNum:lodgingNum});
     // console.log("finalLodUrl")
     // console.log(finalLodUrl)
 
-    const finalLoad = lod.map((item,index)=>{
-        lod[index].put({"lodgingNum":lodgingNum})
-    })
-
-    console.log("finalLoad");
-    console.log(finalLoad);
+    // const finalLoad = lod.map((item,index)=>{
+    //     // lod.lodgingNum = lodgingNum
+    //     lod[0].lodgingNum = lodgingNum
+    // })
+    let final = [];
+    const filter = lod.map(data=>({
+        ...data, lodgingNum:lodgingNum
+    }))
+    final=[...filter];
+    console.log("final");
+    console.log(final);
+    // lod.lodgingNum = lodgingNum
+    // console.log("lod");
+    // console.log(lod);
 
 
     const styles ={
@@ -110,10 +123,16 @@ function LodgingFinal(){
     // console.log(finalmap);
 
     const onclickButton = () => {
+
+        const list =[{a:'1',b:'2',c:'3'},{d:"4",e:"5",f:"6"}];
         axios({
             url: 'http://localhost:8080/insertLodgingTable',
             method: 'post',
             data: {
+
+                // lodgingNum : 1234,
+                // array:list,
+
                 lodgingNum: lodgingNum,
                 certifyImg: hostId.idUrl,
                 lodgingName: lodgingRealName.name,
@@ -127,6 +146,10 @@ function LodgingFinal(){
                 bedSize : bedSelect.bedSelects,
                 bathroomNum : basicInfo.bathroom,
                 introHost:hostInfo.hostIntro,
+                photo : final,
+                category : category.category,
+
+
             }
         })
             .then(function a(response) {

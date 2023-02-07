@@ -2,6 +2,7 @@ package com.bearbnb.controller;
 
 import com.bearbnb.dto.*;
 import com.bearbnb.service.RegLodgingService;
+import lombok.val;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,12 +22,17 @@ public class RegLodgingController {
     @Autowired
     RegLodgingService regLodgingService;
 
-    @RequestMapping(value = "/insertLodgingTable", method = RequestMethod.POST)
-    public String insertLodgingTable(@RequestBody LodgingDto lodging) throws Exception{
-        regLodgingService.insertLodgingTable(lodging);
-
-        return "redirect:/hostMyPageMain";
-    }
+//    @RequestMapping(value = "/insertLodgingTable", method = RequestMethod.POST)
+//    public String insertLodgingTable(@RequestBody Object regLodging) throws Exception{
+////        regLodgingService.insertLodgingTable(lodging);
+//
+//
+//        System.out.println(regLodging);
+//
+//        // 받아온 데이터를 서비스로 넘김
+//
+//        return null;
+//    }
 
 
 
@@ -48,6 +54,17 @@ public class RegLodgingController {
 
 
 
+    @RequestMapping(value = "/insertLodgingTable", method = RequestMethod.POST)
+    public String insertLodgingTable(@RequestBody Object obj) throws Exception{
+//        regLodgingService.insertLodgingTable(lodging);
+
+
+//        System.out.println(obj);
+
+        // 받아온 데이터를 서비스로 넘김
+        regLodgingService.insertLodgingTable(obj);
+        return null;
+    }
     @ResponseBody
     @RequestMapping(value = "/lodgingCategorySelectInsert", method = RequestMethod.POST)
     public void lodgingCategory(@RequestBody List<String> categoryArray) throws Exception{
