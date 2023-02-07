@@ -58,7 +58,7 @@ public class RegLodgingController {
     public String insertLodgingTable(@RequestBody Object obj) throws Exception{
 //        regLodgingService.insertLodgingTable(lodging);
 
-
+//        System.out.println(obj[Object.keys(obj)[0]].tab_name);
 //        System.out.println(obj);
 
         // 받아온 데이터를 서비스로 넘김
