@@ -52,9 +52,16 @@ public class HostUpdateController {
         return "redirect:/UpdateLodgingList";
     }
 
-    @RequestMapping(value = "/UpdateBookingState", method = RequestMethod.PUT)
+    @RequestMapping(value = "/UpdateAgreeState", method = RequestMethod.PUT)
     public String UpdateBookingState(BookingDto booking) throws Exception {
         hostUpdateService.UpdateBookingState(booking);
+
+        return "redirect:/UpdateLodgingList";
+    }
+
+    @RequestMapping(value = "/UpdateRejectState", method = RequestMethod.PUT)
+    public String UpdateRejectState(BookingDto booking) throws Exception {
+        hostUpdateService.UpdateRejectState(booking);
 
         return "redirect:/UpdateLodgingList";
     }

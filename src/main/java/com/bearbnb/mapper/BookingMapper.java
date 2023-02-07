@@ -9,4 +9,6 @@ public interface BookingMapper {
     List<BookingDto> bookingList();
 
     void BookingStateUpdate(BookingDto booking);
+
+    void RejectStateUpdate(BookingDto booking);
 }

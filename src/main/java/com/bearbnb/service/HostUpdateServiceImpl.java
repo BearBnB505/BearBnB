@@ -46,6 +46,12 @@ public class HostUpdateServiceImpl implements HostUpdateService{
         bookingtMapper.BookingStateUpdate(booking);
     }
 
+    @Override
+    public void UpdateRejectState(BookingDto booking) {
+        bookingtMapper.RejectStateUpdate(booking);
+
+    }
+
     public void UpdateLodgingIntro(LodgingDto lodging) {
         lodgingMapper.LodgingIntroUpdate(lodging);
     }

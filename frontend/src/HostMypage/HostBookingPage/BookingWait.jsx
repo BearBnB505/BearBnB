@@ -20,7 +20,7 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
             timer: 1500
         }).then(() => {
             setShow(false);
-            axios.put('http://localhost:8080/UpdateBookingState',null,{params: {idx: idx }})
+            axios.put('http://localhost:8080/UpdateAgreeState',null,{params: {idx: idx }})
               .then((response) => {
                   console.log(response);
               })
@@ -50,6 +50,15 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
                     icon: 'success'
                 }).then(() => {
                     setShow(false);
+                    axios.put('http://localhost:8080/UpdateRejectState',null,{params: {idx: idx }})
+                      .then((response) => {
+                          console.log(response);
+                      })
+                      .catch(function (error) {
+                          console.log(error);
+                          console.log({idx});
+                          console.log({adult_num});
+                      });
 
                     childValue('tab3');
                 })

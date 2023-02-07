@@ -25,4 +25,6 @@ public interface HostUpdateService {
     void UpdateIntroHost(LodgingDto lodging);
 
     void UpdateBookingState(BookingDto booking);
+
+    void UpdateRejectState(BookingDto booking);
 }
