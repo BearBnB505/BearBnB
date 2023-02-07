@@ -1,31 +1,15 @@
 import styled from "styled-components";
-import React from "react";
-import axios from "axios";
 
-function PagiNation({ total, limit, page, setPage, setOffsetInfo}) {
+function Pagination({ total, limit, page, setPage }) {
 
   // Math.ceil => 올림처리. 주로 페이지네이션에서 전체 페이지 수 계산할 때 이용함.
   const numPages = Math.ceil(total / limit);
 
-  let pageNo = page
-
-  const minus = () =>{
-    setPage(page-1)
-    pageNo --
-    setOffsetInfo((pageNo-1)*limit)
-      }
-
-  const plus = () => {
-    setPage(page+1)
-    pageNo ++
-    setOffsetInfo((pageNo-1)*limit)
-  }
-
   return (
-    <div>
-
+    <>
+      {/*이전 버튼*/}
       <Nav>
-        <Button onClick={minus} disabled={page === 1}>
+        <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
           &lt;
         </Button>
 
@@ -34,20 +18,19 @@ function PagiNation({ total, limit, page, setPage, setOffsetInfo}) {
           .map((_, i) => (
             <Button
               key={i + 1}
-              // onClick={() => setPage(i + 1)}
-              onClick={() => {setPage(i + 1); pageNo = i + 1 ;  setOffsetInfo((pageNo-1)*limit)}}
+              onClick={() => setPage(i + 1)}
               aria-current={page === i + 1 ? "page" : null}
             >
               {i + 1}
             </Button>
           ))}
 
-        <Button onClick={plus} disabled={page === numPages}>
+        <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
           &gt;
         </Button>
 
       </Nav>
-    </div>
+    </>
   );
 }
 
@@ -88,4 +71,4 @@ const Button = styled.button`
   }
 `;
 
-export default PagiNation;
+export default Pagination;

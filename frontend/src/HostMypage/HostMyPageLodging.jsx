@@ -15,7 +15,20 @@ import {useLocation} from "react-router";
 import PageNation from "./PageNation";
 
 
+
+
+
+
+
 function HostMyPageLodging() {
+
+  const [lengthInfo, setLengthInfo] = useState(1);
+  const [limitInfo , setLimitInfo] = useState(3);
+  const [pageInfo, setPageInfo] = useState(1);
+
+  const offset = (pageInfo - 1) * limitInfo;
+
+  const [offsetInfo , setOffsetInfo] = useState(offset);
 
 
   return (
@@ -53,28 +66,56 @@ function HostMyPageLodging() {
         </thead>
         <tbody className={'text-center'}>
 
-        <ComplainList/>
+        <ComplainList setLengthInfo={setLengthInfo}
+                      setLimitInfo={setLimitInfo}
+                      setPageInfo={setPageInfo}
+                      pageInfo={pageInfo}
+                      offsetInfo={offsetInfo}
+                      setOffsetInfo={setOffsetInfo}/>
 
+        <PageNation total={lengthInfo}
+                    limit={limitInfo}
+                    page={pageInfo}
+                    setPage={setPageInfo}
+                    setOffsetInfo={setOffsetInfo}/>
         </tbody>
       </table>
-
-
     </motion.div>
   )
 }
-
 export default HostMyPageLodging;
 
-function ComplainList() {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    // axios.put('http://localhost:8080/CallLodgingList',null,null)
-    axios.get('http://localhost:8080/AllLodgingList/')
 
+///////////////////////////////////////////////////////////////////////////////////////
+
+function ComplainList(props) {
+
+  // 숙소 DB 가져와서 리스트 형식으로 담길 배열
+  const [data, setData] = useState([]);
+  // 페이지당 게시물 수
+  const [limit, setLimit] = useState(3);
+  // 현재 페이지 번호(page)
+  const [page, setPage] = useState(1);
+
+  // 첫 게시물의 위치(offset)
+  const offset = (page - 1) * limit;
+
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/AllLodgingList/')
       .then((req) => {
         const {data} = req;
+        const length = data.length
+        Number(length)
+        console.log(length);
+
         // console.log(data);
         setData(data);
+        props.setLengthInfo(length)
+        props.setLimitInfo(limit)
+        // props.setPageInfo(page)
+        props.setOffsetInfo(offset)
+        setPage(props.pageInfo)
       })
       .catch((err) => {
         console.log("통신 오류");
@@ -84,7 +125,7 @@ function ComplainList() {
 
   return (
 
-    data.map((item, index) => {
+    data.slice(props.offsetInfo, props.offsetInfo + limit).map((item, index) => {
 
       return (
         <div>
@@ -94,9 +135,6 @@ function ComplainList() {
                   state={{lodgingNum: `${item.lodgingNum}`}} style={{color: "black"}}>
               {item.lodgingName}
             </Link>
-            {/*<a href={`HouseInfoUpdate`} style={{color: "black"}}>*/}
-            {/*  ${item.lodgingName}*/}
-            {/*</a>*/}
             {item.regState == '승인완료' ? <td>
               <button className={'btn btn-primary'}>승인완료</button>
             </td> : <td>
@@ -108,12 +146,9 @@ function ComplainList() {
             <td>{item.addr}</td>
             <td>{item.createDt}</td>
           </tr>
-          <PageNation/>
         </div>
-
       )
     })
-
-
   )
 }
+

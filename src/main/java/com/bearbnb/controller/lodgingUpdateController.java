@@ -33,21 +33,31 @@ public class lodgingUpdateController {
         return CallLodgingMapper.CallLodgingList(lodging);
     }
 
+    @RequestMapping(value = "/AllLodgingList")
+    public List<LodgingDto> AllLodgingList() {
+        return CallLodgingMapper.AllLodgingList();
+    }
+
+
+    //페이지 헬퍼 쓴 페이지네이션
 //    @RequestMapping(value = "/AllLodgingList")
-//    public List<LodgingDto> AllLodgingList() {
-//        return CallLodgingMapper.AllLodgingList();
+//    public List<LodgingDto> AllLodgingList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+//                                           @RequestParam(value = "pageSize", defaultValue = "3") int pageSize) {
+//        PageHelper.startPage(pageNum, pageSize);
+//        List<LodgingDto> lodgingList = CallLodgingMapper.AllLodgingList();
+//        PageInfo<LodgingDto> pageInfo = new PageInfo<>(lodgingList);
+//
+//        return lodgingList;
 //    }
 
 
-    @RequestMapping(value = "/AllLodgingList")
-    public List<LodgingDto> AllLodgingList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
-                                           @RequestParam(value = "pageSize", defaultValue = "1") int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<LodgingDto> lodgingList = CallLodgingMapper.AllLodgingList();
-        PageInfo<LodgingDto> pageInfo = new PageInfo<>(lodgingList);
 
-        return lodgingList;
-    }
+
+
+
+
+
+
 
 //페이지네이션 발버둥
 //    @RequestMapping(value = "/AllLodgingList")
