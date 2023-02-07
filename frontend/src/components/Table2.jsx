@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table';
 import {Container} from "react-bootstrap";
 import Navbar from "./Navbar";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 function Table2() {
 
@@ -51,7 +52,7 @@ function Table2() {
                                 {/*<td>{index + 1}</td>*/}
                                 <td>{item.idx}</td>
                                 <td>{item.lodgingNum}</td>
-                                <td>{item.lodgingName}</td>
+                                <td><Link to="/admin/detail2">{item.lodgingName}</Link></td>
                                 <td>{item.userId}</td>
                                 <td>{item.tel}</td>
                                 <td>{'이메일'}</td>

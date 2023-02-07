@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Table} from 'react-bootstrap';
 import {Container} from "react-bootstrap";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 function Table1() {
 
@@ -29,7 +30,7 @@ function Table1() {
                 <thead>
                 <tr>
                     <th>번호</th>
-                    <th>캐릭터</th>
+                    <th>사용자</th>
                     <th>이름</th>
                     <th>아이디</th>
                     <th>전화번호</th>

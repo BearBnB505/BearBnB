@@ -3,8 +3,9 @@ import Table from 'react-bootstrap/Table';
 import {Container} from "react-bootstrap";
 import Navbar from "./Navbar";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
-function DetailTable1() {
+function Table4() {
 
     const [data, setData] = useState([]);
 
@@ -27,7 +28,7 @@ function DetailTable1() {
             <br />
             <br />
             <br />
-            <h4>회원관리수정페이지</h4>
+            <h4>매출관리</h4>
             <Table className={"table table-striped table-hover table-bordered"} >
                 <thead>
                 <tr>
@@ -59,10 +60,11 @@ function DetailTable1() {
 
 }
 
-export default DetailTable1;
+export default Table4;
 
 const styles ={
     container:{
         width:1300,
     }
 }
+

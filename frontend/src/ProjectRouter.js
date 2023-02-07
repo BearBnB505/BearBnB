@@ -43,7 +43,7 @@ import Table4 from "./components/Table4";
 import Navbar from "./components/Navbar";
 import HouseInfo from "./houseInfoUpdate/HouseInfo";
 import HostInfo from "./hostinfo/HostInfo";
-import DetailTable from "./components/DetailTable";
+
 import HostMyPageMain from "./HostMypage/HostMyPageMain";
 import HostMyPageHostInfo from "./HostMypage/HostMyPageHostInfo";
 import HostMyPageReview from "./HostMypage/HostMyPageReview";
@@ -53,6 +53,9 @@ import HostMyPageRevenue from "./HostMypage/HostMyPageRevenue";
 import HostMyPageLodging from "./HostMypage/HostMyPageLodging";
 
 import './App.css';
+import DetailTable2 from "./components/DetailTable2";
+import DetailTable3 from "./components/DetailTable3";
+
 
 function ProjectRouter(props) {
     return (
@@ -135,10 +138,10 @@ function ProjectRouter(props) {
                     <Route path={"lodging"} element={<Table2/>}/>
                     <Route path={"report"} element={<Table3/>}/>
                     <Route path={"sales"} element={<Table4/>}/>
-                    <Route path={"detail"} element={<DetailTable/>}/>
+
                     <Route path={"detail2"} element={<DetailTable2/>}/>
                     <Route path={"detail3"} element={<DetailTable3/>}/>
-                    <Route path={"detail4"} element={<DetailTable4/>}/>
+
                 </Route>
             </Routes>
         </BrowserRouter>
