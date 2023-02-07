@@ -1,11 +1,47 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import ReactPlayer from 'react-player'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {lodgingRealNames} from "./Reducers/LodgingRealNameReducer";
+import {lodgingNums} from "./Reducers/LodgingNumReducer";
 
 function LodgingWelcome(){
     const hostIdUrl = useSelector((state) => state.realHostId.value);
-    console.log(hostIdUrl)
+    console.log(hostIdUrl);
+
+    const dispatch = useDispatch();
+    const now = new Date();
+    let year = (now.getFullYear()).toString();
+    // 년 두 글자
+    let removeYear = year.slice(2, 4);
+    let month = (now.getMonth() + 1).toString();
+
+    // 월이 10이하일 경우 앞에 0을 붙인다
+    const newMonth = (month < 10) ? 0 + month : month
+
+
+    let day = (now.getDate()).toString();
+
+    const newDay = (day<10)? 0 + day : day
+
+    //년월일 6자리 글자
+    let dayday = removeYear + newMonth + newDay;
+
+
+    //랜덤 숫자 11자리(예약번호용)
+    const random = [];
+
+    for (let i = 0; i < 10; i++) {
+        const randomNum = Math.floor(Math.random() * 10);
+        random.push(randomNum)
+    }
+
+    const dayPlusRandom = dayday + random;
+    // 숙소번호=> 날짜6자리 + 랜덤 숫자 10자리
+    const lodgingNum = dayPlusRandom.split(',').join("");
+    console.log(lodgingNum);
+
+
     return(
         <div className={"container"}>
             <div className = {"row justify-content-lg-between"} >
@@ -27,7 +63,8 @@ function LodgingWelcome(){
             </div>
             <footer>
                 <Link to ={"/lodgingHostId"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                <Link to = {"/lodgingConcept"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>
+                <Link to = {"/lodgingConcept"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={()=>{
+                    dispatch(lodgingNums({num:lodgingNum}))}}>다음</button></Link>
             </footer>
         </div>
     )

@@ -9,6 +9,7 @@ function LodgingFinal(){
 
     // const idImageUrl = useSelector((state)=>state.hostIdUrl.value);
     const userId = useSelector((state)=>state.hostIdUrl.value); //
+    const lodgingNum = useSelector((state)=>state.lodgingNum.value); //
     const hostInfo = useSelector((state) => state.hostInfo.value);//언어와 호스트 소개
     const concept = useSelector((state) => state.lodgingConcept.value);//언어와 호스트 소개
     const basicInfo = useSelector((state) => state.lodgingBasicInfo.value);//언어와 호스트 소개
@@ -22,61 +23,49 @@ function LodgingFinal(){
 
     //숙소이미지
     const lodgingImg = useSelector((state)=>state.lodgingImg.value);
-
+    // const lodgingNum = useSelector((state)=>state.lodgingImg.value);
 
 
     // 숙소번호
     //이미지에 랜덤 이름 부여하기
-    const now = new Date();
-    let year = (now.getFullYear()).toString();
-    // 년 두 글자
-    let removeYear = year.slice(2, 4);
-    let month = (now.getMonth() + 1).toString();
+    // const now = new Date();
+    // let year = (now.getFullYear()).toString();
+    // // 년 두 글자
+    // let removeYear = year.slice(2, 4);
+    // let month = (now.getMonth() + 1).toString();
+    //
+    // // 월이 10이하일 경우 앞에 0을 붙인다
+    // const newMonth = (month < 10) ? 0 + month : month
+    //
+    //
+    // let day = (now.getDate()).toString();
+    //
+    // const newDay = (day<10)? 0 + day : day
+    //
+    // //년월일 6자리 글자
+    // let dayday = removeYear + newMonth + newDay;
+    //
+    //
+    // //랜덤 숫자 11자리(예약번호용)
+    // const random = [];
+    //
+    // for (let i = 0; i < 10; i++) {
+    //     const randomNum = Math.floor(Math.random() * 10);
+    //     random.push(randomNum)
+    // }
+    //
+    // const dayPlusRandom = dayday + random;
+    // // 숙소번호=> 날짜6자리 + 랜덤 숫자 10자리
+    // const lodgingNum = dayPlusRandom.split(',').join("");
+    // console.log(lodgingNum);
 
-    // 월이 10이하일 경우 앞에 0을 붙인다
-    const newMonth = (month < 10) ? 0 + month : month
-
-
-    let day = (now.getDate()).toString();
-
-    const newDay = (day<10)? 0 + day : day
-
-    //년월일 6자리 글자
-    let dayday = removeYear + newMonth + newDay;
-
-
-    //랜덤 숫자 11자리(예약번호용)
-    const random = [];
-
-    for (let i = 0; i < 10; i++) {
-        const randomNum = Math.floor(Math.random() * 10);
-        random.push(randomNum)
-    }
-
-    const dayPlusRandom = dayday + random;
-    // 숙소번호=> 날짜6자리 + 랜덤 숫자 10자리
-    const lodgingNum = dayPlusRandom.split(',').join("");
-    console.log(lodgingNum);
     console.log("lodgingImg.url");
     console.log(lodgingImg.url);
 
     const lod = [...lodgingImg.url];
     console.log("lod")
     console.log(lod)
-    // alert(lodgingImg.url);
 
-    // lod.set('lodgingNum',lodgingNum)
-    // console.log("추가된 lod")
-    // console.log(lod)
-
-    // const finalLodUrl = lod.push({lodgingNum:lodgingNum});
-    // console.log("finalLodUrl")
-    // console.log(finalLodUrl)
-
-    // const finalLoad = lod.map((item,index)=>{
-    //     // lod.lodgingNum = lodgingNum
-    //     lod[0].lodgingNum = lodgingNum
-    // })
     let final = [];
     const filter = lod.map(data=>({
         ...data, lodgingNum:lodgingNum

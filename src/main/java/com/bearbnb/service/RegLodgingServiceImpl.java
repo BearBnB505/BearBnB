@@ -13,15 +13,15 @@ import java.util.List;
 @Service
 public class RegLodgingServiceImpl implements RegLodgingService {
 
-    @Autowired
-    RegLodgingMapper regLodgingMapper;
-
-    @Override
-    public List<String> lodgingImageUrl() throws Exception{
-        List<String> list = null;
-        list = regLodgingMapper.lodgingImageUrl();
-        return list;
-    }
+//    @Autowired
+//    RegLodgingMapper regLodgingMapper;
+//
+//    @Override
+//    public List<String> lodgingImageUrl() throws Exception{
+//        List<String> list = null;
+//        list = regLodgingMapper.lodgingImageUrl();
+//        return list;
+//    }
 
 
 

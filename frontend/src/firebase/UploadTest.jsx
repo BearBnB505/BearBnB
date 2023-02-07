@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from "react";
 import { storage } from "./firebase2";
 import DropzoneBasic from "./DropzoneBasic";
 import axios from "axios";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {hostIdUrl} from "../lodging_reg/Reducers/HostIdReducer";
 import {lodgingImgs} from "../lodging_reg/Reducers/LodgingImgReducer";
 import {useNavigate} from "react-router-dom";
@@ -10,6 +10,16 @@ import {useNavigate} from "react-router-dom";
 const UploadTest = () => {
 
     const navigate = useNavigate();
+    const category = useSelector((state) => state.lodgingCategory.value);
+    const lodgingNum = useSelector((state) => state.lodgingNum.value);
+    console.log("uploadtest category");
+    console.log(category);
+
+    console.log('lodgingNum')
+    console.log(lodgingNum.num);
+
+    // console.log("lodgingNum");
+    // console.log(lodgingNum);
     const imageInput = useRef();
     const onCickImageUpload = () => {
         imageInput.current.click();
@@ -20,6 +30,9 @@ const UploadTest = () => {
     const [error, setError] = useState("");
     const [beforeImageUrl, setBeforeImageUrl] = useState([]);
     const dispatch = useDispatch();
+    const lodgingRealName = useSelector((state) => state.lodgingRealName.value);
+    // console.log('lodginNum')
+    // console.log(lodgingNum);
 
 
     let imageUrls = [];
@@ -110,7 +123,7 @@ const UploadTest = () => {
                 // imageUrls.push(url);
                 // console.log('map안의 url')
                 // console.log(url[item])
-                imageUrls.push({photo: url, deletedYn:'N'})
+                imageUrls.push({photo: url, deletedYn:'N',lodgingNum:lodgingNum.num})
 
                 //선생님 코드 잠시 주석처리한다.
                 // if (index == oriImage.length - 1) {
@@ -170,9 +183,35 @@ const UploadTest = () => {
     };
 
     const goNext = ()=>{
-        dispatch(lodgingImgs({url:imageUrl}))
-        navigate("/lodgingName")
+        // dispatch(lodgingImgs({url:imageUrl}))
+        // navigate("/lodgingName")
+        axios({
+            url: 'http://localhost:8080/insertUrl',
+            method: 'post',
+            data: imageUrl
+        })
+            .then(function (response) {
+                console.log(response)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
+
+    // 일단 가져온 데이터
+    // console.log(lodgingImg.url);
+    //
+    // const lod = [...lodgingImg.url];
+    // console.log("lod")
+    // console.log(lod)
+
+    // let final = [];
+    // const filter = lod.map(data=>({
+    //     ...data, lodgingNum:lodgingNum
+    // }))
+    // final=[...filter];
+    // console.log("final");
+    // console.log(final);
 
     return (
         <div>

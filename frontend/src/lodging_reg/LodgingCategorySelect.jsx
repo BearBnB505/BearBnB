@@ -5,10 +5,10 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import {lodgingNames} from "./Reducers/LodgingNameReducer";
 import {category} from "./Reducers/LodgingCategoryReducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 const LoadingConcept = () => {
-
+    const lodgingNum = useSelector((state) => state.lodgingNum.value);
     const styles = {
         footer : {
             position : "fixed",
@@ -258,12 +258,12 @@ const LoadingConcept = () => {
         if(isSelect[index]===true){
             // categoryArray.push(imgSrc[index].comfortId)
             // categoryArray.push('Y')
-            categoryArray.push({comfortId: imgSrc[index].comfortId, deletedYn:'Y'})
+            categoryArray.push({comfortId: imgSrc[index].comfortId, deletedYn:'Y',lodgingNum:lodgingNum.num})
 
         } else if(isSelect[index]===false){
             // categoryArray.push(imgSrc[index].comfortId)
             // categoryArray.push('N')
-            categoryArray.push({comfortId: imgSrc[index].comfortId, deletedYn:'N'})
+            categoryArray.push({comfortId: imgSrc[index].comfortId, deletedYn:'N',lodgingNum:lodgingNum.num})
         }
     })
     console.log('categoryArray')
@@ -274,22 +274,69 @@ const LoadingConcept = () => {
 
     const dbTest = () =>{
 
-        const url='http://localhost:8080/lodgingCategorySelectInsert';
-        const datas=categoryArray
+        // const url='http://localhost:8080/insertCategory';
+        // const datas=categoryArray
+        // axios
+        //     .post(url,  datas, {
+        //         headers: {
+        //             "Content-Type": `application/json`,
+        //         },
+        //     })
+        //     .then((res) => {
+        //         console.log(res);
+        //         console.log('데이터 이동 성공')
+        //     }).catch(err=>{
+        //         console.log(err)
+        // });
+
+        // axios({
+        //     method:"post",
+        //     url:"http://localhost8080/insertCategory"
+        //
+        // })
+
+        // axios.post("http://localhost8080/insertCategory", null,{
+        //     // category: categoryArray,
+        //     category:categoryArray
+        // })
+        //     .then(function (response) {
+        //         // response
+        //         console.log("통신성공")
+        //     }).catch(function (error) {
+        //     // 오류발생시 실행
+        //     console.log(error)
+        // })
+
+        // axios({
+        //     url: 'http://localhost:8080/insertCategory',
+        //     method: 'post',
+        //     // data:categoryArray
+        //     data:JSON.stringify(categoryArray),
+        //     // contentType:'application/json; charset=UTF-8',
+        //     dataType:'json',
+        // })
+        //     .then(function a(response) {
+        //         console.log(response)
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+
+        let data = {
+            category: categoryArray,
+        }
         axios
-            .post(url,  datas, {
+            .post('http://localhost:8080/insertCategory',  JSON.stringify(data), {
                 headers: {
                     "Content-Type": `application/json`,
                 },
             })
             .then((res) => {
                 console.log(res);
-                console.log('데이터 이동 성공')
-            }).catch(err=>{
-                console.log(err)
-        });
+            });
 
     }
+
 
 
     return (

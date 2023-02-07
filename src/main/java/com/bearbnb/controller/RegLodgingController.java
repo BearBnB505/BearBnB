@@ -22,6 +22,20 @@ public class RegLodgingController {
     @Autowired
     RegLodgingService regLodgingService;
 
+    @RequestMapping(value = "/insertUrl", method = RequestMethod.POST)
+    public void insertUrl(@RequestBody Object obj) throws Exception{
+        System.out.println(obj);
+    }
+
+    @RequestMapping(value = "/insertCategory", method = RequestMethod.POST)
+    public void insertCategory(@RequestBody String data ) throws Exception{
+        System.out.println(data);
+        
+
+
+
+    }
+
 //    @RequestMapping(value = "/insertLodgingTable", method = RequestMethod.POST)
 //    public String insertLodgingTable(@RequestBody Object regLodging) throws Exception{
 ////        regLodgingService.insertLodgingTable(lodging);
@@ -62,7 +76,7 @@ public class RegLodgingController {
 //        System.out.println(obj);
 
         // 받아온 데이터를 서비스로 넘김
-        regLodgingService.insertLodgingTable(obj);
+//        regLodgingService.insertLodgingTable(obj);
         return null;
     }
     @ResponseBody
@@ -106,6 +120,8 @@ public class RegLodgingController {
 //
 //        return "bye";
 //    }
+    
+//    이미지 데이터 삽입
 
 
 
