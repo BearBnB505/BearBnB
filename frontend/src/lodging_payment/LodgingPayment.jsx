@@ -17,16 +17,16 @@ function LodgingPayment(){
     }
 
     return(
-        <div className={'container'} style={{marginLeft : "600px"}}>
-            <div className={'row align-items-start'}>
-                <div className = {'col-1'} style={{display:"block", marginTop:"100px"}}>
+        <div className={'container mb-5'} style={{marginLeft : "600px"}}>
+            <div className={'row align-items-start mt-4'}>
+                <div className = {'col-1'} style={{display:"block"}}>
                     {/*누르면 상세페이지로 이동*/}
                     <Link to={'#'}>
-                        <img src='/leftArrow.png' style={{width :"20px"}}/>
+                        <img src='/leftArrow.png' style={{width :"20px", marginTop:15}}/>
                     </Link>
                 </div>
                 <div className={'col-3'}>
-                    <p style={{fontSize:"35px", fontWeight:"bold", marginTop:"85px"}}>확인 및 결제</p>
+                    <p style={{fontSize:"35px", fontWeight:"bold"}}>확인 및 결제</p>
                 </div>
             </div>
             <div className={'row align-items-start'} style={styles.box}>
