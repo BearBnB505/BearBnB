@@ -25,7 +25,7 @@ public class RegLodgingController {
     public String insertLodgingTable(@RequestBody LodgingDto lodging) throws Exception{
         regLodgingService.insertLodgingTable(lodging);
 
-        return "redirect:/";
+        return "redirect:/hostMyPageMain";
     }
 
 

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {hostInfos} from "./Reducers/HostInfoReducer";
 import {costs} from "./Reducers/LodgingCostReducer";
 
@@ -8,6 +8,9 @@ function LodgingCost(){
 
     const [cost, setCost] = useState(50000);
     const dispatch = useDispatch();
+    const lodgingImg = useSelector((state)=>state.lodgingImg.value);
+
+    console.log(lodgingImg.url);
 
     const styles = {
         border1:{

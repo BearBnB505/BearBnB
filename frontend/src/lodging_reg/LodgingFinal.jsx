@@ -19,6 +19,10 @@ function LodgingFinal(){
     const category = useSelector((state) => state.lodgingCategory.value);//언어와 호스트 소개
     const hostId = useSelector((state)=>state.realHostId.value);
 
+    //숙소이미지
+    const lodgingImg = useSelector((state)=>state.lodgingImg.value);
+
+
 
     // 숙소번호
     //이미지에 랜덤 이름 부여하기
@@ -52,7 +56,24 @@ function LodgingFinal(){
     // 숙소번호=> 날짜6자리 + 랜덤 숫자 10자리
     const lodgingNum = dayPlusRandom.split(',').join("");
     console.log(lodgingNum);
+    console.log("lodgingImg.url");
+    console.log(lodgingImg.url);
 
+    const lod = [...lodgingImg.url];
+    console.log("lod")
+    console.log(lod)
+    // alert(lodgingImg.url);
+
+    // const finalLodUrl = lod.push({lodgingNum:lodgingNum});
+    // console.log("finalLodUrl")
+    // console.log(finalLodUrl)
+
+    const finalLoad = lod.map((item,index)=>{
+        lod[index].put({"lodgingNum":lodgingNum})
+    })
+
+    console.log("finalLoad");
+    console.log(finalLoad);
 
 
     const styles ={
@@ -68,6 +89,25 @@ function LodgingFinal(){
             left : "25%"
         },
     }
+
+
+    // const lodgingImgUrl = [...lodgingImg.url]
+
+    // const finalmap = ()=>{
+    //     for(let i=0; i<lodgingImgUrl.length; i++){
+    //         lodgingImgUrl.push({lodgingNum:lodgingNum})
+    //     }
+    // }
+    //let 합칠것 = [...selectedStu.extraLesson];
+    // 합칠것.push(newHomework.homeworkDate);
+
+
+    // for(let i=0; i<=lodgingImgUrl.length; i++){
+    //             lodgingImgUrl.push({lodgingNum:lodgingNum})
+    // }
+
+    // console.log("finalmap")
+    // console.log(finalmap);
 
     const onclickButton = () => {
         axios({
