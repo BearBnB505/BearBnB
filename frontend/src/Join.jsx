@@ -16,11 +16,33 @@ import {
 import React, {useCallback, useState} from "react";
 import {Link} from "react-router-dom";
 import DropdownItem from "react-bootstrap/DropdownItem";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 
 function Join() {
 
     const [show, setShow] = useState(false);
+    //pw = >passwordConfirm
+    const [insertFirstName,setInsertFirstName] = useState('');
+    const [insertLastName,setInsertLastName] = useState('');
+    const [insertFullName,setInsertFullName] = useState('');
+    const [insertBirth,setInsertBirth] = useState('');
+    // const [insertEmail,setInsertEmail] = useState('');
+    const [insertTelNum,setInsertTelNum] = useState('');
+    const [insertCountry,setInsertCountry] = useState('');
+    const [insertGender,setInsertGender] = useState('');
+
+    // const onClickConfirm = () => {
+    //     Swal.fire({
+    //         icon: 'success',
+    //         title: '가입이 완료되었습니다.',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //     }).then(() => {
+    //         setShow(false);
+    //     })
+    // };
 
     // 올해 년도 구하기
     let now = new Date();
@@ -49,8 +71,12 @@ function Join() {
     //미성년자 체크
     const onChangeBirth = useCallback((e:React.ChangeEvent<HTMLInputElement>) =>{
         const birthCurrent = Number((e.target.value).slice(0,4))
+        const insertBirths = e.target.value;
 
-        setBirth(birthCurrent);
+        setBirth(insertBirths);
+        setInsertBirth(insertBirths);
+
+        console.log(insertBirth)
 
         const age = numberThisYear-birthCurrent;
         console.log(age);
@@ -71,6 +97,7 @@ function Join() {
         setEmail(emailCurrent)
 
 
+
         if (!emailRegex.test(emailCurrent)) {
             setEmailMessage('틀린 이메일 형식입니다.')
             setIsEmail('error')
@@ -79,6 +106,7 @@ function Join() {
             setIsEmail('success')
         }
     }, [])
+    console.log(email);//email확인
 
     //비밀번호 숫자, 영문자, 특수문자
     const onChangePassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,6 +141,88 @@ function Join() {
         [password]
     )
 
+    //이름 입력값
+    // const onChangeinputFirstName =(e)=>{
+    //     console.log(e.target.value)
+    //
+    // }
+
+    const onChangeinputFirstName = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        const firstName = e.target.value
+        setInsertFirstName(firstName);
+    }, [])
+
+    const onChangeInputLastName = (e) =>{
+        setInsertLastName(e.target.value)
+    }
+
+    const onChangeTelNum = (e) =>{
+        setInsertTelNum(e.target.value)
+        console.log(insertTelNum)
+    }
+
+    // 최종 넣을 이름
+    const insertFinalName = insertLastName+insertFirstName;
+    console.log("insertFinalName");
+    console.log(insertFinalName);
+    // setInsertFirstName(insertFinalName);
+
+    const optionItems = document.getElementById("countryItems")
+    const options =(e)=>{
+        // console.log(optionItems.options[optionItems.selectedIndex].text);
+        console.log(e.target.value)
+        setInsertCountry(e.target.value)
+    }
+
+    const radio1 =(e)=>{
+        // console.log(optionItems.options[optionItems.selectedIndex].text);
+        console.log(e.target.value)
+        setInsertGender(e.target.value)
+    }
+
+    const radio2 =(e)=>{
+        // console.log(optionItems.options[optionItems.selectedIndex].text);
+        console.log(e.target.value)
+        setInsertGender(e.target.value)
+    }
+
+    console.log('선택된 성별')
+    console.log(insertGender);
+
+
+
+    const onClickJoin = () =>{
+        axios({
+            url: 'http://localhost:8080/insertJoin',
+            method: 'post',
+            data: {
+                userId : email,
+                pwd : password,
+                tel : insertTelNum,
+                gender : insertGender,
+                name : insertFinalName,
+                nation : insertCountry,
+                birthDt : insertBirth,
+                profileImg:'https://cdn-icons-png.flaticon.com/512/64/64572.png',
+            }
+        })
+            .then(function (response) {
+                console.log(response)
+                    Swal.fire({
+                        icon: 'success',
+                        title: '가입이 완료되었습니다.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        setShow(false);
+                    })
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
 
 
 
@@ -121,6 +231,7 @@ function Join() {
             <DropdownItem href={"#"} onClick={() => setShow(true)}>
                 회원가입
             </DropdownItem>
+            {/*<img src='../public/img/user.png'*/}
 
             <Modal
                 size={"lg"}
@@ -141,10 +252,10 @@ function Join() {
                                 <div className = {"col-10 mx-auto mt-2"}>
                                     <InputGroup size="lg">
                                         <FloatingLabel controlId="firstName" label="이름(예 : 길동)">
-                                            <Form.Control type="firstName" placeholder="이름(예 : 길동)" />
+                                            <Form.Control type="firstName" placeholder="이름(예 : 길동)" onChange={onChangeinputFirstName}/>
                                         </FloatingLabel>
                                         <FloatingLabel controlId="secondName" label="성(예 : 홍)">
-                                            <Form.Control type="firstName" placeholder="성(예 : 홍)" />
+                                            <Form.Control type="firstName" placeholder="성(예 : 홍)" onChange={onChangeInputLastName}/>
                                         </FloatingLabel>
                                     </InputGroup>
                                     <p style={{color : "gray", fontSize :"15px"}}>정부 발급 신분증에 표시된 이름과 일치하는지 확인하세요.</p>
@@ -171,126 +282,126 @@ function Join() {
 
                                     <br />
                                     <FloatingLabel controlId="passwordCheck" label="전화번호">
-                                        <Form.Control type="text" placeholder="전화번호" />
+                                        <Form.Control type="text" placeholder="전화번호" onChange={onChangeTelNum}/>
                                     </FloatingLabel>
                                     <div>
                                         <p className={'mt-4'} style={{fontSize:"20px"}}>국가 선택</p>
-                                        <select data-testid="login-signup-countrycode" className="countrycode" id="country">
-                                            <option value="242CG">콩고 (+242)</option>
-                                            <option value="243CD">콩고 민주 공화국 (+243)</option>
-                                            <option value="852HK">홍콩 (+852)</option>
-                                            <option value="383XK">코소보 (+383)</option>
-                                            <option value="853MO">마카오 (+853)</option>
-                                            <option value="389MK">북마케도니아 (+389)</option>
-                                            <option value="886TW">대만 (+886)</option>
-                                            <option value="233GH">가나 (+233)</option>
-                                            <option value="241GA">가봉 (+241)</option>
-                                            <option value="592GY">가이아나 (+592)</option>
-                                            <option value="220GM">감비아 (+220)</option>
-                                            <option value="44GG">건지 (+44)</option>
-                                            <option value="590GP">과들루프 (+590)</option>
-                                            <option value="502GT">과테말라 (+502)</option>
-                                            <option value="1GU">괌 (+1)</option>
-                                            <option value="1GD">그레나다 (+1)</option>
-                                            <option value="30GR">그리스 (+30)</option>
-                                            <option value="299GL">그린란드 (+299)</option>
-                                            <option value="224GN">기니 (+224)</option>
-                                            <option value="245GW">기니비사우 (+245)</option>
-                                            <option value="264NA">나미비아 (+264)</option>
-                                            <option value="674NR">나우루 (+674)</option>
-                                            <option value="234NG">나이지리아 (+234)</option>
-                                            <option value="211SS">남수단 (+211)</option>
-                                            <option value="27ZA">남아프리카 (+27)</option>
-                                            <option value="31NL">네덜란드 (+31)</option>
-                                            <option value="599BQ">네덜란드령 카리브 (+599)</option>
-                                            <option value="977NP">네팔 (+977)</option>
-                                            <option value="47NO">노르웨이 (+47)</option>
-                                            <option value="672NF">노퍽섬 (+672)</option>
-                                            <option value="64NZ">뉴질랜드 (+64)</option>
-                                            <option value="687NC">뉴칼레도니아 (+687)</option>
-                                            <option value="683NU">니우에 (+683)</option>
-                                            <option value="227NE">니제르 (+227)</option>
-                                            <option value="505NI">니카라과 (+505)</option>
-                                            <option value="45DK">덴마크 (+45)</option>
-                                            <option value="1DM">도미니카 (+1)</option>
-                                            <option value="1DO">도미니카 공화국 (+1)</option>
-                                            <option value="49DE">독일 (+49)</option>
-                                            <option value="670TL">동티모르 (+670)</option>
-                                            <option value="856LA">라오스 (+856)</option>
-                                            <option value="231LR">라이베리아 (+231)</option>
-                                            <option value="371LV">라트비아 (+371)</option>
-                                            <option value="7RU">러시아 (+7)</option>
-                                            <option value="961LB">레바논 (+961)</option>
-                                            <option value="266LS">레소토 (+266)</option>
-                                            <option value="40RO">루마니아 (+40)</option>
-                                            <option value="352LU">룩셈부르크 (+352)</option>
-                                            <option value="250RW">르완다 (+250)</option>
-                                            <option value="218LY">리비아 (+218)</option>
-                                            <option value="262RE">리유니온 (+262)</option>
-                                            <option value="370LT">리투아니아 (+370)</option>
-                                            <option value="423LI">리히텐슈타인 (+423)</option>
-                                            <option value="261MG">마다가스카르 (+261)</option>
-                                            <option value="596MQ">마르티니크 (+596)</option>
-                                            <option value="692MH">마셜 제도 (+692)</option>
-                                            <option value="262YT">마요트 (+262)</option>
-                                            <option value="265MW">말라위 (+265)</option>
-                                            <option value="60MY">말레이시아 (+60)</option>
-                                            <option value="223ML">말리 (+223)</option>
-                                            <option value="44IM">맨 섬 (+44)</option>
-                                            <option value="52MX">멕시코 (+52)</option>
-                                            <option value="377MC">모나코 (+377)</option>
-                                            <option value="212MA">모로코 (+212)</option>
-                                            <option value="230MU">모리셔스 (+230)</option>
-                                            <option value="222MR">모리타니 (+222)</option>
-                                            <option value="258MZ">모잠비크 (+258)</option>
-                                            <option value="382ME">몬테네그로 (+382)</option>
-                                            <option value="1MS">몬트세라트 (+1)</option>
-                                            <option value="373MD">몰도바 (+373)</option>
-                                            <option value="960MV">몰디브 (+960)</option>
-                                            <option value="356MT">몰타 (+356)</option>
-                                            <option value="976MN">몽골 (+976)</option>
-                                            <option value="1US">미국 (+1)</option>
-                                            <option value="1VI">미국령 버진아일랜드 (+1)</option>
-                                            <option value="95MM">미얀마 (+95)</option>
-                                            <option value="691FM">미크로네시아 (+691)</option>
-                                            <option value="678VU">바누아투 (+678)</option>
-                                            <option value="973BH">바레인 (+973)</option>
-                                            <option value="1BB">바베이도스 (+1)</option>
-                                            <option value="379VA">바티칸 시국 (+379)</option>
-                                            <option value="1BS">바하마 (+1)</option>
-                                            <option value="880BD">방글라데시 (+880)</option>
-                                            <option value="1BM">버뮤다 (+1)</option>
-                                            <option value="229BJ">베냉 (+229)</option>
-                                            <option value="58VE">베네수엘라 (+58)</option>
-                                            <option value="84VN">베트남 (+84)</option>
-                                            <option value="32BE">벨기에 (+32)</option>
-                                            <option value="375BY">벨라루스 (+375)</option>
-                                            <option value="501BZ">벨리즈 (+501)</option>
-                                            <option value="387BA">보스니아 헤르체고비나 (+387)</option>
-                                            <option value="267BW">보츠와나 (+267)</option>
-                                            <option value="591BO">볼리비아 (+591)</option>
-                                            <option value="257BI">부룬디 (+257)</option>
-                                            <option value="226BF">부르키나파소 (+226)</option>
-                                            <option value="975BT">부탄 (+975)</option>
-                                            <option value="1MP">북마리아나제도 (+1)</option>
-                                            <option value="359BG">불가리아 (+359)</option>
-                                            <option value="55BR">브라질 (+55)</option>
-                                            <option value="673BN">브루나이 (+673)</option>
-                                            <option value="685WS">사모아 (+685)</option>
-                                            <option value="966SA">사우디아라비아 (+966)</option>
-                                            <option value="500GS">사우스조지아 사우스샌드위치 제도 (+500)</option>
-                                            <option value="378SM">산마리노 (+378)</option>
-                                            <option value="239ST">상투메 프린시페 (+239)</option>
-                                            <option value="590MF">생마르탱 (+590)</option>
-                                            <option value="590BL">생바르텔레미 (+590)</option>
-                                            <option value="508PM">생피에르 미클롱 (+508)</option>
-                                            <option value="212EH">서사하라 (+212)</option>
-                                            <option value="221SN">세네갈 (+221)</option>
-                                            <option value="381RS">세르비아 (+381)</option>
-                                            <option value="248SC">세이셸 (+248)</option>
-                                            <option value="1LC">세인트루시아 (+1)</option>
-                                            <option value="1VC">세인트빈센트그레나딘 (+1)</option>
-                                            <option value="1KN">세인트키츠 네비스 (+1)</option>
+                                        <select id="countryItems" data-testid="login-signup-countrycode" className="countrycode" onChange={options}>
+                                            <option value="콩고">콩고</option>
+                                            <option value="콩고 민주 공화국">콩고 민주 공화국</option>
+                                            <option value="홍콩">홍콩</option>
+                                            <option value="코소보">코소보</option>
+                                            <option value="마카오">마카오</option>
+                                            <option value="북마케도니아">북마케도니아</option>
+                                            <option value="대만">대만</option>
+                                            <option value="가나">가나</option>
+                                            <option value="가봉">가봉</option>
+                                            <option value="가이아나">가이아나</option>
+                                            <option value="감비아">감비아</option>
+                                            <option value="건지">건지</option>
+                                            <option value="과들루프">과들루프</option>
+                                            <option value="과테말라">과테말라</option>
+                                            <option value="괌">괌</option>
+                                            <option value="그레나다">그레나다</option>
+                                            <option value="그리스">그리스</option>
+                                            <option value="그린란드">그린란드</option>
+                                            <option value="기니">기니</option>
+                                            <option value="기니비사우">기니비사우</option>
+                                            <option value="나미비아">나미비아</option>
+                                            <option value="나우루">나우루</option>
+                                            <option value="나이지리아">나이지리아</option>
+                                            <option value="남수단">남수단</option>
+                                            <option value="남아프리카">남아프리카</option>
+                                            <option value="네덜란드">네덜란드</option>
+                                            <option value="네덜란드령카리브">네덜란드령 카리브</option>
+                                            <option value="977NP">네팔</option>
+                                            <option value="47NO">노르웨이</option>
+                                            <option value="672NF">노퍽섬</option>
+                                            <option value="64NZ">뉴질랜드</option>
+                                            <option value="687NC">뉴칼레도니아</option>
+                                            <option value="683NU">니우에</option>
+                                            <option value="227NE">니제르</option>
+                                            <option value="505NI">니카라과</option>
+                                            <option value="45DK">덴마크</option>
+                                            <option value="1DM">도미니카</option>
+                                            <option value="1DO">도미니카 공화국</option>
+                                            <option value="49DE">독일</option>
+                                            <option value="670TL">동티모르</option>
+                                            <option value="856LA">라오스</option>
+                                            <option value="231LR">라이베리아</option>
+                                            <option value="371LV">라트비아</option>
+                                            <option value="7RU">러시아</option>
+                                            <option value="961LB">레바논</option>
+                                            <option value="266LS">레소토</option>
+                                            <option value="40RO">루마니아</option>
+                                            <option value="352LU">룩셈부르크</option>
+                                            <option value="250RW">르완다</option>
+                                            <option value="218LY">리비아</option>
+                                            <option value="262RE">리유니온</option>
+                                            <option value="370LT">리투아니아</option>
+                                            <option value="423LI">리히텐슈타인</option>
+                                            <option value="261MG">마다가스카르</option>
+                                            <option value="596MQ">마르티니크</option>
+                                            <option value="692MH">마셜 제도</option>
+                                            <option value="262YT">마요트</option>
+                                            <option value="265MW">말라위</option>
+                                            <option value="60MY">말레이시아</option>
+                                            <option value="223ML">말리</option>
+                                            <option value="44IM">맨 섬</option>
+                                            <option value="52MX">멕시코</option>
+                                            <option value="377MC">모나코</option>
+                                            <option value="212MA">모로코</option>
+                                            <option value="230MU">모리셔스</option>
+                                            <option value="222MR">모리타니</option>
+                                            <option value="258MZ">모잠비크</option>
+                                            <option value="382ME">몬테네그로</option>
+                                            <option value="1MS">몬트세라트</option>
+                                            <option value="373MD">몰도바</option>
+                                            <option value="960MV">몰디브</option>
+                                            <option value="356MT">몰타</option>
+                                            <option value="976MN">몽골</option>
+                                            <option value="1US">미국</option>
+                                            <option value="1VI">미국령 버진아일랜드</option>
+                                            <option value="95MM">미얀마</option>
+                                            <option value="691FM">미크로네시아</option>
+                                            <option value="678VU">바누아투</option>
+                                            <option value="973BH">바레인</option>
+                                            <option value="1BB">바베이도스</option>
+                                            <option value="379VA">바티칸 시국</option>
+                                            <option value="1BS">바하마</option>
+                                            <option value="880BD">방글라데시</option>
+                                            <option value="1BM">버뮤다</option>
+                                            <option value="229BJ">베냉</option>
+                                            <option value="58VE">베네수엘라</option>
+                                            <option value="84VN">베트남</option>
+                                            <option value="32BE">벨기에</option>
+                                            <option value="375BY">벨라루스</option>
+                                            <option value="501BZ">벨리즈</option>
+                                            <option value="387BA">보스니아 헤르체고비나</option>
+                                            <option value="267BW">보츠와나</option>
+                                            <option value="591BO">볼리비아</option>
+                                            <option value="257BI">부룬디</option>
+                                            <option value="226BF">부르키나파소</option>
+                                            <option value="975BT">부탄</option>
+                                            <option value="1MP">북마리아나제도</option>
+                                            <option value="359BG">불가리아</option>
+                                            <option value="55BR">브라질</option>
+                                            <option value="673BN">브루나이</option>
+                                            <option value="685WS">사모아</option>
+                                            <option value="966SA">사우디아라비아</option>
+                                            <option value="500GS">사우스조지아 사우스샌드위치 제도</option>
+                                            <option value="378SM">산마리노</option>
+                                            <option value="239ST">상투메 프린시페</option>
+                                            <option value="590MF">생마르탱</option>
+                                            <option value="590BL">생바르텔레미 </option>
+                                            <option value="508PM">생피에르 미클롱 </option>
+                                            <option value="212EH">서사하라</option>
+                                            <option value="221SN">세네갈 </option>
+                                            <option value="381RS">세르비아</option>
+                                            <option value="248SC">세이셸</option>
+                                            <option value="1LC">세인트루시아</option>
+                                            <option value="1VC">세인트빈센트그레나딘</option>
+                                            <option value="1KN">세인트키츠 네비스</option>
                                             <option value="290SH">세인트헬레나 (+290)</option>
                                             <option value="252SO">소말리아 (+252)</option>
                                             <option value="677SB">솔로몬 제도 (+677)</option>
@@ -423,19 +534,21 @@ function Join() {
                                     <div className = "row justify-content-start mt-3">
                                         <div className="form-check col-2 ms-3 ">
                                             <input className="form-check-input" type="radio" name="flexRadioDefault"
-                                                   id="male"/>
+                                                   id="male" value='M' onClick={radio1} />
                                             <label className="form-check-label" htmlFor="flexRadioDefault1">
                                                 남성
                                             </label>
                                         </div>
                                         <div className="form-check col-2">
-                                            <input className="form-check-input" type="radio" name="flexRadioDefault"
-                                                   id="female" checked/>
+                                            <input className="form-check-input" type="radio" name="flexRadioDefault" value="F"
+                                                   id="female" onClick={radio1} checked/>
                                             <label className="form-check-label" htmlFor="flexRadioDefault2">
                                                 여성
                                             </label>
+                                            {/*<p>선택된 성별 :{insertGender}</p>*/}
                                         </div>
                                     </div>
+
                                     <hr/>
                                     <br />
                                     <div className={'row justify-content-start'}>
@@ -465,7 +578,7 @@ function Join() {
                                         동의 및 계속하기를 선택하여 베어비앤비 서비스 약관, 결제 서비스 약관, 위치기반서비스 이용약관,
                                         차별 금지 정책, 개인정보 처리방침에 동의합니다.
                                     </div>
-                                    <button className={'btn btn-danger col-12 mt-5 mb-5'}>회원가입완료</button>
+                                    <button className={'btn btn-danger col-12 mt-5 mb-5'} onClick={onClickJoin}>회원가입완료</button>
                                 </div>
                             </div>
                         </div>
