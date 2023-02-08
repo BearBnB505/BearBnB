@@ -139,7 +139,7 @@ function LodgingPayment(props) {
                     <p style={{fontSize: "27px", fontWeight: "bold", paddingTop: "40px"}}>예약 정보</p>
                     <div className={'row mt-4'}>
                         <div className={'col-9'}>
-                            <p style={{fontSize: "22px", fontWeight: "bold"}}>날짜</p>
+                            <p style={{fontSize: "22px", fontWeight: "bold", cursor: 'default'}}>날짜</p>
                             <p style={{fontSize: "20px", marginTop: "-10px"}}>{startDate} ~ {endDate}</p>
                         </div>
                         <div className={'col-2'}>
