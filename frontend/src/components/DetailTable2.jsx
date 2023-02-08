@@ -18,7 +18,7 @@ const DetailTable2 = ({ show, onHide }) =>{
             <Modal.Body>
                 <h4>Centered Modal</h4>
                 <p>
-                    
+
                 </p>
             </Modal.Body>
             <Modal.Footer>
