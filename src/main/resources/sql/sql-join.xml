@@ -3,8 +3,8 @@
 <mapper namespace="com.bearbnb.mapper.JoinMapper">
     <insert id="insertJoin" parameterType="com.bearbnb.dto.MembersDto">
         <![CDATA[
-            insert into members (user_id, pwd, user_code, tel, gender, name, nation, profile_img, birth_dt, join_dt, deleted_yn)
-            values (#{userId}, #{pwd}, 'USER', #{tel}, #{gender}, #{name}, #{nation}, #{profileImg}, #{birthDt}, now(), 'N')
+            insert into members (user_id, pwd, tel, gender, name, nation, profile_img, birth_dt, join_dt, deleted_yn, authority)
+            values (#{userId}, #{pwd}, #{tel}, #{gender}, #{name}, #{nation}, #{profileImg}, #{birthDt}, now(), 'N','ROLE_HOST')
         ]]>
     </insert>
 </mapper>
