@@ -1,6 +1,6 @@
 // import React from "react";
 // import {GoogleMap, LoadScript, StandaloneSearchBox, useJsApiLoader} from "@react-google-maps/api";
-import * as gvar from "./global_variables";
+// import * as gvar from "./global_variables";
 //
 // function SearchMap(props) {
 //
