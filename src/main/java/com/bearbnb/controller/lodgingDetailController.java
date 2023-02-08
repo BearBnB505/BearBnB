@@ -33,7 +33,7 @@ public class lodgingDetailController {
         List<ReviewDto> review = lodgingDetailService.reviewDetail(lodging.getLodgingNum());
         map.put("review", review);
 
-        ReviewDto avg = lodgingDetailService.reviewAvg(lodging.getLodgingNum());
+        ReviewAvgDto avg = lodgingDetailService.reviewAvg(lodging.getLodgingNum());
         map.put("avg", avg);
 
         List<ComfortsDto> comforts = lodgingDetailService.comfortsDetail(lodging.getLodgingNum());

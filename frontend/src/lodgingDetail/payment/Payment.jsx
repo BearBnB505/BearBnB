@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Dropdown} from "react-bootstrap";
 
-function Payment(props){
+function Payment({lodging}){
     return(
         <div id={'aside'}>
             <div className={'container border shadow rounded-4 px-5 py-4 mb-4'}>
@@ -23,7 +23,7 @@ function Payment(props){
 
                 <div>
                     <div>
-                        <span className={'fs-4 fw-bold me-1'}>\{props.cost}</span>
+                        <span className={'fs-4 fw-bold me-1'}>\{lodging.cost}</span>
                         <span>/박</span>
                     </div>
                     <div className={'btn-group-vertical container mx-0 px-0 my-3'}>

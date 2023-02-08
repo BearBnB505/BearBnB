@@ -6,31 +6,68 @@
     <!--  맴버 리스트 가져오기  -->
     <select id="memberList" resultType="com.bearbnb.dto.MembersDto">
         <![CDATA[
-        SELECT * FROM members
+        SELECT *
+        FROM members
         ORDER BY idx DESC
         ]]>
     </select>
 
-<!--    숙소 리스트 가져오기-->
+    <select id="getMembersPaging" resultType="com.bearbnb.dto.MembersDto">
+        <![CDATA[
+        SELECT *
+        FROM members
+        ORDER BY idx DESC
+        ]]>
+    </select>
+
+    <!--    숙소 리스트 가져오기-->
     <select id="lodgingList" resultType="com.bearbnb.dto.LodgingDto">
         <![CDATA[
-            SELECT * FROM lodging
-            ORDER BY idx DESC
-            ]]>
-    </select>
-
-<!--    신고관리 리스트 가져오기-->
-    <select id="complainList" resultType="com.bearbnb.dto.ComplainDto">
-        <![CDATA[
-        SELECT * FROM complain
+        SELECT *
+        FROM lodging
         ORDER BY idx DESC
         ]]>
     </select>
 
-<!--    매출관리 리스트 가져오기-->
+    <select id="adminLodgingList" resultType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        SELECT *
+        FROM lodging
+        WHERE lodging_num = #{lodgingNum}
+        ]]>
+    </select>
+
+    <!--    신고관리 리스트 가져오기-->
+    <select id="adminComplainList" resultType="com.bearbnb.dto.ComplainDto">
+        <![CDATA[
+        SELECT *
+        FROM complain
+        WHERE lodging_num = #{lodgingNum}
+        ]]>
+    </select>
+
+    <select id="adminAvgReviewList" resultType="com.bearbnb.dto.ReviewAvgDto">
+        <![CDATA[
+        SELECT
+            avg(cast(clean_grade as float)) as clean_grade,
+            avg(cast(accuracy_grade as float)) as accuracy_grade,
+            avg(cast(communication_grade as float)) as communication_grade,
+            avg(cast(location_grade as float)) as location_grade,
+            avg(cast(check_in_grade as float)) as check_in_grade,
+            avg(cast(cost_grade as float)) as cost_grade,
+            round((clean_grade + accuracy_grade + communication_grade + location_grade + check_in_grade + cost_grade) / 6, 1) as review_total,
+            count(*) as review_count
+        FROM review
+        WHERE lodging_num = #{lodgingNum}
+          AND deleted_yn = 'N'
+        ]]>
+    </select>
+
+    <!--    매출관리 리스트 가져오기-->
     <select id="bookingList" resultType="com.bearbnb.dto.BookingDto">
         <![CDATA[
-        SELECT * FROM booking
+        SELECT *
+        FROM booking
         ORDER BY idx DESC
         ]]>
     </select>

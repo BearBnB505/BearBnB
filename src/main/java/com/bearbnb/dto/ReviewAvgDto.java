@@ -3,17 +3,13 @@ package com.bearbnb.dto;
 import lombok.Data;
 
 @Data
-public class ReviewDto {
-    private String userId;
-    private String comment;
+public class ReviewAvgDto {
     private double cleanGrade;
     private double accuracyGrade;
     private double communicationGrade;
     private double locationGrade;
     private double checkInGrade;
     private double costGrade;
-    private String lodgingNum;
-    private String reviewCreateDt;
-    private String deletedYn;
-
+    private double reviewTotal;
+    private int reviewCount;
 }

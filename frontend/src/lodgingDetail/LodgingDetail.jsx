@@ -27,7 +27,6 @@ function LodgingDetail(props) {
     const [lodging, setLodging] = useState([]);
     const [photo, setPhoto] = useState([]);
     const [review, setReview] = useState([]);
-
     const [avg, setAvg] = useState([]);
     const [comforts, setComforts] = useState([]);
     const [members, setMembers] = useState([]);
@@ -55,11 +54,9 @@ function LodgingDetail(props) {
     return (
         <>
             <div style={{display: "grid", justifyContent: "center", width: 1900}}>
-                {/*<div style={{display: "grid", justifyContent: "center"}}>*/}
-
                 <div className={'mx-auto'} style={{width: 1230}}>
 
-                    <LodgingDetailTitle idx={lodging.idx} lodgingName={lodging.lodgingName} addr={lodging.addr} reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
+                    <LodgingDetailTitle lodging={lodging} review={review} avg={avg}/>
 
                     <PhotoContext.Provider value={photo}>
                         <HostImg/>
@@ -67,8 +64,8 @@ function LodgingDetail(props) {
 
                     <div className={'row'}>
                         <div className={'col-7 me-5'}>
-                            <HouseExplain introLodging={lodging.introLodging}/>
-                            <HostHouse bedroomNum={lodging.bedroomNum} bedNum={lodging.bedNum} bathroomNum={lodging.bathroomNum}/>
+                            <HouseExplain lodging={lodging}/>
+                            <HostHouse lodging={lodging}/>
 
                             <DetailAmenityContext.Provider value={comforts}>
                                 <DetailAmenity/>
@@ -81,16 +78,16 @@ function LodgingDetail(props) {
                         </div>
 
                         <div className={'col ps-4 mt-5'}>
-                            <Payment cost={lodging.cost}/>
+                            <Payment lodging={lodging}/>
                         </div>
                     </div>
 
-                    <ReviewTitle reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
-                    <ReviewAverageForm cleanGrade={avg.cleanGrade} accuracyGrade={avg.accuracyGrade} communicationGrade={avg.communicationGrade} locationGrade={avg.locationGrade} checkInGrade={avg.checkInGrade} costGrade={avg.costGrade}/>
+                    <ReviewTitle avg={avg}/>
+                    <ReviewAverageForm avg={avg}/>
 
                     <ReviewContext.Provider value={review}>
                         <AvgContext.Provider value={avg}>
-                            <ReviewAverage reviewCount={avg.reviewCount}/>
+                            <ReviewAverage avg={avg}/>
                         </AvgContext.Provider>
                     </ReviewContext.Provider>
 
@@ -102,7 +99,7 @@ function LodgingDetail(props) {
                         </div>
                     </div>
 
-                    <HostIntroduce userId={lodging.userId} joinDt={members.joinDt} introHost={lodging.introHost} reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
+                    <HostIntroduce lodging={lodging} members={members} avg={avg}/>
                 </div>
             </div>
             <Footer/>

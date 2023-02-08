@@ -1,110 +1,104 @@
-import React, {useState} from "react";
-import Swal from "sweetalert2";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
+import {useParams} from "react-router";
+import {Breadcrumb, Button, Card} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faClose, faList} from "@fortawesome/free-solid-svg-icons";
-import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
-// import GuestInfoModal from "../GuestInfoModal";
+import {faStar} from "@fortawesome/free-solid-svg-icons";
+import {Link} from "react-router-dom";
 
-function DetailTable2({lodging_name, book_state, book_dt, pay_cost, childValue}) {
+function DetailTable2() {
+    const [avg, setAvg] = useState([]);
+    const [complain, setComplain] = useState([]);
+    const [lodging, setLodging] = useState([]);
+    const [data, setData] = useState([]);
 
-    const [show, setShow] = useState(false);
+    const {lodgingNum} = useParams();
 
-    const onClickConfirm = () => {
-        Swal.fire({
-            icon: 'success',
-            title: '승인되었습니다.',
-            showConfirmButton: false,
-            timer: 1500
-        }).then(() => {
-            setShow(false);
-            childValue('tab2');
-        })
-    };
+    useEffect(() => {
+        axios.get(`http://localhost:8080/admin/lodging/detail2/${lodgingNum}`)
+            .then((req) => {
+                const {data} = req;
+                console.log(data);
+                setAvg(data.avg);
+                setComplain(data.complain);
+                setLodging(data.lodging);
 
-    const onClickReject = () => {
-        Swal.fire({
-            title: '정말 거절하시겠습니까?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: '거절합니다',
-            cancelButtonText: '취소'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire( {
-                    title: '거절되었습니다!',
-                    icon: 'success'
-                }).then(() => {
-                    setShow(false);
-                    childValue('tab3');
-                })
-            }
-        })
-    };
-
-    const styles = {
-        ul: {
-            border: "none",
-            display: "block",
-            listStyleType: "disc",
-            marginBlockStart: "1em",
-            marginBlockEnd: "1em",
-            marginInlineStart: 0,
-            marginInlineEnd: 0,
-            paddingInlineStart: 0,
-        },
-        li: {}
-    };
-
+            })
+            .catch((err) => {
+                console.log("통신 오류");
+            })
+    }, []);
     return (
+        <div className={"container mt-3"} style={{width: 1240}}>
 
-        <ul className={"list-group mb-4"} style={styles.ul}>
-            <li className={"list-group-item p-4"} style={styles.li}>
-                <div className={"mb-2"}>
-                    <span className={"fs-5 fw-bold me-2"}>{book_state}</span>
-                    <small className={"text-secondary"}>{book_dt}</small>
-                </div>
-                <div className={"mb-1"}>{lodging_name}</div>
-                <div className={"mb-2"}>결제 금액 : {pay_cost}</div>
+            <div className={"mb-4 p-1"}>
+                <Breadcrumb>
+                    <Breadcrumb.Item><Link to={"../lodging"}>이전 페이지</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item active>상세 숙소정보</Breadcrumb.Item>
+                </Breadcrumb>
+                <h3 className={"fw-bold"}>상세 숙소 정보</h3>
+            </div>
 
+
+            {/*    이미지    */}
+            <Card className={"shadow-sm rounded-3 p-1"}>
                 <div className={"row"}>
-                    <div className={"col-2 pe-0"} style={{width:120}}>
-
-                        <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit" onClick={() => setShow(true)}>
-                            <span><FontAwesomeIcon icon={faList} size="1x"/> 상세내역</span>
-                        </button>
-
-                        <Modal
-                            size={"lg"}
-                            show={show}
-                            onHide={() => setShow(false)}
-                            aria-labelledby="contained-modal-title-vcenter"
-                            centered
-                        >
-                            <ModalHeader className={'d-flex'} closeButton={true}>
-                                <ModalTitle className={'flex-grow-1 text-center ps-4'}>예약내역</ModalTitle>
-                            </ModalHeader>
-                            <ModalBody>
-                                {/*<GuestInfoModal />*/}
-
-                                <div className={'row justify-content-center mb-2'}>
-                                    <button className={'col-3 btn btn-primary'} onClick={onClickConfirm}>승인</button>
-                                    <button className={'col-3 btn btn-danger ms-5'} onClick={onClickReject}>거절</button>
-                                </div>
-                            </ModalBody>
-                        </Modal>
+                    <div className={"col-5"}>
+                        <div style={styles.imgDiv}>
+                            <img style={styles.img} src={lodging.certifyImg} alt=""/>
+                        </div>
                     </div>
 
-                    <div className={"col-1 p-0"}>
-                        <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit" onClick={onClickReject}>
-                            <span><FontAwesomeIcon icon={faClose} size="1x"/> 거절</span>
-                        </button>
+                    <div className={"col-7"}>
+                        <div>숙소명 : {lodging.lodgingName}</div>
+                        <div>신청날짜 : {lodging.createDt}</div>
                     </div>
                 </div>
-            </li>
-        </ul>
-    );
+
+                <div className={"row p-2"}>
+                    <div>상세정보..</div>
+                    <div>상세정보..</div>
+                    <div>상세정보..</div>
+                    <div>상세정보..</div>
+                    <div>상세정보..</div>
+                    <div>상세정보..</div>
+                </div>
+
+            </Card>
+
+            <div className={"row mt-3"}>
+                <div className={"col-6"}>
+                    <Button>예약확정</Button>
+                </div>
+                <div className={"col-6"}>
+                    <Button>예약취소</Button>
+                </div>
+            </div>
+
+        </div>
+    )
 }
 
 export default DetailTable2;
+
+
+const styles = {
+    ul: {
+        padding: 0,
+    },
+    li: {
+        listStyleType: "none",
+    },
+    imgDiv: {
+        width: "100%",
+        height: "250px",
+    },
+    img: {
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        backgroundSize: "cover",
+        backgroundPosition: "50% 50%",
+    },
+
+}

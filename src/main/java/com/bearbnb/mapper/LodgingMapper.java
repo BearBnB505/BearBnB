@@ -34,6 +34,6 @@ public interface LodgingMapper {
 
     void CapacityUpdate(LodgingDto lodging);
 
-    ReviewDto reviewAvg(String lodgingNum) throws Exception;
+    ReviewAvgDto reviewAvg(String lodgingNum) throws Exception;
 
 }

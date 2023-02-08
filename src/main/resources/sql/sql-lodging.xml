@@ -54,7 +54,7 @@
         ]]>
     </select>
 
-    <select id="reviewAvg" resultType="com.bearbnb.dto.ReviewDto">
+    <select id="reviewAvg" resultType="com.bearbnb.dto.ReviewAvgDto">
         <![CDATA[
         SELECT
             avg(cast(clean_grade as float)) as clean_grade,
@@ -118,7 +118,7 @@
 
     <select id="membersDetail" resultType="com.bearbnb.dto.MembersDto">
         <![CDATA[
-        SELECT idx, user_id, user_code, tel, gender, name, nation, profile_img, birth_dt, deleted_yn, authority, DATE_FORMAT(join_dt, '%Y년 %m월') AS join_dt
+        SELECT idx, user_id, tel, gender, name, nation, profile_img, birth_dt, deleted_yn, authority, DATE_FORMAT(join_dt, '%Y년 %m월') AS join_dt
         FROM members
         WHERE user_id = #{userId}
         ]]>

@@ -3,7 +3,7 @@ import {Button} from "react-bootstrap";
 import DetailReview from "./DetailReview";
 import ModalReview from "./ModalReview";
 
-function ReviewAverage(props) {
+function ReviewAverage({avg}) {
 
     const [modalShow, setModalShow] = useState(false);
     return (
@@ -13,7 +13,7 @@ function ReviewAverage(props) {
             {/*<ReviewTitle/>*/}
             <DetailReview />
 
-            <Button className={'ReviewBtn'} variant="dark" onClick={() => setModalShow(true)}>후기 {props.reviewCount}개 모두보기</Button>
+            <Button className={'ReviewBtn'} variant="dark" onClick={() => setModalShow(true)}>후기 {avg.reviewCount}개 모두보기</Button>
             <ModalReview
                 show={modalShow}
                 onHide={() => setModalShow(false)}

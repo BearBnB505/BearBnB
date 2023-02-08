@@ -3,15 +3,13 @@ import HostInroTitle from "./HostInroTitle";
 import HostAvg from "./HostAvg";
 import HostIntroContents from "./HostIntroContents";
 
-function HostIntroduce(props){
+function HostIntroduce({lodging,avg,members}){
   return(
     <div>
-      <HostInroTitle userId={props.userId} joinDt={props.joinDt}/>
-      <HostAvg reviewCount={props.reviewCount} reviewTotal={props.reviewTotal}/>
-      <HostIntroContents introHost={props.introHost}/>
-
+      <HostInroTitle userId={members.userId} joinDt={members.joinDt}/>
+      <HostAvg reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
+      <HostIntroContents introHost={lodging.introHost}/>
     </div>
-
   )
 }
 

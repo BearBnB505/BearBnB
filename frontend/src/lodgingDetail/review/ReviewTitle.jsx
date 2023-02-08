@@ -2,14 +2,14 @@ import React, {useContext} from "react";
 import ReviewContext from "../Context/ReviewContext";
 
 
-function ReviewTitle(props) {
+function ReviewTitle({avg}) {
     // const review = useContext(ReviewContext);
     return (
             <div className={'ReviewAvgTitleBox'}>
                 <div style={{position: "relative", left: -8}}>&#x2B50;</div>
-                <div>{props.reviewTotal}</div>
+                <div>{avg.reviewTotal}</div>
                 <div>· 후기 :</div>
-                <div>{props.reviewCount}&nbsp;개</div>
+                <div>{avg.reviewCount}&nbsp;개</div>
             </div>
     )
 }
