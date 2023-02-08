@@ -121,14 +121,6 @@ function LodgingBasicInfo(){
                     <p className={"fw-bold"} style={styles.font}>숙소 기본 정보를 알려주세요</p>
                     <p className={"fs-5 fw-light"}>숙소에 머물 수 있는 게스트 수, 침실 수, 침대 수, 욕실 수를 지정해주세요 </p>
 
-                    <p>국가 : {locationDetail.nation}</p>
-                    <p>주소 :{locationDetail.address1}</p>
-                    <p>상세 주소 : {locationDetail.address2}</p>
-                    <p>우편번호 :{locationDetail.zipCode}</p>
-                    <p> Name : {user.nation} </p>
-                    <p> Age : {user.addr1} </p>
-                    <p> Email : {user.addr2} </p>
-                    <p> Email : {user.zipCode} </p>
                     <div className = "col-sm-12">
                         <div className="row justify-content-between mt-5 p-1 mb-3">
                             <div className="col-3 fs-5" >
