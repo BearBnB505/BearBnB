@@ -10,8 +10,8 @@
         FROM review re
         JOIN lodging lod
         ON re.lodging_num = lod.lodging_num
-
         WHERE re.deleted_yn = 'N'
+        ORDER BY re.review_create_dt desc
         ]]>
     </select>
 

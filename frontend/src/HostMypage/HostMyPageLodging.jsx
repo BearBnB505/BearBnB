@@ -23,7 +23,7 @@ import PageNation from "./LodgingPagenation";
 function HostMyPageLodging() {
 
   const [lengthInfo, setLengthInfo] = useState(1);
-  const [limitInfo , setLimitInfo] = useState(3);
+  const [limitInfo , setLimitInfo] = useState(5);
   const [pageInfo, setPageInfo] = useState(1);
 
   const offset = (pageInfo - 1) * limitInfo;
@@ -93,7 +93,7 @@ function ComplainList(props) {
   // 숙소 DB 가져와서 리스트 형식으로 담길 배열
   const [data, setData] = useState([]);
   // 페이지당 게시물 수
-  const [limit, setLimit] = useState(3);
+  const [limit, setLimit] = useState(5);
   // 현재 페이지 번호(page)
   const [page, setPage] = useState(1);
 
