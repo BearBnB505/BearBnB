@@ -15,4 +15,8 @@ public class ReviewDto {
     private String lodgingNum;
     private String reviewCreateDt;
     private String deletedYn;
+
+    // join lodging DB
+    private String lodgingName;
+
 }

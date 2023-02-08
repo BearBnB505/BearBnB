@@ -12,7 +12,7 @@ import './Lodging.css'
 import MainContents from "../Main/MainContents";
 import {number} from "prop-types";
 import {useLocation} from "react-router";
-import PageNation from "./PageNation";
+import PageNation from "./LodgingPagenation";
 
 
 

@@ -2,9 +2,11 @@ package com.bearbnb.controller;
 
 import com.bearbnb.dto.BookingDto;
 import com.bearbnb.dto.LodgingDto;
+import com.bearbnb.dto.ReviewDto;
 import com.bearbnb.mapper.BookingMapper;
 import com.bearbnb.mapper.LodgingMapper;
 import com.bearbnb.mapper.ComfortMapper;
+import com.bearbnb.mapper.ReviewMapper;
 import com.bearbnb.service.HostUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -25,6 +27,9 @@ public class HostUpdateController {
     @Autowired
     BookingMapper bookingMapper;
     @Autowired
+    ReviewMapper reviewMapper;
+
+    @Autowired
     private HostUpdateService hostUpdateService;
 
 //    @RequestMapping(value = "/bookingList")
@@ -35,6 +40,11 @@ public class HostUpdateController {
     @RequestMapping(value = "/bookingList")
     public List<BookingDto> bookingList() {
         return bookingMapper.bookingList();
+    }
+
+    @RequestMapping(value = "/ReviewList")
+    public List<ReviewDto> ReviewList() {
+        return reviewMapper.ReviewList();
     }
 
 
