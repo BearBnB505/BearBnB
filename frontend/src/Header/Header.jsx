@@ -13,6 +13,7 @@ import Join from "../Join";
 
 function Header(props) {
 
+
     return (
         <div className={"border-bottom pb-2"} id={"div-header"}>
             <nav className={"navbar navbar-expand-sm navbar-white bg-white mt-1 fixed"} id={"header_nav"}>
@@ -34,7 +35,7 @@ function Header(props) {
                                     <span>메세지알림</span>
                                     <span className="badge bg-primary rounded-pill float-end">2</span>
                                 </DropdownItem>
-                                <DropdownItem href={"/mypage"}>마이페이지</DropdownItem>
+                                <DropdownItem href={"/mypage"} >마이페이지</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </div>

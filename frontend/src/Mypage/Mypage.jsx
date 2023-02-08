@@ -11,24 +11,44 @@ import {motion} from "framer-motion";
 import {useParams} from "react-router";
 import axios from "axios";
 
+
 function Mypage(props) {
 
-    const [lodging, setLodging] = useState([]);
-    const {idx} = useParams();
+    // const [lodging, setLodging] = useState([]);
+    // const [members, setmembers] = useState([]);
+    // const {idx} = useParams();
+    //
+    // let [chooseDate, setChooseDate] = useState([]);
+    //
+    // // useEffect(() => {
+    // //     axios.get(`http://localhost:8080/lodgingDetail/${idx}`)
+    // //         .then((req) => {
+    // //             const {data} = req;
+    // //             console.log(data);
+    // //             setLodging(data.lodging);
+    // //         })
+    // //         .catch((err) => {
+    // //             console.log("통신 오류");
+    // //             console.log(err);
+    // //         })
+    // // }, []);
 
-    let [chooseDate, setChooseDate] = useState([]);
-
+    const [data, setData] = useState([]);
     useEffect(() => {
-        axios.get(`http://localhost:8080/lodgingDetail/${idx}`)
-            .then((req) => {
-                const {data} = req;
-                console.log(data);
-                setLodging(data.lodging);
-            })
-            .catch((err) => {
-                console.log("통신 오류");
-            })
+        axios.get('http://localhost:8080/CallMember')
+
+          .then((req) => {
+              const {data} = req;
+              // console.log(data);
+              setData(data);
+          })
+          .catch((err) => {
+              console.log("통신 오류");
+              console.log(err);
+          })
     }, []);
+
+
 
     return (
         <motion.div variants={Anima}

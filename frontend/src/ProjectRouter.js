@@ -74,6 +74,7 @@ function ProjectRouter(props) {
                     <Route path={"message"} element={<Message/>}/>
 
                     {/* 일반회원 마이페이지 */}
+
                     <Route path={"mypage"} element={<Mypage/>}/>
                     <Route path={"members"} element={<Members/>}/>
                     <Route path={"review"} element={<Review/>}/>

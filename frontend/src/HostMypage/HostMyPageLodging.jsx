@@ -68,7 +68,6 @@ export default HostMyPageLodging;
 function ComplainList() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    // axios.put('http://localhost:8080/CallLodgingList',null,null)
     axios.get('http://localhost:8080/AllLodgingList/')
 
       .then((req) => {
