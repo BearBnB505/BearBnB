@@ -5,9 +5,15 @@
     grid-template-rows: 40px;
 }
 
-.PassState{
-    border-radius: 7px;
-    /*border-style: solid;*/
-    /*border-color: #0d6efd;*/
-    background-color: black;
+.text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 1.2;
+    height: 3.6em;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3 ;
+    -webkit-box-orient: vertical;
 }

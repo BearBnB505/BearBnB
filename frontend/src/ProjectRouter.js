@@ -52,6 +52,7 @@ import HostMyPageRevenue from "./HostMypage/HostMyPageRevenue";
 import HostMyPageLodging from "./HostMypage/HostMyPageLodging";
 
 import './App.css';
+import ReviewContent from "./HostMypage/ReviewContent";
 
 function ProjectRouter(props) {
     return (
@@ -122,6 +123,7 @@ function ProjectRouter(props) {
 
                     {/*<HouseInfo/>*/}
                     <Route path={"hostMyPageLodging/HouseInfoUpdate/:lodgingNum"} element={<HouseInfo/>}/>
+                    <Route path={"ReviewContent"} element={<ReviewContent/>}/>
 
 
                     {/*  */}

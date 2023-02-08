@@ -47,6 +47,11 @@ public class HostUpdateController {
         return reviewMapper.ReviewList();
     }
 
+    @RequestMapping(value = "/ReviewListContent")
+    public List<ReviewDto> ReviewListContent() {
+        return reviewMapper.ReviewListContent();
+    }
+
 
     @RequestMapping(value = "/UpdateLanguage", method = RequestMethod.PUT)
     public String UpdateLanguage(LodgingDto lodging) throws Exception {

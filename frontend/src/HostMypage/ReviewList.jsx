@@ -15,6 +15,8 @@ function ReviewList() {
   const offset = (page - 1) * limit;
 
 
+
+
   useEffect(() => {
     axios.get('http://localhost:8080/ReviewList/')
       .then((req) => {
@@ -35,7 +37,8 @@ function ReviewList() {
             return <ReviewItem idx={item.idx} user_id={item.userId}
                                comment={item.comment}
                                review_create_dt={item.reviewCreateDt}/>
-          })}
+          })
+          }
         </div>
       </div>
       <ReviewPagenation

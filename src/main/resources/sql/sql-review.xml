@@ -15,6 +15,19 @@
         ]]>
     </select>
 
+
+
+    <select id="ReviewListContent" resultType="com.bearbnb.dto.ReviewDto">
+        <![CDATA[
+        SELECT re.*, lod.lodging_name
+        FROM review re
+                 JOIN lodging lod
+                      ON re.lodging_num = lod.lodging_num
+        WHERE re.deleted_yn = 'N'and re.user_id = 'tester2'
+        ORDER BY re.review_create_dt desc
+        ]]>
+    </select>
+
 </mapper>
 
 

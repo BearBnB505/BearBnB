@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface ReviewMapper {
     List<ReviewDto> ReviewList();
+
+    List<ReviewDto> ReviewListContent();
 }
