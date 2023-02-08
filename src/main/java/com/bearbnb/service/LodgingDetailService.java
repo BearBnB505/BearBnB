@@ -18,4 +18,5 @@ public interface LodgingDetailService {
 
     MembersDto membersDetail(String userId) throws Exception;
 
+    ReviewDto reviewAvg(String lodgingNum) throws Exception;
 }

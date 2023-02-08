@@ -7,8 +7,8 @@ function HostIntroduce(props){
   return(
     <div>
       <HostInroTitle userId={props.userId} joinDt={props.joinDt}/>
-      <HostAvg/>
-      <HostIntroContents/>
+      <HostAvg reviewCount={props.reviewCount} reviewTotal={props.reviewTotal}/>
+      <HostIntroContents introHost={props.introHost}/>
 
     </div>
 

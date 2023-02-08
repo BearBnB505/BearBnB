@@ -6,13 +6,16 @@ import lombok.Data;
 public class ReviewDto {
     private String userId;
     private String comment;
-    private int cleanGrade;
-    private int accuracyGrade;
-    private int communicationGrade;
-    private int locationGrade;
-    private int checkInGrade;
-    private int costGrade;
+    private double cleanGrade;
+    private double accuracyGrade;
+    private double communicationGrade;
+    private double locationGrade;
+    private double checkInGrade;
+    private double costGrade;
     private String lodgingNum;
     private String reviewCreateDt;
     private String deletedYn;
+
+    private int reviewCount;
+    private double reviewTotal;
 }

@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import {Breadcrumb, Tab, Tabs} from "react-bootstrap";
 import {faPencil, faList, faClose} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Anima from "./animaData";
 import { motion } from "framer-motion";
+import BookingModalReview from "./BookingConfirm/BookingModalReview";
+import BookingModalDetail from "./BookingConfirm/BookingModalDetail";
 
 function BookingConfirm() {
 
@@ -89,21 +91,33 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost}) {
     );
 }
 
-function BookingItem({lodging_name, book_state, book_dt, pay_cost}) {
+function BookingItem(props) {
+    const [modalReview, setModalReview] = useState(false);
+    const [modalDetail, setModalDetail] = useState(false);
     return (
         <ul className={"list-group mb-4"} style={styles.ul}>
             <li className={"list-group-item p-4"} style={styles.li}>
-                <div><span className={"fs-5 fw-bold"}>{book_state}</span> <small
-                    className={"text-secondary"}>{book_dt}</small></div>
-                <div>{lodging_name}</div>
-                <div>결제 금액 : {pay_cost}</div>
+                <div><span className={"fs-5 fw-bold"}>{props.book_state}</span> <small
+                    className={"text-secondary"}>{props.book_dt}</small></div>
+                <div>{props.lodging_name}</div>
+                <div>결제 금액 : {props.pay_cost}</div>
                 <div>
-                    <button type="button" className="btn btn-outline-secondary btn-sm my-2 me-2" title="Edit">
+                    <button type="button" className="btn btn-outline-secondary btn-sm my-2 me-2" title="Edit" onClick={() => setModalReview(true)}>
                         <span><FontAwesomeIcon icon={faPencil} size="1x"/> 후기작성</span>
                     </button>
-                    <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit">
+
+                    <BookingModalReview
+                            show={modalReview}
+                            onHide={() => setModalReview(false)}/>
+
+                    <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit" onClick={()=> setModalDetail(true)}>
                         <span><FontAwesomeIcon icon={faList} size="1x"/> 상세내역</span>
                     </button>
+
+                    <BookingModalDetail
+                        show={modalDetail}
+                        onHide = {() => setModalDetail(false)}/>
+
                 </div>
             </li>
         </ul>

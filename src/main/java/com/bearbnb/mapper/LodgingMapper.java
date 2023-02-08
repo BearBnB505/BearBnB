@@ -24,8 +24,6 @@ public interface LodgingMapper {
     MembersDto membersDetail(String userId) throws Exception;
 
     void reviewTotalCount(String lodgingNum) throws Exception;
-
-
     void hostLodgingUpdate(LodgingDto lodging);
 
     void LodgingIntroUpdate(LodgingDto lodging);
@@ -35,5 +33,7 @@ public interface LodgingMapper {
     void LodgingBedNBathUpdate(LodgingDto lodging);
 
     void CapacityUpdate(LodgingDto lodging);
+
+    ReviewDto reviewAvg(String lodgingNum) throws Exception;
 
 }

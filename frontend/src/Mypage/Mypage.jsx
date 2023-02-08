@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./Style.css";
 import Card from "./Card";
 import {
@@ -8,8 +8,28 @@ import {
 import {Link, Outlet} from "react-router-dom";
 import Anima from "./animaData";
 import {motion} from "framer-motion";
+import {useParams} from "react-router";
+import axios from "axios";
 
 function Mypage(props) {
+
+    const [lodging, setLodging] = useState([]);
+    const {idx} = useParams();
+
+    let [chooseDate, setChooseDate] = useState([]);
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/lodgingDetail/${idx}`)
+            .then((req) => {
+                const {data} = req;
+                console.log(data);
+                setLodging(data.lodging);
+            })
+            .catch((err) => {
+                console.log("통신 오류");
+            })
+    }, []);
+
     return (
         <motion.div variants={Anima}
                     initial="hidden"

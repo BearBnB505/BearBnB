@@ -1,18 +1,11 @@
 import React from "react";
 import ReviewComment from "./ReviewComment";
-import contextData from "../LodgingDetail";
 
-function DetailReview(props) {
+function DetailReview() {
 
     return (
-        <div className={'CommentStyleBox'}>
+        <div className={'mt-5'}>
             <ReviewComment />
-            <ReviewComment/>
-            <ReviewComment/>
-            <ReviewComment/>
-            <ReviewComment/>
-            <ReviewComment/>
-            <ReviewComment/>
         </div>
     )
 }

@@ -28,10 +28,14 @@ public class LodgingDetailServiceImpl implements LodgingDetailService {
     @Override
     public List<ReviewDto> reviewDetail(String lodgingNum) throws Exception {
         List<ReviewDto> review = lodgingMapper.reviewDetail(lodgingNum);
-        lodgingMapper.reviewTotalCount(lodgingNum);
         return review;
     }
 
+    @Override
+    public ReviewDto reviewAvg(String lodgingNum) throws Exception {
+        ReviewDto avg = lodgingMapper.reviewAvg(lodgingNum);
+        return avg;
+    }
 
     @Override
     public List<ComfortsDto> comfortsDetail(String lodgingNum) throws Exception {
