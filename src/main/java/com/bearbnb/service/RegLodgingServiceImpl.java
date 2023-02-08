@@ -20,6 +20,7 @@ public class RegLodgingServiceImpl implements RegLodgingService {
     @Override
     public LodgingDto insertLodgingTable(LodgingDto lodging) throws Exception{
         regLodgingMapper.insertLodgingTable(lodging);
+        System.out.println("입력 끝");
         return null;
     }
     
@@ -32,7 +33,15 @@ public class RegLodgingServiceImpl implements RegLodgingService {
         System.out.println("입력 끝");
     }
 
-    
+    @Override
+    public void insertUrl(List<PhotoDto> photoList) throws Exception {
+        System.out.println(photoList);
+
+        regLodgingMapper.insertUrl(photoList);
+        System.out.println("입력 끝");
+    }
+
+
 //    @Override
 //    public void insertCategory(String data) throws Exception{
 //        List<PhotoDto> photos = new ArrayList<>();

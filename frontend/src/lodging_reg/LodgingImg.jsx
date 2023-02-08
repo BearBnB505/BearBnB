@@ -54,6 +54,7 @@ function LodgingImg(){
                 <Link to ={"/lodgingCategorySelect"}><button className={"btn btn-light btn-lg position-absolute  bottom-0 ms-5 mb-3"} >이전</button></Link>
                 <Link to = {"/lodgingName"}><button className={"btn btn-primary btn-lg position-absolute end-0 bottom-0 me-5 mb-3 "}>다음</button></Link>
             </footer>
+            <img src={'https://firebasestorage.googleapis.com/v0/b/bearbnb-95b93.appspot.com/o/BearBnB%2Fimg%2F2302887562154742%EA%B3%A0%EC%96%91%EC%9D%B42.jpg?alt=media&token=4cee4177-c9c0-4c2a-99a3-ac2cb0b5b672'}/>
         </div>
     )
 

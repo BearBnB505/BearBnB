@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {hostIdUrl} from "./Reducers/HostIdReducer";
 import axios from "axios";
@@ -23,6 +23,7 @@ function LodgingFinal(){
 
     //숙소이미지
     const lodgingImg = useSelector((state)=>state.lodgingImg.value);
+    const navigate = useNavigate();
     // const lodgingNum = useSelector((state)=>state.lodgingImg.value);
 
 
@@ -110,18 +111,8 @@ function LodgingFinal(){
 
     // console.log("finalmap")
     // console.log(finalmap);
-
-    const onclickButton = () => {
-
-        // const list =[{a:'1',b:'2',c:'3'},{d:"4",e:"5",f:"6"}];
-        axios({
-            url: 'http://localhost:8080/insertLodgingTable',
-            method: 'post',
-            data: {
-                // photo : final,
-                // category : category.category,
-
-                lodgingNum: lodgingNum,
+    const data = {
+                lodgingNum: lodgingNum.num,
                 certifyImg: hostId.idUrl,
                 lodgingName: lodgingRealName.name,
                 introLodging:lodgingName.lodgingIntro,
@@ -134,14 +125,50 @@ function LodgingFinal(){
                 bedSize : bedSelect.bedSelects,
                 bathroomNum : basicInfo.bathroom,
                 introHost:hostInfo.hostIntro,
+    }
 
-            }
-        })
-            .then(function (response) {
-                console.log(response)
+    const onclickButton = () => {
+
+        // const list =[{a:'1',b:'2',c:'3'},{d:"4",e:"5",f:"6"}];
+        // axios({
+        //     url: 'http://localhost:8080/insertLodgingTable',
+        //     method: 'post',
+        //     data: {
+        //         // photo : final,
+        //         // category : category.category,
+        //
+        //         lodgingNum: lodgingNum,
+        //         certifyImg: hostId.idUrl,
+        //         lodgingName: lodgingRealName.name,
+        //         introLodging:lodgingName.lodgingIntro,
+        //         lodgingConcept : concept.concept,
+        //         language : hostInfo.language,
+        //         cost : cost.cost,
+        //         peopleNum : basicInfo.guest,
+        //         bedroomNum : basicInfo.bedroom,
+        //         bedNum : basicInfo.bed,
+        //         bedSize : bedSelect.bedSelects,
+        //         bathroomNum : basicInfo.bathroom,
+        //         introHost:hostInfo.hostIntro,
+        //
+        //     }
+        // })
+        //     .then(function (response) {
+        //         console.log(response)
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+
+        axios
+            .post('http://localhost:8080/insertLodgingTable',  data, {
+                // headers: {
+                //     "Content-Type": `application/json`,
+                // },
             })
-            .catch(function (error) {
-                console.log(error);
+            .then((res) => {
+                console.log(res);
+                
             });
     }
 

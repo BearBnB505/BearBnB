@@ -22,12 +22,12 @@ public class RegLodgingController {
     RegLodgingService regLodgingService;
 
     @RequestMapping(value = "/insertUrl", method = RequestMethod.POST)
-    public void insertUrl(@RequestBody Object obj) throws Exception{
-        System.out.println(obj);
-//        regLodgingService.insertUrl(obj);
+    public void insertUrl(@RequestBody List<PhotoDto> photoList) throws Exception{
+        regLodgingService.insertUrl(photoList);
+        System.out.println(photoList);
     }
 
-//    데이터 전체로 받음
+//    데이터 전체로 받음(선생님코드)
     @RequestMapping(value = "/insertCategory", method = RequestMethod.POST)
     public void insertCategory(@RequestBody List<ComfortsDto> dataList) throws Exception{
         regLodgingService.insertCategory(dataList);
@@ -46,11 +46,11 @@ public class RegLodgingController {
         return null;
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/lodgingCategorySelectInsert", method = RequestMethod.POST)
-    public void lodgingCategory(@RequestBody List<String> categoryArray) throws Exception{
-        System.out.println(categoryArray); //확인
-    }
+//    @ResponseBody
+//    @RequestMapping(value = "/lodgingCategorySelectInsert", method = RequestMethod.POST)
+//    public void lodgingCategory(@RequestBody List<String> categoryArray) throws Exception{
+//        System.out.println(categoryArray); //확인
+//    }
 
 
 

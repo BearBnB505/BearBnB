@@ -185,16 +185,26 @@ const UploadTest = () => {
     const goNext = ()=>{
         // dispatch(lodgingImgs({url:imageUrl}))
         // navigate("/lodgingName")
-        axios({
-            url: 'http://localhost:8080/insertUrl',
-            method: 'post',
-            data: imageUrl
-        })
-            .then(function (response) {
-                console.log(response)
+        // axios({
+        //     url: 'http://localhost:8080/insertUrl',
+        //     method: 'post',
+        //     data: imageUrl
+        // })
+        //     .then(function (response) {
+        //         console.log(response)
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+
+        axios
+            .post('http://localhost:8080/insertUrl',  imageUrl, {
+                headers: {
+                    "Content-Type": `application/json`,
+                },
             })
-            .catch(function (error) {
-                console.log(error);
+            .then((res) => {
+                console.log(res);
             });
     }
 
