@@ -5,14 +5,10 @@ function ModalReviewList() {
 
     const review = useContext(ReviewContext);
     return (
-        <div className={"row"}>
-            <div>
-                <input className={"form-control mb-5"} id="search" placeholder = "후기 검색" style={styles.search}></input>
-            </div>
+        <div className={"row mt-3"}>
             <div>
                 {review.map((item) => {
-                    return <ModalReviewItem idx={item.idx} userId={item.userId} reviewCreateDt={item.reviewCreateDt}
-                                            comment={item.comment}/>
+                    return <ModalReviewItem idx={item.idx} userId={item.userId} reviewCreateDt={item.reviewCreateDt} comment={item.comment}/>
                 })}
             </div>
         </div>
@@ -22,7 +18,7 @@ function ModalReviewList() {
 function ModalReviewItem({userId, comment, reviewCreateDt}) {
     return (
         <div className={"row"}>
-            <ul className={"col d-flex align-items-start list-unstyled"}>
+            <ul className={"col d-flex align-items-start list-unstyled mb-0"}>
                 <div className={"icon-square text-bg-light d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3"}>
                     <img className="ReviewUserImg" src="/hostImg/1.png" alt="hostImg"/>
                 </div>

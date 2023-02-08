@@ -7,10 +7,7 @@ function Layout(props) {
     return (
         <div>
             <Header />
-
             <Outlet />
-
-            <Footer />
         </div>
     );
 }

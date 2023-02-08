@@ -19,18 +19,14 @@ function ModalReview(props) {
                 <div>
                     <Modal.Body>
                         <div className={"container"}>
-
                             <CloseButton onClick={props.onHide} className={"mt-2"}></CloseButton>
-
                             <div className={"row p-1"}>
                                 <div className={"col-sm-12 col-lg-4 me-5"}>
                                             <ModalAverageForm/>
                                 </div>
-
                                 <div className={"col-sm-12 col-lg-7"}>
                                             <ModalReviewList/>
                                 </div>
-
                             </div>
                         </div>
                     </Modal.Body><br/>

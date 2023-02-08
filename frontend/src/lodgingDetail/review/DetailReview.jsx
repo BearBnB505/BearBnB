@@ -4,7 +4,7 @@ import ReviewComment from "./ReviewComment";
 function DetailReview() {
 
     return (
-        <div className={'CommentStyleBox'}>
+        <div className={'mt-5'}>
             <ReviewComment />
         </div>
     )

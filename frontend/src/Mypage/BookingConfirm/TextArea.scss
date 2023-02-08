@@ -1,0 +1,28 @@
+$placeholder-padding: 5px;
+
+.textarea {
+    margin-bottom: 30px;
+    margin-top: 20px;
+
+.threshold-text {
+        color: grey;
+        padding-top: 10px;
+
+    &.textarea-error {
+            color: red;
+        }
+    }
+}
+
+textarea {
+    min-height: 200px;
+    min-width: 100%;
+    resize: none;
+    outline: none;
+    overflow: auto;
+
+&:placeholder-shown {
+        padding-left: $placeholder-padding;
+        padding-top: $placeholder-padding;
+    }
+}

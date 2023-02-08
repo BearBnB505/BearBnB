@@ -19,12 +19,15 @@ import Calendar from "../Calendar/Calendar";
 import Map from "../GoogleMap/Map";
 import ReviewAverageForm from "./review/ReviewAverageForm";
 import ReviewTitle from "./review/ReviewTitle";
+import Footer from "./Footer/Footer";
+
 
 function LodgingDetail(props) {
 
     const [lodging, setLodging] = useState([]);
     const [photo, setPhoto] = useState([]);
     const [review, setReview] = useState([]);
+
     const [avg, setAvg] = useState([]);
     const [comforts, setComforts] = useState([]);
     const [members, setMembers] = useState([]);
@@ -50,65 +53,60 @@ function LodgingDetail(props) {
     }, []);
 
     return (
-        <div style={{display: "grid", justifyContent: "center", width: 1900}}>
-            {/*<div style={{display: "grid", justifyContent: "center"}}>*/}
+        <>
+            <div style={{display: "grid", justifyContent: "center", width: 1900}}>
+                {/*<div style={{display: "grid", justifyContent: "center"}}>*/}
 
-            <div className={'mx-auto'} style={{width: 1230}}>
+                <div className={'mx-auto'} style={{width: 1230}}>
 
-                <LodgingDetailTitle idx={lodging.idx} lodgingName={lodging.lodgingName} addr={lodging.addr}
-                                    reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
+                    <LodgingDetailTitle idx={lodging.idx} lodgingName={lodging.lodgingName} addr={lodging.addr} reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
 
-                <PhotoContext.Provider value={photo}>
-                    <HostImg/>
-                </PhotoContext.Provider>
+                    <PhotoContext.Provider value={photo}>
+                        <HostImg/>
+                    </PhotoContext.Provider>
 
-                <div className={'row'}>
-                    <div className={'col-7 me-5'}>
-                        <HouseExplain introLodging={lodging.introLodging}/>
-                        <HostHouse bedroomNum={lodging.bedroomNum} bedNum={lodging.bedNum}
-                                   bathroomNum={lodging.bathroomNum}/>
+                    <div className={'row'}>
+                        <div className={'col-7 me-5'}>
+                            <HouseExplain introLodging={lodging.introLodging}/>
+                            <HostHouse bedroomNum={lodging.bedroomNum} bedNum={lodging.bedNum} bathroomNum={lodging.bathroomNum}/>
 
-                        <DetailAmenityContext.Provider value={comforts}>
-                            <DetailAmenity/>
-                        </DetailAmenityContext.Provider>
+                            <DetailAmenityContext.Provider value={comforts}>
+                                <DetailAmenity/>
+                            </DetailAmenityContext.Provider>
 
-                        <div className={"pt-5"}>
-                            <hr className={"py-5"}/>
-                            <Calendar dateValue={setChooseDate}/>
+                            <div className={"pt-5"}>
+                                <hr className={"py-5"}/>
+                                <Calendar dateValue={setChooseDate}/>
+                            </div>
+                        </div>
+
+                        <div className={'col ps-4 mt-5'}>
+                            <Payment cost={lodging.cost}/>
                         </div>
                     </div>
 
-                    <div className={'col ms-4 me-5 mt-5'}>
-                        <Payment cost={lodging.cost}/>
+                    <ReviewTitle reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
+                    <ReviewAverageForm cleanGrade={avg.cleanGrade} accuracyGrade={avg.accuracyGrade} communicationGrade={avg.communicationGrade} locationGrade={avg.locationGrade} checkInGrade={avg.checkInGrade} costGrade={avg.costGrade}/>
+
+                    <ReviewContext.Provider value={review}>
+                        <AvgContext.Provider value={avg}>
+                            <ReviewAverage reviewCount={avg.reviewCount}/>
+                        </AvgContext.Provider>
+                    </ReviewContext.Provider>
+
+                    <div className={"pt-4"}>
+                        <div className={"pb-4"}>
+                            <h4 className={"fw-bold mb-4"}>위치</h4>
+
+                            {/*<Map/>*/}
+                        </div>
                     </div>
+
+                    <HostIntroduce userId={lodging.userId} joinDt={members.joinDt} introHost={lodging.introHost} reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
                 </div>
-
-                <ReviewTitle reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
-                <ReviewAverageForm cleanGrade={avg.cleanGrade} accuracyGrade={avg.accuracyGrade}
-                                   communicationGrade={avg.communicationGrade} locationGrade={avg.locationGrade}
-                                   checkInGrade={avg.checkInGrade} costGrade={avg.costGrade}/>
-
-                <ReviewContext.Provider value={review}>
-                    <AvgContext.Provider value={avg}>
-                        <ReviewAverage/>
-                    </AvgContext.Provider>
-                </ReviewContext.Provider>
-
-                <div className={"pt-4"}>
-                    <div className={"pb-4"}>
-                        <h4 className={"fw-bold mb-4"}>위치</h4>
-
-                        {/*<Map/>*/}
-                    </div>
-                </div>
-
-                <HostIntroduce userId={lodging.userId} joinDt={members.joinDt} introHost={lodging.introHost}
-                               reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
-
-
             </div>
-
-        </div>
+            <Footer/>
+        </>
     )
 }
 
