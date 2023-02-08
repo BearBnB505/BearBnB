@@ -4,9 +4,7 @@ import com.bearbnb.dto.LodgingDto;
 import com.bearbnb.dto.MembersDto;
 import com.bearbnb.mapper.LodgingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +15,6 @@ public class mainController {
 
     @Autowired
     LodgingMapper lodgingMapper;
-
-    @Autowired
-    LodgingMapper CallLodgingMapper;
 
     @RequestMapping("/")
     public String index() throws Exception {
@@ -33,28 +28,22 @@ public class mainController {
         test.add("스프링 내부 리액트 연동");
         return test;
     }
+
     @RequestMapping("/user")
     public String user() {
         return "user";
     }
 
-    @RequestMapping(value = "/lodgingList")
-    public List<LodgingDto> lodgingList() {
-        return lodgingMapper.lodgingList();
+    @RequestMapping(value = "/lodgingList", method = RequestMethod.GET)
+    public List<LodgingDto> lodgingList(@RequestParam("category") String category) {
+
+        return lodgingMapper.lodgingList(category);
     }
 
-//    @RequestMapping(value = "CallLodgingList")
-//    public List<LodgingDto> CallLodgingList() {
-//        return CallLodgingMapper.CallLodgingList();
-//    }
-//
-//
-//    @RequestMapping(value = "/UpdateLodgingList", method = RequestMethod.POST)
-//    public String UpdateLodgingList(LodgingDto lodging) throws Exception {
-//        hostUpdateService.hostLodgingUpdate(lodging);
-//
-//        return "redirect:/UpdateLodgingList";
-//    }
+    @RequestMapping(value = "/searchLodgingList", method = RequestMethod.GET)
+    public List<LodgingDto> searchLodgingList(@RequestParam("startDt") String startDt, @RequestParam("endDt") String endDt, @RequestParam("adultCount") int adultCount) throws Exception {
+        return lodgingMapper.searchLodgingList(startDt, endDt, adultCount);
+    }
+
 
 }
-

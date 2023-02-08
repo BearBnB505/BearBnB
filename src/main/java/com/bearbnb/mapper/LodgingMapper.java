@@ -8,10 +8,11 @@ import java.util.List;
 @Mapper
 public interface LodgingMapper {
 
-    List<LodgingDto> lodgingList();
+//    List<LodgingDto> lodgingList();
+    List<LodgingDto> lodgingList(String category);
+
     List<LodgingDto> AllLodgingList();
     List<LodgingDto> CallLodgingList(LodgingDto lodging);
-
 
     LodgingDto lodgingDetail(int idx) throws Exception;
 
@@ -36,4 +37,5 @@ public interface LodgingMapper {
 
     ReviewDto reviewAvg(String lodgingNum) throws Exception;
 
+    List<LodgingDto> searchLodgingList(String startDt, String endDt, int adultCount) throws Exception;
 }

@@ -17,6 +17,9 @@ import Join from "../Join";
 import Calendar from "../Calendar/Calendar";
 import DatePicker from "react-datepicker";
 import moment from "moment";
+import {GoogleMap, StandaloneSearchBox} from "@react-google-maps/api";
+import {SearchMap} from "../GoogleMap/Map";
+import axios from "axios";
 
 function HeaderModal(props) {
     const styles = {
@@ -99,11 +102,30 @@ function HeaderModal(props) {
     let startDate = moment(chooseDate[0]).format('M월 D일');
     let endDate = moment(chooseDate[1]).format('M월 D일');
 
+    const startDt = moment(chooseDate[0]).format('YYYY-MM-DD 14:00:00');
+    const endDt = moment(chooseDate[1]).format('YYYY-MM-DD 10:00:00');
 
     let adultCount = selectGuest[0];
     let childCount = selectGuest[1];
     let petCount = selectGuest[2];
 
+    const [map, setMap] = useState(null);
+    const [googlemaps, setGooglemaps] = useState(null);
+
+    const searchParam = {
+        startDt: startDt,
+        endDt: endDt,
+        adultCount: adultCount,
+    }
+
+    const [data, setData] = useState([]);
+
+    const search = () => {
+        sessionStorage.setItem("startDt", startDt);
+        sessionStorage.setItem("endDt", endDt);
+        sessionStorage.setItem("adultCount", adultCount);
+        setShowExpandedHeader(false);
+    }
 
     return (
         <>
@@ -170,6 +192,7 @@ function HeaderModal(props) {
                                             <label htmlFor="chooseSpot" className={"fw-bold p-0"} style={{cursor:"pointer", fontSize:13}}>여행지</label>
                                         </div>
                                         <div className={"row ps-3"}>
+                                            {/*여행지 검색 input*/}
                                             <input type="text" id={"chooseSpot"} className={"border-0 p-0"} placeholder={"여행지 검색"} style={styles.navInputSpot}/>
                                         </div>
                                     </div>
@@ -196,20 +219,21 @@ function HeaderModal(props) {
                                                 <input type="text" id={"addGuest"} className={"border-0 p-0"} placeholder={"게스트 추가"} style={styles.navInput} value={adultCount === 0 ? '' : (childCount === 0 ? `성인 ${adultCount}명` : `성인 ${adultCount}명, 유아 ${childCount}명`)}/>
                                             </div>
                                         </div>
-                                        <div className={"col-6 ms-4 d-flex align-content-center"}>
-                                            <a type={"button"} className={"btn btn-primary"} style={{borderRadius:25}}>
-                                                <div className={"row px-1 pt-1"}>
-                                                    <div className={"col-1"}>
-                                                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{width: 12, paddingTop: 4}}/>
-                                                    </div>
-                                                    <div className={"col-6 p-0 ms-1 me-2 "}>
-                                                        <span>검색</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
                                     </div>
                                 </button>
+
+                                {/*<Link to={"/"} onClick={search}>*/}
+                                    <a onClick={search} type={"button"} className={"btn btn-primary position-absolute"} style={{borderRadius:25, height: 45, left: 600, top: 10, zIndex: 9999}}>
+                                        <div className={"row px-1 pt-1"}>
+                                            <div className={"col-1"}>
+                                                <FontAwesomeIcon icon={faMagnifyingGlass} style={{width: 12, paddingTop: 4}}/>
+                                            </div>
+                                            <div className={"col-6 p-0 ms-1 me-2 "}>
+                                                <span>검색</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                {/*</Link>*/}
 
                                 <Overlay
                                     show={showGuestCount}
@@ -228,7 +252,7 @@ function HeaderModal(props) {
                                     placement={"bottom"}
                                     target={target.current}
                                 >
-                                    <Popover className={"shadow-lg"} style={{width: 800, height: 460, borderRadius:30, maxWidth:800, marginLeft:-170}}>
+                                    <Popover className={"shadow-lg"} style={{width: 1050, height: 500, borderRadius:30, maxWidth:1100, marginLeft:-290}}>
                                         <Calendar dateValue={setChooseDate} />
                                     </Popover>
                                 </Overlay>
@@ -240,7 +264,11 @@ function HeaderModal(props) {
                                     target={target.current}
                                 >
                                     <Popover className={"shadow-lg"} style={{width: 500, height: 460, borderRadius:30, maxWidth:800, marginLeft:-170}}>
-                                        <h2>지역선택</h2>
+                                        <div>
+                                            {/*<SearchMap map={map} mapApi={googlemaps}/>*/}
+                                            {/*<SearchMap/>*/}
+                                            <SearchMap/>
+                                        </div>
                                     </Popover>
                                 </Overlay>
 
