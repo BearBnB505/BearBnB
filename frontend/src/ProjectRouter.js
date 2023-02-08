@@ -35,7 +35,7 @@ import LodgingPayment from "./lodging_payment/LodgingPayment";
 import LodgingPaymentEnd from "./lodging_payment/LodgingPaymentEnd";
 import LodgingPaymentFailure from "./lodging_payment/LodgingPaymentFailure";
 import Message from "./Message/Message";
-import Join from "./Join";
+import Join from "./User/Join";
 import Table1 from "./components/Table1";
 import Table2 from "./components/Table2";
 import Table3 from "./components/Table3";

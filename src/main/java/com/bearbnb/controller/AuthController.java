@@ -1,7 +1,6 @@
 package com.bearbnb.controller;
 
 import com.bearbnb.dto.MemberRequestDto;
-import com.bearbnb.dto.MemberResponseDto;
 import com.bearbnb.dto.TokenDto;
 import com.bearbnb.service.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +21,9 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<TokenDto> login(@RequestBody MemberRequestDto requestDto) {
-        return ResponseEntity.ok(authService.login(requestDto));
+//        return ResponseEntity.ok(authService.login(requestDto));
+        TokenDto token = authService.login(requestDto);
+        return ResponseEntity.ok().body(token);
+//        return ResponseEntity.ok(authService.login(requestDto));
     }
 }
