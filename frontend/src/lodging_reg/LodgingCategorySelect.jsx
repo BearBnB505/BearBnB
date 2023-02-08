@@ -258,12 +258,12 @@ const LoadingConcept = () => {
         if(isSelect[index]===true){
             // categoryArray.push(imgSrc[index].comfortId)
             // categoryArray.push('Y')
-            categoryArray.push({comfortId: imgSrc[index].comfortId, deletedYn:'Y',lodgingNum:lodgingNum.num})
+            categoryArray.push({comfortId: imgSrc[index].comfortId, usableYn:'Y',lodgingNum:lodgingNum.num})
 
         } else if(isSelect[index]===false){
             // categoryArray.push(imgSrc[index].comfortId)
             // categoryArray.push('N')
-            categoryArray.push({comfortId: imgSrc[index].comfortId, deletedYn:'N',lodgingNum:lodgingNum.num})
+            categoryArray.push({comfortId: imgSrc[index].comfortId, usableYn:'N',lodgingNum:lodgingNum.num})
         }
     })
     console.log('categoryArray')
@@ -322,11 +322,8 @@ const LoadingConcept = () => {
         //         console.log(error);
         //     });
 
-        let data = {
-            category: categoryArray,
-        }
         axios
-            .post('http://localhost:8080/insertCategory',  JSON.stringify(data), {
+            .post('http://localhost:8080/insertCategory',  categoryArray, {
                 headers: {
                     "Content-Type": `application/json`,
                 },
@@ -334,7 +331,6 @@ const LoadingConcept = () => {
             .then((res) => {
                 console.log(res);
             });
-
     }
 
 

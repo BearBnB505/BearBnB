@@ -17,7 +17,6 @@ import java.util.Map;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
-
 public class RegLodgingController {
     @Autowired
     RegLodgingService regLodgingService;
@@ -25,29 +24,33 @@ public class RegLodgingController {
     @RequestMapping(value = "/insertUrl", method = RequestMethod.POST)
     public void insertUrl(@RequestBody Object obj) throws Exception{
         System.out.println(obj);
+//        regLodgingService.insertUrl(obj);
     }
 
+//    데이터 전체로 받음
     @RequestMapping(value = "/insertCategory", method = RequestMethod.POST)
-    public void insertCategory(@RequestBody String data ) throws Exception{
-        regLodgingService.insertCategory(data);
-        System.out.println(data);
-
-
-
-
+    public void insertCategory(@RequestBody List<ComfortsDto> dataList) throws Exception{
+        regLodgingService.insertCategory(dataList);
+        System.out.println(dataList);
     }
 
-//    @RequestMapping(value = "/insertLodgingTable", method = RequestMethod.POST)
-//    public String insertLodgingTable(@RequestBody Object regLodging) throws Exception{
-////        regLodgingService.insertLodgingTable(lodging);
-//
-//
-//        System.out.println(regLodging);
-//
-//        // 받아온 데이터를 서비스로 넘김
-//
-//        return null;
-//    }
+    @RequestMapping(value = "/insertLodgingTable", method = RequestMethod.POST)
+    public String insertLodgingTable(@RequestBody LodgingDto lodging) throws Exception{
+        regLodgingService.insertLodgingTable(lodging);
+
+
+        System.out.println(lodging);
+
+        // 받아온 데이터를 서비스로 넘김
+
+        return null;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/lodgingCategorySelectInsert", method = RequestMethod.POST)
+    public void lodgingCategory(@RequestBody List<String> categoryArray) throws Exception{
+        System.out.println(categoryArray); //확인
+    }
 
 
 
@@ -69,8 +72,8 @@ public class RegLodgingController {
 
 
 
-    @RequestMapping(value = "/insertLodgingTable", method = RequestMethod.POST)
-    public String insertLodgingTable(@RequestBody Object obj) throws Exception{
+//    @RequestMapping(value = "/insertLodgingTable", method = RequestMethod.POST)
+//    public String insertLodgingTable(@RequestBody Object obj) throws Exception{
 //        regLodgingService.insertLodgingTable(lodging);
 
 //        System.out.println(obj[Object.keys(obj)[0]].tab_name);
@@ -78,13 +81,9 @@ public class RegLodgingController {
 
         // 받아온 데이터를 서비스로 넘김
 //        regLodgingService.insertLodgingTable(obj);
-        return null;
-    }
-    @ResponseBody
-    @RequestMapping(value = "/lodgingCategorySelectInsert", method = RequestMethod.POST)
-    public void lodgingCategory(@RequestBody List<String> categoryArray) throws Exception{
-        System.out.println(categoryArray); //확인
-    }
+//        return null;
+//    }
+
 
 //    @RequestMapping(path = "/lodgingCategorySelectInsert")
 //    @ResponseBody

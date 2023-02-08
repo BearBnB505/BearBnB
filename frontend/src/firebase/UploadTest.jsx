@@ -153,7 +153,7 @@ const UploadTest = () => {
 
     //    controller로 보내기
     const axiosData = () => axios({
-        url: 'http://localhost:8080/lodgingImageUrl',
+        url: 'http://localhost:8080/ImageUrl',
         method: 'post',
         data: imageUrl,
 

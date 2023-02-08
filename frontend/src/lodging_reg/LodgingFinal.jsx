@@ -113,14 +113,13 @@ function LodgingFinal(){
 
     const onclickButton = () => {
 
-        const list =[{a:'1',b:'2',c:'3'},{d:"4",e:"5",f:"6"}];
+        // const list =[{a:'1',b:'2',c:'3'},{d:"4",e:"5",f:"6"}];
         axios({
             url: 'http://localhost:8080/insertLodgingTable',
             method: 'post',
             data: {
-
-                // lodgingNum : 1234,
-                // array:list,
+                // photo : final,
+                // category : category.category,
 
                 lodgingNum: lodgingNum,
                 certifyImg: hostId.idUrl,
@@ -135,13 +134,10 @@ function LodgingFinal(){
                 bedSize : bedSelect.bedSelects,
                 bathroomNum : basicInfo.bathroom,
                 introHost:hostInfo.hostIntro,
-                photo : final,
-                category : category.category,
-
 
             }
         })
-            .then(function a(response) {
+            .then(function (response) {
                 console.log(response)
             })
             .catch(function (error) {
