@@ -4,8 +4,12 @@ import {Container} from "react-bootstrap";
 import Navbar from "./Navbar";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import DetailTable3 from "./DetailTable3";
+import { Modal,Button } from 'react-bootstrap'
+import DetailTable2 from "./DetailTable2";
 
 function Table3() {
+    const [detailModalOn, setDetailModalOn] = useState(false);
 
     const [data, setData] = useState([]);
 
@@ -47,7 +51,9 @@ function Table3() {
                             <tr>
                                 {/*<td>{index + 1}</td>*/}
                                 <td>{item.idx}</td>
-                                <td><Link to={"/admin/detail3"}>{item.userId}</Link></td>
+                                <td>
+                                    <Button key={item.idx} variant="secondary" onClick={()=>setDetailModalOn(true)}>{item.userId}</Button>
+                                </td>
                                 <td>{item.lodgingNum}</td>
                                 <td>{item.reason}</td>
                                 <td>{item.reasonDetail}</td>
@@ -61,6 +67,9 @@ function Table3() {
 
                 </tbody>
             </Table>
+
+            <DetailTable3 show={detailModalOn} onHide={()=>setDetailModalOn(false)}/>
+
         </Container>
 
     );

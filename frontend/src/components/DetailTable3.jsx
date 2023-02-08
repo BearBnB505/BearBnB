@@ -1,42 +1,37 @@
-import React, {useEffect, useState} from "react";
-import Table from 'react-bootstrap/Table';
-import {Container} from "react-bootstrap";
+import React from 'react'
+import { Modal,Button } from 'react-bootstrap'
 import axios from "axios";
 
-
-function DetailTable3() {
-
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        axios.get('http://localhost:8080/adminComplainList')
-            .then((req) => {
-                const {data} = req;
-                console.log(data);
-                setData(data);
-            })
-            .catch((err) => {
-                console.log("통신 오류");
-            })
-    }, []);
-
-    return (
-        <Container className="panel" style={styles.container}>
-            <br />
-            <br />
-            <br />
-            <h4>신고관리상세페이지</h4>
-
-        </Container>
-
+const DetailTable3 = ({ show, onHide }) =>{
+    return(
+        <Modal
+            show={show}
+            onHide={onHide}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    신고관리
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <h4>Centered Modal</h4>
+                <p>
+                    <li>번호</li>
+                    <li>신고자아이디</li>
+                    <li>숙소번호</li>
+                    <li>사유</li>
+                    <li>정확한 사유</li>
+                    <li>신고날짜</li>
+                </p>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={onHide}>Close</Button>
+            </Modal.Footer>
+        </Modal>
     );
-
-}
+};
 
 export default DetailTable3;
-
-const styles ={
-    container:{
-        width:1300,
-    }
-}

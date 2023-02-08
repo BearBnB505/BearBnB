@@ -1,7 +1,27 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Modal,Button } from 'react-bootstrap'
+import axios from "axios";
 
 const DetailTable2 = ({ show, onHide }) =>{
+
+    const [detailModalOn, setDetailModalOn] = useState(false);
+
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/adminLodgingList')
+            .then((req) => {
+                const {data} = req;
+                console.log(data);
+                setData(data);
+
+            })
+            .catch((err) => {
+                console.log("통신 오류");
+            })
+    }, []);
+
     return(
         <Modal
             show={show}
