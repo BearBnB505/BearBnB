@@ -268,7 +268,7 @@ function HeaderModal(props) {
                                         <div>
                                             {/*<SearchMap map={map} mapApi={googlemaps}/>*/}
                                             {/*<SearchMap/>*/}
-                                            <SearchMap/>
+                                            {/*<SearchMap/>*/}
                                         </div>
                                     </Popover>
                                 </Overlay>

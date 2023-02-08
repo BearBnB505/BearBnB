@@ -36,61 +36,44 @@ function Login() {
         setUserPwd(e.target.value);
     }
 
-    // // 백으로 유저 정보 전달
-    // const loginClicked = async ({userId: userId, pwd: userPwd}) => {
-    //
-    //     const response = await loginUser({userId: userId, pwd: userPwd});
-    //
-    //     if (response.status) {
-    //         // setRefreshToken(response.json.refresh_token);
-    //         // dispatch(SET_TOKEN(response.json.accessToken));
-    //
-    //         localStorage.setItem('refresh-token', response.json.refresh_token);
-    //
-    //         // console.log("로그인 성공");
-    //         // return navigate("/");
-    //     } else {
-    //         console.log(response.json);
-    //     }
-    //     setUserPwd("");
-    // }
-
-    const loginClicked = fetch("/auth/login", {
-        method: 'post',
-        headers: {
-            'content-type' : 'application/json'
-        },
-        body : JSON.stringify({
-            userId : userId,
-            pwd : userPwd
-        })
-        })
-        .then(res => res.json())
-        .then(token => {
-            const today = new Date();
-            const expireDate = today.setDate(today.getDate() * 7);
-
-            if (token.refreshToken != undefined) {
-                setCookie('refreshToken', token.refreshToken, {
-                    path: "/",
-                    secure: true,
-                    sameSite: 'strict',
-                    expires: new Date(expireDate)
-                });
-                dispatch(SET_TOKEN({accessToken: token.accessToken}));
-                setShow(false);
+    const loginClicked = () => {
+        axios.post('/auth/login', {
+            userId: userId,
+            pwd: userPwd
+        }, {
+            headers: {
+                'content-type': 'application/json'
             }
-            // else {
-            //     Swal.fire({
-            //         icon: 'error',
-            //         title: '로그인에 실패하였습니다.',
-            //         showConfirmButton: false,
-            //         timer: 1500
-            //     }).then(() => {
-            //         setShow(true);
-            //     })
-            // }
-        });
+        })
+            .then(res => {
+                const token = res.data;
+                const today = new Date();
+                const expireDate = today.setDate(today.getDate() * 7);
+
+                if (token.refreshToken !== undefined) {
+                    setCookie('refreshToken', token.refreshToken, {
+                        path: '/',
+                        secure: true,
+                        sameSite: 'strict',
+                        expires: new Date(expireDate)
+                    });
+                    dispatch(SET_TOKEN({ accessToken: token.accessToken }));
+                    setShow(false);
+                }
+            })
+            .catch(err => {
+                Swal.fire({
+                    width: 300,
+                    icon: 'error',
+                    title: `로그인에 
+                    실패하였습니다.`,
+                    showConfirmButton: false,
+                    timer: 800
+                }).then(() => {
+                    setShow(true);
+                })
+            })
+    }
 
     return (
         <>

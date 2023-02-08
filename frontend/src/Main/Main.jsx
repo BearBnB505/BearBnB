@@ -34,7 +34,7 @@ function Main(props) {
                 console.log("통신 오류");
             })
     }, [category]);
-    
+
 
     useEffect(() => {
         if (!sessionStorage.getItem("startDt")) {
