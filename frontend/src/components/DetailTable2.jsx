@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose, faList} from "@fortawesome/free-solid-svg-icons";
 import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
-import GuestInfoModal from "../GuestInfoModal";
+// import GuestInfoModal from "../GuestInfoModal";
 
 function DetailTable2({lodging_name, book_state, book_dt, pay_cost, childValue}) {
 
@@ -86,7 +86,7 @@ function DetailTable2({lodging_name, book_state, book_dt, pay_cost, childValue})
                                 <ModalTitle className={'flex-grow-1 text-center ps-4'}>예약내역</ModalTitle>
                             </ModalHeader>
                             <ModalBody>
-                                <GuestInfoModal />
+                                {/*<GuestInfoModal />*/}
 
                                 <div className={'row justify-content-center mb-2'}>
                                     <button className={'col-3 btn btn-primary'} onClick={onClickConfirm}>승인</button>
