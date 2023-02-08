@@ -34,18 +34,13 @@ function Main(props) {
                 console.log("통신 오류");
             })
     }, [category]);
-
-    // const [searchParam, setSearchParam] = useState({});
-    // const [startDt, setStartDt] = useState('');
-    // if (sessionStorage.getItem("startDt") != null) {
-    //     // setSearchParam(sessionStorage.getItem(searchParam));
-    //     // console.log(sessionStorage.getItem("startDt"));
-    //     // let startDt = sessionStorage.getItem("startDt");
-    //     setStartDt(sessionStorage.getItem("startDt"));
-    // }
+    
 
     useEffect(() => {
-        if (sessionStorage.getItem("startDt") != null) {
+        if (!sessionStorage.getItem("startDt")) {
+            return;
+        }
+        // else if (sessionStorage.getItem("startDt") != null) {
             // setSearchParam(sessionStorage.getItem(searchParam));
             console.log(sessionStorage.getItem("startDt"));
             let startDt = sessionStorage.getItem("startDt");
@@ -55,7 +50,7 @@ function Main(props) {
                 startDt: startDt,
                 endDt: endDt,
                 adultCount: adultCount,
-            }
+            };
             axios.get('http://localhost:8080/searchLodgingList', {params: searchParam})
                 .then((req) => {
                     const {data} = req;
@@ -67,8 +62,8 @@ function Main(props) {
                 .catch((err) => {
                     console.log("통신 오류");
                 })
-        }
-    }, [sessionStorage.getItem("startDt")]);
+        // }
+    }, []);
 
     return (
         <div className={"container"} style={{width:1480, maxWidth:1800}}>

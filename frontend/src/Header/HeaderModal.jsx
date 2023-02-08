@@ -125,6 +125,7 @@ function HeaderModal(props) {
         sessionStorage.setItem("endDt", endDt);
         sessionStorage.setItem("adultCount", adultCount);
         setShowExpandedHeader(false);
+        window.location.reload();
     }
 
     return (
