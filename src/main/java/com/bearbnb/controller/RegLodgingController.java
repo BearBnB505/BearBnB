@@ -36,7 +36,11 @@ public class RegLodgingController {
 
     @RequestMapping(value = "/insertLodgingTable", method = RequestMethod.POST)
     public String insertLodgingTable(@RequestBody LodgingDto lodging) throws Exception{
+        System.out.println(lodging);
+        String userId = lodging.getUserId();
+        System.out.println(lodging.getUserId());// 테스트 출력 확인
         regLodgingService.insertLodgingTable(lodging);
+        regLodgingService.updateAuthority(userId);
 
 
         System.out.println(lodging);

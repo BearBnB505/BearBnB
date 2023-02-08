@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import {lodgingBasicInfo} from "./Reducers/HostIdReducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Profile from "./redux_test/Profile";
 import Login from "../Login";
 import {login} from "./redux_test/user";
@@ -15,7 +15,8 @@ function LodgingBasicInfo(){
     const [bathroomCount , setBathroomCount] = useState(1);
 
     const dispatch = useDispatch();
-
+    const locationDetail = useSelector((state) => state.locationDetail.value)
+    const user = useSelector((state) => state.locationDetail.value)
     const styles = {
         con : {
             marginLeft : "250px"
@@ -102,6 +103,16 @@ function LodgingBasicInfo(){
         }
     }
 
+    console.log("국가")
+    console.log(locationDetail.nation)
+    console.log("address1")
+    console.log(locationDetail.address1)
+    console.log("address2")
+    console.log(locationDetail.address2)
+    console.log("zipcode")
+    console.log(locationDetail.zipCode)
+
+
 
     return(
         <div className ={"container"}>
@@ -109,6 +120,15 @@ function LodgingBasicInfo(){
                 <div className={"col-7"} style={styles.con}>
                     <p className={"fw-bold"} style={styles.font}>숙소 기본 정보를 알려주세요</p>
                     <p className={"fs-5 fw-light"}>숙소에 머물 수 있는 게스트 수, 침실 수, 침대 수, 욕실 수를 지정해주세요 </p>
+
+                    <p>국가 : {locationDetail.nation}</p>
+                    <p>주소 :{locationDetail.address1}</p>
+                    <p>상세 주소 : {locationDetail.address2}</p>
+                    <p>우편번호 :{locationDetail.zipCode}</p>
+                    <p> Name : {user.nation} </p>
+                    <p> Age : {user.addr1} </p>
+                    <p> Email : {user.addr2} </p>
+                    <p> Email : {user.zipCode} </p>
                     <div className = "col-sm-12">
                         <div className="row justify-content-between mt-5 p-1 mb-3">
                             <div className="col-3 fs-5" >
@@ -177,8 +197,9 @@ function LodgingBasicInfo(){
                             </div>
                         </div>
                     </div>
-                    <Profile/>
-                    <Login/>
+
+                    {/*<Profile/>*/}
+                    {/*<Login/>*/}
                     <div>
                         <Link to ={"/lodgingLocationDetail"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
                         <Link to = {"/lodgingBedSelect"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}onClick={() => {

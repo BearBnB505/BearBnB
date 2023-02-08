@@ -19,4 +19,8 @@ public interface RegLodgingMapper {
 
     //선생님 코드 보고 따라친거
     void insertUrl(List<PhotoDto> photoList) throws Exception;
+
+
+//    호스트로 업데이트
+    void updateAuthority(String userId) throws Exception;
 }

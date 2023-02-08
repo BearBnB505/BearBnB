@@ -30,9 +30,19 @@
         <![CDATA[
             INSERT INTO lodging
            (lodging_num, user_id, certify_img, lodging_name,lodging_concept, language, intro_host,intro_lodging
-           ,cost, people_num,bedroom_num,bed_num,bed_size,bathroom_num,reg_state,create_dt,deleted_yn)
-        values (#{lodgingNum},'테스트아이디',#{certifyImg},#{lodgingName},#{lodgingConcept},#{language},#{introHost},#{introLodging},
-                #{cost},#{peopleNum},#{bedroomNum},#{bedNum},#{bedSize},#{bathroomNum},'숙소승인전',NOW(),'N')
+           ,cost, people_num,bedroom_num,bed_num,bed_size,bathroom_num,reg_state,create_dt,deleted_yn,zip_code, nation, address1, address2, check_in_dt, check_out_dt)
+        values (#{lodgingNum},#{userId},#{certifyImg},#{lodgingName},#{lodgingConcept},#{language},#{introHost},#{introLodging},
+                #{cost},#{peopleNum},#{bedroomNum},#{bedNum},#{bedSize},#{bathroomNum},'숙소승인전',NOW(),'N', #{zipCode}, #{nation},
+                #{address1}, #{address2},#{checkInDt}, #{checkOutDt})
         ]]>
     </insert>
+
+    <update id="updateAuthority">
+        <![CDATA[
+        UPDATE members
+            INNER JOIN lodging ON members.user_id = lodging.user_id
+            SET members.authority = 'ROLE_HOST'
+            WHERE lodging.user_id = #{userId}
+        ]]>
+    </update>
 </mapper>

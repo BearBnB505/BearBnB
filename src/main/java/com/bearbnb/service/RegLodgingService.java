@@ -17,4 +17,8 @@ public interface RegLodgingService {
 //    void insertUrl(String data) throws Exception;
 
     void insertUrl(List<PhotoDto> photoList) throws Exception;
+
+
+//    호스트로 업데이트
+    void updateAuthority(String userId) throws Exception;
 }

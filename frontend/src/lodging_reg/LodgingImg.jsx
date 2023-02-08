@@ -38,23 +38,21 @@ function LodgingImg(){
     return(
         <div className={"container"}>
             <div className="row justify-content-around" style={{marginLeft : "150px"}}>
-                <div className="col-5">
+                <div className="col-6">
                     <p style={styles.font} className={"col mx-auto"}>5장 이상의 사진을 선택하세요</p>
-                    <p style={{color : "gray" ,fontSize : "20px"}}>저장 전 사진을 확인해주세요</p>
+                    <p style={{color : "gray" ,fontSize : "20px"}}>아이콘을 눌러 사진을 고른 뒤 save 버튼을 눌러주세요</p>
                 </div>
                 <div className="col-4">
-                    {/*<img src ='/concept/imagePlus.png' style={{"width" : "50px", marginTop : "100px"}} onClick={onCickImageUpload}/>*/}
                 </div>
                 <div style={{marginBottom:"200px"}}>
                     <UploadTest/>
                 </div>
                 {/*<Posts/>*/}
             </div>
-            <footer style={styles.footer}>
-                <Link to ={"/lodgingCategorySelect"}><button className={"btn btn-light btn-lg position-absolute  bottom-0 ms-5 mb-3"} >이전</button></Link>
-                <Link to = {"/lodgingName"}><button className={"btn btn-primary btn-lg position-absolute end-0 bottom-0 me-5 mb-3 "}>다음</button></Link>
-            </footer>
-            <img src={'https://firebasestorage.googleapis.com/v0/b/bearbnb-95b93.appspot.com/o/BearBnB%2Fimg%2F2302887562154742%EA%B3%A0%EC%96%91%EC%9D%B42.jpg?alt=media&token=4cee4177-c9c0-4c2a-99a3-ac2cb0b5b672'}/>
+            {/*<footer style={styles.footer}>*/}
+            {/*    <Link to ={"/lodgingCategorySelect"}><button className={"btn btn-light btn-lg position-absolute  bottom-0 ms-5 mb-3"} >이전</button></Link>*/}
+            {/*    <Link to = {"/lodgingName"}><button className={"btn btn-primary btn-lg position-absolute end-0 bottom-0 me-5 mb-3 "}>다음</button></Link>*/}
+            {/*</footer>*/}
         </div>
     )
 

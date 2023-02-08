@@ -3,6 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {hostIdUrl} from "./Reducers/HostIdReducer";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 
 function LodgingFinal(){
@@ -19,8 +20,8 @@ function LodgingFinal(){
     const cost = useSelector((state) => state.lodgingCost.value);//언어와 호스트 소개
     const category = useSelector((state) => state.lodgingCategory.value);//언어와 호스트 소개
     const hostId = useSelector((state)=>state.realHostId.value);
-
-
+    const chooseDate = useSelector((state)=>state.chooseDate.value);
+    const locationDetail = useSelector((state) => state.locationDetail.value)
     //숙소이미지
     const lodgingImg = useSelector((state)=>state.lodgingImg.value);
     const navigate = useNavigate();
@@ -111,7 +112,13 @@ function LodgingFinal(){
 
     // console.log("finalmap")
     // console.log(finalmap);
+    console.log("숙소 디테일주소")
+    console.log(locationDetail.nation);
+    console.log(locationDetail.zipCode);
+    console.log(locationDetail.addr1);
+    console.log(locationDetail.addr2);
     const data = {
+                userId : '테스트아이디',
                 lodgingNum: lodgingNum.num,
                 certifyImg: hostId.idUrl,
                 lodgingName: lodgingRealName.name,
@@ -125,6 +132,12 @@ function LodgingFinal(){
                 bedSize : bedSelect.bedSelects,
                 bathroomNum : basicInfo.bathroom,
                 introHost:hostInfo.hostIntro,
+                zipCode : locationDetail.zipCode,
+                nation : locationDetail.nation,
+                address1 : locationDetail.addr1,
+                address2 : locationDetail.addr2,
+                checkInDt : chooseDate.startDate,
+                checkOutDt : chooseDate.endDate,
     }
 
     const onclickButton = () => {
@@ -168,7 +181,15 @@ function LodgingFinal(){
             })
             .then((res) => {
                 console.log(res);
-                
+                // Swal.fire({
+                //     icon: 'success',
+                //     title: '숙소등록이 완료되었습니다.',
+                //     showConfirmButton: false,
+                //     timer: 1500
+                // }).then(() => {
+                //     //main 페이지로 이동
+                //     navigate("/")
+                // })
             });
     }
 
@@ -184,7 +205,6 @@ function LodgingFinal(){
         <div style = {styles.body}>
             <div className={'container'}>
             <div  className={'row'}>
-                {/*<p>숙소이름 : {lodgingRealName.name}</p>*/}
                 <div className={'col-6'} style={styles.font}>
                     {/*<p style={{color: "white"}}> Name : {user.name} </p>*/}
                     <p style={{fontSize : "60px"}}>환영합니다</p>

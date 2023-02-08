@@ -12,6 +12,15 @@ const LodgingBedSelect = () => {
     const lodgingBasicInfo = useSelector((state) => state.lodgingBasicInfo.value)
     const user = useSelector((state)=>state.user.value)
     const dispatch = useDispatch();
+    const locationDetail = useSelector((state) => state.locationDetail.value)
+    console.log("bedselect국가")
+    console.log(locationDetail.nation)
+    console.log("address1")
+    console.log(locationDetail.address1)
+    console.log("address2")
+    console.log(locationDetail.address2)
+    console.log("zipcode")
+    console.log(locationDetail.zipCode)
 
     const imgSrc = [
         {

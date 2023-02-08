@@ -9,6 +9,7 @@ function LodgingCost(){
     const [cost, setCost] = useState(50000);
     const dispatch = useDispatch();
     const lodgingImg = useSelector((state)=>state.lodgingImg.value);
+    const chooseDate = useSelector((state)=>state.chooseDate.value);
 
     console.log(lodgingImg.url);
 
@@ -65,6 +66,8 @@ function LodgingCost(){
         <div className={"container"}>
             <div className={"row"}>
                 <div className={'col-7 mx-auto'} style={{marginTop : "120px"}}>
+                    {/*<p>시작일 : {chooseDate.startDate}</p>*/}
+                    {/*<p>시작일 : {chooseDate.endDate}</p>*/}
                     <p style={{fontSize :"35px", fontWeight:"bold"}}>이제 요금을 설정하세요</p>
                     <p style={{fontSize : "20px", color : "gray"}}>언제든지 변경하실 수 있습니다.</p>
                     <div style={styles.border1}>

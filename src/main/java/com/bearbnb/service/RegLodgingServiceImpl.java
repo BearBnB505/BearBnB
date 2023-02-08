@@ -41,6 +41,13 @@ public class RegLodgingServiceImpl implements RegLodgingService {
         System.out.println("입력 끝");
     }
 
+//    호스트로 업데이트
+    @Override
+    public void updateAuthority(String userId) throws Exception {
+        regLodgingMapper.updateAuthority(userId);
+        System.out.println("업데이트 성공");
+    }
+
 
 //    @Override
 //    public void insertCategory(String data) throws Exception{

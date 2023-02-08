@@ -102,7 +102,7 @@ function LodgingHostInfo(){
         return (
 
             <div className={"container"}>
-                <p>숙소설명 : {lodgingIntro.lodgingIntro}</p>
+                {/*<p>숙소설명 : {lodgingIntro.lodgingIntro}</p>*/}
                 <Pressable
                     style={[
                         {backgroundColor: selectLanguage[id] ? 'pink' : 'white'},
@@ -162,6 +162,7 @@ function LodgingHostInfo(){
                     <p style={{fontSize : "20px", color:"gray"}}>사용하는 언어를 선택하시고 소개를 작성해주세요</p>
                 </div>
                     <div className={"row"}>
+
                         <div className={"col-2 mt-2"}>
                             {getButton(0)}
                         </div>
@@ -197,7 +198,7 @@ function LodgingHostInfo(){
                             <input type={'text'} style={{"marginTop" : '19px', width : "150px", textAlign : "center"}} placeholder={'기타'} onChange={(e)=>{setChooseLanguage(e.target.value)}}></input>
                         </div>
                     </div>
-                    <textarea className={'col-12 mx-auto mt-5 p-4'} style={{height:"300px", borderRadius:"10px", fontSize :"20px"}} 
+                    <textarea className={'col-12 mx-auto mt-5 p-4 ms-4'} style={{height:"300px", borderRadius:"10px", fontSize :"20px"}}
                                 onChange={onInputHandler} maxLength="3000" placeholder={"소개를 해주세요"} />
                     <p>
                         <span style={{fontWeight:"bold", color: "gray"}}>{inputCount}</span>

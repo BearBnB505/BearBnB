@@ -2,6 +2,9 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import Calendar from "../Calendar/Calendar";
 import moment from "moment/moment";
+import {basicInfo} from "./Reducers/LodgingbedReducer";
+import {useDispatch} from "react-redux";
+import {chooseDates} from "./Reducers/ChooseDateReducder";
 
 function LodgingChooseDate(){
 
@@ -16,11 +19,17 @@ function LodgingChooseDate(){
             height : "5rem",
         }
     }
+    const dispatch = useDispatch();
 
     let [chooseDate, setChooseDate] = useState([]);
 
     let startDate = moment(chooseDate[0]).format('M월 D일');
     let endDate = moment(chooseDate[1]).format('M월 D일');
+
+    let insertStartDate = moment(chooseDate[0]).format('YYYY-MM-DD 10:00:00')
+    let insertEndDate = moment(chooseDate[1]).format('YYYY-MM-DD 14:00:00')
+    console.log(insertStartDate);
+    console.log(insertEndDate);
 
     return(
         <div className={'container mx-auto'}>
@@ -37,7 +46,9 @@ function LodgingChooseDate(){
             </div>
             <footer style={styles.footer} className={"mt-5"}>
                 <Link to ={"/lodgingThirdWelcome"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                <Link to = {"/lodgingCost"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>
+                <Link to = {"/lodgingCost"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={() => {
+                    dispatch(chooseDates({startDate:insertStartDate, endDate: insertEndDate}))
+                }}>다음</button></Link>
             </footer>
         </div>
     )

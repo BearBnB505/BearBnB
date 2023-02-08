@@ -340,9 +340,6 @@ const LoadingConcept = () => {
             <div className={"row"}>
                 <div style={styles.font} className={"p-3"}>
                     <h3 className={"fw-bold"} style={{fontSize :"35px"}}>숙소 편의시설 정보를 추가하세요</h3>
-                    <button onClick={dbTest}>
-                        db테스트
-                    </button>
                     <p className={"fs-5 mt-4"} style={{color:"gray"}}>여기에 추가하려는 편의시설이 보이지 않더라도 걱정하지 마세요! 숙소를 등록한 후에 편의시설을 추가할 수 있습니다.</p>
                 </div>
                 <div className={"row"}>
@@ -455,8 +452,7 @@ const LoadingConcept = () => {
 
                 <footer style={styles.footer} className={"mt-5"}>
                     <Link to ={"/lodgingBedSelect"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                    <Link to = {"/lodgingImg"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={()=>{
-                        dispatch(category({category:categoryArray}))}}>다음</button></Link>
+                    <Link to = {"/lodgingImg"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={dbTest}>다음</button></Link>
                 </footer>
             </div>
         </div>

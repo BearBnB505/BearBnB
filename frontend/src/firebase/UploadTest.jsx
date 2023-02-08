@@ -5,11 +5,13 @@ import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {hostIdUrl} from "../lodging_reg/Reducers/HostIdReducer";
 import {lodgingImgs} from "../lodging_reg/Reducers/LodgingImgReducer";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UploadTest = () => {
 
     const navigate = useNavigate();
+    const [show, setShow] = useState(false)
     const category = useSelector((state) => state.lodgingCategory.value);
     const lodgingNum = useSelector((state) => state.lodgingNum.value);
     console.log("uploadtest category");
@@ -49,6 +51,19 @@ const UploadTest = () => {
 
     },)
 
+    const styles = {
+        footer : {
+            position : "fixed",
+            zIndex : 1,
+            backgroundColor : "white",
+            left :0,
+            right : 0,
+            bottom : 0,
+            height : "5rem",
+            marginTop:"900px"
+
+        },
+    }
 
 
     const handleImage = (event) => {
@@ -141,7 +156,16 @@ const UploadTest = () => {
         console.log(imageUrl)
 
         console.log("파일을 업로드하는 행위");
-        alert('저장되었습니다.')
+
+        Swal.fire({
+            icon: 'success',
+            title: '이미지가 저장되었습니다.',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            setShow(false);
+            // childValue('tab2');
+        })
         //여기 남겨놔
         console.log("imageUrl")
         console.log(imageUrl)
@@ -183,20 +207,6 @@ const UploadTest = () => {
     };
 
     const goNext = ()=>{
-        // dispatch(lodgingImgs({url:imageUrl}))
-        // navigate("/lodgingName")
-        // axios({
-        //     url: 'http://localhost:8080/insertUrl',
-        //     method: 'post',
-        //     data: imageUrl
-        // })
-        //     .then(function (response) {
-        //         console.log(response)
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
-
         axios
             .post('http://localhost:8080/insertUrl',  imageUrl, {
                 headers: {
@@ -229,14 +239,13 @@ const UploadTest = () => {
             <div>
                 <img width="400px" src='/concept/imagePlus.png' alt="uploaded" onClick={onCickImageUpload}
                      style={{"width": "50px", marginTop: "-100px", marginLeft: "700px"}}/>
+                <button onClick={onSubmit} className={'btn btn-primary'} style={{marginTop:"-100px", marginLeft:"20px"}}>save</button>
             </div>
 
             {error && <div variant="danger">{error}</div>}
             <form onSubmit={onSubmit}>
                 <input type="file" onChange={handleImage} style={{display: "none"}} ref={imageInput} multiple/>
-                <button onClick={onSubmit}>저장하기</button>
-                <button onClick={axiosData}>axios보내기</button>
-                {/*<button onClick={deleteFileImage}>삭제하기</button>*/}
+                {/*<button onClick={onSubmit}>저장하기</button>*/}
             </form>
             {/*업로드 전 이미지*/}
 
@@ -255,7 +264,7 @@ const UploadTest = () => {
                     ))}
                 </dic>
             </div>
-            <button onClick={goNext}>다음페이지로</button>
+            {/*<button onClick={goNext}>다음페이지로</button>*/}
 
             {/*{imageUrl && (*/}
             {/*    <div>*/}
@@ -263,8 +272,13 @@ const UploadTest = () => {
             {/*    </div>*/}
             {/*)}*/}
 
-
+            {/*<Link to = {"/lodgingName"}><button className={"btn btn-primary btn-lg margin"} style={{marginLeft:"1000px", marginTop:"800px"}}>다음</button></Link>*/}
+            <footer style={styles.footer}>
+                <Link to ={"/lodgingCategorySelect"}><button className={"btn btn-light btn-lg position-absolute  bottom-0 ms-5 mb-3"} >이전</button></Link>
+                <Link to = {"/lodgingName"}><button className={"btn btn-primary btn-lg position-absolute end-0 bottom-0 me-5 mb-3 "} onClick={goNext}>다음</button></Link>
+            </footer>
         </div>
+
     );
 };
 

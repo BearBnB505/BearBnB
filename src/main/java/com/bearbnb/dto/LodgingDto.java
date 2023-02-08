@@ -29,4 +29,7 @@ public class LodgingDto {
     private String createDt;
     private String updateDt;
     private String deletedYn;
+    private String nation;
+    private String address1;
+    private String address2;
 }
