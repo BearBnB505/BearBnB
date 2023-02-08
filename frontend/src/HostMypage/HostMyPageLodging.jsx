@@ -56,7 +56,7 @@ function HostMyPageLodging() {
         <tr className={'LodgingLine'}>
           <th>번호</th>
           <th>숙소명</th>
-          <th>상태</th>
+          <th>&nbsp;&nbsp;상태</th>
           <th>침실</th>
           <th>침대</th>
           <th>욕실</th>
@@ -96,7 +96,6 @@ function ComplainList(props) {
   const [limit, setLimit] = useState(5);
   // 현재 페이지 번호(page)
   const [page, setPage] = useState(1);
-
   // 첫 게시물의 위치(offset)
   const offset = (page - 1) * limit;
 
@@ -128,7 +127,7 @@ function ComplainList(props) {
     data.slice(props.offsetInfo, props.offsetInfo + limit).map((item, index) => {
 
       return (
-        <div>
+        <table className={"table table-striped"}>
           <tr className={'LodgingLine'}>
             <td>{data.length - index}</td>
             <Link to={`/hostMyPageLodging/HouseInfoUpdate/${item.lodgingNum}`}
@@ -136,17 +135,17 @@ function ComplainList(props) {
               {item.lodgingName}
             </Link>
             {item.regState == '승인완료' ? <td>
-              <button className={'btn btn-primary'}>승인완료</button>
+              <button className={'btn btn-primary'} style={{backgroundColor:"#0d6efd"}}>승인완료</button>
             </td> : <td>
-              <button className={'btn btn-danger'}>심사 중</button>
+              <button className={'btn btn-danger'} style={{backgroundColor:"#dc3545"}}>심사 중</button>
             </td>}
             <td>{item.bedroomNum}</td>
             <td>{item.bedNum}</td>
             <td>{item.bathroomNum}</td>
             <td>{item.addr}</td>
-            <td>{item.createDt}</td>
+            <td style={{borderBottom:"none"}}>{item.createDt}</td>
           </tr>
-        </div>
+        </table>
       )
     })
   )
