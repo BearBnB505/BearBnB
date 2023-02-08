@@ -25,7 +25,8 @@ function PagiNation({ total, limit, page, setPage, setOffsetInfo}) {
     <div>
 
       <Nav>
-        <Button onClick={minus} disabled={page === 1}>
+        <Button onClick={minus} disabled={page === 1} style={{marginRight:7}}
+        >
           &lt;
         </Button>
 
@@ -42,7 +43,7 @@ function PagiNation({ total, limit, page, setPage, setOffsetInfo}) {
             </Button>
           ))}
 
-        <Button onClick={plus} disabled={page === numPages}>
+        <Button onClick={plus} disabled={page === numPages} style={{marginLeft:7}}>
           &gt;
         </Button>
 
@@ -64,24 +65,24 @@ const Button = styled.button`
   border-radius: 8px;
   padding: 8px;
   margin: 0;
-  background: black;
+  background: #0d6efd;
   color: white;
   font-size: 1rem;
 
   &:hover {
-    background: tomato;
+    background: RGB(19, 83, 195);
     cursor: pointer;
     transform: translateY(-2px);
   }
 
   &[disabled] {
-    background: grey;
+    background: RGB(145, 189, 253);
     cursor: revert;
     transform: revert;
   }
 
   &[aria-current] {
-    background: deeppink;
+    background: RGB(89, 155, 253);
     font-weight: bold;
     cursor: revert;
     transform: revert;
