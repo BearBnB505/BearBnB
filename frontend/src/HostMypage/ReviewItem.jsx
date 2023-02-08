@@ -46,13 +46,15 @@ import {Link} from "react-router-dom";
     const [modalOpen, setModalOpen] = useState(false);
 
     // 모달창 노출
-    const showModal = () => {
-      setModalOpen(true);
+    const showModal = (flag, event) => {
+      console.log(event.target);
+      console.log("부모컴포넌트 ul : " + flag);
+      setModalOpen(flag);
     };
 
 
     return (
-      <ul className={"list-group mb-4"} style={styles.ul} onClick={showModal}>
+      <ul className={"list-group mb-4"} style={styles.ul} onClick={(event) => showModal(true, event)}>
         {/*<ul className={"list-group mb-4"} style={styles.ul} >*/}
         <li className={"list-group-item p-4"} style={styles.li}>
           <div>
@@ -65,6 +67,7 @@ import {Link} from "react-router-dom";
           <div className={'text'}>{comment}</div>
         </li>
         {modalOpen && <HostModalReview modalOpen={modalOpen} setModalOpen={setModalOpen}/>}
+        {modalOpen}
       </ul>);
   }
 

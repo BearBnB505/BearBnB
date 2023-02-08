@@ -4,14 +4,12 @@ import Modal from 'react-bootstrap/Modal';
 
 
 const HostModalReview = (props) => {
-  const [show, setShow] = useState(true);
-
-
-
+  const [show, setShow] = useState(props.modalOpen);
 
   const close=()=>{
-    props.setModalOpen(false);
-    console.log(props.modalOpen);
+    let flag = props.modalOpen;
+    console.log("자식컴포넌트 : " + flag);
+    // props.setModalOpen(false);
   }
 
 
