@@ -7,11 +7,12 @@ import MainCategory from "./MainCategory";
 import Keep from "./Keep";
 import {getCookie} from "../Storage/Cookies";
 import {useDispatch, useSelector} from "react-redux";
-import {DELETE_TOKEN, SET_TOKEN} from "../Store/Auth";
+import {DELETE_TOKEN, SET_TOKEN, tokenSlice} from "../Store/Auth";
 import {requestToken} from "../Api/Users";
 import {removeCookieToken} from "../Storage/Cookie";
 import {useLocation} from "react-router";
 import {CheckToken} from "../Auth/CheckToken";
+import {configureStore} from "@reduxjs/toolkit";
 
 function Main(props) {
 
@@ -28,11 +29,13 @@ function Main(props) {
 
     // const location = useLocation();
     // const {isAuth} = CheckToken(location.key);
+    // const {isAuth} = CheckToken();
 
-    const userId = useSelector(state => state.SET_TOKEN);
 
-    console.log(userId);
-    // console.log(isAuth);
+    // // console.log(`userID : ${accessToken}`);
+
+    // const isAuth = sessionStorage.getItem("isAuth");
+    // console.log(`isAuth : ${isAuth}`);
 
     const [data, setData] = useState([]);
     const [category, setCategory] = useState('한옥');

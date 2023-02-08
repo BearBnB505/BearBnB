@@ -111,3 +111,24 @@ export const requestToken = async (refreshToken) => {
         return statusError;
     }
 };
+
+// From chatCPT
+const requestToken = (refreshToken) => {
+    // code to make a request to the server to get a new access token using the refresh token
+    let response = {};
+    // Example code to make an API call to get a new access token
+    axios.post('/api/token/refresh', { refreshToken: refreshToken })
+        .then((res) => {
+            response = {
+                status: true,
+                json: res.data
+            };
+        })
+        .catch((error) => {
+            response = {
+                status: false,
+                json: error.response.data
+            };
+        });
+    return response;
+};
