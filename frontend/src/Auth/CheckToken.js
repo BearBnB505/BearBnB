@@ -8,7 +8,7 @@ import {removeCookieToken} from "../Storage/Cookie";
 
 export function CheckToken(key) {
     const [isAuth, setIsAuth] = useState('Loaded');
-    const { authenticated, accessToken, expireTime } = useSelector(state => state.token);
+    const { authenticated, accessToken, expireTime } = useSelector(state => state.SET_TOKEN);
     const refreshToken = getCookie('refreshToken');
     const dispatch = useDispatch();
 

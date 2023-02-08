@@ -5,6 +5,13 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import MainCategory from "./MainCategory";
 import Keep from "./Keep";
+import {getCookie} from "../Storage/Cookies";
+import {useDispatch, useSelector} from "react-redux";
+import {DELETE_TOKEN, SET_TOKEN} from "../Store/Auth";
+import {requestToken} from "../Api/Users";
+import {removeCookieToken} from "../Storage/Cookie";
+import {useLocation} from "react-router";
+import {CheckToken} from "../Auth/CheckToken";
 
 function Main(props) {
 
@@ -18,6 +25,14 @@ function Main(props) {
             // opacity: .60
         }
     };
+
+    // const location = useLocation();
+    // const {isAuth} = CheckToken(location.key);
+
+    const userId = useSelector(state => state.SET_TOKEN);
+
+    console.log(userId);
+    // console.log(isAuth);
 
     const [data, setData] = useState([]);
     const [category, setCategory] = useState('한옥');

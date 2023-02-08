@@ -57,6 +57,7 @@ function Login() {
                         sameSite: 'strict',
                         expires: new Date(expireDate)
                     });
+                    // console.log(token.accessToken);
                     dispatch(SET_TOKEN({ accessToken: token.accessToken }));
                     setShow(false);
                 }
