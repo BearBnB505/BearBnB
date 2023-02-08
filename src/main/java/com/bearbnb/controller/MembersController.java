@@ -21,7 +21,7 @@ public class MembersController {
     @Autowired
     MembersMapper membersMapper;
 
-    @RequestMapping(value = "/CallMember")
+    @RequestMapping(value = "/CallMember", method = RequestMethod.GET)
     public List<MembersDto> CallMember() {
         return membersMapper.CallMember();
     }
