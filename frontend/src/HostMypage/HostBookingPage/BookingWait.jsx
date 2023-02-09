@@ -29,7 +29,6 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
                   console.log({idx});
                   console.log({adult_num});
               });
-
             childValue('tab2');
         })
     };
@@ -59,7 +58,6 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
                           console.log({idx});
                           console.log({adult_num});
                       });
-
                     childValue('tab3');
                 })
             }

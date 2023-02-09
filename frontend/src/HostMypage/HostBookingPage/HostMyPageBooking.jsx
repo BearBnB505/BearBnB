@@ -37,38 +37,35 @@ function HostMyPageBooking() {
     // const [data, setData] = useState([]);
     const [waitArray, setWaitArray] = useState([]);
     const [agreeArray, setAgreeArray] = useState([]);
-    const [rejectArray, setreJectArray] = useState([]);
-
+    const [rejectArray, setRejectArray] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:8080/bookingList/')
           .then((req) => {
               const {data} = req;
-              console.log(data);
+              // console.log(data);
               // setData(data);
 
               // dbArray를 기반으로 새로운 배열을 만듭니다.
               const waitArray = data.filter(item => item.bookState === "승인대기");
               setWaitArray(waitArray);
-              console.log(waitArray);
+              // console.log(waitArray);
 
               const agreeArray = data.filter(item => item.bookState === '예약완료');
               setAgreeArray(agreeArray);
-              console.log(agreeArray);
+              // console.log(agreeArray);
 
 
               const rejectArray = data.filter(item => item.bookState === '예약취소');
-              setreJectArray(rejectArray);
-              console.log(rejectArray);
+              setRejectArray(rejectArray);
+              // console.log(rejectArray);
 
           })
           .catch((err) => {
               console.log("통신 오류");
               console.log(err);
           })
-    }, []);
-
-
+    }, [key]);
 
 
   function switchState1() {
@@ -128,7 +125,7 @@ function HostMyPageBooking() {
                                             book_num={item.bookNum} book_check_in_dt={item.bookCheckInDt} book_check_out_dt={item.bookCheckOutDt}
                                             adult_num={item.adultNum} baby_num={item.babyNum} pet_num={item.petNum}
                                             book_state={item.bookState} user_id={item.userId} user_name={item.name} user_tel={item.tel} user_nation={item.nation}
-                                            book_dt={item.bookDt} pay_cost={item.payCost} childValue={setKey}/>
+                                            book_dt={item.bookDt} pay_cost={item.payCost}/>
                     })}
                 </div>
             </Tab>
@@ -140,7 +137,7 @@ function HostMyPageBooking() {
                                             book_num={item.bookNum} book_check_in_dt={item.bookCheckInDt} book_check_out_dt={item.bookCheckOutDt}
                                             adult_num={item.adultNum} baby_num={item.babyNum} pet_num={item.petNum}
                                             book_state={item.bookState} user_id={item.userId} user_name={item.name} user_tel={item.tel} user_nation={item.nation}
-                                            book_dt={item.bookDt} pay_cost={item.payCost} childValue={setKey}/>
+                                            book_dt={item.bookDt} pay_cost={item.payCost}/>
                     })}
                 </div>
             </Tab>
