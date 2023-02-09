@@ -6,14 +6,18 @@ import {Link} from "react-router-dom";
 
 function Table2() {
     const [data, setData] = useState([]);
+    const [complain, setComplain] = useState([]);
+    const [lodging, setLodging] = useState([]);
+    const [review, setReview] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:8080/adminLodgingList')
             .then((req) => {
                 const {data} = req;
                 console.log(data);
-                setData(data);
-
+                setComplain(data.complain);
+                setLodging(data.lodging);
+                setReview(data.review);
             })
             .catch((err) => {
                 console.log("통신 오류");
@@ -36,13 +40,12 @@ function Table2() {
                     <th>신청날짜</th>
                     <th>별점</th>
                     <th>신고건수</th>
-                    <th>신분증사진</th>
                     <th>상태</th>
                 </tr>
                 </thead>
                 <tbody>
                 {
-                    data.map((item,index) => {
+                    lodging.map((item,index) => {
                         return (
                             <tr>
                                 {/*<td>{index + 1}</td>*/}
@@ -53,15 +56,11 @@ function Table2() {
                                 <td>{item.createDt}</td>
                                 <td>{'별점'}</td>
                                 <td>{'신고건수'}</td>
-                                <td>{'확인하기'}</td>
                                 <td>{item.regState}</td>
                             </tr>
                         )
                     })
                 }
-
-
-
                 </tbody>
             </Table>
         </Container>

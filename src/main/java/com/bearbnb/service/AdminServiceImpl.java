@@ -1,9 +1,6 @@
 package com.bearbnb.service;
 
-import com.bearbnb.dto.ComplainDto;
-import com.bearbnb.dto.LodgingDto;
-import com.bearbnb.dto.MembersDto;
-import com.bearbnb.dto.ReviewAvgDto;
+import com.bearbnb.dto.*;
 import com.bearbnb.mapper.AdminMapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -30,14 +27,23 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public LodgingDto adminLodgingList(String lodgingNum) throws Exception {
-        return adminMapper.adminLodgingList(lodgingNum);
+    public LodgingDto adminLodgingDetail(String lodgingNum) throws Exception {
+        return adminMapper.adminLodgingDetail(lodgingNum);
     }
-    public List<ReviewAvgDto> adminAvgReviewList(String lodgingNum) throws Exception {
-        return adminMapper.adminAvgReviewList(lodgingNum);
+    @Override
+    public List<ComfortsDto> adminComfortsDetail(String lodgingNum) throws Exception {
+        return adminMapper.adminComfortsDetail(lodgingNum);
     }
-    public List<ComplainDto> adminComplainList(String lodgingNum) throws Exception {
-        return adminMapper.adminComplainList(lodgingNum);
+    @Override
+    public List<LodgingDto> adminLodgingList() throws Exception {
+        return adminMapper.adminLodgingList();
     }
+    public List<ReviewDto> adminReviewList() throws Exception {
+        return adminMapper.adminReviewList();
+    }
+    public List<ComplainDto> adminComplainList() throws Exception {
+        return adminMapper.adminComplainList();
+    }
+
 
 }

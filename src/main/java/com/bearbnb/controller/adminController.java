@@ -38,25 +38,41 @@ public class adminController {
 
 
     @RequestMapping(value = "admin/lodging/detail2/{lodgingNum}", method = RequestMethod.GET)
-    public Map<String, Object> adminLodgingList(@PathVariable("lodgingNum") String lodgingNum) throws Exception {
+    public Map<String, Object> adminLodgingDetail(@PathVariable("lodgingNum") String lodgingNum) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
 
-        LodgingDto lodging = adminService.adminLodgingList(lodgingNum);
+        LodgingDto lodging = adminService.adminLodgingDetail(lodgingNum);
         map.put("lodging", lodging);
 
-        List<ReviewAvgDto> avg = adminService.adminAvgReviewList(lodging.getLodgingNum());
-        map.put("avg", avg);
-//
-        List<ComplainDto> complain = adminService.adminComplainList(lodging.getLodgingNum());
-        map.put("complain", complain);
+        List<ComfortsDto> comfort = adminService.adminComfortsDetail(lodging.getLodgingNum());
+        map.put("comfort", comfort);
 
         return map;
     }
 
-    @RequestMapping(value = "adminLodgingList")
-    public List<LodgingDto> lodgingList() {
-        return adminMapper.lodgingList();
+    @RequestMapping(value = "adminLodgingList", method = RequestMethod.GET)
+    public Map<String, Object> adminLodgingList() throws Exception {
+
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        List<LodgingDto> lodging = adminService.adminLodgingList();
+        map.put("lodging", lodging);
+
+        List<ReviewDto> review = adminService.adminReviewList();
+        map.put("review", review);
+
+        List<ComplainDto> complain = adminService.adminComplainList();
+        map.put("complain", complain);
+
+        return map;
+
     }
+
+
+//    @RequestMapping(value = "adminLodgingList")
+//    public List<LodgingDto> lodgingList() {
+//        return adminMapper.lodgingList();
+//    }
 
     @RequestMapping(value = "adminComplainList")
     public List<ComplainDto> complainList() {

@@ -1,7 +1,6 @@
 import React from "react";
 import Modal from 'react-bootstrap/Modal';
 import {CloseButton} from "react-bootstrap";
-import StarRating from "./StarRating";
 
 function BookingModalDetail(props) {
     const data = [

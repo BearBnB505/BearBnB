@@ -17,10 +17,15 @@ public interface AdminMapper {
 
     Page<MembersDto> getMembersPaging(int pageNum) throws Exception;
 
-    LodgingDto adminLodgingList(String lodgingNum) throws Exception;
 
-    List<ReviewAvgDto> adminAvgReviewList(String lodgingNum) throws Exception;
+    LodgingDto adminLodgingDetail(String lodgingNum) throws Exception;
+    List<ComfortsDto> adminComfortsDetail(String lodgingNum) throws Exception;
 
-    List<ComplainDto> adminComplainList(String lodgingNum) throws Exception;
+
+    List<LodgingDto> adminLodgingList() throws Exception;
+    List<ReviewDto> adminReviewList() throws Exception;
+    List<ComplainDto> adminComplainList() throws Exception;
+
+
 }
 
