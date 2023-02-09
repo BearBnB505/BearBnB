@@ -92,7 +92,7 @@ function LodgingDetail(props) {
 
                     <div className={'col ms-4 me-5 mt-5'} style={{zIndex:2}}>
                         {/*<Payment cost={lodging.cost} chooseDate={chooseDate} nightCount={nightCount}/>*/}
-                        <Payment cost={lodging.cost} lodgingName={lodging.lodgingName}/>
+                        <Payment cost={lodging.cost} lodgingName={lodging.lodgingName} lodgingNum={lodging.lodgingNum}/>
                     </div>
                 </div>
                 <ReviewAverage/>

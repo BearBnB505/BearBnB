@@ -1,5 +1,8 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {useLocation} from "react-router";
+import moment from "moment/moment";
+import {now} from "moment";
 
 //결제 완료 후 보여지는 페이지
 
@@ -26,6 +29,21 @@ function LodgingPaymentEnd(){
         },
     }
 
+    const location = useLocation();
+    const lodgingNum = location.state.lodgingNum;
+    const lodgingName = location.state.lodgingName;
+    const startDate = location.state.startDate;
+    const endDate = location.state.endDate;
+    const adultNum = location.state.adultNum;
+    const babyNum = location.state.babyNum;
+    const petNum = location.state.petNum;
+    const dayCost = location.state.dayCost;
+    const nightCount = location.state.nightCount;
+    const totalCost = location.state.totalCost;
+    const today = moment();
+    const payDate = today.format('YY년 MM월 DD일')
+
+
     return(
         <div className={'container mb-5'}>
             <div style={styles.mainBox} className={"mx-auto"}>
@@ -44,7 +62,7 @@ function LodgingPaymentEnd(){
                                 <img src = '/concept/background.jpg' style={{width : "200px", height:"140px", borderRadius :"20px"}}/>
                             </div>
                             <div className = {"col-5 my-auto" }>
-                                <p className={'fs-5'}>숙소이름 뭐시기뭐시기</p>
+                                <p className={'fs-5'}>{lodgingName}</p>
                                 <p>★ 5.0</p>
                             </div>
                         </div>
@@ -54,23 +72,23 @@ function LodgingPaymentEnd(){
                         <div className={'row'}>
                             <div className={'col-10'}>
                                 <p style={{fontSize:"20px", fontWeight : "bold", marginTop : "10px"}}>날짜</p>
-                                <p style={{fontSize:"20px", marginTop : "-10px"}}>5월 17일 ~ 5월 19일</p>
+                                <p style={{fontSize:"20px", marginTop : "-10px"}}>{startDate} ~ {endDate}</p>
                             </div>
                             <div className={'col-10'}>
                                 <p style={{fontSize:"20px", fontWeight : "bold", marginTop : "10px"}}>게스트</p>
-                                <p style={{fontSize:"20px", marginTop : "-10px"}}>게스트4명, 유아1명, 반려동물 1마리</p>
+                                <p style={{fontSize:"20px", marginTop : "-10px"}}>성인{adultNum}명, 유아{babyNum}명, 반려동물 {petNum}마리</p>
                             </div>
                         </div>
                         <p style={{fontSize:"20px", fontWeight : "bold", paddingTop :"10px"}}>요금</p>
                         <div className={'row'}>
                             <div className={'col-9'}>
-                                <p style={{fontSize:"23px", color:"gray"}}> &#8361; 50000 x 3박 </p>
+                                <p style={{fontSize:"23px", color:"gray"}}> &#8361; {dayCost} x {nightCount}박 </p>
                             </div>
                             <div className={'col-3'}>
-                                <p style={{fontSize:"23px"}}> &#8361; 150000 </p>
+                                <p style={{fontSize:"23px"}}> &#8361; {totalCost} </p>
                             </div>
                             <p style={{fontSize:"20px", fontWeight : "bold", paddingTop :"10px"}}>결제날짜</p>
-                            <p style={{fontSize:"22px", color:'gray'}}>2023-01-19</p>
+                            <p style={{fontSize:"22px", color:'gray'}}>{payDate}</p>
                         </div>
                     </div>
                 </div>

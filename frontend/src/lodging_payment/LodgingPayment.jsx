@@ -20,9 +20,7 @@ import Calendar from "../Calendar/Calendar";
 
 // 확인 및 결제 페이지
 function LodgingPayment(props) {
-    // const amount = {totalCost}; //계산되는 달러가격 여기에 표시된다.
-    const amount = 0.01;
-    const inputAmount = amount * 1000;
+
     // console.log(inputAmount)
 
     const currency = "USD";
@@ -50,6 +48,7 @@ function LodgingPayment(props) {
     let startDate = moment(chooseDate[0]).format('Y년 M월 D일');
     let endDate = moment(chooseDate[1]).format('Y년 M월 D일');
 
+
     let startDt = moment(chooseDate[0]).format('YYYY-MM-DD 14:00:00');
     let endDt = moment(chooseDate[0]).format('YYYY-MM-DD 10:00:00');
 
@@ -57,6 +56,11 @@ function LodgingPayment(props) {
 
     const [nightCount, setNightCount] = useState(location.state.nightCount);
     const [totalCost, setTotalCost] = useState(location.state.totalCost);
+    const realTotalCost = totalCost * 1000;
+
+    // const amount = {totalCost}; //계산되는 달러가격 여기에 표시된다.
+    const amount = totalCost/1000
+    const inputAmount = amount * 1000;
 
     // const selectGuest = location.state.selectGuest;
     const [guestCount, setGuestCount] = useState(location.state.selectGuest);
@@ -121,6 +125,9 @@ function LodgingPayment(props) {
         setTotalCost((parseInt(dayCost) * nightCount));
     }, [nightCount]);
 
+    console.log('test')
+    console.log(totalCost)
+    console.log(lodgingNum)
     return (
         <div className={'container mx-auto'}>
                             <div className={'row align-items-start mt-3'}>
@@ -270,19 +277,22 @@ function LodgingPayment(props) {
 
                                             // 결제 완료 확인 페이지로 전환
                                             {
-                                                navigate("/lodgingPaymentEnd")
+                                                navigate(
+                                                    "/lodgingPaymentEnd",
+                                                    {state:{lodgingNum:lodgingNum, lodgingName:lodgingName,startDate:startDate,endDate:endDate,
+                                                            adultNum: adultCount, babyNum: childCount,petNum: petCount,dayCost:dayCost, nightCount:nightCount,totalCost:totalCost}})
                                             }
                                             axios.post("http://localhost:8080/paymentInsert", null,
                                                 {
                                                     params: {
-                                                        userId: "예약번호테스트",
-                                                        lodgingNum: "9023013111111111",
+                                                        userId: "dbfl1443@nate.com",
+                                                        lodgingNum: lodgingNum,
                                                         bookNum: BookNum,
                                                         payType: "PAYPAL",
-                                                        payCost: {totalCost},
-                                                        bookState: "예약중",
-                                                        bookCheckInDt: "",
-                                                        bookCheckOutDt: "2023-02-10",
+                                                        payCost: totalCost,
+                                                        bookState: "승인전",
+                                                        bookCheckInDt: startDt,
+                                                        bookCheckOutDt: endDt,
                                                         adultNum: adultCount,
                                                         babyNum: childCount,
                                                         petNum: petCount,
