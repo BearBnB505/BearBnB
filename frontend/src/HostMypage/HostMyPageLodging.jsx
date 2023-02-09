@@ -1,17 +1,45 @@
-import React from "react";
+import React, {useState} from "react";
 import {Breadcrumb, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose, faPencil} from "@fortawesome/free-solid-svg-icons";
 import Anima from "../Mypage/animaData";
 import { motion } from "framer-motion";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import axios from "axios";
 
 const complain = [
     {idx: 1, lodging_name: "바다가 보이는 아름다운 집", state:<button className={'btn btn-primary'}>승인완료</button>, bedroom: 2, bed: 2, bathroom:1, location : "부산 해운대", last_update:"2022-12-03"},
     {idx: 2, lodging_name: "산이 한 눈에 보이는 집", state:<button className={'btn btn-danger'}>심사 중</button>, bedroom: 3, bed: 4, bathroom:2, location : "경기도 오산", last_update:"2022-12-06"},
 ]
 
-function HostMyPageLodging() {
+
+
+
+function HostMyPageLodging(props) {
+    const [data, setData] = useState('');
+    const navigate = useNavigate();
+    const onClickRegLodging = () => {
+        axios.get("http://localhost:8080/checkAuthority",{
+            params :{
+                userId : "gione@naver.com",
+            }
+        })
+            .then((req)=>{
+                const {data} = req;
+                setData(data);
+                console.log(data)
+
+                if(data ==='ROLE_USER'){
+                    navigate("/reg/lodgingHostId")
+                } else if(data ==='ROLE_HOST'){
+                    navigate("/reg")
+                }
+            })
+            .catch((err)=>{
+                console.log(err);
+                console.log('에러발생')
+            })
+    }
     return (
         <motion.div variants={Anima}
                     initial="hidden"
@@ -24,7 +52,7 @@ function HostMyPageLodging() {
                 </Breadcrumb>
                 <div className={'row'}>
                     <h2 className={"fw-bold col-10"}>숙소관리</h2>
-                    <Link to={"/lodgingWelcome"} className={'col-2'}><button className={"btn btn-primary"}>새로운 숙소 등록하기</button></Link>
+                    <button className={"btn btn-primary col-2"} onClick={onClickRegLodging}>새로운 숙소 등록하기</button>
                 </div>
 
             </div>

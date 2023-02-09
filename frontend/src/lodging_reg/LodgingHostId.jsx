@@ -139,8 +139,9 @@ function LodgingHostId(){
                 {/*<LodgingFinal/>*/}
             </div>
             <footer style={styles.footer} className={"mt-5"}>
-                <Link to ={"#"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                <Link to = {"/lodgingWelcome"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={onSubmit}>다음</button></Link>
+                <Link to = {"/reg/lodgingWelcome"}>
+                    <button className={"btn btn-primary position-absolute end-0 bottom-0"}
+                            style={{marginBottom:"40px", marginRight:"130px", width:"200px", fontSize:"20px"}} onClick={onSubmit}>다음</button></Link>
             </footer>
         </div>
     )

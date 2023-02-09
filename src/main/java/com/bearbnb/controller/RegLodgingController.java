@@ -1,15 +1,11 @@
 package com.bearbnb.controller;
 
 import com.bearbnb.dto.*;
+import com.bearbnb.mapper.RegLodgingMapper;
 import com.bearbnb.service.RegLodgingService;
-import lombok.val;
-import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +16,9 @@ import java.util.Map;
 public class RegLodgingController {
     @Autowired
     RegLodgingService regLodgingService;
+
+    @Autowired
+    RegLodgingMapper mapper;
 
     @RequestMapping(value = "/insertUrl", method = RequestMethod.POST)
     public void insertUrl(@RequestBody List<PhotoDto> photoList) throws Exception{
@@ -48,6 +47,17 @@ public class RegLodgingController {
         // 받아온 데이터를 서비스로 넘김
 
         return null;
+    }
+
+//    버튼 누른 사람이 숙소 등록을 한 적이 있는지 유무에 따라 페이지 이동하기
+    @RequestMapping(value = "/checkAuthority", method = RequestMethod.GET)
+    public String checkAuthority(@RequestParam("userId") String userId) throws Exception{
+
+
+        System.out.println(userId);
+
+        String authority = regLodgingService.checkAuthority(userId);
+        return authority;
     }
 
 //    @ResponseBody

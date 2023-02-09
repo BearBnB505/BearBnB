@@ -45,4 +45,11 @@
             WHERE lodging.user_id = #{userId}
         ]]>
     </update>
+
+    <select id="checkAuthority" resultType="String">
+        <![CDATA[
+            SELECT authority from members
+            where user_id = #{userId}
+        ]]>
+    </select>
 </mapper>

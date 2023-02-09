@@ -21,4 +21,6 @@ public interface RegLodgingService {
 
 //    호스트로 업데이트
     void updateAuthority(String userId) throws Exception;
+
+    String checkAuthority(String userId) throws Exception;
 }

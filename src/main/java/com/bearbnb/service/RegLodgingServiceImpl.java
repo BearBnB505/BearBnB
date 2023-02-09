@@ -1,14 +1,10 @@
 package com.bearbnb.service;
 
-import com.bearbnb.dto.CategoryDto;
-import com.bearbnb.dto.ComfortsDto;
-import com.bearbnb.dto.LodgingDto;
-import com.bearbnb.dto.PhotoDto;
+import com.bearbnb.dto.*;
 import com.bearbnb.mapper.RegLodgingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,6 +42,12 @@ public class RegLodgingServiceImpl implements RegLodgingService {
     public void updateAuthority(String userId) throws Exception {
         regLodgingMapper.updateAuthority(userId);
         System.out.println("업데이트 성공");
+    }
+    
+    @Override
+    public String checkAuthority(String userId) throws Exception{
+        return regLodgingMapper.checkAuthority(userId);
+
     }
 
 

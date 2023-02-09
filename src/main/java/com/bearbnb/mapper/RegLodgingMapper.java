@@ -2,6 +2,7 @@ package com.bearbnb.mapper;
 
 import com.bearbnb.dto.ComfortsDto;
 import com.bearbnb.dto.LodgingDto;
+import com.bearbnb.dto.MembersDto;
 import com.bearbnb.dto.PhotoDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,4 +24,6 @@ public interface RegLodgingMapper {
 
 //    호스트로 업데이트
     void updateAuthority(String userId) throws Exception;
+
+    String checkAuthority(String userId) throws Exception;
 }

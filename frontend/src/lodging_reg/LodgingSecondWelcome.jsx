@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 import ReactPlayer from 'react-player'
 import {useSelector} from "react-redux";
 
@@ -18,7 +18,7 @@ function LodgingWelcome(){
                 </div>
                 <div className={"col-5"} style={{marginRight:"155px"}}>
                     <div style={{marginTop : "180px"}}>
-                        <video autoPlay muted loop style = {{width : "700px"}} >
+                        <video autoPlay muted loop style = {{width : "700px"}}>
                             <source src="https://stream.media.muscache.com/H0101WTUG2qWbyFhy02jlOggSkpsM9H02VOWN52g02oxhDVM.mp4?v_q=high" type={"video/mp4"} />
                         </video>
                     </div>
