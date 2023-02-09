@@ -73,12 +73,6 @@ function LodgingLocationDetail(){
                                     <input type="text" className="form-control" id="zipcode" name="nation" defaultValue={zipCodeA}
                                            placeholder="우편번호" onChange={onChangeZipCode}/>
                                 </div>
-                                {/*<Profile/>*/}
-                                {/*<Login/>*/}
-                                {/*<button onClick={() => {*/}
-                                {/*    // dispatch(login({name: "내 이름", age: 20, email: "email@gmail.com"}))*/}
-                                {/*    dispatch(locationDetails({nation: nationA, addr1:address1A, addr2:address2A, zipCode:zipCodeA}))*/}
-                                {/*}}>Login</button>*/}
                             </div>
                         </div>
                     </div>
@@ -86,8 +80,8 @@ function LodgingLocationDetail(){
                 </div>
 
 
-            <Link to ={"/lodgingMap"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-            <Link to = {"/lodgingBasicInfo"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={() => {
+            <Link to ={"/reg/lodgingMap"}><button className={"btn btn-white position-absolute start-0 bottom-0"} style={{marginBottom:"70px", marginLeft:"120px", width:"200px", fontSize:"25px", padding:"8px", }} >이전</button></Link>
+            <Link to = {"/reg/lodgingBasicInfo"}><button className={"btn btn-primary position-absolute end-0 bottom-0"} style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }} onClick={() => {
                 dispatch(locationDetails({nation: nationA, addr1:address1A, addr2:address2A, zipCode:zipCodeA}))
             }}>다음</button></Link>
             </div>

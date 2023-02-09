@@ -216,7 +216,7 @@ function LodgingFinal(){
             </div>
             </div>
             <footer>
-                <Link to = {"#"}><button className={"btn btn-danger position-absolute end-0 bottom-0 me-5 mb-3"} onClick={onclickButton}>완료하기</button></Link>
+                <Link to = {"#"}><button className={"btn btn-danger position-absolute end-0 bottom-0"} style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }} onClick={onclickButton}>완료하기</button></Link>
             </footer>
         </div>
     )

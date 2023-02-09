@@ -45,8 +45,8 @@ function LodgingChooseDate(){
                 </div>
             </div>
             <footer style={styles.footer} className={"mt-5"}>
-                <Link to ={"/lodgingThirdWelcome"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                <Link to = {"/lodgingCost"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={() => {
+                <Link to ={"/reg/lodgingThirdWelcome"}><button className={"btn btn-white position-absolute start-0 bottom-0"} style={{marginBottom:"70px", marginLeft:"120px", width:"200px", fontSize:"25px", padding:"8px", }} >이전</button></Link>
+                <Link to = {"/reg/lodgingCost"}><button className={"btn btn-primary position-absolute end-0 bottom-0"} style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }} onClick={() => {
                     dispatch(chooseDates({startDate:insertStartDate, endDate: insertEndDate}))
                 }}>다음</button></Link>
             </footer>

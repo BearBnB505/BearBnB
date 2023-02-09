@@ -6,6 +6,7 @@ import { storage } from "../firebase/firebase2";
 import {login} from "./redux_test/user";
 import {lodgingRealNames} from "./Reducers/LodgingRealNameReducer";
 import {realhostIdUrl} from "./Reducers/RealHostIdReducer";
+import Swal from "sweetalert2";
 
 function LodgingHostId(){
 
@@ -31,7 +32,10 @@ function LodgingHostId(){
     const onSubmit = (event) => {
         event.preventDefault();
         if (serverHostIdImage === "") {
-            alert('사진을 첨부해주세요')
+            Swal.fire({
+                icon: 'error',
+                title: '사진을 선택해주세요',
+            })
             return;
         }
 
@@ -114,7 +118,7 @@ function LodgingHostId(){
     return(
         <div className={'container'}>
             <div className={'row'}>
-                <div className={'col-6'} style={{marginTop : "350px", marginLeft :"60px"}}>
+                <div className={'col-6'} style={{marginTop : "250px", marginLeft :"60px"}}>
                     <p style={{fontSize : "40px", fontWeight :"bold"}}>호스트 신분증 사진 업로드 하기</p>
                     <p style={{fontSize :"23px", color:"gray"}}>숙소를 등록하기 위해서는 신분증 사진 업로드가 필수입니다. 정부 발급 신분증을 제출해주세요. 사진이 선명하고 얼굴이 잘 보여야 합니다</p>
                 </div>
@@ -123,13 +127,13 @@ function LodgingHostId(){
                     width : "400px",
                     height : "300px",
                     borderRadius : "25px",
-                    marginTop:"320px",
+                    marginTop:"220px",
                     marginLeft : "50px",} : {}}>
                     <div className={'container'}>
                         <input type="file" style={{display:"none"}} ref={imageInput} accept="image/*" onChange={handleImage}/>
                         <img onClick={onClickImageUpload}
                                 src={idImageUrl.length<=0 ? '/concept/plusIcon.png' : idImageUrl}
-                        style={idImageUrl.length<=0 ? {width:"50px", display: 'block',margin:'auto', marginTop :"120px"}:{width:"400px", height:'250px', marginTop:"330px"}}/>
+                        style={idImageUrl.length<=0 ? {width:"50px", display: 'block',margin:'auto', marginTop :"130px"}:{width:"400px", height:'250px', marginTop:"250px",borderRadius : "15px",boxShadow:" 5px 5px 10px gray",}}/>
                                 {/*style={{ width:"50px", display: 'block',margin:'auto', marginTop :"120px"}}/>*/}
                     </div>
                     {/*<button onClick={onSubmit}>서버 테스트</button>*/}
@@ -139,9 +143,9 @@ function LodgingHostId(){
                 {/*<LodgingFinal/>*/}
             </div>
             <footer style={styles.footer} className={"mt-5"}>
-                <Link to = {"/reg/lodgingWelcome"}>
+                <Link to = {"/reg"}>
                     <button className={"btn btn-primary position-absolute end-0 bottom-0"}
-                            style={{marginBottom:"40px", marginRight:"130px", width:"200px", fontSize:"20px"}} onClick={onSubmit}>다음</button></Link>
+                            style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }} onClick={onSubmit}>다음</button></Link>
             </footer>
         </div>
     )

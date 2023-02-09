@@ -65,7 +65,7 @@ function LodgingCost(){
     return(
         <div className={"container"}>
             <div className={"row"}>
-                <div className={'col-7 mx-auto'} style={{marginTop : "120px"}}>
+                <div className={'col-7 mx-auto'} style={{marginTop : "90px"}}>
                     {/*<p>시작일 : {chooseDate.startDate}</p>*/}
                     {/*<p>시작일 : {chooseDate.endDate}</p>*/}
                     <p style={{fontSize :"35px", fontWeight:"bold"}}>이제 요금을 설정하세요</p>
@@ -102,8 +102,8 @@ function LodgingCost(){
                     </div>
                 </div>
             <footer>
-                <Link to ={"/lodgingChooseDate"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                <Link to = {"/lodgingCheck"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={()=>{
+                <Link to ={"/reg/lodgingChooseDate"}><button className={"btn btn-white position-absolute start-0 bottom-0"} style={{marginBottom:"70px", marginLeft:"120px", width:"200px", fontSize:"25px", padding:"8px", }} >이전</button></Link>
+                <Link to = {"/reg/lodgingCheck"}><button className={"btn btn-primary position-absolute end-0 bottom-0"} style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }} onClick={()=>{
                     dispatch(costs({cost:cost}))}}>다음</button></Link>
             </footer>
         </div>

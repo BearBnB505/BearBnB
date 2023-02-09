@@ -107,8 +107,8 @@ const LodgingBedSelect = () => {
                 </div>
             </div>
             <footer>
-                <Link to ={"/lodgingBasicInfo"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                <Link to = {"/lodgingSecondWelcome"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"} onClick={()=>{
+                <Link to ={"/reg/lodgingBasicInfo"}><button className={"btn btn-white position-absolute start-0 bottom-0"} style={{marginBottom:"70px", marginLeft:"120px", width:"200px", fontSize:"25px", padding:"8px", }} >이전</button></Link>
+                <Link to = {"/reg/lodgingSecondWelcome"}><button className={"btn btn-primary position-absolute end-0 bottom-0"} style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }} onClick={()=>{
                     dispatch(bedSelects({bedSelects:bedSelect}))}}>다음</button></Link>
             </footer>
         </div>

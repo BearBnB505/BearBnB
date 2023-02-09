@@ -274,8 +274,8 @@ const UploadTest = () => {
 
             {/*<Link to = {"/lodgingName"}><button className={"btn btn-primary btn-lg margin"} style={{marginLeft:"1000px", marginTop:"800px"}}>다음</button></Link>*/}
             <footer style={styles.footer}>
-                <Link to ={"/lodgingCategorySelect"}><button className={"btn btn-light btn-lg position-absolute  bottom-0 ms-5 mb-3"} >이전</button></Link>
-                <Link to = {"/lodgingName"}><button className={"btn btn-primary btn-lg position-absolute end-0 bottom-0 me-5 mb-3 "} onClick={goNext}>다음</button></Link>
+                <Link to ={"/reg/lodgingCategorySelect"}><button className={"btn btn-white position-absolute start-0 bottom-0"} style={{marginBottom:"70px", marginLeft:"120px", width:"200px", fontSize:"25px", padding:"8px", }} >이전</button></Link>
+                <Link to = {"/reg/lodgingName"}><button className={"btn btn-primary position-absolute end-0 bottom-0"} style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }} onClick={goNext}>다음</button></Link>
             </footer>
         </div>
 
