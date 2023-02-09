@@ -42,6 +42,7 @@ function LodgingPayment(props) {
 
     const location = useLocation();
 
+    const lodgingNum = location.state.lodgingNum;
     const lodgingName = location.state.lodgingName;
 
     const [chooseDate, setChooseDate] = useState(location.state.chooseDate);
@@ -112,6 +113,9 @@ function LodgingPayment(props) {
     const [showCalendar, setShowCalendar] = useState(false);
     const [showGuestCount, setShowGuestCount] = useState(false);
 
+    useEffect(() => {
+        setNightCount(moment.duration(moment(chooseDate[1]).diff(moment(chooseDate[0]))).asDays());
+    }, chooseDate);
 
     return (
         <div className={'container mx-auto'}>
