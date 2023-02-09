@@ -1,8 +1,6 @@
 package com.bearbnb.service;
 
 import com.bearbnb.dto.MemberRequestDto;
-import com.bearbnb.dto.MemberResponseDto;
-import com.bearbnb.dto.MembersDto;
 import com.bearbnb.dto.TokenDto;
 import com.bearbnb.jwt.JwtTokenProvider;
 import com.bearbnb.mapper.MemberMapper;
@@ -40,4 +38,8 @@ public class AuthService {
         return jwtTokenProvider.generateTokenDto(authentication);
     }
 
+
+//    public TokenDto refreshAccessToken(String refreshToken) {
+//        return jwtTokenProvider.refreshAccessToken(refreshToken);
+//    }
 }

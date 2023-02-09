@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getCookie} from "../Storage/Cookies";
+import {getCookie, removeCookie} from "../Storage/Cookies";
 import {DELETE_TOKEN, SET_TOKEN, tokenSlice} from "../Store/Auth";
 import {requestToken} from "../Api/Users";
 import {removeCookieToken} from "../Storage/Cookie";
@@ -8,19 +8,20 @@ import {configureStore} from "@reduxjs/toolkit";
 
 export function CheckToken(key) {
 
-    const store = configureStore({reducer: tokenSlice.reducer});
+    let store = configureStore({reducer: tokenSlice.reducer});
 
     let [isAuth, setIsAuth] = useState('Loaded');
-    // const { authenticated, accessToken, expireTime } = useSelector(state => state.store.getState());
-    let authenticated = store.getState().authenticated;
-    let accessToken = store.getState().accessToken;
-    let expireTime = store.getState().expireTime;
+    // let { authenticated, accessToken, expireTime } = useSelector(state => state.store.getState(SET_TOKEN));
+    const authenticated = store.getState().authenticated;
+    const accessToken = store.getState().accessToken;
+    const expireTime = store.getState().expireTime;
     let refreshToken = getCookie('refreshToken');
     let dispatch = useDispatch();
 
     const checkAuthToken = () => {
         if (refreshToken === undefined) {
-            dispatch(DELETE_TOKEN());
+            store.dispatch(tokenSlice.actions.DELETE_TOKEN());
+            // dispatch(DELETE_TOKEN());
             setIsAuth('Failed');
             // sessionStorage.setItem("isAuth", "Failed");
         } else {
@@ -33,12 +34,15 @@ export function CheckToken(key) {
 
                 if (response.status) {
                     const token = response.json.accessToken;
-                    dispatch(SET_TOKEN(token));
+                    store.dispatch(tokenSlice.actions.SET_TOKEN(token));
+                    // dispatch(SET_TOKEN(token));
                     setIsAuth('Success');
                     // sessionStorage.setItem("isAuth", "Success");
                 } else {
-                    dispatch(DELETE_TOKEN());
-                    removeCookieToken();
+                    store.dispatch(tokenSlice.actions.DELETE_TOKEN());
+                    // dispatch(DELETE_TOKEN());
+                    // removeCookieToken();
+                    removeCookie('refreshToken');
                     setIsAuth('Failed');
                     // sessionStorage.setItem("isAuth", 'Failed');
                 }

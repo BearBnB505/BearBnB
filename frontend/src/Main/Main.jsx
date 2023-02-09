@@ -11,8 +11,8 @@ import {DELETE_TOKEN, SET_TOKEN, tokenSlice} from "../Store/Auth";
 import {requestToken} from "../Api/Users";
 import {removeCookieToken} from "../Storage/Cookie";
 import {useLocation} from "react-router";
-import {CheckToken} from "../Auth/CheckToken";
 import {configureStore} from "@reduxjs/toolkit";
+import {CheckToken} from "../Auth/CheckToken";
 
 function Main(props) {
 
@@ -27,15 +27,10 @@ function Main(props) {
         }
     };
 
-    // const location = useLocation();
-    // const {isAuth} = CheckToken(location.key);
-    // const {isAuth} = CheckToken();
-
-
-    // // console.log(`userID : ${accessToken}`);
-
-    // const isAuth = sessionStorage.getItem("isAuth");
+    const location = useLocation();
+    const isAuth = CheckToken(location.key);
     // console.log(`isAuth : ${isAuth}`);
+
 
     const [data, setData] = useState([]);
     const [category, setCategory] = useState('한옥');
@@ -53,6 +48,9 @@ function Main(props) {
             })
     }, [category]);
 
+    useEffect(() => {
+        console.log(isAuth);
+    }, [category]);
 
     useEffect(() => {
         if (!sessionStorage.getItem("startDt")) {

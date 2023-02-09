@@ -65,12 +65,11 @@ function Login() {
                     });
                     // console.log(token.accessToken);
                     // dispatch(SET_TOKEN({ accessToken: token.accessToken }));
-                    store.dispatch(tokenSlice.actions.SET_TOKEN({payload: token.accessToken}));
+                    store.dispatch(tokenSlice.actions.SET_TOKEN(token.accessToken));
                     setShow(false);
-                    // const auth = store.getState().authenticated;
-                    const auth = store.getState();
-                    console.log(auth);
-                    checkAuthToken();
+
+                    // const auth = store.getState(SET_TOKEN);
+                    // console.log(auth);
                 }
             })
             .catch(err => {
@@ -87,47 +86,6 @@ function Login() {
             })
     }
 
-    const [isAuth, setIsAuth] = useState('Loaded');
-    // const { authenticated, accessToken, expireTime } = useSelector(state => state.store.getState());
-    const authenticated = store.getState().authenticated;
-    const accessToken = store.getState().accessToken;
-    const expireTime = store.getState().expireTime;
-    const refreshToken = getCookie('refreshToken');
-    // const dispatch = useDispatch();
-
-    const checkAuthToken = () => {
-        const authenticated = store.getState().authenticated;
-        const accessToken = store.getState().accessToken;
-        const expireTime = store.getState().expireTime;
-        const refreshToken = getCookie('refreshToken');
-        if (refreshToken == undefined) {
-            dispatch(DELETE_TOKEN());
-            // setIsAuth('Failed');
-            sessionStorage.setItem("isAuth", 'Failed');
-        } else {
-            if (authenticated && new Date().getTime() < expireTime) {
-                // setIsAuth('Success');
-                sessionStorage.setItem("isAuth", 'Success');
-            }
-            else {
-                const response = requestToken(refreshToken);
-
-                if (response.status) {
-                    const token = response.json.accessToken;
-                    dispatch(SET_TOKEN(token));
-                    // setIsAuth('Success');
-                    sessionStorage.setItem("isAuth", 'Success');
-                } else {
-                    dispatch(DELETE_TOKEN());
-                    removeCookieToken();
-                    // setIsAuth('Failed');
-                    sessionStorage.setItem("isAuth", 'Failed');
-                }
-            }
-        }
-    };
-
-    // console.log(isAuth);
     return (
         <>
             <DropdownItem onClick={() => setShow(true)}>

@@ -20,6 +20,9 @@ import moment from "moment";
 import {GoogleMap, StandaloneSearchBox} from "@react-google-maps/api";
 import {SearchMap} from "../GoogleMap/Map";
 import axios from "axios";
+import Logout from "../User/Logout";
+import {useLocation} from "react-router";
+import {CheckToken} from "../Auth/CheckToken";
 
 function HeaderModal(props) {
     const styles = {
@@ -62,6 +65,9 @@ function HeaderModal(props) {
         },
     }
 
+    const location = useLocation();
+    const isAuth = CheckToken(location.key);
+
     const target = useRef(null);
 
     const [showExpandedHeader, setShowExpandedHeader] = useState(false);
@@ -90,6 +96,13 @@ function HeaderModal(props) {
 
     const selectGuest2 = () => {
         setShowGuestCount(true);
+        setShowChooseDate(false);
+        setShowMap(false);
+    }
+
+    const iconClick = () => {
+        setShowExpandedHeader(true);
+        setShowGuestCount(false);
         setShowChooseDate(false);
         setShowMap(false);
     }
@@ -165,14 +178,16 @@ function HeaderModal(props) {
                             </div>
 
                             <div className={"nav-item"}>
-                                <Dropdown>
+                                <Dropdown >
                                     <DropdownToggle variant={"none"} bsPrefix style={{border:"none"}}>
-                                        <a href="#" className={"nav-link"}><img src="/img/user.png" alt="user" style={{width: 35}}/></a>
+                                        <a href="#" className={"nav-link"} onClick={iconClick}><img src="/img/user.png" alt="user" style={{width: 35}}/></a>
                                     </DropdownToggle>
 
-                                    <DropdownMenu align={"end"}>
-                                        <Login />
-                                        <Join />
+                                    <DropdownMenu align={"end"} className={"shadow"}>
+                                        {(isAuth === 'Failed') && <Login/>}
+                                        {(isAuth === 'Failed') && <Join/>}
+                                        {(isAuth === 'Success') && <Logout/>}
+
                                         <DropdownItem href={"/message"}>
                                             <span>메세지알림</span>
                                             <span className="badge bg-primary rounded-pill float-end">2</span>

@@ -18,13 +18,8 @@ import {SET_TOKEN} from "../Store/Auth";
 
 function Header(props) {
 
-    // const location = useLocation();
-    // const {isAuth} = CheckToken(location.key);
-
-    // const accessToken = useSelector(SET_TOKEN);
-    // console.log(accessToken);
-
-    // console.log(isAuth);
+    const location = useLocation();
+    const isAuth = CheckToken(location.key);
 
     return (
         <div className={"border-bottom pb-2"} id={"div-header"}>
@@ -40,13 +35,11 @@ function Header(props) {
                                 <a href="#" className={"nav-link"}><img src="/img/user.png" alt="user" style={{width: 35}}/></a>
                             </DropdownToggle>
 
-                            <DropdownMenu align={"end"}>
-                                {/*{(isAuth === 'Failed') && <Login/>}*/}
-                                {/*{(isAuth === 'Success') && <Logout/>}*/}
-                                <Logout/>
+                            <DropdownMenu align={"end"} className={"shadow"}>
+                                {(isAuth === 'Failed') && <Login/>}
+                                {(isAuth === 'Failed') && <Join/>}
+                                {(isAuth === 'Success') && <Logout/>}
 
-                                <Login />
-                                <Join />
                                 <DropdownItem href={"/message"}>
                                     <span>메세지알림</span>
                                     <span className="badge bg-primary rounded-pill float-end">2</span>

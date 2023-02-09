@@ -1,4 +1,6 @@
 // promise 요청 타임아웃 시간
+import axios from "axios";
+
 const TIME_OUT = 300*1000;
 
 const statusError = {
@@ -83,41 +85,41 @@ export const logoutUser = async (credentials, accessToken) => {
     }
 };
 
-export const requestToken = async (refreshToken) => {
-    const option = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=UTF-8'
-        },
-        body: JSON.stringify({refresh_token: refreshToken})
-    }
-
-    const data = await getPromise('/auth/login', option).catch(() => {
-        return statusError;
-    });
-
-    if (parseInt(Number(data.status) / 100) === 2) {
-        const status = data.ok;
-        const code = data.status;
-        const text = await data.text();
-        const json = text.length ? JSON.parse(text) : "";
-
-        return {
-            status,
-            code,
-            json
-        };
-    } else {
-        return statusError;
-    }
-};
+// export const requestToken = async (refreshToken) => {
+//     const option = {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json;charset=UTF-8'
+//         },
+//         body: JSON.stringify({refresh_token: refreshToken})
+//     }
+//
+//     const data = await getPromise('/auth/login', option).catch(() => {
+//         return statusError;
+//     });
+//
+//     if (parseInt(Number(data.status) / 100) === 2) {
+//         const status = data.ok;
+//         const code = data.status;
+//         const text = await data.text();
+//         const json = text.length ? JSON.parse(text) : "";
+//
+//         return {
+//             status,
+//             code,
+//             json
+//         };
+//     } else {
+//         return statusError;
+//     }
+// };
 
 // From chatCPT
-const requestToken = (refreshToken) => {
+export const requestToken = (refreshToken) => {
     // code to make a request to the server to get a new access token using the refresh token
     let response = {};
     // Example code to make an API call to get a new access token
-    axios.post('/api/token/refresh', { refreshToken: refreshToken })
+    axios.post('/auth/token/refresh', {params: { refreshToken: refreshToken }})
         .then((res) => {
             response = {
                 status: true,
