@@ -15,16 +15,18 @@ import moment from "moment";
 import Calendar from "../Calendar/Calendar";
 
 
-const amount = 0.01; //계산되는 달러가격 여기에 표시된다.
-const inputAmount = amount * 1000;
-console.log(inputAmount)
 
-const currency = "USD";
-const style = {"layout": "vertical"};
 
 
 // 확인 및 결제 페이지
 function LodgingPayment(props) {
+    // const amount = {totalCost}; //계산되는 달러가격 여기에 표시된다.
+    const amount = 0.01;
+    const inputAmount = amount * 1000;
+    console.log(inputAmount)
+
+    const currency = "USD";
+    const style = {"layout": "vertical"};
 
     // <div className={'row align-items-start mt-4'}>*/}
     //     <div className = {'col-1'} style={{display:"block"}}>
@@ -269,9 +271,9 @@ function LodgingPayment(props) {
                                                         lodgingNum: "9023013111111111",
                                                         bookNum: BookNum,
                                                         payType: "PAYPAL",
-                                                        payCost: inputAmount,
+                                                        payCost: {totalCost},
                                                         bookState: "예약중",
-                                                        bookCheckInDt: "2023-01-31",
+                                                        bookCheckInDt: "",
                                                         bookCheckOutDt: "2023-02-10",
                                                         adultNum: adultCount,
                                                         babyNum: childCount,
