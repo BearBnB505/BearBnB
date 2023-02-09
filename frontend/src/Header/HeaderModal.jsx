@@ -3,19 +3,13 @@ import {ButtonGroup, Dropdown, Modal, ModalBody, NavDropdown} from "react-bootst
 
 import './Header.css';
 import {Link, useNavigate} from "react-router-dom";
-import DropdownToggle from "react-bootstrap/DropdownToggle";
-import DropdownMenu from "react-bootstrap/DropdownMenu";
-import DropdownItem from "react-bootstrap/DropdownItem";
 import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
 
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import GuestCount from "../GuestCount";
-import Login from "../User/Login";
-import Join from "../User/Join";
 import Calendar from "../Calendar/Calendar";
-import DatePicker from "react-datepicker";
 import moment from "moment";
 import {GoogleMap, StandaloneSearchBox} from "@react-google-maps/api";
 import {SearchMap} from "../GoogleMap/Map";

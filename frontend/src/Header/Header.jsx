@@ -1,12 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {Dropdown} from "react-bootstrap";
-
-import $ from "jquery";
 import './Header.css';
-import DropdownToggle from "react-bootstrap/DropdownToggle";
-import DropdownMenu from "react-bootstrap/DropdownMenu";
-import DropdownItem from "react-bootstrap/DropdownItem";
+
 import HeaderModal from "./HeaderModal";
 import Login from "../User/Login";
 import Join from "../User/Join";
