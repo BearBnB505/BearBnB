@@ -23,7 +23,7 @@ function LodgingPayment(props) {
     // const amount = {totalCost}; //계산되는 달러가격 여기에 표시된다.
     const amount = 0.01;
     const inputAmount = amount * 1000;
-    console.log(inputAmount)
+    // console.log(inputAmount)
 
     const currency = "USD";
     const style = {"layout": "vertical"};
@@ -56,7 +56,7 @@ function LodgingPayment(props) {
     const dayCost = location.state.dayCost;
 
     const [nightCount, setNightCount] = useState(location.state.nightCount);
-    const totalCost = location.state.totalCost;
+    const [totalCost, setTotalCost] = useState(location.state.totalCost);
 
     // const selectGuest = location.state.selectGuest;
     const [guestCount, setGuestCount] = useState(location.state.selectGuest);
@@ -105,7 +105,7 @@ function LodgingPayment(props) {
     const dayPlusRandom = dayday + random;
     // 예약번호 BookNum=> 날짜6자리 + 랜덤 숫자 11자리
     const BookNum = dayPlusRandom.split(',').join("");
-    console.log(BookNum);
+    // console.log(BookNum);
 
     const navigate = useNavigate();
 
@@ -115,7 +115,11 @@ function LodgingPayment(props) {
 
     useEffect(() => {
         setNightCount(moment.duration(moment(chooseDate[1]).diff(moment(chooseDate[0]))).asDays());
-    }, chooseDate);
+    }, [chooseDate]);
+
+    useEffect(() => {
+        setTotalCost((parseInt(dayCost) * nightCount));
+    }, [nightCount]);
 
     return (
         <div className={'container mx-auto'}>
@@ -146,7 +150,7 @@ function LodgingPayment(props) {
                     <div className={'row mt-4'}>
                         <div className={'col-9'}>
                             <p style={{fontSize: "22px", fontWeight: "bold", cursor: 'default'}}>날짜</p>
-                            <p style={{fontSize: "20px", marginTop: "-10px"}}>{startDate} ~ {endDate}</p>
+                            <p style={{fontSize: "20px", marginTop: "-10px"}}>{(startDate == 'Invalid date' ? '' : `${startDate} ~ `)}{(endDate == 'Invalid date' ? '' : endDate)}</p>
                         </div>
                         <div className={'col-2'}>
                             <p style={{
@@ -230,7 +234,7 @@ function LodgingPayment(props) {
                                 <p style={{fontSize: "23px", color: "gray"}}> &#8361; {dayCost} x {nightCount}박 </p>
                             </div>
                             <div className={'col text-end'}>
-                                <p style={{fontSize: "23px"}}> &#8361; {totalCost} </p>
+                                <p style={{fontSize: "23px"}}> &#8361; {(totalCost == NaN ? '0' : totalCost)} </p>
                             </div>
 
 
