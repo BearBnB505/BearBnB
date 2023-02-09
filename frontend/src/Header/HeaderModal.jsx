@@ -2,7 +2,7 @@ import React, {useState, useRef} from "react";
 import {ButtonGroup, Dropdown, Modal, ModalBody, NavDropdown} from "react-bootstrap";
 
 import './Header.css';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import DropdownToggle from "react-bootstrap/DropdownToggle";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 import DropdownItem from "react-bootstrap/DropdownItem";
@@ -132,11 +132,14 @@ function HeaderModal(props) {
 
     const [data, setData] = useState([]);
 
+    const navigate = useNavigate();
+
     const search = () => {
         sessionStorage.setItem("startDt", startDt);
         sessionStorage.setItem("endDt", endDt);
         sessionStorage.setItem("adultCount", adultCount);
         setShowExpandedHeader(false);
+        navigate('/', { replace: true });
         window.location.reload();
     }
 
