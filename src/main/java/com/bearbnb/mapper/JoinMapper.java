@@ -9,4 +9,6 @@ public interface JoinMapper {
 
     void insertJoin(MembersDto members) throws Exception;
 
+    int emailCheck(String userId) throws Exception;
+
 }

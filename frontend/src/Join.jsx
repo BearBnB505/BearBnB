@@ -33,17 +33,6 @@ function Join() {
     const [insertCountry,setInsertCountry] = useState('');
     const [insertGender,setInsertGender] = useState('');
 
-    // const onClickConfirm = () => {
-    //     Swal.fire({
-    //         icon: 'success',
-    //         title: '가입이 완료되었습니다.',
-    //         showConfirmButton: false,
-    //         timer: 1500
-    //     }).then(() => {
-    //         setShow(false);
-    //     })
-    // };
-
     // 올해 년도 구하기
     let now = new Date();
     let thisYear = now.getFullYear();
@@ -201,6 +190,15 @@ function Join() {
                 const {data} = req;
                 setData(data);
                 console.log(data)
+                if(data===1){
+                    Swal.fire({
+                        icon: 'error',
+                        title: '중복된 아이디입니다',
+                    })
+                }else if(data===0){
+                    console.log('사용가능한 아이디입니다')
+                }
+
 
             })
             .catch((err)=>{

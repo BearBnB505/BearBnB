@@ -25,4 +25,10 @@ public class JoinServiceImpl implements JoinService{
         return members;
     }
 
+    @Override
+    public int emailCheck(String userId) throws Exception{
+        return joinMapper.emailCheck(userId);
+    }
+
+
 }

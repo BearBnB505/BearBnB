@@ -7,4 +7,11 @@
             values (#{userId}, #{pwd}, #{tel}, #{gender}, #{name}, #{nation}, #{profileImg}, #{birthDt}, now(), 'N','ROLE_HOST')
         ]]>
     </insert>
+
+    <select id="emailCheck" parameterType="com.bearbnb.dto.MembersDto" resultType="int">
+        <![CDATA[
+            select COUNT(*) FROM members
+            WHERE user_id=#{userId}
+        ]]>
+    </select>
 </mapper>

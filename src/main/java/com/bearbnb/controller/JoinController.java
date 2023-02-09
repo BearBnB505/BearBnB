@@ -22,9 +22,20 @@ public class JoinController {
     }
 //        regLodgingService.insertLodgingTable(lodging);
 
+//    @RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
+//    public String emailCheck(@RequestParam String userId) throws Exception{
+//        System.out.println(userId);
+//
+////        String result = joinService.emailCheck(userId);
+////
+////        return result;
+//        return "1";
+//    }
     @RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
-    public String emailCheck(@RequestParam String userId) throws Exception{
+    public int emailCheck(@RequestParam String userId) throws Exception {
         System.out.println(userId);
-        return userId;
+        int result = joinService.emailCheck(userId);
+        return result;
     }
+
 }
