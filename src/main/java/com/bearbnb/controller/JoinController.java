@@ -21,4 +21,10 @@ public class JoinController {
         return null;
     }
 //        regLodgingService.insertLodgingTable(lodging);
+
+    @RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
+    public String emailCheck(@RequestParam String userId) throws Exception{
+        System.out.println(userId);
+        return userId;
+    }
 }

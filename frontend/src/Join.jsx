@@ -189,8 +189,27 @@ function Join() {
     console.log('선택된 성별')
     console.log(insertGender);
 
+    const [data, setData] = useState('');
+    // userId 중복체크
+    const onClickEmailCheck = () => {
+        axios.get('http://localhost:8080/emailCheck',{
+            params:{
+                userId : email,
+            }
+    })
+            .then((req)=>{
+                const {data} = req;
+                setData(data);
+                console.log(data)
 
+            })
+            .catch((err)=>{
+                console.log(err);
+                console.log('오류발생')
+            })
+    }
 
+    // 회원가입하기
     const onClickJoin = () =>{
         axios({
             url: 'http://localhost:8080/insertJoin',
@@ -265,9 +284,16 @@ function Join() {
                                     <p style={{color : "gray", fontSize :"15px"}}>{<span className={`message ${isBirth ? 'success' : 'error'}`}>{birthMessage}</span>}</p>
 
                                     <br/>
-                                    <FloatingLabel controlId="email" label="이메일">
-                                        <Form.Control type="email" typeTitle="email" placeholder="이메일" onChange={onChangeEmail}/>
-                                    </FloatingLabel>
+                                    <div className={'row'}>
+                                        <div className={'col-9'}>
+                                            <FloatingLabel controlId="email" label="이메일">
+                                                <Form.Control type="email" typeTitle="email" placeholder="이메일" onChange={onChangeEmail}/>
+                                            </FloatingLabel>
+                                        </div>
+                                        <div className={'col-3 my-auto'}>
+                                            <button className={'btn btn-primary'} onClick={onClickEmailCheck}>중복체크</button>
+                                        </div>
+                                    </div>
                                     <p style={{color : "gray", fontSize :"15px"}}>{email.length > 0 && <span className={`message ${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>}</p>
 
                                     <br />
