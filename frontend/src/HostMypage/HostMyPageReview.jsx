@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {Breadcrumb, Tabs} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose, faPencil,  faStar} from "@fortawesome/free-solid-svg-icons";
@@ -36,6 +36,17 @@ const review = [
 ]
 
 function Review() {
+
+    // 리뷰 DB 가져와서 리스트 형식으로 담길 배열
+    const [data, setData] = useState([]);
+    // 페이지당 게시물 수
+    const [limit, setLimit] = useState(5);
+    // 현재 페이지 번호(page)
+    const [page, setPage] = useState(1);
+    // 첫 게시물의 위치(offset)
+    const offset = (page - 1) * limit;
+
+
     return (
         <motion.div variants={Anima}
                     initial="hidden"

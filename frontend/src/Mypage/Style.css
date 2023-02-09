@@ -13,3 +13,30 @@ a:hover {
 .blueColor {
     color: #3f73d2;
 }
+
+/*.MyFrame{*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(3, minmax(auto, auto));*/
+/*}*/
+.pswFrame{
+    display: grid;
+    grid-template-columns: 90px 500px;
+}
+
+.testFrame{
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+#text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    line-height: 1.2;
+    height: 3.6em;
+    text-align: left;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3 ;
+    -webkit-box-orient: vertical;
+}

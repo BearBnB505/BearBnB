@@ -15,7 +15,11 @@ public class ReviewDto {
     private String lodgingNum;
     private String reviewCreateDt;
     private String deletedYn;
+    private int idx;
 
     private int reviewCount;
     private double reviewTotal;
+
+    //멤버에서 가꼬옴
+    private String name;
 }

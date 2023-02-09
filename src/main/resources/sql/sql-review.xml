@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bearbnb.mapper.ReviewMapper">
+
+    <!--  리뷰 리스트 가져오기  -->
+    <select id="ReviewList" resultType="com.bearbnb.dto.ReviewDto">
+        <![CDATA[
+        SELECT re.*, lod.lodging_name, mem.name
+        FROM review re
+        JOIN lodging lod
+        ON re.lodging_num = lod.lodging_num
+        JOIN members mem
+        ON re.user_id= mem.user_id
+        WHERE re.deleted_yn = 'N'
+        ORDER BY re.review_create_dt desc
+        ]]>
+    </select>
+
+
+
+    <select id="ReviewListContent" resultType="com.bearbnb.dto.ReviewDto">
+        <![CDATA[
+        SELECT re.*, lod.lodging_name
+        FROM review re
+                 JOIN lodging lod
+                      ON re.lodging_num = lod.lodging_num
+        WHERE re.deleted_yn = 'N'and re.user_id = 'tester2'
+        ORDER BY re.review_create_dt desc
+        ]]>
+    </select>
+
+
+    <update id="ReviewUpdate" parameterType="com.bearbnb.dto.ReviewDto">
+        <![CDATA[
+        update review
+        set comment = '${comment}'
+        where idx = '${idx}'
+        ]]>
+    </update>
+
+    <update id="ReviewDelete" parameterType="com.bearbnb.dto.ReviewDto">
+        <![CDATA[
+        update review
+        set deleted_yn = 'Y'
+        where idx = '${idx}'
+        ]]>
+    </update>
+
+
+
+</mapper>

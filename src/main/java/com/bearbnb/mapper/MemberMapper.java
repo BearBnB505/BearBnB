@@ -1,6 +1,7 @@
 package com.bearbnb.mapper;
 
 import com.bearbnb.dto.MembersDto;
+import com.bearbnb.dto.ReviewDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,4 +15,11 @@ public interface MemberMapper {
 
 
     List<MembersDto> MemberList();
+
+    void MemberNameUpdate(MembersDto members);
+
+    void MemberTelUpdate(MembersDto members);
+
+    void MemberPwdUpdate(MembersDto members);
+
 }

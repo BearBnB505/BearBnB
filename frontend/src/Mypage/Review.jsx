@@ -1,111 +1,238 @@
-import React from "react";
-import {Breadcrumb, Tabs} from "react-bootstrap";
+import React, {useEffect, useState} from "react";
+import {Breadcrumb, FloatingLabel, Tabs} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faClose, faPencil,  faStar} from "@fortawesome/free-solid-svg-icons";
+import {faClose, faPencil, faStar} from "@fortawesome/free-solid-svg-icons";
 import Anima from "./animaData";
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import {Link} from "react-router-dom";
 import "./Style.css";
+import Form from "react-bootstrap/Form";
+import ReviewPagenation from "./ReviewPagenation";
+import axios from "axios";
+import Swal from "sweetalert2";
 
-const review = [
-    {
-        idx: 1,
-        lodging_name: "해운대 신라 호텔",
-        comment: "숙소가 정말 멋지네요! 접근이 용이하며, 아무 문제 없이 도착했습니다. 오두막은 잘 꾸며져 있을 뿐만 아니라 매우 아늑합니다. 단점은 침대가 있는 침실에 창문을 가리는 커튼이나 그런게 없고 채광이 좋다는 점입니다. 그 외에는 침대가 매우 편안합니다. 수영장, 주방, 월풀이 있는 공용 공간은 말할 것도 없이 우리를 놀라게 했습니다. 조식은 품질이 훌륭합니다. 잔디밭을 아주 잘 즐긴 반려견을 데리고 갔어요. 어서 돌아가고 싶어요.",
-        review_create_dt: "2023-01-17",
-        clean_grade: "4.2",
-        accuracy_grade: "4.6",
-        communication_grade: "4.8",
-        location_grade: "4.9",
-        check_in_grade: "4.5",
-        cost_grade: "4.2",
-    },
-    {
-        idx: 1,
-        lodging_name: "서울 신라 호텔",
-        comment: "맛있고 아늑한 숙소. 편안한 침대, 샤워 시설, 온수 욕조가 완벽하게 작동합니다. 시설이 잘 갖춰진 주방! 매일 업데이트되는 완벽한 조식! 방금 헤어드라이어를 놓쳤습니다 (전에 그 정보를 요청하거나 찾는 것도 괜찮았습니다!). 하지만 조용한 오두막은 여행의 별도의 장이었습니다! 특별해요!",
-        review_create_dt: "2023-01-17"
-    },
-    {
-        idx: 1, lodging_name: "제주도 신라 호텔", comment: "오두막에서 즐거운 하루를 보냈습니다!\n" +
-            "아파레치다 (Aparecida) 는 사람을 사랑합니다\n" +
-            "놀라운 🤍조식!\n" +
-            "오두막은 자연과 기술로 100% 포함되어 있으며 필요한 모든 것을 갖추고 있습니다!\n" +
-            "매일 점심과 저녁을 만들어서 통나무집에 있는 모든 식기를 사용했어요.\n" +
-            "곧 다시 찾아뵙겠습니다!", review_create_dt: "2023-01-17"
-    },
-
-]
 
 function Review() {
-    return (
-        <motion.div variants={Anima}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit" className={"container mt-5"}>
-            <div className={"mb-5"}>
-                <Breadcrumb>
-                    <Breadcrumb.Item><Link to={"../mypage"}>마이페이지</Link></Breadcrumb.Item>
-                    <Breadcrumb.Item active>내가 작성한 후기</Breadcrumb.Item>
-                </Breadcrumb>
-                <h2 className={"fw-bold"}>내가 작성한 후기</h2>
-            </div>
-
-            <div className={"row"}>
-                <div>
-                    {review.map((item) => {
-                        return <ReviewItem idx={item.idx} lodging_name={item.lodging_name}
-                                           comment={item.comment}
-                                           review_create_dt={item.review_create_dt}/>
-                    })}
-                </div>
-            </div>
 
 
-        </motion.div>
-    )
+  // 리뷰 DB 가져와서 리스트 형식으로 담길 배열
+  const [data, setData] = useState([]);
+  // 페이지당 게시물 수
+  const [limit, setLimit] = useState(5);
+  // 현재 페이지 번호(page)
+  const [page, setPage] = useState(1);
+  // 첫 게시물의 위치(offset)
+  const offset = (page - 1) * limit;
+
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/ReviewList/')
+      .then((req) => {
+        const {data} = req;
+        setData(data);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log("통신 오류");
+        console.log(err);
+      })
+  }, []);
+
+  return (
+    <motion.div variants={Anima}
+                initial="hidden"
+                animate="visible"
+                exit="exit" className={"container mt-5"}>
+      <div className={"mb-5"}>
+        <Breadcrumb>
+          <Breadcrumb.Item><Link to={"../mypage"}>마이페이지</Link></Breadcrumb.Item>
+          <Breadcrumb.Item active>내가 작성한 후기</Breadcrumb.Item>
+        </Breadcrumb>
+        <h2 className={"fw-bold"}>내가 작성한 후기</h2>
+      </div>
+
+      <div className={"row"}>
+        <div>
+          {data.slice(offset, offset + limit).map((item) => {
+            return <ReviewItem lodging_name={item.lodging_name}
+                               idx={item.idx} user_id={item.userId}
+                               comment={item.comment} name={item.name}
+                               review_create_dt={item.reviewCreateDt}
+                               clean_grade={item.cleanGrade} accuracy_grade={item.accuracyGrade}
+                               communication_grade={item.communicationGrade} location_grade={item.locationGrade}
+                               check_in_grade={item.checkInGrade} cost_grade={item.costGrade}/>
+          })}
+        </div>
+        <ReviewPagenation
+          total={data.length}
+          limit={limit}
+          page={page}
+          setPage={setPage}
+        />
+      </div>
+
+
+    </motion.div>
+  )
 }
+
 
 export default Review;
 
-function ReviewItem({lodging_name, comment, review_create_dt}) {
-    return (
-        <ul className={"list-group mb-4"} style={style.ul}>
-            <li className={"list-group-item p-4"} style={style.li}>
-                <div className={"mb-3"}>
-                    <span className={"fs-5 fw-bold me-2"}>{lodging_name}</span>
-                    <span className={"me-2 blueColor"}>
-                         <FontAwesomeIcon icon={faStar} size="1x" className={"me-2 blueColor"}/>4.97 / 5
-                    </span>
-                    <small className={"text-secondary"}>{review_create_dt}</small>
-                </div>
-                <div className={"mb-2"}>{comment}</div>
-                <div>
-                    <button type="button" className="btn btn-outline-secondary btn-sm my-2 me-2" title="Edit">
 
+function ReviewItem({
+                      name, comment, review_create_dt, idx,
+                      clean_grade, accuracy_grade,
+                      communication_grade, location_grade,
+                      check_in_grade, cost_grade
+                    }) {
+
+  const [view, setView] = useState(true);
+  const [view2, setView2] = useState(false);
+  const [review, setReview] = useState(comment)
+  const [grade, setGrade] = useState()
+
+
+  const ReviewBtn1 = () => {
+    setView(false)
+    setView2(true)
+    setReview(comment)
+    console.log(view);
+  }
+
+  const ReviewBtn2 = () => {
+    setView(true)
+    setView2(false)
+    console.log(view);
+    axios.put('http://localhost:8080/UpdateReview/', null, {params: {idx: idx, comment: review}})
+
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  const CancelBtn = () => {
+    setView(true)
+    setView2(false)
+    console.log(view);
+  }
+
+  const DeleteBtn = () => {
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: '후기를 삭제하시겠습니까?',
+      text: "삭제 후 되돌릴 수 없습니다!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: '삭제',
+      cancelButtonText: '취소',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          '삭제하였습니다!',
+          '　',
+          'success',
+          axios.put('http://localhost:8080/DeleteReview/', null, {params: {idx: idx}})
+            .then((response) => {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            }),
+          window.location.reload("/review")
+        )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          '취소하였습니다',
+          '　',
+          'error'
+        )
+      }
+    })
+  }
+
+
+  function onChange(e) {
+    setReview(e.target.value);
+  }
+  return (
+    <ul className={"list-group mb-4"} style={style.ul}>
+      <li className={"list-group-item p-4"} style={style.li}>
+        <div className={"mb-3"}>
+          <span className={"fs-5 fw-bold me-2"}>{name}</span>
+          <span className={"me-2 blueColor"}>
+                         <FontAwesomeIcon icon={faStar} size="1x" className={"me-2 blueColor"}/>
+            {((clean_grade + accuracy_grade + communication_grade + location_grade + check_in_grade + cost_grade) / 6).toFixed(1)} / 5
+                    </span>
+          <small className={"text-secondary"}>{review_create_dt}</small>
+        </div>
+        {view &&
+          <div className={"mb-2"} id={'text'}>{review}</div>
+        }
+        {view2 &&
+          <Form.Control
+            type="text"
+            as="textarea"
+            style={{width: "fit-content", height: 100}}
+            onChange={onChange}
+            value={review}
+          />
+
+        }
+
+
+        {view && <div>
+          <button type="button" className="btn btn-outline-secondary btn-sm my-2 me-2" title="Edit"
+                  onClick={ReviewBtn1}>
                         <span>
                             <FontAwesomeIcon icon={faPencil} size="1x"/> 후기수정
                         </span>
-                    </button>
-                    <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit">
-                        <span><FontAwesomeIcon icon={faClose} size="1x"/> 후기삭제</span>
-                    </button>
-                </div>
-            </li>
-        </ul>
-    );
+          </button>
+          <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit" onClick={DeleteBtn}>
+            <span><FontAwesomeIcon icon={faClose} size="1x"/> 후기삭제</span>
+          </button>
+        </div>}
+        {view2 && <div>
+          <button type="button" className="btn btn-outline-secondary btn-sm my-2 me-2" title="Edit"
+                  onClick={ReviewBtn2}>
+                        <span>
+                            <FontAwesomeIcon icon={faPencil} size="1x"/> 수정완료
+                        </span>
+          </button>
+          <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit" onClick={CancelBtn}>
+            <span><FontAwesomeIcon icon={faClose} size="1x"/> 취소</span>
+          </button>
+        </div>}
+      </li>
+    </ul>
+  );
 }
 
 const style = {
-    ul: {
-        border: "none",
-        display: "block",
-        listStyleType: "disc",
-        marginBlockStart: "1em",
-        marginBlockEnd: "1em",
-        marginInlineStart: 0,
-        marginInlineEnd: 0,
-        paddingInlineStart: 0,
-    },
-    li: {}
+  ul: {
+    border: "none",
+    display: "block",
+    listStyleType: "disc",
+    marginBlockStart: "1em",
+    marginBlockEnd: "1em",
+    marginInlineStart: 0,
+    marginInlineEnd: 0,
+    paddingInlineStart: 0,
+  },
+  li: {}
 }
