@@ -68,7 +68,7 @@ function Table3() {
                 </tbody>
             </Table>
 
-            <DetailTable3 show={detailModalOn} onHide={()=>setDetailModalOn(false)}/>
+            <DetailTable3  show={detailModalOn} onHide={()=>setDetailModalOn(false)}/>
 
         </Container>
 
