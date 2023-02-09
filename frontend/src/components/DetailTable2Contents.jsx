@@ -31,7 +31,7 @@ function DetailTable2Contents({avg, complain, lodging, comfort}) {
                 </ul>
             </div>
 
-            <div className={"col-12"}>
+            <div className={"col-12 mb-4"}>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item"><strong>숙소설명</strong></li>
                     <li className="list-group-item">{lodging.introLodging}</li>

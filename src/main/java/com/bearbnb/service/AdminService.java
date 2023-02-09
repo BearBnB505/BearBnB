@@ -13,7 +13,6 @@ public interface AdminService {
     Page<MembersDto> getMemberPaging(int pageNum) throws Exception;
     LodgingDto adminLodgingDetail(String lodgingNum) throws Exception;
     List<ComfortsDto> adminComfortsDetail(String lodgingNum) throws Exception;
-    List<LodgingDto> adminLodgingList() throws Exception;
-    List<ReviewDto> adminReviewList() throws Exception;
-    List< ComplainDto> adminComplainList() throws Exception;
+
+
 }

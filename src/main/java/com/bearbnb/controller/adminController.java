@@ -50,29 +50,11 @@ public class adminController {
         return map;
     }
 
-    @RequestMapping(value = "adminLodgingList", method = RequestMethod.GET)
-    public Map<String, Object> adminLodgingList() throws Exception {
 
-        Map<String, Object> map = new HashMap<String, Object>();
-
-        List<LodgingDto> lodging = adminService.adminLodgingList();
-        map.put("lodging", lodging);
-
-        List<ReviewDto> review = adminService.adminReviewList();
-        map.put("review", review);
-
-        List<ComplainDto> complain = adminService.adminComplainList();
-        map.put("complain", complain);
-
-        return map;
-
+    @RequestMapping(value = "adminLodgingList")
+    public List<AdminLodgingDto> adminLodgingList() throws Exception {
+        return adminMapper.adminLodgingList();
     }
-
-
-//    @RequestMapping(value = "adminLodgingList")
-//    public List<LodgingDto> lodgingList() {
-//        return adminMapper.lodgingList();
-//    }
 
     @RequestMapping(value = "adminComplainList")
     public List<ComplainDto> complainList() {

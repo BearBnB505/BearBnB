@@ -34,16 +34,6 @@ public class AdminServiceImpl implements AdminService{
     public List<ComfortsDto> adminComfortsDetail(String lodgingNum) throws Exception {
         return adminMapper.adminComfortsDetail(lodgingNum);
     }
-    @Override
-    public List<LodgingDto> adminLodgingList() throws Exception {
-        return adminMapper.adminLodgingList();
-    }
-    public List<ReviewDto> adminReviewList() throws Exception {
-        return adminMapper.adminReviewList();
-    }
-    public List<ComplainDto> adminComplainList() throws Exception {
-        return adminMapper.adminComplainList();
-    }
 
 
 }

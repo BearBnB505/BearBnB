@@ -6,18 +6,13 @@ import {Link} from "react-router-dom";
 
 function Table2() {
     const [data, setData] = useState([]);
-    const [complain, setComplain] = useState([]);
-    const [lodging, setLodging] = useState([]);
-    const [review, setReview] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:8080/adminLodgingList')
             .then((req) => {
                 const {data} = req;
+                setData(data);
                 console.log(data);
-                setComplain(data.complain);
-                setLodging(data.lodging);
-                setReview(data.review);
             })
             .catch((err) => {
                 console.log("통신 오류");
@@ -32,7 +27,7 @@ function Table2() {
             <h4>숙소관리</h4>
             <Table className={"table table-striped table-hover table-bordered"} >
                 <thead>
-                <tr>
+                <tr className={"text-center"}>
                     <th>번호</th>
                     <th>숙소 번호</th>
                     <th>숙소명</th>
@@ -45,17 +40,17 @@ function Table2() {
                 </thead>
                 <tbody>
                 {
-                    lodging.map((item,index) => {
+                    data.map((item,index) => {
                         return (
                             <tr>
                                 {/*<td>{index + 1}</td>*/}
-                                <td>{item.idx}</td>
+                                <td className={"text-center"}>{item.idx}</td>
                                 <td>{item.lodgingNum}</td>
                                 <td><Link to={`/admin/lodging/detail2/${item.lodgingNum}`}>{item.lodgingName}</Link></td>
                                 <td>{item.userId}</td>
                                 <td>{item.createDt}</td>
-                                <td>{'별점'}</td>
-                                <td>{'신고건수'}</td>
+                                <td className={"text-center"}>{ item.review > 0 ? <>&#x2B50; {item.review}</> : <> - </> }</td>
+                                <td className={"text-center"}>{ item.count > 0 ? <>{item.count}</> : <> - </> }</td>
                                 <td>{item.regState}</td>
                             </tr>
                         )
