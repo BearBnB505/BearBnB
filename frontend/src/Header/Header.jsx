@@ -15,11 +15,11 @@ import {CheckToken} from "../Auth/CheckToken";
 import Logout from "../User/Logout";
 import {useSelector} from "react-redux";
 import {SET_TOKEN} from "../Store/Auth";
+import Member from "./Member";
 
 function Header(props) {
 
-    const location = useLocation();
-    const isAuth = CheckToken(location.key);
+
 
     return (
         <div className={"border-bottom pb-2"} id={"div-header"}>
@@ -30,23 +30,7 @@ function Header(props) {
                     <HeaderModal/>
 
                     <div className={"nav-item"}>
-                        <Dropdown>
-                            <DropdownToggle variant={"none"} bsPrefix style={{border:"none"}}>
-                                <a href="#" className={"nav-link"}><img src="/img/user.png" alt="user" style={{width: 35}}/></a>
-                            </DropdownToggle>
-
-                            <DropdownMenu align={"end"} className={"shadow"}>
-                                {(isAuth === 'Failed') && <Login/>}
-                                {(isAuth === 'Failed') && <Join/>}
-                                {(isAuth === 'Success') && <Logout/>}
-
-                                <DropdownItem href={"/message"}>
-                                    <span>메세지알림</span>
-                                    <span className="badge bg-primary rounded-pill float-end">2</span>
-                                </DropdownItem>
-                                <DropdownItem href={"/mypage"}>마이페이지</DropdownItem>
-                            </DropdownMenu>
-                        </Dropdown>
+                        <Member/>
                     </div>
                 </div>
             </nav>
