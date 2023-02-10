@@ -180,6 +180,72 @@ function Join() {
 
     const [data, setData] = useState('');
     // userId 중복체크
+    // const onClickEmailCheck = () => {
+    //     axios.get('http://localhost:8080/emailCheck', {
+    //         params: {
+    //             userId: email,
+    //         }
+    //     })
+    //         .then(async (req) => {
+    //             const {data} = req;
+    //             setData(data);
+    //             console.log(data)
+    //             if (data === 1) {
+    //                 Swal.fire({
+    //                     icon: 'error',
+    //                     title: '중복된 아이디입니다',
+    //                 })
+    //                 setEmailMessage('중복된 아이디입니다.')
+    //             } else if (data === 0) {
+    //                 setEmailMessage('사용가능한 아이디입니다.')
+    //
+    //                 axios.get('http://localhost:8080/emailCheck', {
+    //                     params: {
+    //                         userId: email,
+    //                     }
+    //                 })
+    //                     .then((req) => {
+    //                         console.log(req);
+    //                         axios.get('http://localhost:8080/emailCode', {
+    //                             params: {
+    //                                 userId: email,
+    //                             }
+    //                         })
+    //                             .then((req) => {
+    //                                 console.log(req);
+    //                             })
+    //                             .catch((err) => {
+    //                                 console.log(err)
+    //                             })
+    //                     })
+    //                     // .then(async (req) => {
+    //                     //     const {value: password} = await Swal.fire({
+    //                     //         title: 'Enter your password',
+    //                     //         input: 'password',
+    //                     //         inputLabel: 'Password',
+    //                     //         inputPlaceholder: 'Enter your password',
+    //                     //         inputAttributes: {
+    //                     //             maxlength: 10,
+    //                     //             autocapitalize: 'off',
+    //                     //             autocorrect: 'off'
+    //                     //         }
+    //                     //     })
+    //                     // })
+    //                     .catch(
+    //                         Swal.fire({
+    //                             icon: 'error',
+    //                             title: '두 번째 통신 오류',
+    //                         })
+    //                     )
+    //
+    //                     .catch((err) => {
+    //                         console.log(err);
+    //                         console.log('오류발생')
+    //                     })
+    //             }
+    //         })
+    // }
+
     const onClickEmailCheck = () => {
         axios.get('http://localhost:8080/emailCheck', {
             params: {
@@ -199,11 +265,13 @@ function Join() {
                 } else if (data === 0) {
                     setEmailMessage('사용가능한 아이디입니다.')
 
+                    //아이디 중복 체크
                     axios.get('http://localhost:8080/emailCheck', {
                         params: {
                             userId: email,
                         }
                     })
+                        //아이디가 중복되지 않았다면 이메일로 인증 번호 발송
                         .then((req) => {
                             console.log(req);
                             axios.get('http://localhost:8080/emailCode', {
@@ -211,37 +279,26 @@ function Join() {
                                     userId: email,
                                 }
                             })
+                                //인증번호 보낸 것이 성공했을 때 실행
                                 .then((req) => {
                                     console.log(req);
+                                    alert('인증번호 발송')
                                 })
                                 .catch((err) => {
-                                    console.log(err)
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: '두번째 통신 오류',
+                                    })
+                                    console.log(err);
                                 })
                         })
-                        // .then(async (req) => {
-                        //     const {value: password} = await Swal.fire({
-                        //         title: 'Enter your password',
-                        //         input: 'password',
-                        //         inputLabel: 'Password',
-                        //         inputPlaceholder: 'Enter your password',
-                        //         inputAttributes: {
-                        //             maxlength: 10,
-                        //             autocapitalize: 'off',
-                        //             autocorrect: 'off'
-                        //         }
-                        //     })
-                        // })
                         .catch(
-                            Swal.fire({
-                                icon: 'error',
-                                title: '두 번째 통신 오류',
-                            })
+                            // Swal.fire({
+                            //     icon: 'error',
+                            //     title: '첫번째 통신 오류',
+                            // })
                         )
 
-                        .catch((err) => {
-                            console.log(err);
-                            console.log('오류발생')
-                        })
                 }
             })
     }
