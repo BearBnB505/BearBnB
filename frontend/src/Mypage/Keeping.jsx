@@ -5,8 +5,8 @@ import {faStar, faHart} from "@fortawesome/free-solid-svg-icons";
 import Anima from "./animaData";
 import {motion} from "framer-motion";
 import {Link} from "react-router-dom";
-import KeepingItem from "./Members/KeepingItem";
 import axios from "axios";
+import KeepingItem from "./KeepingItem";
 
 
 const keeping = [
