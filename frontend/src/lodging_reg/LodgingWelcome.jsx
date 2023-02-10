@@ -3,19 +3,25 @@ import {Link} from "react-router-dom";
 import ReactPlayer from 'react-player'
 import {useDispatch, useSelector} from "react-redux";
 import {lodgingRealNames} from "./Reducers/LodgingRealNameReducer";
-import {lodgingNums} from "./Reducers/LodgingNumReducer";
+import {LodgingNumReducer, lodgingNums} from "./Reducers/LodgingNumReducer";
 import {configureStore} from "@reduxjs/toolkit";
 import {RealHostIdReducer} from "./Reducers/RealHostIdReducer";
+import lodgingConcept from "./LodgingConcept";
 
 function LodgingWelcome(){
 
+    const dispatch = useDispatch();
+
     let store = configureStore({reducer: RealHostIdReducer.reducer});
+    let storeA = configureStore({reducer:LodgingNumReducer.reducer});
+    // storeA.dispatch(lodgingNums({num:'11111'}))
+    // storeA.dispatch(LodgingNumReducer.actions.lodgingNums({lodgingNum:lodgingNum}))
+
 
     // const hostIdUrl = useSelector((state) => state.realHostId.value);
     const hostIdUrl = store.getState().value;
     console.log(hostIdUrl);
 
-    const dispatch = useDispatch();
     const now = new Date();
     let year = (now.getFullYear()).toString();
     // 년 두 글자
@@ -68,11 +74,11 @@ function LodgingWelcome(){
                 </div>
             </div>
             <footer>
-                <Link to ={"/lodgingHostId"}>
+                <Link to ={"/reg/lodgingHostId"}>
                     <button className={"btn btn-white position-absolute start-0 bottom-0"} style={{marginBottom:"70px", marginLeft:"120px", width:"200px", fontSize:"25px", padding:"8px", }}>이전</button></Link>
                 <Link to = {"/reg/lodgingConcept"}>
                     <button className={"btn btn-primary position-absolute end-0 bottom-0"} style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }} onClick={()=>{
-                    dispatch(lodgingNums({num:lodgingNum}))}}>다음</button></Link>
+                        dispatch(lodgingNums({num:'11111'}))}}>다음</button></Link>
             </footer>
         </div>
     )

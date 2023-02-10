@@ -9,15 +9,15 @@ export const HostIdReducer = createSlice({
         },
     },
 },
-    {
-        name:"lodgingConcept",
-        initialState: {value: {concept: ""}},
-        reducers:{
-            lodgingConcept:(state,action)=>{
-                state.value = action.payload
-            }
-        }
-    },
+    // {
+    //     name:"lodgingConcept",
+    //     initialState: {value: {concept: ""}},
+    //     reducers:{
+    //         lodgingConcept:(state,action)=>{
+    //             state.value = action.payload
+    //         }
+    //     }
+    // },
 );
 
 export const {hostIdUrl,lodgingConcept,lodgingBasicInfo} = HostIdReducer.actions;

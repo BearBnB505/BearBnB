@@ -13,13 +13,14 @@ import LodgingImgReducer from "../lodging_reg/Reducers/LodgingImgReducer";
 import LodgingNumReducer from "../lodging_reg/Reducers/LodgingNumReducer";
 import LodgingLocationDetailReducer from "../lodging_reg/Reducers/LodgingLocationDetailReducer";
 import  ChooseDateReducer from "../lodging_reg/Reducers/ChooseDateReducder";
+import LodgingConceptReducer from "../lodging_reg/Reducers/LodgingConceptReducer";
 
 
 export default configureStore({
     reducer:{
         hostIdUrl: HostIdReducer,
         user: userReducer,
-        lodgingConcept : HostIdReducer,
+        lodgingConcept : LodgingConceptReducer,
         lodgingBasicInfo : LodgingbedReducer,
         lodgingBedSelect : BedSelectReducer,
         lodgingName : LodgingNameReducer,

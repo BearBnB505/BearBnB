@@ -90,10 +90,8 @@ function LodgingHostId(){
                     console.log('업로드 성공');
                     dispatch(realhostIdUrl({idUrl:downloadURL}))
                     console.log('url 데이터 이동성공');
-                    navigate("/lodgingWelcome");
+                    navigate("/reg");
                 });
-
-
             }
         );
 
@@ -143,8 +141,8 @@ function LodgingHostId(){
             </div>
             <footer style={styles.footer} className={"mt-5"}>
                 <Link to = {"/reg"}>
-                    <button className={"btn btn-primary position-absolute end-0 bottom-0"}
-                            style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }} onClick={onSubmit}>다음</button></Link>
+                    <button className={"btn btn-primary position-absolute end-0 bottom-0"} style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }} onClick={onSubmit}>다음</button>
+                </Link>
             </footer>
         </div>
     )

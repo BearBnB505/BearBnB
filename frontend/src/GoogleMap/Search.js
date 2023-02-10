@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {LoadScript, MarkerF} from '@react-google-maps/api';
 import {GoogleMap, StandaloneSearchBox} from "@react-google-maps/api";
-import * as gvar from "./global_variables";
+// import * as gvar from "./global_variables";
 
 function Search(props) {
 
@@ -69,7 +69,7 @@ function Search(props) {
 
     return (
         <div className={"d-flex justify-content-center mt-5"}>
-            <LoadScript id="script-loader" googleMapsApiKey={gvar.BEE_API_KEY} libraries={["places"]} zoom={10}>
+            {/*<LoadScript id="script-loader" googleMapsApiKey={gvar.BEE_API_KEY} libraries={["places"]} zoom={10}>*/}
                     <StandaloneSearchBox
                         onLoad={handleLoad}
                         onPlacesChanged={
@@ -112,7 +112,7 @@ function Search(props) {
                         />
                     </GoogleMap>
 
-            </LoadScript>
+            {/*</LoadScript>*/}
         </div>
     )
 

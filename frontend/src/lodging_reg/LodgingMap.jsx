@@ -1,8 +1,17 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
+import {configureStore} from "@reduxjs/toolkit";
+import store from "../Store";
+import {HostIdReducer} from "./Reducers/HostIdReducer";
+import {LodgingConceptReducer} from "./Reducers/LodgingConceptReducer";
+// import lodgingConcept from "./LodgingConcept";
 
 function LodgingMap(){
+
+    let store = configureStore({reducer: LodgingConceptReducer.reducer});
+    const lodgingConcept = store.getState().value;
+    console.log(lodgingConcept);
 
     return(
         <div>
