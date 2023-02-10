@@ -1,8 +1,10 @@
 package com.bearbnb.controller;
 
 import com.bearbnb.dto.*;
+import com.bearbnb.mapper.KeepingMapper;
 import com.bearbnb.mapper.MemberMapper;
 import com.bearbnb.mapper.ReviewMapper;
+import com.bearbnb.service.KeepingService;
 import com.bearbnb.service.MemberService;
 import com.bearbnb.service.MembersService;
 import com.bearbnb.service.ReviewService;
@@ -23,15 +25,17 @@ public class MemberController {
 
     @Autowired
     MemberMapper memberMapper;
-
+    @Autowired
+    ReviewMapper reviewMapper;
+    @Autowired
+    KeepingMapper keepingMapper;
     @Autowired
     MembersService membersService;
     @Autowired
     ReviewService reviewService;
-
-
     @Autowired
-    ReviewMapper reviewMapper;
+    KeepingService keepingService;
+
 
     @GetMapping("/me")
     public ResponseEntity<MemberResponseDto> getMyMemberInfo() {
@@ -95,6 +99,11 @@ public class MemberController {
     @RequestMapping(value = "/MemberReviewList")
     public List<ReviewDto> MemberReviewList() {
         return reviewMapper.MemberReviewList();
+    }
+
+    @RequestMapping(value = "/KeepList")
+    public List<KeepingDto> KeepList() {
+        return keepingService.KeepList();
     }
 
 }
