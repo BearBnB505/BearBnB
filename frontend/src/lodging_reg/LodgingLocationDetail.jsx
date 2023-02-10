@@ -53,13 +53,13 @@ function LodgingLocationDetail(){
                             <p style={{fontSize : "35px", fontWeight:"bold"}}>숙소의 상세주소를 입력해주세요</p>
                             <p style={{fontSize : "20px", color:"gray"}}>주소를 정확하고 명확하게 넣었는지 확인해주세요</p>
                             <div className={'col-12'}>
-                                <div className={'mt-4'}>
-                                    <label className="form-label" htmlFor="nation">국가명</label>
-                                    <input type="text" className="form-control" id="nation" name="nation" defaultValue={nationA}
-                                        placeholder="국가명" onChange={onChangeNation}/>
-                                </div>
-                                <div className={'mt-3'}>
-                                    <label className="form-label" htmlFor="nation">주소(시,구,동)</label>
+                                {/*<div className={'mt-4'}>*/}
+                                {/*    <label className="form-label" htmlFor="nation">국가명</label>*/}
+                                {/*    <input type="text" className="form-control" id="nation" name="nation" defaultValue={nationA}*/}
+                                {/*        placeholder="국가명" onChange={onChangeNation}/>*/}
+                                {/*</div>*/}
+                                <div className={'mt-5'}>
+                                    <label className="form-label" htmlFor="nation">주소</label>
                                     <input type="text" className="form-control" id="address1" name="address1" defaultValue={address1A}
                                            placeholder="주소" onChange={onChangeAddress1}/>
                                 </div>
