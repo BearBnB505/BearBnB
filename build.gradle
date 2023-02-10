@@ -49,6 +49,7 @@ dependencies {
     implementation 'javax.mail:mail:1.5.0-b01'
 // https://mvnrepository.com/artifact/org.springframework/spring-context-support
     implementation 'org.springframework:spring-context-support:5.3.23'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
 
 

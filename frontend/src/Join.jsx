@@ -22,13 +22,16 @@ import Swal from "sweetalert2";
 
 function Join() {
 
+
+    //현재 나이 넣기
+    const [checkAge, setCheckAge] = useState(0);
+
     const [show, setShow] = useState(false);
     //pw = >passwordConfirm
     const [insertFirstName,setInsertFirstName] = useState('');
     const [insertLastName,setInsertLastName] = useState('');
     const [insertFullName,setInsertFullName] = useState('');
     const [insertBirth,setInsertBirth] = useState('');
-    // const [insertEmail,setInsertEmail] = useState('');
     const [insertTelNum,setInsertTelNum] = useState('');
     const [insertCountry,setInsertCountry] = useState('');
     const [insertGender,setInsertGender] = useState('');
@@ -58,6 +61,16 @@ function Join() {
 
 
     //미성년자 체크
+    // const birthCurrent = Number((e.target.value).slice(0,4))
+    // const insertBirths = e.target.value;
+
+    // setBirth(insertBirths);
+    // setInsertBirth(insertBirths);
+    //
+    // console.log(insertBirth)
+    //
+    // const age = numberThisYear-birthCurrent;
+    // console.log(age);
     const onChangeBirth = useCallback((e:React.ChangeEvent<HTMLInputElement>) =>{
         const birthCurrent = Number((e.target.value).slice(0,4))
         const insertBirths = e.target.value;
@@ -68,6 +81,7 @@ function Join() {
         console.log(insertBirth)
 
         const age = numberThisYear-birthCurrent;
+        setCheckAge(age);
         console.log(age);
         if(age < 19){
             setBirthMessage('미성년자는 가입할 수 없습니다.')
@@ -199,11 +213,13 @@ function Join() {
                 } else if (data === 0) {
                     setEmailMessage('사용가능한 아이디입니다.')
 
+                    //아이디 중복 체크
                     axios.get('http://localhost:8080/emailCheck', {
                         params: {
                             userId: email,
                         }
                     })
+                        //아이디가 중복되지 않았다면 이메일로 인증 번호 발송
                         .then((req) => {
                             console.log(req);
                             axios.get('http://localhost:8080/emailCode', {
@@ -211,44 +227,47 @@ function Join() {
                                     userId: email,
                                 }
                             })
+                                //인증번호 보낸 것이 성공했을 때 실행
                                 .then((req) => {
                                     console.log(req);
+                                    alert('인증번호 발송')
                                 })
                                 .catch((err) => {
-                                    console.log(err)
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: '두번째 통신 오류',
+                                    })
+                                    console.log(err);
                                 })
                         })
-                        // .then(async (req) => {
-                        //     const {value: password} = await Swal.fire({
-                        //         title: 'Enter your password',
-                        //         input: 'password',
-                        //         inputLabel: 'Password',
-                        //         inputPlaceholder: 'Enter your password',
-                        //         inputAttributes: {
-                        //             maxlength: 10,
-                        //             autocapitalize: 'off',
-                        //             autocorrect: 'off'
-                        //         }
-                        //     })
-                        // })
                         .catch(
-                            Swal.fire({
-                                icon: 'error',
-                                title: '두 번째 통신 오류',
-                            })
+                            // Swal.fire({
+                            //     icon: 'error',
+                            //     title: '첫번째 통신 오류',
+                            // })
                         )
-
-                        .catch((err) => {
-                            console.log(err);
-                            console.log('오류발생')
-                        })
+                    
                 }
             })
     }
 
 
                     // 회원가입하기
-                    const onClickJoin = () => {
+                    const onClickJoin = ()=> {
+                        // alert(checkAge); 나이 확인가능
+                        if(checkAge<19){
+                            Swal.fire({
+                                icon: 'error',
+                                title: '미성년자는 가입할 수 없습니다.',
+                            })
+                        }
+                        if(password !== passwordConfirm){
+                            Swal.fire({
+                                icon: 'error',
+                                title: '비밀번호가 일치하지 않습니다',
+                            })
+                        }
+
                         axios({
                             url: 'http://localhost:8080/insertJoin',
                             method: 'post',
@@ -273,7 +292,6 @@ function Join() {
                                 }).then(() => {
                                     setShow(false);
                                 })
-
                             })
                             .catch(function (error) {
                                 console.log(error);
@@ -287,7 +305,7 @@ function Join() {
                             }
                         })
                             .then((req) => {
-                                console.log(req);
+                                alert('인증번호가 발송되었습니다.')
                             })
                             .catch((err) => {
                                 console.log(err)

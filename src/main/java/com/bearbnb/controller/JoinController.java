@@ -1,11 +1,10 @@
 package com.bearbnb.controller;
 
-import com.bearbnb.dto.LodgingDto;
 import com.bearbnb.dto.MembersDto;
+//import com.bearbnb.service.EmailService;
 import com.bearbnb.service.JoinService;
 //import com.bearbnb.service.MailSendService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ExceptionDepthComparator;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
@@ -13,6 +12,11 @@ import org.springframework.web.bind.annotation.*;
 public class JoinController {
     @Autowired
     JoinService joinService;
+
+//    @Autowired
+//    EmailService emailService;
+
+
 
 //    @Autowired
 //    MailSendService mailSendService;
@@ -49,9 +53,11 @@ public class JoinController {
 
 //    이메일 인증 문자 보내기
     @RequestMapping(value = "/emailCode", method = RequestMethod.GET)
-    public String emilCode(@RequestParam String userId) throws Exception{
-        System.out.println("emailcode");
-        System.out.println(userId);
+    public String emilCode(@RequestParam String email) throws Exception{
+        System.out.println("인증 번호 보낼 이메일");
+        System.out.println(email);
+//        String confirm = emailService.sendSimpleMessage(email);
+
         return null;
     }
 
