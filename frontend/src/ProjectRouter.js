@@ -56,6 +56,7 @@ import './App.css';
 import DetailTable2 from "./components/DetailTable2";
 import DetailTable3 from "./components/DetailTable3";
 import SearchMap from "./GoogleMap/SearchMap";
+import ReviewContent from "./HostMypage/ReviewContent";
 
 function ProjectRouter(props) {
     return (
@@ -129,6 +130,7 @@ function ProjectRouter(props) {
 
                     {/*<HouseInfo/>*/}
                     <Route path={"hostMyPageLodging/HouseInfoUpdate/:lodgingNum"} element={<HouseInfo/>}/>
+                    <Route path={"ReviewContent"} element={<ReviewContent/>}/>
 
 
                     {/*  */}

@@ -1,6 +1,8 @@
 package com.bearbnb.service;
 
+import com.bearbnb.dto.BookingDto;
 import com.bearbnb.dto.ComfortsDto;
+import com.bearbnb.mapper.BookingMapper;
 import com.bearbnb.mapper.ComfortMapper;
 import com.bearbnb.mapper.LodgingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,37 @@ public class HostUpdateServiceImpl implements HostUpdateService{
     @Autowired
     private ComfortMapper comfortMapper;
 
+    @Autowired
+    private BookingMapper bookingtMapper;
+
     @Override
     public void hostLodgingUpdate(LodgingDto lodging) throws Exception{
 //        LodgingDto lodgingUpdate = new LodgingDto();
 //        lodgingUpdate.setLodgingName(lodgingName);
 
         lodgingMapper.hostLodgingUpdate(lodging);
+    }
+
+    @Override
+    public void UpdateLanguage(LodgingDto lodging) {
+        lodgingMapper.LanguageUpdate(lodging);
+    }
+
+    @Override
+    public void UpdateIntroHost(LodgingDto lodging) {
+        lodgingMapper.IntroHostUpdate(lodging);
+
+    }
+
+    @Override
+    public void UpdateBookingState(BookingDto booking) {
+        bookingtMapper.BookingStateUpdate(booking);
+    }
+
+    @Override
+    public void UpdateRejectState(BookingDto booking) {
+        bookingtMapper.RejectStateUpdate(booking);
+
     }
 
     public void UpdateLodgingIntro(LodgingDto lodging) {
@@ -53,6 +80,8 @@ public class HostUpdateServiceImpl implements HostUpdateService{
     public void UpdateCapacity(LodgingDto lodging) {
         lodgingMapper.CapacityUpdate(lodging);
     }
+
+
 
 
 }

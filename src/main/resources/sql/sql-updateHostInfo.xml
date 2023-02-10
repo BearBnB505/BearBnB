@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bearbnb.mapper.LodgingMapper">
+
+    <!--    숙소 관련 정보 수정 하기 -->
+    <update id="LanguageUpdate" parameterType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        update lodging
+        set language = '${language}'
+        where user_Id = 'tester3'
+        ]]>
+    </update>
+
+
+    <update id="IntroHostUpdate" parameterType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+        update lodging
+        set intro_host = '${introHost}'
+        where user_Id = 'tester3'
+        ]]>
+    </update>
+
+
+</mapper>
