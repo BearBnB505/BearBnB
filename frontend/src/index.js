@@ -4,13 +4,14 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProjectRouter from "./ProjectRouter";
-
+import {Provider} from "react-redux";
 import store from './Store'
 import {CookiesProvider} from "react-cookie";
-import {Provider} from "react-redux";
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
     <CookiesProvider>
         <Provider store={store}>
             <ProjectRouter />

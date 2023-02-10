@@ -23,6 +23,7 @@ function Map(props) {
         googleMapsApiKey: gvar.BEE_API_KEY
     });
 
+
     const [map, setMap] = useState(null);
 
     const onLoad = useCallback(function callback(map) {

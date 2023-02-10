@@ -1,9 +1,17 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {hostInfos} from "./Reducers/HostInfoReducer";
+import {costs} from "./Reducers/LodgingCostReducer";
 
 function LodgingCost(){
 
     const [cost, setCost] = useState(50000);
+    const dispatch = useDispatch();
+    const lodgingImg = useSelector((state)=>state.lodgingImg.value);
+    const chooseDate = useSelector((state)=>state.chooseDate.value);
+
+    console.log(lodgingImg.url);
 
     const styles = {
         border1:{
@@ -57,7 +65,9 @@ function LodgingCost(){
     return(
         <div className={"container"}>
             <div className={"row"}>
-                <div className={'col-7 mx-auto'} style={{marginTop : "120px"}}>
+                <div className={'col-7 mx-auto'} style={{marginTop : "90px"}}>
+                    {/*<p>시작일 : {chooseDate.startDate}</p>*/}
+                    {/*<p>시작일 : {chooseDate.endDate}</p>*/}
                     <p style={{fontSize :"35px", fontWeight:"bold"}}>이제 요금을 설정하세요</p>
                     <p style={{fontSize : "20px", color : "gray"}}>언제든지 변경하실 수 있습니다.</p>
                     <div style={styles.border1}>
@@ -92,8 +102,9 @@ function LodgingCost(){
                     </div>
                 </div>
             <footer>
-                <Link to ={"/lodgingThirdWelcome"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                <Link to = {"/lodgingCheck"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>
+                <Link to ={"/reg/lodgingChooseDate"}><button className={"btn btn-white position-absolute start-0 bottom-0"} style={{marginBottom:"70px", marginLeft:"120px", width:"200px", fontSize:"25px", padding:"8px", }} >이전</button></Link>
+                <Link to = {"/reg/lodgingCheck"}><button className={"btn btn-primary position-absolute end-0 bottom-0"} style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }} onClick={()=>{
+                    dispatch(costs({cost:cost}))}}>다음</button></Link>
             </footer>
         </div>
         </div>

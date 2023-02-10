@@ -975,7 +975,6 @@ const AmenityForm = (props) => {
       </div>
       <hr/>
 
-
     </div>
   )
 }

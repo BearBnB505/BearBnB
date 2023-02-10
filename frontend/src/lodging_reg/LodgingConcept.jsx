@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
 import {Pressable, SafeAreaView, StyleSheet, Text} from 'react-native';
 import {Link} from "react-router-dom";
+import {hostIdUrl} from "./Reducers/HostIdReducer";
+import {useDispatch} from "react-redux";
+
 
 const LoadingConcept = () => {
     const [isSelect, setSelect] = useState([false, false,false, false,false, false,false, false,false, false,false, false]);
+    const [concept, setConcept] = useState('');
     const imgSrc = [
         {
             name : '아파트',
@@ -55,6 +59,8 @@ const LoadingConcept = () => {
         }
     ]
 
+    const dispatch = useDispatch();
+
     const getButton = (id) => {
         return (
             <div className={"container"}>
@@ -71,6 +77,7 @@ const LoadingConcept = () => {
                             !isSelect[id],
                             ...isSelect.slice(id + 1),
                         ]);
+                        setConcept(isSelect[id]!== true? imgSrc[id].name:'')
                     }}>
                     <div className={'container'}>
                         <div className={'row'}>
@@ -80,17 +87,16 @@ const LoadingConcept = () => {
                             </div>
                         </div>
                     </div>
-
                 </Pressable>
-
             </div>
-
         );
     };
+
 
     return (
         <div className={"container"}>
             <div className={"row"}>
+                {/*<p>선택된 숙소 이름: {concept}</p>*/}
                 <p className={""} style = {styles.font}> 다음 중 숙소를 가장 잘 설명한 것은 무엇인가요?</p>
                 <div className={"row"}>
                     <div className={"col-2 mt-5"}>
@@ -129,12 +135,14 @@ const LoadingConcept = () => {
                     <div className={"col-2 mt-5"}>
                         {getButton(11)}
                     </div>
-
                 </div>
             </div>
             <footer>
-                <Link to ={"/lodgingWelcome"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                <Link to = {"/lodgingMap"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>
+                <Link to ={"/reg"}><button className={"btn btn-white position-absolute start-0 bottom-0"}
+                                                          style={{marginBottom:"70px", marginLeft:"120px", width:"200px", fontSize:"25px", padding:"8px", }} >이전</button></Link>
+                <Link to = {"/reg/lodgingMap"}><button className={"btn btn-primary position-absolute end-0 bottom-0"}
+                                                       style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }} onClick={()=>{
+                    dispatch(hostIdUrl({concept:concept}))}}>다음</button></Link>
             </footer>
         </div>
     );

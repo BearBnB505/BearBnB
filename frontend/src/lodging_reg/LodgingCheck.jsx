@@ -1,8 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 
 function LodgingCheck(){
+    const cost = useSelector((state) => state.lodgingCost.value);
+    const name = useSelector((state) => state.lodgingRealName.value);
 
     const styles = {
         box : {
@@ -17,7 +20,7 @@ function LodgingCheck(){
     return(
         <div className={'container'}>
             <div className={'row'}>
-                <div className={'col-8 mx-auto'} style={{marginTop :"200px"}}>
+                <div className={'col-8 mx-auto'} style={{marginTop :"110px"}}>
                     <p style={{fontSize : "45px", fontWeight : "bold"}}>숙소 검토하기</p>
                     <p style={{color:"gray", fontSize :"20px"}}>게스트에게 표시되는 정보는 다음과 같습니다. 모든 정보가 정확한지 확인하세요.</p>
                     <div className="row justify-content-between">
@@ -27,8 +30,8 @@ function LodgingCheck(){
                             <img src='/concept/house.jpg' style={{width :"300px"}}className={"ms-4"}/>
                             <div className={'row justify-content-evenly mt-3'}>
                                 <div className={'col-4 ms-3'}>
-                                    <p>집이름</p>
-                                    <p>100,000원</p>
+                                    <p>{name.name}</p>
+                                    <p>{cost.cost}</p>
                                 </div>
                                 <div className={'col-4'} >
                                     <p>신규⭐</p>
@@ -71,8 +74,8 @@ function LodgingCheck(){
                 </div>
 
                 <footer>
-                    <Link to ={"/lodgingCost"}><button className={"btn btn-light position-absolute start-0 bottom-0 ms-5 mb-3"} >이전</button></Link>
-                    <Link to = {"/lodgingFinal"}><button className={"btn btn-primary position-absolute end-0 bottom-0 me-5 mb-3"}>다음</button></Link>
+                    <Link to ={"/reg/lodgingCost"}><button className={"btn btn-white position-absolute start-0 bottom-0"} style={{marginBottom:"70px", marginLeft:"120px", width:"200px", fontSize:"25px", padding:"8px", }} >이전</button></Link>
+                    <Link to = {"/reg/lodgingFinal"}><button className={"btn btn-primary position-absolute end-0 bottom-0"} style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }}>다음</button></Link>
                 </footer>
             </div>
         </div>
