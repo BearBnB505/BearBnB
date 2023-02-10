@@ -9,7 +9,10 @@ import java.util.List;
 public interface ReviewMapper {
     List<ReviewDto> ReviewList();
 
+    List<ReviewDto> MemberReviewList();
+
     void ReviewUpdate(ReviewDto review);
 
     void ReviewDelete(ReviewDto review);
+
 }

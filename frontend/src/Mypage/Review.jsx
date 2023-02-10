@@ -26,7 +26,7 @@ function Review() {
 
 
   useEffect(() => {
-    axios.get('http://localhost:8080/ReviewList/')
+    axios.get('http://localhost:8080/MemberReviewList/')
       .then((req) => {
         const {data} = req;
         setData(data);

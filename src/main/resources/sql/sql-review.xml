@@ -3,20 +3,27 @@
 
 <mapper namespace="com.bearbnb.mapper.ReviewMapper">
 
-    <!--  리뷰 리스트 가져오기  -->
+
     <select id="ReviewList" resultType="com.bearbnb.dto.ReviewDto">
         <![CDATA[
         SELECT re.*, lod.lodging_name, mem.name
+        FROM review
+        ]]>
+    </select>
+
+    <!-- 마이페이지 리뷰 리스트 가져오기  -->
+    <select id="MemberReviewList" resultType="com.bearbnb.dto.ReviewDto">
+        <![CDATA[
+        SELECT re.*, lod.lodging_name, mem.name
         FROM review re
-        JOIN lodging lod
-        ON re.lodging_num = lod.lodging_num
-        JOIN members mem
-        ON re.user_id= mem.user_id
+                 JOIN lodging lod
+                      ON re.lodging_num = lod.lodging_num
+                 JOIN members mem
+                      ON re.user_id= mem.user_id
         WHERE re.deleted_yn = 'N'
         ORDER BY re.review_create_dt desc
         ]]>
     </select>
-
 
 
     <select id="ReviewListContent" resultType="com.bearbnb.dto.ReviewDto">

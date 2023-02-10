@@ -92,11 +92,9 @@ public class MemberController {
         return "redirect:/review";
     }
 
-    @RequestMapping(value = "/ReviewList")
-    public List<ReviewDto> ReviewList() {
-        return reviewMapper.ReviewList();
+    @RequestMapping(value = "/MemberReviewList")
+    public List<ReviewDto> MemberReviewList() {
+        return reviewMapper.MemberReviewList();
     }
-
-
 
 }
