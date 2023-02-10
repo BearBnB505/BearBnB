@@ -100,7 +100,7 @@ function HeaderModal(props) {
         setShowMap(false);
     }
 
-    let [chooseDate, setChooseDate] = useState([]);
+    let [chooseDate, setChooseDate] = useState(['Invalid date', 'Invalid date']);
     let [selectGuest, setSelectGuest] = useState([0, 0, 0]);
 
     // console.log(chooseDate);
