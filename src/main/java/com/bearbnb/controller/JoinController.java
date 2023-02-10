@@ -1,12 +1,9 @@
 package com.bearbnb.controller;
 
-import com.bearbnb.dto.LodgingDto;
 import com.bearbnb.dto.MembersDto;
-import com.bearbnb.service.EmailService;
 import com.bearbnb.service.JoinService;
 //import com.bearbnb.service.MailSendService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ExceptionDepthComparator;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
@@ -15,8 +12,6 @@ public class JoinController {
     @Autowired
     JoinService joinService;
 
-    @Autowired
-    EmailService emailService;
 
     @RequestMapping(value = "/insertJoin", method = RequestMethod.POST)
     public String insertLodgingTable(@RequestBody MembersDto members) throws Exception{
@@ -53,10 +48,12 @@ public class JoinController {
     public String emilCode(@RequestParam String userId) throws Exception{
         System.out.println("emailcode");
         System.out.println(userId);
-        String confirm = emailService.sendSimpleMessage(userId);
 
-        return confirm;
+
+        return null;
     }
+
+
 
 
 }
