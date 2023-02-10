@@ -21,17 +21,6 @@ public class JoinController {
 
         return null;
     }
-//        regLodgingService.insertLodgingTable(lodging);
-
-//    @RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
-//    public String emailCheck(@RequestParam String userId) throws Exception{
-//        System.out.println(userId);
-//
-////        String result = joinService.emailCheck(userId);
-////
-////        return result;
-//        return "1";
-//    }
 
 //    이메일 중복 체크
     @RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
@@ -48,6 +37,7 @@ public class JoinController {
     public String emilCode(@RequestParam String userId) throws Exception{
         System.out.println("emailcode");
         System.out.println(userId);
+        joinService.sendSimpleMessage(userId);
 
 
         return null;
