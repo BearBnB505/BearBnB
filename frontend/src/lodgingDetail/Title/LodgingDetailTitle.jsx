@@ -11,7 +11,7 @@ function LodgingDetailTitle({avg, lodging}){
           <div></div>
           <ul style={styles.titleUl}>
               <li className={"float-start me-3"}>&#x2B50; {avg.reviewTotal}</li>
-              <li className={"float-start me-3"}>· {lodging.addr}</li>
+              <li className={"float-start me-3"}>· {lodging.nation} {lodging.address1} {lodging.address2}</li>
               <li className={"float-start me-1"}>· 후기</li>
               <li className={"float-start"}>{avg.reviewCount}개</li>
               <li className={"float-end ms-4"}><a href={'#'} target={"_blank"}><FontAwesomeIcon icon={faHeart} size="1x" /> 저장</a></li>

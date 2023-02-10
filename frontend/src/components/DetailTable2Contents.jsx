@@ -1,7 +1,6 @@
 import React from "react";
 
-function DetailTable2Contents({avg, complain, lodging, comfort}) {
-    const peopleMax = []
+function DetailTable2Contents({lodging, comfort}) {
     return (
         <>
             <div className={"col-7"}>

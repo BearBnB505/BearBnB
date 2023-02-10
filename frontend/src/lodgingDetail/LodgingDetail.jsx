@@ -58,8 +58,8 @@ function LodgingDetail(props) {
 
                     <LodgingDetailTitle lodging={lodging} review={review} avg={avg}/>
 
-                    <PhotoContext.Provider value={photo}>
-                        <HostImg/>
+                    <PhotoContext.Provider>
+                        <HostImg photo={photo}/>
                     </PhotoContext.Provider>
 
                     <div className={'row'}>

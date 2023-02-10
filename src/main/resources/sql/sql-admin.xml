@@ -23,16 +23,18 @@
     <!--    숙소 리스트 가져오기-->
     <select id="adminLodgingList" resultType="com.bearbnb.dto.AdminLodgingDto">
         <![CDATA[
-        SELECT l.idx, l.lodging_num, l.lodging_name, l.user_id, l.reg_state, l.create_dt,
-               IFNULL(r.review, 0) as review, IFNULL(c.count, 0) as count
+        SELECT l.idx, l.lodging_num, l.lodging_name, l.user_id,
+               l.reg_state, l.create_dt, IFNULL(r.review, 0) as review, IFNULL(c.count, 0) as count
         FROM lodging AS l
-            LEFT JOIN (SELECT user_id, lodging_num, reason, reason_detail, complain_dt, deleted_yn, COUNT(*) AS COUNT FROM complain WHERE deleted_yn = 'n' GROUP BY lodging_num) c ON l.lodging_num = c.lodging_num
-            LEFT JOIN (SELECT lodging_num, ROUND((clean_grade + accuracy_grade + communication_grade + location_grade + check_in_grade + cost_grade) / 6, 1) as review FROM review WHERE deleted_yn = 'n' GROUP BY lodging_num) r ON l.lodging_num = r.lodging_num
-        GROUP BY l.lodging_num
-        ORDER BY 1 DESC
+            LEFT JOIN (SELECT
+            user_id, lodging_num, reason, reason_detail, complain_dt, deleted_yn, COUNT(*) as count
+            FROM complain WHERE deleted_yn = 'n' GROUP BY lodging_num) c ON l.lodging_num = c.lodging_num
+            LEFT JOIN (SELECT lodging_num,
+            ROUND((clean_grade + accuracy_grade + communication_grade + location_grade + check_in_grade + cost_grade) / 6, 1)
+            as review FROM review WHERE deleted_yn = 'n' GROUP BY lodging_num) r ON l.lodging_num = r.lodging_num
+        GROUP BY l.lodging_num ORDER BY 1 DESC
         ]]>
     </select>
-
 
 
     <select id="adminLodgingDetail" resultType="com.bearbnb.dto.LodgingDto">
@@ -88,6 +90,14 @@
         WHERE lodging_num = #{lodgingNum}
           AND usable_yn = 'Y'
         ORDER BY 4;
+        ]]>
+    </select>
+
+    <select id="complainList" resultType="com.bearbnb.dto.ComplainDto">
+        <![CDATA[
+        SELECT *
+        FROM complain
+        ORDER BY idx DESC
         ]]>
     </select>
 

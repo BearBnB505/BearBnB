@@ -21,7 +21,7 @@ function DetailTable2WaitModal(props) {
 
                         <button type="button"
                                 className="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0"
-                                data-bs-dismiss="modal"> <strong>승인 확정</strong>
+                                data-bs-dismiss="modal"> <strong>승인</strong>
                         </button>
                     </div>
                 {/*</div>*/}

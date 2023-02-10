@@ -50,7 +50,6 @@ public class adminController {
         return map;
     }
 
-
     @RequestMapping(value = "adminLodgingList")
     public List<AdminLodgingDto> adminLodgingList() throws Exception {
         return adminMapper.adminLodgingList();
