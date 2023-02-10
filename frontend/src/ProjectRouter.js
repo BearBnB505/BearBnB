@@ -55,7 +55,7 @@ import HostMyPageLodging from "./HostMypage/HostMyPageLodging";
 import './App.css';
 import DetailTable2 from "./components/DetailTable2";
 import DetailTable3 from "./components/DetailTable3";
-import SearchMap from "./GoogleMap/SearchMap";
+import Search from "./GoogleMap/Search";
 
 function ProjectRouter(props) {
     return (
@@ -68,7 +68,7 @@ function ProjectRouter(props) {
                     <Route path={"lodgingDetail/:idx"} element={<LodgingDetail/>}/>
                     <Route path={"hostInfo"} element={<HostInfo/>}/>
 
-                    <Route path={"search"} element={<SearchMap/>}/>
+                    <Route path={"search"} element={<Search/>}/>
 
                     {/* 메세지알림 */}
                     <Route path={"message"} element={<Message/>}/>
