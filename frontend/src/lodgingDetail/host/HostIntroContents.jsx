@@ -1,5 +1,6 @@
 import React from "react";
 import {Button} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 function HostIntroContents(props) {
   return (
@@ -24,7 +25,9 @@ function HostIntroContents(props) {
             {/*<div className={'IntroTextLine1'}>숙박 중 게스트와의 교류</div>*/}
             <div className={'mb-2'}>숙박 중 게스트와의 교류</div>
 
-            <Button href={"/hostInfo"} className={'fw-bold my-3 px-3 py-2'} variant="outline-dark">호스트에게 연락하기</Button>
+            <Link to={"/hostInfo"} state={{userId: props.userId}}>
+              <Button type={"button"} className={'fw-bold my-3 px-3 py-2'} variant="outline-dark">호스트에게 연락하기</Button>
+            </Link>
           </div>
 
 
@@ -35,7 +38,7 @@ function HostIntroContents(props) {
             <div className={'col mt-1 ms-4'}>
               {/*<div className={'IntroNoticeText'}>*/}
               <p className={'fs-6'}>
-                안전한 결제를 위해 에어비앤비 웹사이트나 앱 외부에서 송금하거나 대화를 나누지 마세요.
+                안전한 결제를 위해 베어비앤비 웹사이트나 앱 외부에서 송금하거나 대화를 나누지 마세요.
               </p>
             </div>
 
