@@ -47,6 +47,9 @@ function Main(props) {
     // const accessToken = useSelector((state) => state.accessToken.value);
     // console.log(accessToken);
 
+    const Auth = useSelector((state)=>state.auth.value);
+    // console.log(Auth);
+
     const [data, setData] = useState([]);
     const [category, setCategory] = useState('한옥');
     console.log(category);
@@ -63,6 +66,10 @@ function Main(props) {
             })
     }, [category]);
 
+    useEffect(() => {
+        console.log(Auth);
+    }, [category]);
+    
     useEffect(() => {
         if (!sessionStorage.getItem("startDt")) {
             return;

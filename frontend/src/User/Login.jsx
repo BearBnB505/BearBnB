@@ -20,10 +20,19 @@ import {getCookie, setCookie} from "../Storage/Cookies";
 import Swal from "sweetalert2";
 import {configureStore} from "@reduxjs/toolkit";
 import {CheckToken} from "../Auth/CheckToken";
+import {auths} from "../lodging_reg/Reducers/AuthReducer";
 
 
 function Login() {
+    const lodgingNum = useSelector((state)=>state.lodgingNum.value);
+    console.log(lodgingNum)
+    const Auth = useSelector((state)=>state.auth.value);
+    console.log(Auth);
 
+
+    const onclickbutton = () => {
+        dispatch(auths({access:'hahaha'}));
+    }
     const [show, setShow] = useState(false);
 
     const navigate = useNavigate();
@@ -57,7 +66,7 @@ function Login() {
                 const today = new Date();
                 const expireDate = today.setDate(today.getDate() * 7);
 
-                console.log(token.accessToken);
+                // console.log(token.accessToken);
 
                 if (token.refreshToken != undefined) {
                     setCookie('refreshToken', token.refreshToken, {
@@ -67,6 +76,7 @@ function Login() {
                         expires: new Date(expireDate)
                     });
 
+                    dispatch(auths({access:token.accessToken}));
                     // dispatch(SETTOKEN({access:token.accessToken}));
                     // dispatch(SETTOKEN({access:'dd'}))
                     setShow(false);
@@ -124,6 +134,7 @@ function Login() {
                                     />
                                 </Col>
                             </Form.Group>
+                            <button onClick={onclickbutton}>testButton</button>
 
                             <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
                                 <Col sm>
