@@ -25,7 +25,13 @@ const HostUserInfoModal = (props) => {
                     <ModalTitle className={'flex-grow-1 text-center ps-4'}>예약내역</ModalTitle>
                 </ModalHeader>
                 <ModalBody>
-                    <GuestInfoModal />
+                    <GuestInfoModal idx={props.idx} lodging_name={props.lodging_name} book_num={props.book_num}
+                                    book_num={props.book_num} book_check_in_dt={props.book_check_in_dt}
+                                    book_check_out_dt={props.book_check_out_dt}
+                                    adult_num={props.adult_num} baby_num={props.baby_num} pet_num={props.pet_num}
+                                    book_state={props.book_state} user_id={props.user_id} user_name={props.user_name} user_tel={props.user_tel}
+                                    user_nation={props.user_nation}
+                                    book_dt={props.book_dt} pay_cost={props.pay_cost} childValue={props.setKey} />
                 </ModalBody>
             </Modal>
         </div>

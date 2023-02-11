@@ -1,3 +1,4 @@
+
 // // import React from "react";
 // // import {GoogleMap, LoadScript, StandaloneSearchBox, useJsApiLoader} from "@react-google-maps/api";
 // import * as gvar from "./global_variables";
@@ -70,6 +71,11 @@
 // // }
 // //
 // // export default SearchMap;
+
+// import React from "react";
+// import {GoogleMap, LoadScript, StandaloneSearchBox, useJsApiLoader} from "@react-google-maps/api";
+// import * as gvar from "./global_variables";
+
 //
 // import React, {useState } from 'react';
 // import GoogleMap from 'google-map-react';

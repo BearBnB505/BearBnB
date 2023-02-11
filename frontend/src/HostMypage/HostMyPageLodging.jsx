@@ -1,21 +1,26 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Breadcrumb, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose, faPencil} from "@fortawesome/free-solid-svg-icons";
 import Anima from "../Mypage/animaData";
-import { motion } from "framer-motion";
+import {motion} from "framer-motion";
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
+import './Lodging.css'
 
-const complain = [
-    {idx: 1, lodging_name: "바다가 보이는 아름다운 집", state:<button className={'btn btn-primary'}>승인완료</button>, bedroom: 2, bed: 2, bathroom:1, location : "부산 해운대", last_update:"2022-12-03"},
-    {idx: 2, lodging_name: "산이 한 눈에 보이는 집", state:<button className={'btn btn-danger'}>심사 중</button>, bedroom: 3, bed: 4, bathroom:2, location : "경기도 오산", last_update:"2022-12-06"},
-]
+import PageNation from "./LodgingPagenation";
 
 
+function HostMyPageLodging() {
 
+    const [lengthInfo, setLengthInfo] = useState(1);
+    const [limitInfo , setLimitInfo] = useState(5);
+    const [pageInfo, setPageInfo] = useState(1);
 
-function HostMyPageLodging(props) {
+    const offset = (pageInfo - 1) * limitInfo;
+
+    const [offsetInfo , setOffsetInfo] = useState(offset);
+
     const [data, setData] = useState('');
     const navigate = useNavigate();
     const onClickRegLodging = () => {
@@ -40,7 +45,9 @@ function HostMyPageLodging(props) {
                 console.log('에러발생')
             })
     }
+
     return (
+
         <motion.div variants={Anima}
                     initial="hidden"
                     animate="visible"
@@ -59,10 +66,10 @@ function HostMyPageLodging(props) {
 
             <table className={"table table-hover table-striped"}>
                 <thead className={'text-center'}>
-                <tr>
+                <tr className={'LodgingLine'}>
                     <th>번호</th>
                     <th>숙소명</th>
-                    <th>상태</th>
+                    <th>&nbsp;&nbsp;상태</th>
                     <th>침실</th>
                     <th>침대</th>
                     <th>욕실</th>
@@ -71,38 +78,86 @@ function HostMyPageLodging(props) {
                 </tr>
                 </thead>
                 <tbody className={'text-center'}>
-                {complain.map((item) => {
-                    return <ComplainList idx={item.idx} lodging_name={item.lodging_name} state={item.state} bed={item.bed} bedroom={item.bedroom} bathroom={item.bathroom} location={item.location} last_update={item.last_update}/>
-                })}
+
+                <ComplainList setLengthInfo={setLengthInfo}
+                              setLimitInfo={setLimitInfo}
+                              setPageInfo={setPageInfo}
+                              pageInfo={pageInfo}
+                              offsetInfo={offsetInfo}
+                              setOffsetInfo={setOffsetInfo}/>
+
+                <PageNation total={lengthInfo}
+                            limit={limitInfo}
+                            page={pageInfo}
+                            setPage={setPageInfo}
+                            setOffsetInfo={setOffsetInfo}/>
                 </tbody>
             </table>
-
-            {/*<div>*/}
-            {/*    <button type="button" className="btn btn-outline-secondary btn-sm my-2 me-2" title="Edit">*/}
-            {/*        <span><FontAwesomeIcon icon={faPencil} size="1x"/> 신고수정</span>*/}
-            {/*    </button>*/}
-            {/*    <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit">*/}
-            {/*        <span><FontAwesomeIcon icon={faClose} size="1x"/> 신고삭제</span>*/}
-            {/*    </button>*/}
-            {/*</div>*/}
-
         </motion.div>
     )
 }
-
 export default HostMyPageLodging;
 
-function ComplainList({idx, lodging_name, state, bedroom, bed,bathroom,location,last_update }) {
+
+function ComplainList(props) {
+
+    // 숙소 DB 가져와서 리스트 형식으로 담길 배열
+    const [data, setData] = useState([]);
+    // 페이지당 게시물 수
+    const [limit, setLimit] = useState(5);
+    // 현재 페이지 번호(page)
+    const [page, setPage] = useState(1);
+    // 첫 게시물의 위치(offset)
+    const offset = (page - 1) * limit;
+
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/AllLodgingList/')
+            .then((req) => {
+                const {data} = req;
+                const length = data.length
+                Number(length)
+                console.log(length);
+
+                // console.log(data);
+                setData(data);
+                props.setLengthInfo(length)
+                props.setLimitInfo(limit)
+                // props.setPageInfo(page)
+                props.setOffsetInfo(offset)
+                setPage(props.pageInfo)
+            })
+            .catch((err) => {
+                console.log("통신 오류");
+            })
+    }, []);
+
+
     return (
-        <tr>
-            <td>{idx}</td>
-            <td>{lodging_name}</td>
-            <td>{state}</td>
-            <td>{bedroom}</td>
-            <td>{bed}</td>
-            <td>{bathroom}</td>
-            <td>{location}</td>
-            <td>{last_update}</td>
-        </tr>
+
+        data.slice(props.offsetInfo, props.offsetInfo + limit).map((item, index) => {
+
+            return (
+                <table className={"table table-striped"}>
+                    <tr className={'LodgingLine'}>
+                        <td>{data.length - index}</td>
+                        <Link to={`/hostMyPageLodging/HouseInfoUpdate/${item.lodgingNum}`}
+                              state={{lodgingNum: `${item.lodgingNum}`}} style={{color: "black"}}>
+                            {item.lodgingName}
+                        </Link>
+                        {item.regState == '승인완료' ? <td>
+                            <button className={'btn btn-primary'} style={{backgroundColor:"#0d6efd"}}>승인완료</button>
+                        </td> : <td>
+                            <button className={'btn btn-danger'} style={{backgroundColor:"#dc3545"}}>심사 중</button>
+                        </td>}
+                        <td>{item.bedroomNum}</td>
+                        <td>{item.bedNum}</td>
+                        <td>{item.bathroomNum}</td>
+                        <td>{item.addr}</td>
+                        <td style={{borderBottom:"none"}}>{item.createDt}</td>
+                    </tr>
+                </table>
+            )
+        })
     )
 }

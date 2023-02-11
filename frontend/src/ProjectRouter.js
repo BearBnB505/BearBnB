@@ -60,6 +60,7 @@ import DetailTable3 from "./components/DetailTable3";
 import SearchMap from "./GoogleMap/SearchMap";
 import LodgingRegHeader from "./lodging_reg/layout/LodgingRegHeader";
 import LodgingLayout from "./lodging_reg/layout/LodgingLayout";
+import ReviewContent from "./HostMypage/ReviewContent";
 
 
 function ProjectRouter(props) {
@@ -79,6 +80,7 @@ function ProjectRouter(props) {
                     <Route path={"message"} element={<Message/>}/>
 
                     {/* 일반회원 마이페이지 */}
+
                     <Route path={"mypage"} element={<Mypage/>}/>
                     <Route path={"members"} element={<Members/>}/>
                     <Route path={"review"} element={<Review/>}/>
@@ -87,8 +89,6 @@ function ProjectRouter(props) {
                     <Route path={"complain"} element={<Complain/>}/>
                     <Route path={"keeping"} element={<Keeping/>}/>
                     <Route path={"membersDel"} element={<MembersDel/>}/>
-
-
 
 
                     {/*<Route path={"imgUploadBox"} element={<ImgUploadBox/>}/>*/}
@@ -116,6 +116,7 @@ function ProjectRouter(props) {
 
                     {/*<HouseInfo/>*/}
                     <Route path={"hostMyPageLodging/HouseInfoUpdate/:lodgingNum"} element={<HouseInfo/>}/>
+                    <Route path={"ReviewContent"} element={<ReviewContent/>}/>
 
 
                     {/*  */}

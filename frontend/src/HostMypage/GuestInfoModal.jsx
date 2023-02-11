@@ -10,10 +10,10 @@ function GuestInfoModal(props) {
                     <img src='/img/user.png' style={{width:"100px"}}/>
                 </div>
                 <div className={'col'}>
-                    <p>이름 : 김김김</p>
-                    <p>아이디 : 1234</p>
-                    <p>국적 : 한국</p>
-                    <p className={"mb-2"}>전화번호 : 010-1111-1111</p>
+                    <p>이름 : {props.user_name}</p>
+                    <p>아이디 : {props.user_id}</p>
+                    <p>국적 : {props.user_nation}</p>
+                    <p className={"mb-2"}>전화번호 : {props.user_tel}</p>
                 </div>
             </div>
 
@@ -26,13 +26,14 @@ function GuestInfoModal(props) {
                     <p>예 약 날 짜</p>
                     <p>결 제 금 액</p>
                 </div>
+
                 <div className={'col'}>
-                    <p>: as22</p>
-                    <p>: 바다가 보이는 콘도</p>
-                    <p>: 2022.12.30 - 2022.12.31</p>
-                    <p>: 성인 2명, 반려동물 1마리</p>
-                    <p>: 2022.12.04</p>
-                    <p>: 130,000원</p>
+                    <p>: {props.book_num}</p>
+                    <p>: {props.lodging_name}</p>
+                    <p>: {props.book_check_in_dt} - {props.book_check_out_dt}</p>
+                    <p>: 성인 {props.adult_num}명, 아기 {props.baby_num}명 반려동물 {props.pet_num}마리</p>
+                    <p>: {props.book_dt}</p>
+                    <p>: {props.pay_cost}원</p>
                 </div>
             </div>
 

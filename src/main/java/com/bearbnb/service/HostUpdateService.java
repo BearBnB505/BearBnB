@@ -1,5 +1,6 @@
 package com.bearbnb.service;
 
+import com.bearbnb.dto.BookingDto;
 import com.bearbnb.dto.ComfortsDto;
 import com.bearbnb.dto.LodgingDto;
 
@@ -18,4 +19,12 @@ public interface HostUpdateService {
     void UpdateComfortsList(List<ComfortsDto> ComfortBox);
 
     void UpdateCapacity(LodgingDto lodging);
+
+    void UpdateLanguage(LodgingDto lodging);
+
+    void UpdateIntroHost(LodgingDto lodging);
+
+    void UpdateBookingState(BookingDto booking);
+
+    void UpdateRejectState(BookingDto booking);
 }

@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class ReviewDto {
+    private int idx;
     private String userId;
     private String comment;
     private double cleanGrade;
@@ -18,4 +19,11 @@ public class ReviewDto {
 
     private int reviewCount;
     private double reviewTotal;
+
+    //멤버에서 가꼬옴
+    private String name;
+
+    // join lodging DB
+    private String lodgingName;
+
 }

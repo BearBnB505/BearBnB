@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bearbnb.mapper.BookingMapper">
+
+<!--    <select id="bookingList" parameterType="String" resultType="com.bearbnb.dto.BookingDto">-->
+<!--        <![CDATA[-->
+<!--        select book.*, lod.lodging_name-->
+<!--        from booking book-->
+<!--                 join lodging lod-->
+<!--                      on book.lodging_num = lod.lodging_num-->
+<!--        where book.lodging_num='2301251111111113' and book_state = #{bookState}-->
+<!--        ]]>-->
+<!--    </select>-->
+
+
+
+    <select id="bookingList"  resultType="com.bearbnb.dto.BookingDto">
+        <![CDATA[
+        select book.*, lod.lodging_name, mem.name, mem.nation, mem.tel
+        from booking book
+                 join lodging lod
+                      on book.lodging_num = lod.lodging_num
+                 join members mem
+                      on book.user_id = mem.user_id
+        where book.lodging_num='2301251111111113'
+        ]]>
+    </select>
+
+
+    <update id="BookingStateUpdate" parameterType="com.bearbnb.dto.BookingDto">
+        <![CDATA[
+        update booking
+        set book_state = "예약완료"
+        where idx = #{idx}
+        ]]>
+    </update>
+
+    <update id="RejectStateUpdate" parameterType="com.bearbnb.dto.BookingDto">
+        <![CDATA[
+        update booking
+        set book_state = "예약취소"
+        where idx = #{idx}
+        ]]>
+    </update>
+
+</mapper>
+
+

@@ -1,13 +1,25 @@
 import React, {useState} from "react";
 import Form from 'react-bootstrap/Form';
 import {FloatingLabel, InputGroup} from "react-bootstrap";
+import axios from "axios";
 
-const MyLanguages = () => {
-    const [languages, setLanguages] = useState("");
+const MyLanguages = (props) => {
+    // const [languages, setLanguages] = useState("");
 
     const onChangeLanguages = (e) => {
-        setLanguages(e.target.value);
+        props.setLanguage(e.target.value);
     }
+
+  const clickSave = () => {
+
+    axios.put('http://localhost:8080/UpdateLanguage',null,{params: {language: props.language}})
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
     return (
         <div className={"mb-3"}>
@@ -19,12 +31,12 @@ const MyLanguages = () => {
                         controlId="floatingInput"
                         label="사용가능 언어"
                         className="mb-3"
-                    ><Form.Control  onChange={onChangeLanguages} placeholder={"사용가능 언어"}></Form.Control>
+                    ><Form.Control  onChange={onChangeLanguages} placeholder={"사용가능 언어"} value={props.language}></Form.Control>
                     </FloatingLabel></InputGroup>
 
             </div>
             <div className={"mt-2"}>
-                <button className={"btn btn-dark btn-lg"}>저장</button>
+                <button className={"btn btn-dark btn-lg"} onClick={clickSave}>저장</button>
             </div>
         </div>
     )
