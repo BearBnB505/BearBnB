@@ -5,6 +5,7 @@ import {auths} from "../lodging_reg/Reducers/AuthReducer";
 
 export function CheckToken() {
 
+    const isAuth = '';
     // let [isAuth, setIsAuth] = useState('Loaded');
     sessionStorage.setItem("isAuth", "Loaded");
 
@@ -52,7 +53,7 @@ export function CheckToken() {
         checkAuthToken();
     }, [refreshToken, dispatch]);
 
-    // return (
-    //     isAuth
-    // );
+    return (
+        isAuth
+    );
 }
