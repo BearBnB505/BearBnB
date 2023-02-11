@@ -5,13 +5,17 @@ import {configureStore} from "@reduxjs/toolkit";
 import store from "../Store";
 import {HostIdReducer} from "./Reducers/HostIdReducer";
 import {LodgingConceptReducer} from "./Reducers/LodgingConceptReducer";
+import {LodgingNumReducer, lodgingNums} from "./Reducers/LodgingNumReducer";
 // import lodgingConcept from "./LodgingConcept";
 
 function LodgingMap(){
+    let storeA = configureStore({reducer:LodgingNumReducer.reducer});
+    const lodgingNum2 = storeA.getState().num;
+    console.log("welcome : " + lodgingNum2);
 
-    let store = configureStore({reducer: LodgingConceptReducer.reducer});
-    const lodgingConcept = store.getState().value;
-    console.log(lodgingConcept);
+    // let store = configureStore({reducer: LodgingConceptReducer.reducer});
+    // const lodgingConcept = store.getState().value;
+    // console.log(lodgingConcept);
 
     return(
         <div>

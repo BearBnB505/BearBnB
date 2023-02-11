@@ -50,15 +50,26 @@ function LodgingWelcome(){
 
     const dayPlusRandom = dayday + random;
     // 숙소번호=> 날짜6자리 + 랜덤 숫자 10자리
-    const lodgingNum = dayPlusRandom.split(',').join("");
-    console.log(lodgingNum);
+    let lodgingNum = dayPlusRandom.split(',').join("");
+    // console.log(lodgingNum);
 
+    //데이터 삽입
+    const next = () => {
+        // storeA.dispatch(LodgingNumReducer.actions.lodgingNums(lodgingNum));
+        // const lodgingNum2 = storeA.getState().num;
+        // console.log("welcome : " + lodgingNum2);
+
+        storeA.dispatch(LodgingNumReducer.actions.lodgingNums(lodgingNum));
+        const lodgingNum2 = storeA.getState().num;
+        console.log("welcome : " + lodgingNum2);
+    }
 
     return(
         <div className={"container"}>
             <div className = {"row justify-content-lg-between"} >
                 <div className={"col-6 my-auto"}>
                     <div >
+                        <button onClick={next}>테스트</button>
                         <p>1단계</p>
                         <p id={"title"} style = {{fontSize : "50px", fontWeight : "bold",}}>숙소 정보를 알려주세요</p><br/>
                         <p className={"lh-base fs-5"}>먼저 숙소 유형을 선택하고, 게스트가 예약할 수 있는 숙소가 공간 전체<br />인지 개인실 또는 다인실인지 알려주세요. 그런 다음 숙소 위치와<br /> 수용 가능 인원을 알려주세요.</p>
@@ -77,8 +88,7 @@ function LodgingWelcome(){
                 <Link to ={"/reg/lodgingHostId"}>
                     <button className={"btn btn-white position-absolute start-0 bottom-0"} style={{marginBottom:"70px", marginLeft:"120px", width:"200px", fontSize:"25px", padding:"8px", }}>이전</button></Link>
                 <Link to = {"/reg/lodgingConcept"}>
-                    <button className={"btn btn-primary position-absolute end-0 bottom-0"} style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }} onClick={()=>{
-                        dispatch(lodgingNums({num:'11111'}))}}>다음</button></Link>
+                    <button className={"btn btn-primary position-absolute end-0 bottom-0"} style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }} >다음</button></Link>
             </footer>
         </div>
     )

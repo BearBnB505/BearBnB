@@ -9,15 +9,17 @@ import {LodgingConceptReducer} from "./Reducers/LodgingConceptReducer";
 
 
 const LoadingConcept = () => {
-    let store = configureStore({reducer: LodgingNumReducer.reducer});
-    const lodgingNum = store.getState().value;
+    let store = configureStore({reducer:LodgingNumReducer.reducer});
+    // const lodgingNum = store.getState().num;
 
-    let storeA= configureStore({reducer:LodgingConceptReducer.reducer})
+    let storeA = configureStore({reducer:LodgingNumReducer.reducer});
+
+    // store.dispatch(LodgingNumReducer.actions.lodgingNums(lodgingNum));
+    const lodgingNum2 = storeA.getState().num;
+    console.log("concept : " + lodgingNum2);
 
 
-
-
-    console.log(lodgingNum);
+    // console.log("다음페이지:"+lodgingNum);
 
     const [isSelect, setSelect] = useState([false, false,false, false,false, false,false, false,false, false,false, false]);
     const [concept, setConcept] = useState('');
@@ -77,6 +79,7 @@ const LoadingConcept = () => {
     const getButton = (id) => {
         return (
             <div className={"container"}>
+                <p>lodgingNum :{lodgingNum2}</p>
                 <Pressable
                     style={[
                         {backgroundColor: isSelect[id] ? 'gray' : 'white'},
