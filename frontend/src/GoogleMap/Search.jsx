@@ -67,6 +67,16 @@ function Search(props) {
         setZoom(18);
     }
 
+    const onDragEnd = (e) => {
+        let newPosition = {
+            latitude: e.latLng.lat(),
+            longitude: e.latLng.lng()
+        };
+        setLocation(newPosition);
+    }
+    
+    console.log(location);
+
     return (
         <div className={"d-flex justify-content-center mt-5"}>
             <LoadScript id="script-loader" googleMapsApiKey={gvar.BEE_API_KEY} libraries={["places"]} zoom={10}>
@@ -98,7 +108,7 @@ function Search(props) {
                 </StandaloneSearchBox>
 
                 <GoogleMap
-                    id="searchbox"
+                    // id="searchbox"
                     mapContainerStyle={mapContainerStyle}
                     zoom={zoom}
                     center={location}
@@ -107,7 +117,7 @@ function Search(props) {
                     <MarkerF
                         position={location}
                         draggable
-                        // onDragEnd={onDragEnd}
+                        onDragEnd={onDragEnd}
                         // onLoad={onMarkerLoad}
                     />
                 </GoogleMap>
