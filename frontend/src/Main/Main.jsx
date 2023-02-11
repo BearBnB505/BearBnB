@@ -67,6 +67,7 @@ function Main(props) {
     }, [category]);
 
     useEffect(() => {
+        console.log("메인창");
         console.log(Auth);
     }, [category]);
     
