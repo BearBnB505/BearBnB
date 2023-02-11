@@ -18,7 +18,7 @@ export function CheckToken() {
     let refreshToken = getCookie('refreshToken');
     let dispatch = useDispatch();
 
-    // const checkAuthToken = () => {
+    const checkAuthToken = () => {
         if (refreshToken === undefined) {
             dispatch(auths({accessToken: null, authenticated: false, expireTime: null}));
             // setIsAuth('Failed');
@@ -45,12 +45,12 @@ export function CheckToken() {
                 //     // sessionStorage.setItem("isAuth", 'Failed');
                 // }
             // }
-        // }
+        }
     }
 
-    // useEffect(() => {
-    //     checkAuthToken();
-    // }, [refreshToken, dispatch]);
+    useEffect(() => {
+        checkAuthToken();
+    }, [refreshToken, dispatch]);
 
     return (
         // isAuth
