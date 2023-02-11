@@ -1,16 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCookie} from "../Storage/Cookies";
-// import {DELETE_TOKEN, SET_TOKEN, tokenSlice} from "../Store/Auth";
-import {SET_TOKEN, TOKEN_TIME_OUT} from "../Store/Auth";
-import {requestToken} from "../Api/Users";
-import {removeCookieToken} from "../Storage/Cookie";
-import {configureStore} from "@reduxjs/toolkit";
 import {auths} from "../lodging_reg/Reducers/AuthReducer";
 
 export function CheckToken() {
 
-    let [isAuth, setIsAuth] = useState('Loaded');
+    // let [isAuth, setIsAuth] = useState('Loaded');
     sessionStorage.setItem("isAuth", "Loaded");
 
     const Auth = useSelector((state)=>state.auth.value);
@@ -23,15 +18,15 @@ export function CheckToken() {
     let refreshToken = getCookie('refreshToken');
     let dispatch = useDispatch();
 
-    const checkAuthToken = () => {
+    // const checkAuthToken = () => {
         if (refreshToken === undefined) {
             dispatch(auths({accessToken: null, authenticated: false, expireTime: null}));
             // setIsAuth('Failed');
             sessionStorage.setItem("isAuth", "Failed");
-        } else {
-            if (authenticated && new Date().getTime() < expireTime) {
+        // } else {
+        //     if (authenticated && new Date().getTime() < expireTime) {
                 // setIsAuth('Success');
-                sessionStorage.setItem("isAuth", "Success");
+                // sessionStorage.setItem("isAuth", "Success");
             }
             else {
                 sessionStorage.setItem("isAuth", "Success");
@@ -49,15 +44,16 @@ export function CheckToken() {
                 //     setIsAuth('Failed');
                 //     // sessionStorage.setItem("isAuth", 'Failed');
                 // }
-            }
-        }
-    };
+            // }
+        // }
+    }
 
-    useEffect(() => {
-        checkAuthToken();
-    }, [refreshToken, dispatch]);
+    // useEffect(() => {
+    //     checkAuthToken();
+    // }, [refreshToken, dispatch]);
 
     return (
-        isAuth
+        // isAuth
+        <></>
     );
 }
