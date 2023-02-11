@@ -39,7 +39,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const  AuthReducer= createSlice({
         name : "authNum",
-        initialState: {value: {num: "111"}},
+        initialState: {value: {access: "111", authenticated: false, expireTime: null}},
         reducers:{
             authNums:(state, action) => {
                 state.value = action.payload
