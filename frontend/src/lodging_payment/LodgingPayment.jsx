@@ -302,6 +302,13 @@ function LodgingPayment(props) {
                                                 .then((req) => {
                                                     console.log("post방식으로 통신성공")
                                                     console.log(req); //데이터 넘어오는지 확인
+                                                    
+                                                    axios.post("/paymentEmail",{
+                                                        to:'dbfl14433@gmail.com',
+                                                        from:'bearbnbproject@gmail.com',
+                                                        title:'예약이 들어왔습니다',
+                                                        contents:'숙소 예약이 들어왔습니다. 아래 내용을 참고해주세요'
+                                                    })
                                                 })
                                                 .catch((err) => {
                                                     console.log('error발생')
