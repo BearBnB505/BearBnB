@@ -12,99 +12,40 @@ function MainCategory(props) {
         },
     };
 
+    const categories = ["한옥", "해변가", "수영장", "캠핑장", "캐슬", "사막", "농장", "호수", "북극", "통나무집", "주택"]
+    const categoriesImg = ["hanok", "beach", "pool", "campsite", "castle", "desert", "farm", "lakeside", "northPole", "logCabin", "house"]
+
+    const [activeButton, setActiveButton] = useState(categories[0]);
+
     const [category, setCategory] = useState('');
 
+    const handleClick = (categoryClick) => {
+        setActiveButton(categoryClick);
+    };
+
     return (
-        <nav className={"navbar navbar-expand-sm mt-2 fixed"}>
+        <nav className={"navbar navbar-expand-sm mt-3 fixed"}>
             <div className={"container"}>
-                <div className={"nav-item"} id={"container"}>
-                    <Link to={"/"} onClick={() => props.categoryValue('한옥')}>
-                        <div className={"d-flex justify-content-center"}>
-                            <img src="/img/navCategory/hanok.jpg" alt="" style={styles.navImg}/>
+                {categories.map((categoryClick, index) => {
+                    return (
+                        <div className={"nav-item"} id={"container"} style={{
+                            borderBottom: categoryClick === activeButton ? "2px solid black" : "",
+                            opacity: categoryClick === activeButton ? 1 : 0.6,
+                        }}>
+                            <Link to={"/"}
+                                  key={categoryClick}
+                                  onClick={() => {
+                                      handleClick(categoryClick)
+                                      props.categoryValue(categoryClick)
+                                  }}>
+                                <div className={"d-flex justify-content-center"}>
+                                    <img src={`/img/navCategory/${categoriesImg[index]}.jpg`} alt="" style={styles.navImg}/>
+                                </div>
+                                <p className={"mb-2"} style={styles.navText}>{categoryClick}</p>
+                            </Link>
                         </div>
-                        <p style={styles.navText}>한옥</p>
-                    </Link>
-                </div>
-                <div className={"nav-item"} id={"container"}>
-                    <Link to={"/"} onClick={() => props.categoryValue('해변가')}>
-                        <div className={"d-flex justify-content-center"}>
-                            <img src="/img/navCategory/beach.jpg" alt="" style={styles.navImg}/>
-                        </div>
-                        <p style={styles.navText}>해변가</p>
-                    </Link>
-                </div>
-                <div className={"nav-item"} id={"container"}>
-                    <Link to={"/"} onClick={() => props.categoryValue('수영장')}>
-                        <div className={"d-flex justify-content-center"}>
-                            <img src="/img/navCategory/pool.jpg" alt="" style={styles.navImg}/>
-                        </div>
-                        <p style={styles.navText}>수영장</p>
-                    </Link>
-                </div>
-                <div className={"nav-item"} id={"container"}>
-                    <Link to={"/"} onClick={() => props.categoryValue('캠핑장')}>
-                        <div className={"d-flex justify-content-center"}>
-                            <img src="/img/navCategory/campsite.jpg" alt="" style={styles.navImg}/>
-                        </div>
-                        <p style={styles.navText}>캠핑장</p>
-                    </Link>
-                </div>
-                <div className={"nav-item"} id={"container"}>
-                    <Link to={"/"} onClick={() => props.categoryValue('캐슬')}>
-                        <div className={"d-flex justify-content-center"}>
-                            <img src="/img/navCategory/castle.jpg" alt="" style={styles.navImg}/>
-                        </div>
-                        <p style={styles.navText}>캐슬</p>
-                    </Link>
-                </div>
-                <div className={"nav-item"} id={"container"}>
-                    <Link to={"/"} onClick={() => props.categoryValue('사막')}>
-                        <div className={"d-flex justify-content-center"}>
-                            <img src="/img/navCategory/desert.jpg" alt="" style={styles.navImg}/>
-                        </div>
-                        <p style={styles.navText}>사막</p>
-                    </Link>
-                </div>
-                <div className={"nav-item"} id={"container"}>
-                    <Link to={"/"} onClick={() => props.categoryValue('농장')}>
-                        <div className={"d-flex justify-content-center"}>
-                            <img src="/img/navCategory/farm.jpg" alt="" style={styles.navImg}/>
-                        </div>
-                        <p style={styles.navText}>농장</p>
-                    </Link>
-                </div>
-                <div className={"nav-item"} id={"container"}>
-                    <Link to={"/"} onClick={() => props.categoryValue('호수')}>
-                        <div className={"d-flex justify-content-center"}>
-                            <img src="/img/navCategory/lakeside.jpg" alt="" style={styles.navImg}/>
-                        </div>
-                        <p style={styles.navText}>호수</p>
-                    </Link>
-                </div>
-                <div className={"nav-item"} id={"container"}>
-                    <Link to={"/"} onClick={() => props.categoryValue('북극')}>
-                        <div className={"d-flex justify-content-center"}>
-                            <img src="/img/navCategory/northPole.jpg" alt="" style={styles.navImg}/>
-                        </div>
-                        <p style={styles.navText}>북극</p>
-                    </Link>
-                </div>
-                <div className={"nav-item"} id={"container"}>
-                    <Link to={"/"} onClick={() => props.categoryValue('통나무집')}>
-                        <div className={"d-flex justify-content-center"}>
-                            <img src="/img/navCategory/logCabin.jpg" alt="" style={styles.navImg}/>
-                        </div>
-                        <p style={styles.navText}>통나무집</p>
-                    </Link>
-                </div>
-                <div className={"nav-item"} id={"container"}>
-                    <Link to={"/"} onClick={() => props.categoryValue('주택')}>
-                        <div className={"d-flex justify-content-center"}>
-                            <img src="/img/navCategory/house.jpg" alt="" style={styles.navImg}/>
-                        </div>
-                        <p style={styles.navText}>주택</p>
-                    </Link>
-                </div>
+                    )
+                })}
             </div>
         </nav>
     );
