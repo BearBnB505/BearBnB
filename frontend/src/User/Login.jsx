@@ -63,9 +63,7 @@ function Login() {
                         expires: new Date(expireDate)
                     });
 
-                    dispatch(auths({access:token.accessToken}));
-                    dispatch(auths({authenticated:true}));
-                    dispatch(auths({expireTime:new Date().getTime()}));
+                    dispatch(auths({access:token.accessToken, authenticated:true, expireTime:new Date().getTime()}));
 
                     setShow(false);
                 }
