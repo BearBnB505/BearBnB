@@ -15,7 +15,7 @@ public class EmailController {
     EmailService emailService;
 
 
-
+//  호스트에게 연락하기(글, 제목 모두 보냄)
     @RequestMapping(value = "/sendContactHost", method = RequestMethod.POST)
     public void sendContactHost(@RequestBody EmailDto emailDto) throws Exception{
         System.out.println(emailDto);

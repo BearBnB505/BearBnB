@@ -37,11 +37,11 @@ function HostInfoContents ()  {
                     <div className={'HostInfoLine5'}>010-1577-1577</div>
                 </div>
 
-                <div>
-                    <div className={'HostInfoLine4'}>이메일 주소</div>
-                    <div className={'HostInfoLine5'}>{contact.contact}</div>
+                {/*<div>*/}
+                {/*    <div className={'HostInfoLine4'}>이메일 주소</div>*/}
+                {/*    <div className={'HostInfoLine5'}>{contact.contact}</div>*/}
 
-                </div>
+                {/*</div>*/}
             </div>
         </div>
     )

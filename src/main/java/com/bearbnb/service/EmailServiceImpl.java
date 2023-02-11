@@ -41,13 +41,6 @@ public class EmailServiceImpl implements EmailService {
         message.setText(emailDto.getContents());
         message.setFrom(new InternetAddress(emailDto.getFrom(),emailDto.getFrom()));
 
-
-//        SimpleMailMessage message = new SimpleMailMessage();
-//            message.setTo(emailDto.getTo());
-//            message.setFrom(emailDto.getFrom());
-//            message.setSubject(emailDto.getTitle());
-//            message.setText(emailDto.getContents());
-
         return message;
     }
 }

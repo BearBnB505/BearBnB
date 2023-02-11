@@ -58,12 +58,14 @@ const HostInfo=()=>{
     }
     
   return(
-    <div style={{display:"grid", justifyContent:"center"}}>
+    <div style={{display:"grid", justifyContent:"center", marginBottom:"100px"}}>
       <HostInfoTitle/>
       <HostInfoContents/>
-        <input type={'text'} placeholder={'제목'} onChange={titleOnChange}/>
-        <textarea name="message" placeholder="메일 내용을 입력해주세요." cols="60" rows="20" onChange={contentsOnChange}/>
-        <button onClick={sendContactHost}>이메일 보내기</button>
+        <h3 className={"fw-bold mb-4 mt-5"}>호스트에게 이메일로 연락하기</h3>
+        <p >아래 내용을 입력하면 호스트에게 바로 연락을 할 수 있습니다.</p>
+        <input type={'text'} placeholder={'제목'} className={'form-control'} onChange={titleOnChange}/>
+        <textarea name="message" placeholder="메일 내용을 입력해주세요." className={'form-control'} cols="60" rows="20" onChange={contentsOnChange} />
+        <button className={'btn btn-primary'}  onClick={sendContactHost}>이메일로 연락하기</button>
     </div>
   )
 }

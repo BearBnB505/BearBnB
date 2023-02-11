@@ -139,7 +139,18 @@ function LodgingDetail(props) {
                     </div>
 
                     <HostIntroduce lodging={lodging} members={members} avg={avg}/>
-                    <button onClick={onClickContact}>호스트에게 연락</button>
+                    <button className={'btn btn-outline-dark fw-bold'} style={{padding:"15px", marginLeft:"670px", marginBottom:"150px"}} onClick={onClickContact}>호스트에게 연락하기</button>
+                    {/*<div className={'row '}>*/}
+                    {/*    <div className={'col-1'}>*/}
+                    {/*        <img className={''} src={"/etcIcon/noticeBear4.png"} style={{width: 80}}/>*/}
+                    {/*    </div>*/}
+                    {/*    <div className={'col mt-1 ms-4'}>*/}
+                    {/*        /!*<div className={'IntroNoticeText'}>*!/*/}
+                    {/*        <p className={'fs-6'}>*/}
+                    {/*            안전한 결제를 위해 베어비앤비 웹사이트나 앱 외부에서 송금하거나 대화를 나누지 마세요.*/}
+                    {/*        </p>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
             </div>
             <Footer/>
