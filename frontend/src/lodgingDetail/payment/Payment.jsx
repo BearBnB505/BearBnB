@@ -83,7 +83,7 @@ function Payment(props) {
             <div className={'container border shadow rounded-4 px-5 py-4 mb-4'}>
                 <div>
                     <div>
-                        <span className={'fs-4 fw-bold me-1'}>&#92;{props.cost}</span>
+                        <span className={'fs-4 fw-bold me-1'}>&#8361;{props.cost}</span>
                         <span>/박</span>
                     </div>
                     <div className={'btn-group-vertical container mx-0 px-0 my-3'}>
@@ -149,10 +149,10 @@ function Payment(props) {
                     <div>
                         <div className={'row'}>
                             <div className={'col-7'}>
-                                <span>&#92;{props.cost} x {nightCount}박</span>
+                                <span>&#8361;{props.cost} x {nightCount}박</span>
                             </div>
                             <div className={'col text-end'}>
-                                <span>&#92;{total}</span>
+                                <span>&#8361; {total}</span>
                             </div>
                         </div>
                         <hr className={'my-4'}/>
@@ -162,7 +162,7 @@ function Payment(props) {
                                 <p>총 합계</p>
                             </div>
                             <div className={'col text-end'}>
-                                <p>&#92;{total}</p>
+                                <p>&#8361; {total}</p>
                             </div>
                         </div>
                     </div>

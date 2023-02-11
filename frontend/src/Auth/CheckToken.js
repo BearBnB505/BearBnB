@@ -10,14 +10,12 @@ import {auths} from "../lodging_reg/Reducers/AuthReducer";
 
 export function CheckToken() {
 
-    // const store = configureStore({reducer: tokenSlice.reducer});
-
     let [isAuth, setIsAuth] = useState('Loaded');
     sessionStorage.setItem("isAuth", "Loaded");
 
     const Auth = useSelector((state)=>state.auth.value);
-    console.log("로그인창");
-    console.log(Auth.access);
+    // console.log("로그인창");
+    // console.log(Auth.access);
     const authenticated = Auth.authenticated;
     const accessToken = Auth.accessToken;
     const expireTime = Auth.expireTime;
