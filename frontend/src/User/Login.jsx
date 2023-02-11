@@ -9,11 +9,12 @@ import DropdownItem from "react-bootstrap/DropdownItem";
 import DropdownMenu from "react-bootstrap/DropdownMenu";
 
 import {useLocation, useNavigate} from "react-router";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import {loginUser, requestToken} from "../Api/Users";
 import {removeCookieToken, setRefreshToken} from "../Storage/Cookie";
-import {DELETE_TOKEN, SET_TOKEN, tokenSlice} from "../Store/Auth";
+// import {DELETE_TOKEN, SET_TOKEN, tokenSlice} from "../Store/Auth";
+import {Auth, SETTOKEN} from "../Store/Auth";
 import axios from "axios";
 import {getCookie, setCookie} from "../Storage/Cookies";
 import Swal from "sweetalert2";
@@ -39,7 +40,7 @@ function Login() {
         setUserPwd(e.target.value);
     }
 
-    const store = configureStore({reducer: tokenSlice.reducer});
+    // const store = configureStore({reducer: tokenSlice.reducer});
 
 
     const loginClicked = () => {
@@ -56,6 +57,8 @@ function Login() {
                 const today = new Date();
                 const expireDate = today.setDate(today.getDate() * 7);
 
+                console.log(token.accessToken);
+
                 if (token.refreshToken != undefined) {
                     setCookie('refreshToken', token.refreshToken, {
                         path: '/',
@@ -63,14 +66,17 @@ function Login() {
                         sameSite: 'strict',
                         expires: new Date(expireDate)
                     });
-                    // console.log(token.accessToken);
-                    // dispatch(SET_TOKEN({ accessToken: token.accessToken }));
-                    store.dispatch(tokenSlice.actions.SET_TOKEN({payload: token.accessToken}));
+
+                    // dispatch(SETTOKEN({access:token.accessToken}));
+                    dispatch(SETTOKEN({access:'dd'}))
                     setShow(false);
+
+                    // dispatch(tokenSlice.reducer.SET_TOKEN(token.accessToken));
+
                     // const auth = store.getState().authenticated;
-                    const auth = store.getState();
-                    console.log(auth);
-                    checkAuthToken();
+                    // const auth = store.getState();
+                    // console.log(auth);
+                    // checkAuthToken();
                 }
             })
             .catch(err => {
@@ -87,47 +93,10 @@ function Login() {
             })
     }
 
-    const [isAuth, setIsAuth] = useState('Loaded');
-    // const { authenticated, accessToken, expireTime } = useSelector(state => state.store.getState());
-    const authenticated = store.getState().authenticated;
-    const accessToken = store.getState().accessToken;
-    const expireTime = store.getState().expireTime;
-    const refreshToken = getCookie('refreshToken');
-    // const dispatch = useDispatch();
+    // const redux = useSelector(state => state.authToken);
+    const redux = useSelector((state)=>state.authToken.value);
+    console.log("redux : " + redux);
 
-    const checkAuthToken = () => {
-        const authenticated = store.getState().authenticated;
-        const accessToken = store.getState().accessToken;
-        const expireTime = store.getState().expireTime;
-        const refreshToken = getCookie('refreshToken');
-        if (refreshToken == undefined) {
-            dispatch(DELETE_TOKEN());
-            // setIsAuth('Failed');
-            sessionStorage.setItem("isAuth", 'Failed');
-        } else {
-            if (authenticated && new Date().getTime() < expireTime) {
-                // setIsAuth('Success');
-                sessionStorage.setItem("isAuth", 'Success');
-            }
-            else {
-                const response = requestToken(refreshToken);
-
-                if (response.status) {
-                    const token = response.json.accessToken;
-                    dispatch(SET_TOKEN(token));
-                    // setIsAuth('Success');
-                    sessionStorage.setItem("isAuth", 'Success');
-                } else {
-                    dispatch(DELETE_TOKEN());
-                    removeCookieToken();
-                    // setIsAuth('Failed');
-                    sessionStorage.setItem("isAuth", 'Failed');
-                }
-            }
-        }
-    };
-
-    // console.log(isAuth);
     return (
         <>
             <DropdownItem onClick={() => setShow(true)}>
