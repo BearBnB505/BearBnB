@@ -97,20 +97,20 @@ function LodgingDetail(props) {
                                 <DetailAmenity/>
                             </DetailAmenityContext.Provider>
 
-                        {/*<div className={"pt-5"}>*/}
+                            {/*<div className={"pt-5"}>*/}
                             <hr className={"pt-3 mt-5"}/>
-                        {/*    <h4 className={"fw-bold mb-3"}>여기서 {isNaN(nightCount) ? '' : `${nightCount}박`}</h4>*/}
-                        {/*    <div className={"text-start"}>*/}
-                        {/*        <input type="text" id={"checkIn"} className={"fs-6 text-muted border-0 p-0"} style={{width: 300}} placeholder={"날짜 추가"} value={startDate === 'Invalid date' ? '' : `${startDate} - ${endDate}`}/>*/}
-                        {/*    </div>*/}
+                            {/*    <h4 className={"fw-bold mb-3"}>여기서 {isNaN(nightCount) ? '' : `${nightCount}박`}</h4>*/}
+                            {/*    <div className={"text-start"}>*/}
+                            {/*        <input type="text" id={"checkIn"} className={"fs-6 text-muted border-0 p-0"} style={{width: 300}} placeholder={"날짜 추가"} value={startDate === 'Invalid date' ? '' : `${startDate} - ${endDate}`}/>*/}
+                            {/*    </div>*/}
 
-                        {/*    <Calendar dateValue={setChooseDate} />*/}
+                            {/*    <Calendar dateValue={setChooseDate} />*/}
                         </div>
 
 
                         <div className={'col ms-4 me-5 mt-5'} style={{zIndex:2}}>
                             {/*<Payment cost={lodging.cost} chooseDate={chooseDate} nightCount={nightCount}/>*/}
-                            <Payment cost={lodging.cost}/>
+                            <Payment cost={lodging.cost} lodgingName={lodging.lodgingName} lodgingNum={lodging.lodgingNum}/>
                         </div>
                     </div>
 

@@ -134,11 +134,11 @@ function Payment(props) {
                     {/*{`${nightCount} === NaN` ?*/}
                     {/*    <Button className={'w-100 py-2 mb-2'} variant="primary">예약 가능 여부 보기</Button>*/}
                     {/*    : <>*/}
-                    <Link to={"/lodgingPayment"} state={{chooseDate: chooseDate, dayCost: props.cost, nightCount: nightCount, totalCost: total, selectGuest: selectGuest }}>
+                    <Link to={"/lodgingPayment"} state={{lodgingNum: props.lodgingNum, lodgingName: props.lodgingName, chooseDate: chooseDate, dayCost: props.cost, nightCount: nightCount, totalCost: total, selectGuest: selectGuest }}>
                         <Button className={'w-100 py-2 mb-2'} variant="primary">예약하기</Button>
                     </Link>
 
-                        <p className={'text-center'} style={{fontSize:13}}>예약 확정 전에는 요금이 청구되지 않습니다.</p>
+                    <p className={'text-center'} style={{fontSize:13}}>예약 확정 전에는 요금이 청구되지 않습니다.</p>
 
                     <div>
                         <div className={'row'}>

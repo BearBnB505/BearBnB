@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.awt.print.Book;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
@@ -49,6 +50,11 @@ public class PaymentController {
         paymentService.paymentInsert(userId,lodgingNum,bookNum,payType,payCost,bookState,bookCheckInDt,bookCheckOutDt,adultNum,babyNum,petNum);
 
     }
+
+//    @RequestMapping("/paymentInsert" method = RequestMethod.POST)
+//    public void paymentInsert(@RequestBody BookingDto booking) throws Exception{
+//        System.out.println(booking);
+//    }
 
 
     @RequestMapping(value = "/paymentLodgingInfoList")
