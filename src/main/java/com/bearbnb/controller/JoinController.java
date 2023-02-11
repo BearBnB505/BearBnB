@@ -3,6 +3,7 @@ package com.bearbnb.controller;
 import com.bearbnb.dto.MembersDto;
 import com.bearbnb.service.JoinService;
 //import com.bearbnb.service.MailSendService;
+import com.bearbnb.service.JoinServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +41,8 @@ public class JoinController {
         joinService.sendSimpleMessage(userId);
 
 
-        return code;
+
+        return JoinServiceImpl.ePw;
     }
 
 
