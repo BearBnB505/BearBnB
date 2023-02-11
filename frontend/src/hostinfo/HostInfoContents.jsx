@@ -40,7 +40,7 @@ function HostInfoContents ()  {
                 <div>
                     <div className={'HostInfoLine4'}>이메일 주소</div>
                     <div className={'HostInfoLine5'}>{contact.contact}</div>
-                    <button>이메일 보내기</button>
+
                 </div>
             </div>
         </div>

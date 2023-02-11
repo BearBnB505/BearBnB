@@ -23,6 +23,7 @@ import Footer from "./Footer/Footer";
 import moment from "moment";
 import {useDispatch, useSelector} from "react-redux";
 import {contacts} from "../lodging_reg/Reducers/ContactHostReducer";
+import {useNavigate} from "react-router-dom";
 
 
 function LodgingDetail(props) {
@@ -46,7 +47,8 @@ function LodgingDetail(props) {
     const location = useLocation();
     const lat = parseFloat(location.state.lat);
     const lng = parseFloat(location.state.lng);
-    
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
         axios.get(`http://localhost:8080/lodgingDetail/${idx}`)
@@ -69,12 +71,18 @@ function LodgingDetail(props) {
 
     // console.log('디테일 페이지 테스트')
     // console.log(members.userId);
-
-    const dispatch = useDispatch();
-    dispatch(contacts({contact:members.userId}))
+    //
+    // const dispatch = useDispatch();
+    // dispatch(contacts({contact:members.userId}))
     const contact = useSelector((state)=>state.contact.value);
+    const navigate = useNavigate();
     // console.log('dispatch테스트')
     // console.log(contact.contact); //확인 완료
+    const onClickContact = () =>{
+
+        dispatch(contacts({contact:members.userId}))
+        navigate("/hostInfo")
+    }
 
     return (
         <>
@@ -131,6 +139,7 @@ function LodgingDetail(props) {
                     </div>
 
                     <HostIntroduce lodging={lodging} members={members} avg={avg}/>
+                    <button onClick={onClickContact}>호스트에게 연락</button>
                 </div>
             </div>
             <Footer/>
