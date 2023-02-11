@@ -2,33 +2,31 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCookie} from "../Storage/Cookies";
 // import {DELETE_TOKEN, SET_TOKEN, tokenSlice} from "../Store/Auth";
-import {SET_TOKEN} from "../Store/Auth";
+import {SET_TOKEN, TOKEN_TIME_OUT} from "../Store/Auth";
 import {requestToken} from "../Api/Users";
 import {removeCookieToken} from "../Storage/Cookie";
 import {configureStore} from "@reduxjs/toolkit";
+import {auths} from "../lodging_reg/Reducers/AuthReducer";
 
 export function CheckToken(key) {
 
     // const store = configureStore({reducer: tokenSlice.reducer});
 
     let [isAuth, setIsAuth] = useState('Loaded');
-    // const { authenticated, accessToken, expireTime } = useSelector(state => state.store.getState());
-    // let authenticated = store.getState().authenticated;
-    // let accessToken = store.getState().accessToken;
-    // let expireTime = store.getState().expireTime;
-    // const authenticated = useSelector((state) => state.accessToken.value.authenticated);
-    const accessToken = useSelector(state => state.authToken.value);
-    // const expireTime = useSelector((state) => state.accessToken.value.expireTime);
-    console.log("access : " + accessToken);
+
+    const Auth = useSelector((state)=>state.auth.value);
+    console.log("로그인창");
+    console.log(Auth.access);
+    const authenticated = Auth.authenticated;
+    const accessToken = Auth.accessToken;
+    const expireTime = Auth.expireTime;
+
     let refreshToken = getCookie('refreshToken');
     let dispatch = useDispatch();
 
-    let authenticated = true;
-    let expireTime = new Date();
-
     const checkAuthToken = () => {
         if (refreshToken === undefined) {
-            // dispatch(DELETE_TOKEN());
+            dispatch(auths({accessToken: null, authenticated: false, expireTime: null}));
             setIsAuth('Failed');
             // sessionStorage.setItem("isAuth", "Failed");
         } else {
@@ -37,6 +35,8 @@ export function CheckToken(key) {
                 // sessionStorage.setItem("isAuth", "Success");
             }
             else {
+                // sessionStorage.setItem("isAuth", "Success");
+
                 // const response = requestToken(refreshToken);
                 //
                 // if (response.status) {

@@ -27,25 +27,13 @@ function Main(props) {
         }
     };
 
-    // const location = useLocation();
-    // const {isAuth} = CheckToken(location.key);
+    const location = useLocation();
+    const {isAuth} = CheckToken(location.key);
     // const {isAuth} = CheckToken();
 
 
-    // // console.log(`userID : ${accessToken}`);
-
     // const isAuth = sessionStorage.getItem("isAuth");
-    // console.log(`isAuth : ${isAuth}`);
-
-    // const store = configureStore({reducer: tokenSlice.reducer});
-    // const auth = store.getState();
-    // console.log(auth);
-
-    // const auth = useSelector((state) => state.SET_TOKEN);
-    // console.log(auth);
-
-    // const accessToken = useSelector((state) => state.accessToken.value);
-    // console.log(accessToken);
+    console.log(`isAuth : ${isAuth}`);
 
     const Auth = useSelector((state)=>state.auth.value);
     // console.log(Auth);
@@ -66,10 +54,10 @@ function Main(props) {
             })
     }, [category]);
 
-    useEffect(() => {
-        console.log("메인창");
-        console.log(Auth);
-    }, [category]);
+    // useEffect(() => {
+    //     console.log("메인창");
+    //     console.log(Auth);
+    // }, [category]);
     
     useEffect(() => {
         if (!sessionStorage.getItem("startDt")) {

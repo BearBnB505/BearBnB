@@ -1,6 +1,6 @@
 // import { createSlice } from "@reduxjs/toolkit";
 //
-// export const TOKEN_TIME_OUT = 600*1000;
+
 //
 // export const Auth = createSlice({
 //     name: 'authToken',
@@ -37,9 +37,11 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
+export const TOKEN_TIME_OUT = 600*1000;
+
 export const  AuthReducer= createSlice({
         name : "authNum",
-        initialState: {value: {access: "111", authenticated: false, expireTime: null}},
+        initialState: {value: {accessToken: null, authenticated: false, expireTime: null}},
         reducers:{
             authNums:(state, action) => {
                 state.value = action.payload

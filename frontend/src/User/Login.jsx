@@ -14,13 +14,16 @@ import axios from "axios";
 import {getCookie, setCookie} from "../Storage/Cookies";
 import Swal from "sweetalert2";
 import {auths} from "../lodging_reg/Reducers/AuthReducer";
+import {TOKEN_TIME_OUT} from "../Store/Auth";
 
 
 function Login() {
 
     const Auth = useSelector((state)=>state.auth.value);
     console.log("로그인창");
-    console.log(Auth.access);
+    console.log(Auth.accessToken);
+    console.log(Auth.authenticated);
+    console.log(Auth.expireTime);
 
     const [show, setShow] = useState(false);
 
@@ -63,7 +66,7 @@ function Login() {
                         expires: new Date(expireDate)
                     });
 
-                    dispatch(auths({access:token.accessToken, authenticated:true, expireTime:new Date().getTime()}));
+                    dispatch(auths({accessToken:token.accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
 
                     setShow(false);
                 }
