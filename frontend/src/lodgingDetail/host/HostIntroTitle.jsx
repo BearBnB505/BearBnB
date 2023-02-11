@@ -1,6 +1,6 @@
 import React from "react";
 
-function HostInroTitle(props){
+function HostIntroTitle(props){
   return(
     <div className={'IntroTitleBox'}>
       <img style={{gridRow:0/1}} className={'IntroHostImg'} src={"/hostImg/1.png"} alt={"hostImg"}></img>
@@ -12,4 +12,4 @@ function HostInroTitle(props){
   )
 }
 
-export default HostInroTitle;
+export default HostIntroTitle;

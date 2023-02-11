@@ -1,12 +1,12 @@
 import React from "react";
-import HostInroTitle from "./HostInroTitle";
+import HostIntroTitle from "./HostIntroTitle";
 import HostAvg from "./HostAvg";
 import HostIntroContents from "./HostIntroContents";
 
 function HostIntroduce(props){
   return(
     <div>
-      <HostInroTitle userId={props.userId} joinDt={props.joinDt}/>
+      <HostIntroTitle userId={props.userId} joinDt={props.joinDt}/>
       <HostAvg/>
       <HostIntroContents/>
 
