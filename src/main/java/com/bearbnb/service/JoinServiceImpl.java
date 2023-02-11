@@ -1,6 +1,5 @@
 package com.bearbnb.service;
 
-import com.bearbnb.dto.LodgingDto;
 import com.bearbnb.dto.MembersDto;
 import com.bearbnb.mapper.JoinMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,7 +102,7 @@ public class JoinServiceImpl implements JoinService{
 
 
     @Override
-    public void sendSimpleMessage(String to)throws Exception {
+    public String sendSimpleMessage(String to)throws Exception {
         // TODO Auto-generated method stub
         MimeMessage message = createMessage(to);
         try{//예외처리
@@ -113,6 +112,7 @@ public class JoinServiceImpl implements JoinService{
             throw new IllegalArgumentException();
         }
 
+        return to;
     }
 
 

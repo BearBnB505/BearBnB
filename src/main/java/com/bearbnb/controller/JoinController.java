@@ -40,7 +40,7 @@ public class JoinController {
         joinService.sendSimpleMessage(userId);
 
 
-        return null;
+        return code;
     }
 
 

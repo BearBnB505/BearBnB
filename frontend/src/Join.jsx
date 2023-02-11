@@ -95,7 +95,7 @@ function Join() {
             setIsEmail('success')
         }
     }, [])
-    console.log(email);//email확인
+    // console.log(email);//email확인
 
     //비밀번호 숫자, 영문자, 특수문자
     const onChangePassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -179,72 +179,9 @@ function Join() {
     console.log(insertGender);
 
     const [data, setData] = useState('');
-    // userId 중복체크
-    // const onClickEmailCheck = () => {
-    //     axios.get('http://localhost:8080/emailCheck', {
-    //         params: {
-    //             userId: email,
-    //         }
-    //     })
-    //         .then(async (req) => {
-    //             const {data} = req;
-    //             setData(data);
-    //             console.log(data)
-    //             if (data === 1) {
-    //                 Swal.fire({
-    //                     icon: 'error',
-    //                     title: '중복된 아이디입니다',
-    //                 })
-    //                 setEmailMessage('중복된 아이디입니다.')
-    //             } else if (data === 0) {
-    //                 setEmailMessage('사용가능한 아이디입니다.')
-    //
-    //                 axios.get('http://localhost:8080/emailCheck', {
-    //                     params: {
-    //                         userId: email,
-    //                     }
-    //                 })
-    //                     .then((req) => {
-    //                         console.log(req);
-    //                         axios.get('http://localhost:8080/emailCode', {
-    //                             params: {
-    //                                 userId: email,
-    //                             }
-    //                         })
-    //                             .then((req) => {
-    //                                 console.log(req);
-    //                             })
-    //                             .catch((err) => {
-    //                                 console.log(err)
-    //                             })
-    //                     })
-    //                     // .then(async (req) => {
-    //                     //     const {value: password} = await Swal.fire({
-    //                     //         title: 'Enter your password',
-    //                     //         input: 'password',
-    //                     //         inputLabel: 'Password',
-    //                     //         inputPlaceholder: 'Enter your password',
-    //                     //         inputAttributes: {
-    //                     //             maxlength: 10,
-    //                     //             autocapitalize: 'off',
-    //                     //             autocorrect: 'off'
-    //                     //         }
-    //                     //     })
-    //                     // })
-    //                     .catch(
-    //                         Swal.fire({
-    //                             icon: 'error',
-    //                             title: '두 번째 통신 오류',
-    //                         })
-    //                     )
-    //
-    //                     .catch((err) => {
-    //                         console.log(err);
-    //                         console.log('오류발생')
-    //                     })
-    //             }
-    //         })
-    // }
+    const [code, setCode] = useState('');
+
+
 
     const onClickEmailCheck = () => {
         axios.get('http://localhost:8080/emailCheck', {
@@ -282,7 +219,21 @@ function Join() {
                                 //인증번호 보낸 것이 성공했을 때 실행
                                 .then((req) => {
                                     console.log(req);
-                                    alert('인증번호 발송')
+                                    alert('인증번호를 보냈습니다.')
+                                    const {data} = req;
+
+                                    // setCode(data);
+                                    console.log('인증번호는 말이다')
+                                    console.log(data)
+                                    // const { value: url } = await Swal.fire({
+                                    //     input: 'url',
+                                    //     inputLabel: 'URL address',
+                                    //     inputPlaceholder: 'Enter the URL'
+                                    // })
+                                    //
+                                    // if (url) {
+                                    //     Swal.fire(`Entered URL: ${url}`)
+                                    // }
                                 })
                                 .catch((err) => {
                                     Swal.fire({
@@ -302,8 +253,6 @@ function Join() {
                 }
             })
     }
-
-
                     // 회원가입하기
                     const onClickJoin = () => {
                         axios({
@@ -337,19 +286,31 @@ function Join() {
                             });
                     }
 
-                    const onClickemilCode = () => {
-                        axios.get('http://localhost:8080/emailCode', {
-                            params: {
-                                userId: email,
-                            }
-                        })
-                            .then((req) => {
-                                console.log(req);
-                            })
-                            .catch((err) => {
-                                console.log(err)
-                            })
-                    }
+                    // const onClickemilCode = () => {
+                    //     axios.get('http://localhost:8080/emailCode', {
+                    //         params: {
+                    //             userId: email,
+                    //         }
+                    //     })
+                    //         .then((req) => {
+                    //             alert('인증번호발송')
+                    //             // const {data} = req;
+                    //             // setCode(data);
+                    //             // console.log(code)
+                    //             // alert(code);
+                    //
+                    //             // let writeCode= window.prompt(email+"로 인증코드를 보냈습니다. 인증코드를 입력해주세요");
+                    //             // // {writeCode}
+                    //             // if(code===writeCode){
+                    //             //     alert('인증번호가 일치합니다ㅣ')
+                    //             // } else{
+                    //             //     alert('불일치합니다.')
+                    //             // }
+                    //         })
+                    //         .catch((err) => {
+                    //             console.log(err)
+                    //         })
+                    // }
 
 
                     return (
@@ -396,6 +357,7 @@ function Join() {
                                                         className={`message ${isBirth ? 'success' : 'error'}`}>{birthMessage}</span>}</p>
 
                                                     <br/>
+                                                    {/*중복확인*/}
                                                     <div className={'row'}>
                                                         <div className={'col-9'}>
                                                             <FloatingLabel controlId="email" label="이메일">
@@ -408,8 +370,22 @@ function Join() {
                                                             <button className={'btn btn-primary'}
                                                                     onClick={onClickEmailCheck}>인증하기
                                                             </button>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    {/*인증코드*/}
+                                                    <div className={'row mt-4'}>
+                                                        <div className={'col-9'}>
+                                                            
+                                                            <FloatingLabel controlId="email" label="인증코드">
+                                                                <Form.Control type="email" typeTitle="email"
+                                                                              placeholder="인증코드"
+                                                                              onChange={onChangeEmail}/>
+                                                            </FloatingLabel>
+                                                        </div>
+                                                        <div className={'col-3 my-auto'}>
                                                             <button className={'btn btn-primary'}
-                                                                    onClick={onClickemilCode}>두 번쩨인증하기
+                                                                    onClick={onClickEmailCheck}>인증하기
                                                             </button>
                                                         </div>
                                                     </div>
