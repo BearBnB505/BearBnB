@@ -21,6 +21,7 @@ function Login() {
 
     const Auth = useSelector((state)=>state.auth.value);
     console.log("로그인창");
+    console.log(Auth);
     console.log(Auth.accessToken);
     console.log(Auth.authenticated);
     console.log(Auth.expireTime);

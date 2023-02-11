@@ -8,11 +8,12 @@ import {removeCookieToken} from "../Storage/Cookie";
 import {configureStore} from "@reduxjs/toolkit";
 import {auths} from "../lodging_reg/Reducers/AuthReducer";
 
-export function CheckToken(key) {
+export function CheckToken() {
 
     // const store = configureStore({reducer: tokenSlice.reducer});
 
     let [isAuth, setIsAuth] = useState('Loaded');
+    sessionStorage.setItem("isAuth", "Loaded");
 
     const Auth = useSelector((state)=>state.auth.value);
     console.log("로그인창");
@@ -27,15 +28,15 @@ export function CheckToken(key) {
     const checkAuthToken = () => {
         if (refreshToken === undefined) {
             dispatch(auths({accessToken: null, authenticated: false, expireTime: null}));
-            setIsAuth('Failed');
-            // sessionStorage.setItem("isAuth", "Failed");
+            // setIsAuth('Failed');
+            sessionStorage.setItem("isAuth", "Failed");
         } else {
             if (authenticated && new Date().getTime() < expireTime) {
-                setIsAuth('Success');
-                // sessionStorage.setItem("isAuth", "Success");
+                // setIsAuth('Success');
+                sessionStorage.setItem("isAuth", "Success");
             }
             else {
-                // sessionStorage.setItem("isAuth", "Success");
+                sessionStorage.setItem("isAuth", "Success");
 
                 // const response = requestToken(refreshToken);
                 //
@@ -56,7 +57,7 @@ export function CheckToken(key) {
 
     useEffect(() => {
         checkAuthToken();
-    }, [refreshToken, dispatch, key]);
+    }, [refreshToken, dispatch]);
 
     return (
         isAuth

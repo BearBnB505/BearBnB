@@ -8,8 +8,14 @@ import DropdownMenu from "react-bootstrap/DropdownMenu";
 import Overlay from "react-bootstrap/Overlay";
 import Calendar from "../../Calendar/Calendar";
 import {Link} from "react-router-dom";
+import {CheckToken} from "../../Auth/CheckToken";
 
 function Payment(props) {
+
+    CheckToken();
+    const isAuth = sessionStorage.getItem("isAuth");
+    console.log(`isAuth : ${isAuth}`);
+
     const styles = {
         navDate: {
             width: 120

@@ -27,13 +27,10 @@ function Main(props) {
         }
     };
 
-    const location = useLocation();
-    const {isAuth} = CheckToken(location.key);
+    // const location = useLocation();
+    // const {isAuth} = CheckToken(location.key);
     // const {isAuth} = CheckToken();
 
-
-    // const isAuth = sessionStorage.getItem("isAuth");
-    console.log(`isAuth : ${isAuth}`);
 
     const Auth = useSelector((state)=>state.auth.value);
     // console.log(Auth);
