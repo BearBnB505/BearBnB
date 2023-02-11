@@ -21,6 +21,8 @@ import ReviewAverageForm from "./review/ReviewAverageForm";
 import ReviewTitle from "./review/ReviewTitle";
 import Footer from "./Footer/Footer";
 import moment from "moment";
+import {useDispatch, useSelector} from "react-redux";
+import {contacts} from "../lodging_reg/Reducers/ContactHostReducer";
 
 
 function LodgingDetail(props) {
@@ -44,6 +46,7 @@ function LodgingDetail(props) {
     const location = useLocation();
     const lat = parseFloat(location.state.lat);
     const lng = parseFloat(location.state.lng);
+    
 
     useEffect(() => {
         axios.get(`http://localhost:8080/lodgingDetail/${idx}`)
@@ -63,6 +66,15 @@ function LodgingDetail(props) {
                 console.log("통신 오류");
             })
     }, []);
+
+    // console.log('디테일 페이지 테스트')
+    // console.log(members.userId);
+
+    const dispatch = useDispatch();
+    dispatch(contacts({contact:members.userId}))
+    const contact = useSelector((state)=>state.contact.value);
+    // console.log('dispatch테스트')
+    // console.log(contact.contact); //확인 완료
 
     return (
         <>
