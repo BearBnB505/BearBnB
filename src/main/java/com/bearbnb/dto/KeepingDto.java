@@ -22,4 +22,6 @@ public class KeepingDto {
     private String locationGrade ;
     private String checkInGrade;
     private String costGrade;
+
+    private String photo;
 }

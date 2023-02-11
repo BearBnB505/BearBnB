@@ -87,7 +87,7 @@ function Keeping() {
 
             <div className={"row"}>
                 {data.slice(offset, offset + limit).map((item) => {
-                    return <KeepingItem idx={item.idx} imageUrl={item.certifyImg} lodging_num={item.lodgingNum}
+                    return <KeepingItem idx={item.idx} imageUrl={item.photo} lodging_num={item.lodgingNum}
                                         lodging_name={item.lodgingName} addr={item.addr}
                                         clean_grade={item.cleanGrade} accuracy_grade={item.accuracyGrade}
                                         communication_grade={item.communicationGrade} location_grade={item.locationGrade}
