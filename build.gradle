@@ -45,10 +45,11 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.7'
 
 //    email인증
-    // https://mvnrepository.com/artifact/javax.mail/mail
-    implementation 'javax.mail:mail:1.5.0-b01'
+    // https://mvnrepository.com/artifact/javax.mail/javax.mail-api
+    implementation 'javax.mail:javax.mail-api:1.6.2'
+
 // https://mvnrepository.com/artifact/org.springframework/spring-context-support
-    implementation 'org.springframework:spring-context-support:5.3.23'
+    implementation 'org.springframework:spring-context-support:5.3.24'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
 
 

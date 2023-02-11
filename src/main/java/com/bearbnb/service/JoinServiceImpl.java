@@ -52,7 +52,7 @@ public class JoinServiceImpl implements JoinService{
         MimeMessage  message = emailSender.createMimeMessage();
 
         message.addRecipients(Message.RecipientType.TO, to);//보내는 대상
-        message.setSubject("BZshop 인증번호가 도착했습니다.");//제목
+        message.setSubject("BearBnB 인증번호가 도착했습니다.");//제목
 
         String msgg="";
         msgg+= "<div style='margin:100px;'>";
@@ -69,7 +69,7 @@ public class JoinServiceImpl implements JoinService{
         msgg+= ePw+"</strong><div><br/> ";
         msgg+= "</div>";
         message.setText(msgg, "utf-8", "html");//내용
-        message.setFrom(new InternetAddress("properties에 작성한 이메일","BearBnB"));//보내는 사람
+        message.setFrom(new InternetAddress("bearbnbproject@gmail.com","BearBnB"));//보내는 사람
 
         return message;
     }
