@@ -2,24 +2,22 @@ import React, {useState, useRef} from "react";
 import {ButtonGroup, Dropdown, Modal, ModalBody, NavDropdown} from "react-bootstrap";
 
 import './Header.css';
-import {Link} from "react-router-dom";
-import DropdownToggle from "react-bootstrap/DropdownToggle";
-import DropdownMenu from "react-bootstrap/DropdownMenu";
-import DropdownItem from "react-bootstrap/DropdownItem";
+import {Link, useNavigate} from "react-router-dom";
 import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
 
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import GuestCount from "../GuestCount";
-import Login from "../User/Login";
-import Join from "../User/Join";
 import Calendar from "../Calendar/Calendar";
-import DatePicker from "react-datepicker";
 import moment from "moment";
 import {GoogleMap, StandaloneSearchBox} from "@react-google-maps/api";
 import {SearchMap} from "../GoogleMap/Map";
 import axios from "axios";
+import Logout from "../User/Logout";
+import {useLocation} from "react-router";
+import {CheckToken} from "../Auth/CheckToken";
+import Member from "./Member";
 
 function HeaderModal(props) {
     const styles = {
@@ -62,6 +60,7 @@ function HeaderModal(props) {
         },
     }
 
+
     const target = useRef(null);
 
     const [showExpandedHeader, setShowExpandedHeader] = useState(false);
@@ -94,7 +93,14 @@ function HeaderModal(props) {
         setShowMap(false);
     }
 
-    let [chooseDate, setChooseDate] = useState([]);
+    const iconClick = () => {
+        setShowExpandedHeader(true);
+        setShowGuestCount(false);
+        setShowChooseDate(false);
+        setShowMap(false);
+    }
+
+    let [chooseDate, setChooseDate] = useState(['Invalid date', 'Invalid date']);
     let [selectGuest, setSelectGuest] = useState([0, 0, 0]);
 
     // console.log(chooseDate);
@@ -120,11 +126,14 @@ function HeaderModal(props) {
 
     const [data, setData] = useState([]);
 
+    const navigate = useNavigate();
+
     const search = () => {
         sessionStorage.setItem("startDt", startDt);
         sessionStorage.setItem("endDt", endDt);
         sessionStorage.setItem("adultCount", adultCount);
         setShowExpandedHeader(false);
+        navigate('/', { replace: true });
         window.location.reload();
     }
 
@@ -164,22 +173,8 @@ function HeaderModal(props) {
                                 <span style={{fontSize: 18}}>숙소</span>
                             </div>
 
-                            <div className={"nav-item"}>
-                                <Dropdown>
-                                    <DropdownToggle variant={"none"} bsPrefix style={{border:"none"}}>
-                                        <a href="#" className={"nav-link"}><img src="/img/user.png" alt="user" style={{width: 35}}/></a>
-                                    </DropdownToggle>
-
-                                    <DropdownMenu align={"end"}>
-                                        <Login />
-                                        <Join />
-                                        <DropdownItem href={"/message"}>
-                                            <span>메세지알림</span>
-                                            <span className="badge bg-primary rounded-pill float-end">2</span>
-                                        </DropdownItem>
-                                        <DropdownItem href={"/mypage"}>마이페이지</DropdownItem>
-                                    </DropdownMenu>
-                                </Dropdown>
+                            <div className={"nav-item"} onClick={iconClick}>
+                                <Member/>
                             </div>
                         </div>
                     </nav>
@@ -224,16 +219,16 @@ function HeaderModal(props) {
                                 </button>
 
                                 {/*<Link to={"/"} onClick={search}>*/}
-                                    <a onClick={search} type={"button"} className={"btn btn-primary position-absolute"} style={{borderRadius:25, height: 45, left: 600, top: 10, zIndex: 9999}}>
-                                        <div className={"row px-1 pt-1"}>
-                                            <div className={"col-1"}>
-                                                <FontAwesomeIcon icon={faMagnifyingGlass} style={{width: 12, paddingTop: 4}}/>
-                                            </div>
-                                            <div className={"col-6 p-0 ms-1 me-2 "}>
-                                                <span>검색</span>
-                                            </div>
+                                <a onClick={search} type={"button"} className={"btn btn-primary position-absolute"} style={{borderRadius:25, height: 45, left: 600, top: 10, zIndex: 9999}}>
+                                    <div className={"row px-1 pt-1"}>
+                                        <div className={"col-1"}>
+                                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{width: 12, paddingTop: 4}}/>
                                         </div>
-                                    </a>
+                                        <div className={"col-6 p-0 ms-1 me-2 "}>
+                                            <span>검색</span>
+                                        </div>
+                                    </div>
+                                </a>
                                 {/*</Link>*/}
 
                                 <Overlay
