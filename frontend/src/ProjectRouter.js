@@ -125,13 +125,13 @@ function ProjectRouter(props) {
 
 
                 {/* 관리자페이지 */}
-                <Route path={"/admin"} element={<Navbar/>}>
+                <Route path={"/admin?"} element={<Navbar/>}>
                     <Route index element={<Table1 />} />
                     <Route path={"lodging"} element={<Table2/>}/>
                     <Route path={"report"} element={<Table3/>}/>
                     <Route path={"sales"} element={<Table4/>}/>
 
-                    <Route path={"detail2"} element={<DetailTable2/>}/>
+                    <Route path={"/admin/lodging/detail2/:lodgingNum"} element={<DetailTable2/>}/>
                     <Route path={"detail3"} element={<DetailTable3/>}/>
 
                 </Route>

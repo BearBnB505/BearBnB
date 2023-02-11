@@ -32,8 +32,8 @@ public class LodgingDetailServiceImpl implements LodgingDetailService {
     }
 
     @Override
-    public ReviewDto reviewAvg(String lodgingNum) throws Exception {
-        ReviewDto avg = lodgingMapper.reviewAvg(lodgingNum);
+    public ReviewAvgDto reviewAvg(String lodgingNum) throws Exception {
+        ReviewAvgDto avg = lodgingMapper.reviewAvg(lodgingNum);
         return avg;
     }
 
@@ -48,5 +48,6 @@ public class LodgingDetailServiceImpl implements LodgingDetailService {
         MembersDto members = lodgingMapper.membersDetail(userId);
         return members;
     }
+
 
 }

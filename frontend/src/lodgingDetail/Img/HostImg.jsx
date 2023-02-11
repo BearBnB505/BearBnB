@@ -1,23 +1,28 @@
-import React, {useContext} from "react";
+import React, {useState} from "react";
 import {Button} from "react-bootstrap";
 import '../lodgingDetail.css';
-import PhotoContext from "../Context/PhotoContext";
+import HostImgModalDetail from "./HostImgModalDetail";
 
-function HostImg() {
-    const photo = useContext(PhotoContext);
-
+function HostImg({photo}) {
+    const [modal, setModal] = useState(false);
     return (
         <>
             <div className={'containerGrid'}>
-                    <HostImgItem photo1={photo.length[0]}/>
-                <Button className={'HouseImgBtn'} variant="dark">사진 모두보기</Button>
+                    <HostImgItem photo={photo}/>
+                <Button className={'HouseImgBtn'} variant="dark"
+                        onClick={() => setModal(true)}>
+                    사진 모두보기</Button>
             </div>
+
+            <HostImgModalDetail photo={photo}
+                                show={modal} onHide={()=>setModal(false)} />
+
             <hr/>
         </>
     )
 }
 
-function HostImgItem() {
+function HostImgItem({photo}) {
 
     return (
         <>

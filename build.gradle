@@ -40,8 +40,6 @@ dependencies {
     //gson
     implementation 'com.google.code.gson:gson:2.8.7'
 
-//    jsonLibrary
-    // https://mvnrepository.com/artifact/net.sf.json-lib/json-lib
 //    implementation 'net.sf.json-lib:json-lib:2.4'
     implementation 'org.json:json:20200518'
     // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import {useLocation, useParams} from "react-router";
 import axios from "axios";
 import PhotoContext from "./Context/PhotoContext";
 import ReviewContext from "./Context/ReviewContext";
@@ -19,9 +20,7 @@ import Map from "../GoogleMap/Map";
 import ReviewAverageForm from "./review/ReviewAverageForm";
 import ReviewTitle from "./review/ReviewTitle";
 import Footer from "./Footer/Footer";
-
-import {useLocation, useParams} from "react-router";
-import moment from "moment/moment";
+import moment from "moment";
 
 
 function LodgingDetail(props) {
@@ -46,9 +45,6 @@ function LodgingDetail(props) {
     const lat = parseFloat(location.state.lat);
     const lng = parseFloat(location.state.lng);
 
-    // const [lat, setLat] = useState(0.0);
-    // const [lng, setLng] = useState(0.0);
-
     useEffect(() => {
         axios.get(`http://localhost:8080/lodgingDetail/${idx}`)
             .then((req) => {
@@ -68,32 +64,21 @@ function LodgingDetail(props) {
             })
     }, []);
 
-    // useEffect(() => {
-    //     setNightCount(moment.duration(moment(chooseDate[1]).diff(moment(chooseDate[0]))).asDays());
-    //     // console.log(moment.duration(moment(chooseDate[1]).diff(moment(chooseDate[0]))).asDays());
-    //     console.log(chooseDate);
-    // }, chooseDate);
-
-    // console.log(nightCount);
-    // console.log(lat);
-
     return (
         <>
             <div style={{display: "grid", justifyContent: "center", width: 1900}}>
-                {/*<div style={{display: "grid", justifyContent: "center"}}>*/}
-
                 <div className={'mx-auto'} style={{width: 1230}}>
 
-                    <LodgingDetailTitle idx={lodging.idx} lodgingName={lodging.lodgingName} addr={lodging.addr} reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
+                    <LodgingDetailTitle lodging={lodging} review={review} avg={avg}/>
 
-                    <PhotoContext.Provider value={photo}>
-                        <HostImg/>
+                    <PhotoContext.Provider>
+                        <HostImg photo={photo}/>
                     </PhotoContext.Provider>
 
                     <div className={'row'}>
                         <div className={'col-7 me-5'}>
-                            <HouseExplain introLodging={lodging.introLodging}/>
-                            <HostHouse bedroomNum={lodging.bedroomNum} bedNum={lodging.bedNum} bathroomNum={lodging.bathroomNum}/>
+                            <HouseExplain lodging={lodging}/>
+                            <HostHouse lodging={lodging}/>
 
                             <DetailAmenityContext.Provider value={comforts}>
                                 <DetailAmenity/>
@@ -109,19 +94,18 @@ function LodgingDetail(props) {
                             {/*    <Calendar dateValue={setChooseDate} />*/}
                         </div>
 
-
                         <div className={'col ms-4 me-5 mt-5'} style={{zIndex:2}}>
                             {/*<Payment cost={lodging.cost} chooseDate={chooseDate} nightCount={nightCount}/>*/}
                             <Payment cost={lodging.cost} lodgingName={lodging.lodgingName} lodgingNum={lodging.lodgingNum}/>
                         </div>
                     </div>
 
-                    <ReviewTitle reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
-                    <ReviewAverageForm cleanGrade={avg.cleanGrade} accuracyGrade={avg.accuracyGrade} communicationGrade={avg.communicationGrade} locationGrade={avg.locationGrade} checkInGrade={avg.checkInGrade} costGrade={avg.costGrade}/>
+                    <ReviewTitle avg={avg}/>
+                    <ReviewAverageForm avg={avg}/>
 
                     <ReviewContext.Provider value={review}>
                         <AvgContext.Provider value={avg}>
-                            <ReviewAverage reviewCount={avg.reviewCount}/>
+                            <ReviewAverage avg={avg}/>
                         </AvgContext.Provider>
                     </ReviewContext.Provider>
 
@@ -134,7 +118,7 @@ function LodgingDetail(props) {
                         <hr/>
                     </div>
 
-                    <HostIntroduce userId={lodging.userId} joinDt={members.joinDt} introHost={lodging.introHost} reviewCount={avg.reviewCount} reviewTotal={avg.reviewTotal}/>
+                    <HostIntroduce lodging={lodging} members={members} avg={avg}/>
                 </div>
             </div>
             <Footer/>
