@@ -20,6 +20,8 @@ import Map from "../GoogleMap/Map";
 import ReviewAverageForm from "./review/ReviewAverageForm";
 import ReviewTitle from "./review/ReviewTitle";
 import Footer from "./Footer/Footer";
+import {useDispatch, useSelector} from "react-redux";
+import {contacts} from "../lodging_reg/Reducers/ContactHostReducer";
 
 
 function LodgingDetail(props) {
@@ -50,7 +52,16 @@ function LodgingDetail(props) {
                 console.log("통신 오류");
             })
     }, []);
+    const contact = useSelector((state)=>state.contact.value); //
+    // console.log("useSelector 테스트")
+    // console.log(contact);
+    // console.log('userId찾기')
+    // console.log(lodging.userId);
 
+    // const dispatch = useDispatch();
+    // dispatch(contacts({contact:lodging.userId}))
+    // console.log("dispatch 들어가나 테스트")//확인완료
+    // console.log(contact);
     return (
         <>
             <div style={{display: "grid", justifyContent: "center", width: 1900}}>

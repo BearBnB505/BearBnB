@@ -1,6 +1,26 @@
 import React from "react";
+import {useSelector} from "react-redux";
+import axios from "axios";
 
 const HostInfoContents = () => {
+    const contact = useSelector((state)=>state.contact.value);
+    const onClickEmail = () =>{
+
+        axios.post('http://localhost:8080/sendToHostContact',{
+            params:{
+                userId : contact.contact,
+            }
+        })
+            .then((reg)=>{
+                console.log(reg)
+                alert('이메일 발송 성공')
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+
+    }
+
   return (
     <div style={{marginBottom:35}}>
       <div className={'HostInfoLine1'}>게스트가 많이 하는 질문</div>
@@ -31,7 +51,8 @@ const HostInfoContents = () => {
 
         <div>
           <div className={'HostInfoLine4'}>이메일 주소</div>
-          <div className={'HostInfoLine5'}>mousedol2@gmail.com</div>
+          <div className={'HostInfoLine5'}>{contact.contact}</div>
+            <button onClick={onClickEmail}></button>
         </div>
       </div>
     </div>

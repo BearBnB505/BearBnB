@@ -5,11 +5,15 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProjectRouter from "./ProjectRouter";
 import HouseInfo from "./houseInfoUpdate/HouseInfo";
-
+import store from './lodging_reg/Store'
+import {Provider} from "react-redux";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
+        {/*추가한 부분*/}
+        <Provider store={store}>
         <ProjectRouter/>
+        </Provider>
         {/*<App />*/}
       {/*<HouseInfo/>*/}
     </React.StrictMode>
