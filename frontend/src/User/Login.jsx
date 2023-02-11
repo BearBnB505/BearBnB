@@ -68,7 +68,7 @@ function Login() {
                     });
 
                     // dispatch(SETTOKEN({access:token.accessToken}));
-                    dispatch(SETTOKEN({access:'dd'}))
+                    // dispatch(SETTOKEN({access:'dd'}))
                     setShow(false);
 
                     // dispatch(tokenSlice.reducer.SET_TOKEN(token.accessToken));
@@ -94,8 +94,8 @@ function Login() {
     }
 
     // const redux = useSelector(state => state.authToken);
-    const redux = useSelector((state)=>state.authToken.value);
-    console.log("redux : " + redux);
+    // const redux = useSelector((state)=>state.authToken.value);
+    // console.log("redux : " + redux);
 
     return (
         <>

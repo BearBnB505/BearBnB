@@ -1,111 +1,108 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Breadcrumb, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose, faPencil} from "@fortawesome/free-solid-svg-icons";
 import Anima from "../Mypage/animaData";
-import {motion} from "framer-motion";
-import {Link} from "react-router-dom";
+import { motion } from "framer-motion";
+import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
-import './Lodging.css'
+
+const complain = [
+    {idx: 1, lodging_name: "바다가 보이는 아름다운 집", state:<button className={'btn btn-primary'}>승인완료</button>, bedroom: 2, bed: 2, bathroom:1, location : "부산 해운대", last_update:"2022-12-03"},
+    {idx: 2, lodging_name: "산이 한 눈에 보이는 집", state:<button className={'btn btn-danger'}>심사 중</button>, bedroom: 3, bed: 4, bathroom:2, location : "경기도 오산", last_update:"2022-12-06"},
+]
 
 
 
-import MainContents from "../Main/MainContents";
-import {number} from "prop-types";
-import {useLocation} from "react-router";
 
+function HostMyPageLodging(props) {
+    const [data, setData] = useState('');
+    const navigate = useNavigate();
+    const onClickRegLodging = () => {
+        axios.get("http://localhost:8080/checkAuthority",{
+            params :{
+                userId : "gione@naver.com",
+            }
+        })
+            .then((req)=>{
+                const {data} = req;
+                setData(data);
+                console.log(data)
 
-function HostMyPageLodging() {
+                if(data ==='ROLE_USER'){
+                    navigate("/reg/lodgingHostId")
+                } else if(data ==='ROLE_HOST'){
+                    navigate("/reg")
+                }
+            })
+            .catch((err)=>{
+                console.log(err);
+                console.log('에러발생')
+            })
+    }
+    return (
+        <motion.div variants={Anima}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit" className={"container mx-auto mt-5"}>
+            <div className={"mb-5"}>
+                <Breadcrumb>
+                    <Breadcrumb.Item href="/hostMyPageMain">호스트마이페이지</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/HostMyPageLodging" active>숙소관리</Breadcrumb.Item>
+                </Breadcrumb>
+                <div className={'row'}>
+                    <h2 className={"fw-bold col-10"}>숙소관리</h2>
+                    <button className={"btn btn-primary col-2"} onClick={onClickRegLodging}>새로운 숙소 등록하기</button>
+                </div>
 
+            </div>
 
-  return (
+            <table className={"table table-hover table-striped"}>
+                <thead className={'text-center'}>
+                <tr>
+                    <th>번호</th>
+                    <th>숙소명</th>
+                    <th>상태</th>
+                    <th>침실</th>
+                    <th>침대</th>
+                    <th>욕실</th>
+                    <th>위치</th>
+                    <th>최종수정일</th>
+                </tr>
+                </thead>
+                <tbody className={'text-center'}>
+                {complain.map((item) => {
+                    return <ComplainList idx={item.idx} lodging_name={item.lodging_name} state={item.state} bed={item.bed} bedroom={item.bedroom} bathroom={item.bathroom} location={item.location} last_update={item.last_update}/>
+                })}
+                </tbody>
+            </table>
 
-    <motion.div variants={Anima}
-                initial="hidden"
-                animate="visible"
-                exit="exit" className={"container mx-auto mt-5"}>
-      <div className={"mb-5"}>
-        <Breadcrumb>
-          <Breadcrumb.Item href="/hostMyPageMain">호스트마이페이지</Breadcrumb.Item>
-          <Breadcrumb.Item href="/HostMyPageLodging" active>숙소관리</Breadcrumb.Item>
-        </Breadcrumb>
-        <div className={'row'}>
-          <h2 className={"fw-bold col-10"}>숙소관리</h2>
-          <Link to={"/lodgingWelcome"} className={'col-2'}>
-            <button className={"btn btn-primary"}>새로운 숙소 등록하기</button>
-          </Link>
-        </div>
+            {/*<div>*/}
+            {/*    <button type="button" className="btn btn-outline-secondary btn-sm my-2 me-2" title="Edit">*/}
+            {/*        <span><FontAwesomeIcon icon={faPencil} size="1x"/> 신고수정</span>*/}
+            {/*    </button>*/}
+            {/*    <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit">*/}
+            {/*        <span><FontAwesomeIcon icon={faClose} size="1x"/> 신고삭제</span>*/}
+            {/*    </button>*/}
+            {/*</div>*/}
 
-      </div>
-
-      <table className={"table table-hover table-striped"}>
-        <thead className={'text-center'}>
-        <tr className={'LodgingLine'}>
-          <th>번호</th>
-          <th>숙소명</th>
-          <th>상태</th>
-          <th>침실</th>
-          <th>침대</th>
-          <th>욕실</th>
-          <th>위치</th>
-          <th>최종수정일</th>
-        </tr>
-        </thead>
-        <tbody className={'text-center'}>
-
-        <ComplainList/>
-
-        </tbody>
-      </table>
-
-
-    </motion.div>
-  )
+        </motion.div>
+    )
 }
 
 export default HostMyPageLodging;
 
-function ComplainList() {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    // axios.put('http://localhost:8080/CallLodgingList',null,null)
-    axios.get('http://localhost:8080/AllLodgingList/')
-
-      .then((req) => {
-        const {data} = req;
-        // console.log(data);
-        setData(data);
-      })
-      .catch((err) => {
-        console.log("통신 오류");
-      })
-  }, []);
-
-
-
-
-  return (
-
-    data.map((item, index) => {
-
-      return (
-        <tr className={'LodgingLine'}>
-          <td>{data.length - index}</td>
-          <Link to={`/hostMyPageLodging/HouseInfoUpdate/${item.lodgingNum}`} state={{lodgingNum: `${item.lodgingNum}`}} style={{color: "black"}}>
-            {item.lodgingName}
-          </Link>
-          {/*<a href={`HouseInfoUpdate`} style={{color: "black"}}>*/}
-          {/*  ${item.lodgingName}*/}
-          {/*</a>*/}
-          {item.regState == '승인완료' ? <td><button className={'btn btn-primary'}>승인완료</button> </td>: <td><button className={'btn btn-danger'}>심사 중</button></td>}
-          <td>{item.bedroomNum}</td>
-          <td>{item.bedNum}</td>
-          <td>{item.bathroomNum}</td>
-          <td>{item.addr}</td>
-          <td>{item.createDt}</td>
+function ComplainList({idx, lodging_name, state, bedroom, bed,bathroom,location,last_update }) {
+    return (
+        <tr>
+            <td>{idx}</td>
+            <td>{lodging_name}</td>
+            <td>{state}</td>
+            <td>{bedroom}</td>
+            <td>{bed}</td>
+            <td>{bathroom}</td>
+            <td>{location}</td>
+            <td>{last_update}</td>
         </tr>
-      )
-    })
-
-  )
+    )
 }

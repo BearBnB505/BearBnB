@@ -12,7 +12,7 @@ import {removeCookie} from "../Storage/Cookies";
 function Logout() {
 
     // store에 저장된 Access Token 정보 받아옴
-    const {accessToken} = useSelector(state => state.token);
+    // const {accessToken} = useSelector(state => state.token);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();

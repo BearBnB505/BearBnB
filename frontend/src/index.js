@@ -4,10 +4,11 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProjectRouter from "./ProjectRouter";
-
-import store from './Store'
-import {CookiesProvider} from "react-cookie";
 import {Provider} from "react-redux";
+
+import store from './Store/Store'
+import {CookiesProvider} from "react-cookie";
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

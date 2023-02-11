@@ -14,6 +14,7 @@ public class LodgingDto {
     private String addr;
     private double latitude;
     private double longitude;
+    private String language;
     private String introHost;
     private String introLodging;
     private int cost;
@@ -28,4 +29,7 @@ public class LodgingDto {
     private String createDt;
     private String updateDt;
     private String deletedYn;
+    private String nation;
+    private String address1;
+    private String address2;
 }
