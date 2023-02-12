@@ -35,7 +35,7 @@ function MainContents(props) {
                         <img
                             className="d-block w-100"
                             src="https://a0.muscache.com/im/pictures/c0dd551b-e328-4958-9209-9fa66ac47217.jpg?im_w=1200"
-                            alt="First slide"
+                            // alt="First slide"
                             style={{height: 250}}
                         />
                     </div>
@@ -43,7 +43,7 @@ function MainContents(props) {
                         <img
                             className="d-block w-100"
                             src="https://a0.muscache.com/im/pictures/03389803-26cf-4de3-bfc8-6dadeb41df40.jpg?im_w=1440"
-                            alt="Second slide"
+                            // alt="Second slide"
                             style={{height: 250}}
                         />
                     </div>
@@ -51,7 +51,7 @@ function MainContents(props) {
                         <img
                             className="d-block w-100"
                             src="https://a0.muscache.com/im/pictures/a8d45b2e-8bbe-4e05-85fb-36cbce7e79cc.jpg?im_w=1440"
-                            alt="Third slide"
+                            // alt="Third slide"
                             style={{height: 250}}
                         />
                         <img src="" alt=""/>
