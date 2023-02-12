@@ -24,21 +24,21 @@ function HostImg({photo}) {
     return (
         <>
             <div className={'container'}>
-                <div className={'row'}>
-                <div className={'col'}>
-                    <img src={{photo}.photo.data[0].photo} className={'img1'}/>
-                </div>
-                    <div className={'col'}>
-                    <img src={{photo}.photo.data[1].photo} className={'img2'}/>
-                    <img src={{photo}.photo.data[2].photo} className={'img3'}/>
-                    </div>
-                    <div className={'col'}>
-                    <img src={{photo}.photo.data[3].photo} className={'img4'}/>
-                    <img src={{photo}.photo.data[4].photo} className={'img5'}/>
-                    </div>
+                {/*<div className={'row'}>*/}
+                {/*<div className={'col'}>*/}
+                {/*    <img src={{photo}.photo.data[0].photo} className={'img1'}/>*/}
+                {/*</div>*/}
+                {/*    <div className={'col'}>*/}
+                {/*    <img src={{photo}.photo.data[1].photo} className={'img2'}/>*/}
+                {/*    <img src={{photo}.photo.data[2].photo} className={'img3'}/>*/}
+                {/*    </div>*/}
+                {/*    <div className={'col'}>*/}
+                {/*    <img src={{photo}.photo.data[3].photo} className={'img4'}/>*/}
+                {/*    <img src={{photo}.photo.data[4].photo} className={'img5'}/>*/}
+                {/*    </div>*/}
 
-                </div>
-
+                {/*</div>*/}
+            </div>
                 {/*<ul className={"ps-1 d-flex flex-wrap"}>*/}
                 {/*{*/}
                 {/*    imageList.map((item) => {*/}
@@ -62,11 +62,11 @@ function HostImg({photo}) {
                 사진 모두보기</Button>
             {/*</div>*/}
 
-            {/*<HostImgModalDetail photo={photo}*/}
-            {/*                    show={modal} onHide={()=>setModal(false)} />*/}
+            <HostImgModalDetail photo={photo}
+                                show={modal} onHide={()=>setModal(false)} />
 
             <hr/>
-            </div>
+            {/*</div>*/}
         </>
     )
 }

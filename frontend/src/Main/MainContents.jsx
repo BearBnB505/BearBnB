@@ -7,6 +7,25 @@ import axios from "axios";
 import moment from "moment";
 
 function MainContents(props) {
+    // console.log('메인컨텐츠 확인')
+    // console.log(props.idx);
+    const [image, setImage] = useState('');
+    useEffect(()=>{
+        axios.put('http://localhost:8080/lodgingDetailImage',null,{params: {idx:props.idx}})
+            .then((req)=>{
+                console.log('메인 페이지 이미지 데이터 확인')
+                console.log(req);
+                setImage(req);
+            })
+            .then((err)=>{
+                console.log(err);
+            })
+    },[])
+
+    console.log('잘 뽑아야 하는데')
+    console.log(image.data[0].photo);
+
+
 
     const settings = {
         dots: true,
@@ -31,31 +50,44 @@ function MainContents(props) {
                 {/*    <img src="/img/btnKeep.png" alt="" style={keep} onClick={''}/>*/}
                 {/*</div>*/}
                 <Slider {...settings}>
-                    <div>
-                        <img
-                            className="d-block w-100"
-                            src="https://a0.muscache.com/im/pictures/c0dd551b-e328-4958-9209-9fa66ac47217.jpg?im_w=1200"
-                            // alt="First slide"
-                            style={{height: 250}}
-                        />
-                    </div>
-                    <div>
-                        <img
-                            className="d-block w-100"
-                            src="https://a0.muscache.com/im/pictures/03389803-26cf-4de3-bfc8-6dadeb41df40.jpg?im_w=1440"
-                            // alt="Second slide"
-                            style={{height: 250}}
-                        />
-                    </div>
-                    <div>
-                        <img
-                            className="d-block w-100"
-                            src="https://a0.muscache.com/im/pictures/a8d45b2e-8bbe-4e05-85fb-36cbce7e79cc.jpg?im_w=1440"
-                            // alt="Third slide"
-                            style={{height: 250}}
-                        />
-                        <img src="" alt=""/>
-                    </div>
+                    {
+                        image.map((item)=>{
+                            <div>
+                            <img
+                                className="d-block w-100"
+                                src={item.photo}
+                                style={{height: 250}}/>
+                            </div>
+                        })
+                    }
+
+
+                    {/*{}*/}
+                    {/*<div>*/}
+                    {/*    <img*/}
+                    {/*        className="d-block w-100"*/}
+                    {/*        src="https://a0.muscache.com/im/pictures/c0dd551b-e328-4958-9209-9fa66ac47217.jpg?im_w=1200"*/}
+                    {/*        // alt="First slide"*/}
+                    {/*        style={{height: 250}}*/}
+                    {/*    />*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <img*/}
+                    {/*        className="d-block w-100"*/}
+                    {/*        src="https://a0.muscache.com/im/pictures/03389803-26cf-4de3-bfc8-6dadeb41df40.jpg?im_w=1440"*/}
+                    {/*        // alt="Second slide"*/}
+                    {/*        style={{height: 250}}*/}
+                    {/*    />*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <img*/}
+                    {/*        className="d-block w-100"*/}
+                    {/*        src="https://a0.muscache.com/im/pictures/a8d45b2e-8bbe-4e05-85fb-36cbce7e79cc.jpg?im_w=1440"*/}
+                    {/*        // alt="Third slide"*/}
+                    {/*        style={{height: 250}}*/}
+                    {/*    />*/}
+                    {/*    <img src="" alt=""/>*/}
+                    {/*</div>*/}
                 </Slider>
             </div>
 

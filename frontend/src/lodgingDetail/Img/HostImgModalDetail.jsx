@@ -5,19 +5,18 @@ import Anima from "./animaData";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 import PhotoContext from "../Context/PhotoContext";
 
-function HostImgModalDetail(props) {
-    const photo = useContext(PhotoContext);
-    const image = [
-        // "/hostImg/1.png",
-        // "/hostImg/2.png",
-        "/hostImg/3.png",
-        "/hostImg/4.png",
-        "/hostImg/5.png",
-    ]
+function HostImgModalDetail({photo}) {
+    // const photo = useContext(PhotoContext);
+    const image = [];
+    const input = {photo}.map((item) => {
+        image.push(item.photo)
+    })
+    console.log('잘 들어갔나 확인')
+    console.log(image)
+
 
     return (
         <Modal
-            {...props}
             size="fullscreen"
             aria-labelledby="contained-modal-title-vcenter"
             centered>
@@ -35,13 +34,13 @@ function HostImgModalDetail(props) {
                         <ResponsiveMasonry
                             columnsCountBreakPoints={{350: 1, 750: 2, 900: 2}}>
                             <Masonry gutter="10px">
-                                {image.map((item, i) => (
-                                    <img
-                                        key={i}
-                                        src={item}
-                                        style={{width: "100%", display: "block"}}
-                                    />
-                                ))}
+                                {/*{image.map((item, i) => (*/}
+                                {/*    <img*/}
+                                {/*        key={i}*/}
+                                {/*        src={item}*/}
+                                {/*        style={{width: "100%", display: "block"}}*/}
+                                {/*    />*/}
+                                {/*))}*/}
                             </Masonry>
                         </ResponsiveMasonry>
                     </Modal.Body>

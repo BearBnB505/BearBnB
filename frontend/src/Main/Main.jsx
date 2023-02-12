@@ -53,6 +53,8 @@ function Main(props) {
     const [data, setData] = useState([]);
     const [category, setCategory] = useState('한옥');
     console.log(category);
+    console.log('데이터 확인')
+    console.log(data)
 
     useEffect(() => {
         axios.get('http://localhost:8080/lodgingList', {params: {category: category}})
@@ -98,6 +100,8 @@ function Main(props) {
                 })
         // }
     }, []);
+
+    
 
     return (
         <div className={"container"} style={{width:1480, maxWidth:1800}}>

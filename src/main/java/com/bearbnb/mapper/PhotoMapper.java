@@ -11,4 +11,6 @@ public interface PhotoMapper {
     List<PhotoDto> lodgingPhotoList(String lodgingNum) throws Exception;
 
     List<PhotoDto> lodgingDetailImage(String idx) throws Exception;
+
+    List<PhotoDto> mainImage(String idx) throws Exception;
 }

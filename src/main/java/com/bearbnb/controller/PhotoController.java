@@ -34,9 +34,10 @@ public class PhotoController {
         return  photoService.lodgingDetailImage(idx);
     }
 
-//    @RequestMapping(value = "/searchLodgingList", method = RequestMethod.GET)
-//    public List<LodgingDto> searchLodgingList(@RequestParam("startDt") String startDt, @RequestParam("endDt") String endDt, @RequestParam("adultCount") int adultCount) throws Exception {
-//        return lodgingMapper.searchLodgingList(startDt, endDt, adultCount);
-//    }
-
+//    메인페이지 이미지 불러오기
+    @RequestMapping(value = "/mainImage", method = RequestMethod.PUT)
+    public List<PhotoDto> mainImage(@RequestParam("idx") String idx) throws Exception {
+        System.out.println(idx);
+        return  photoService.mainImage(idx);
+    }
 }
