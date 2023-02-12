@@ -108,4 +108,25 @@ public class JwtTokenProvider {
         }
     }
 
+    public TokenDto refresh(String refreshToken) {
+
+        validateToken(refreshToken);
+
+        long now = (new Date()).getTime();
+
+        // Access Token 재발급
+        Date accessTokenExpiresIn = new Date(now + 86400000);  // 테스트 용 1일 ( 나중에 30분으로 수정 -> ACCESS_TOKEN_EXPIRE_TIME )
+        String accessToken = Jwts.builder()
+                .setExpiration(accessTokenExpiresIn)
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
+
+
+        return TokenDto.builder()
+                .grantType("Bearer")
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .build();
+    }
+
 }

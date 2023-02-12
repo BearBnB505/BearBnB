@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getCookie} from "../Storage/Cookies";
+import {getCookie, removeCookie} from "../Storage/Cookies";
+import {auths} from "../lodging_reg/Reducers/AuthReducer";
+import {TOKEN_TIME_OUT} from "../Store/Auth";
+import {requestToken} from "../Api/Users";
 
 export function CheckToken(key) {
 
@@ -17,23 +20,23 @@ export function CheckToken(key) {
     useEffect(()=> {
         const checkAuthToken = async () => {
             if (refreshToken === undefined) {
-                // dispatch(DELETE_TOKEN());
+                dispatch(auths({accessToken:null, authenticated:true, expireTime:null}));
                 setIsAuth('Failed');
             } else {
                 if (authenticated && new Date().getTime() < expireTime){
                     setIsAuth('Success');
                 } else {
-                    // const response = await requestToken(refreshToken);
-                    //
-                    // if (response.status) {
-                    //     const token = response.json.access_token;
-                    //     dispatch(SET_TOKEN(token));
+                    const response = await requestToken(refreshToken);
+
+                    if (response.status) {
+                        const token = response.accessToken;
+                        dispatch(auths({accessToken:token.accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
                         setIsAuth('Success');
-                    // } else {
-                    //     dispatch(DELETE_TOKEN());
-                    //     removeCookieToken();
-                    //     setIsAuth('Failed');
-                    // }
+                    } else {
+                        dispatch(auths({accessToken:null, authenticated:true, expireTime:null}));
+                        removeCookie('refreshToken');
+                        setIsAuth('Failed');
+                    }
                 }
             }
         };

@@ -40,4 +40,7 @@ public class AuthService {
         return jwtTokenProvider.generateTokenDto(authentication);
     }
 
+    public TokenDto refresh(String refreshToken) {
+        return jwtTokenProvider.refresh(refreshToken);
+    }
 }
