@@ -13,9 +13,14 @@ public class PhotoServiceImpl implements PhotoService{
     @Autowired
     PhotoMapper photoMapper;
 
-
+//  숙소 수정페이지
     @Override
     public List<PhotoDto> lodgingPhotoList(String lodgingNum) throws Exception {
         return photoMapper.lodgingPhotoList(lodgingNum);
+    }
+//    숙소 상세페이지
+    @Override
+    public List<PhotoDto> lodgingDetailImage(String idx) throws Exception {
+        return photoMapper.lodgingDetailImage(idx);
     }
 }

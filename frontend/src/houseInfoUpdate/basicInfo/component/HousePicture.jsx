@@ -12,7 +12,7 @@ function HousePicture(props) {
     console.log('사진 부분에서 숙소번호')
     console.log(lodgingNum);
     const [data,setData] = useState([]);
-
+    //숙소 수정페이지
     useEffect(() => {
         axios.put('http://localhost:8080/lodgingPhotoList',null,{params: {lodgingNum: lodgingNum}})
             .then((req) => {

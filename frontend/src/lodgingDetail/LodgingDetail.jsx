@@ -39,17 +39,19 @@ function LodgingDetail(props) {
 
     const [chooseDate, setChooseDate] = useState([null, null]);
     const [nightCount, setNightCount] = useState(0);
+    const [image, setImage] = useState([]);
 
     let startDate = moment(chooseDate[0]).format('Y년 M월 D일');
     let endDate = moment(chooseDate[1]).format('Y년 M월 D일');
+
 
 
     const location = useLocation();
     const lat = parseFloat(location.state.lat);
     const lng = parseFloat(location.state.lng);
     const dispatch = useDispatch();
-
-
+    
+    
     useEffect(() => {
         axios.get(`http://localhost:8080/lodgingDetail/${idx}`)
             .then((req) => {
@@ -57,7 +59,7 @@ function LodgingDetail(props) {
                 // console.log(data);
                 console.log('통신성공');
                 setLodging(data.lodging);
-                setPhoto(data.photo);
+                // setPhoto(data.photo);
                 setReview(data.review);
                 setAvg(data.avg);
                 setComforts(data.comforts);
@@ -69,15 +71,29 @@ function LodgingDetail(props) {
             })
     }, []);
 
-    // console.log('디테일 페이지 테스트')
-    // console.log(members.userId);
-    //
-    // const dispatch = useDispatch();
-    // dispatch(contacts({contact:members.userId}))
+    // 숙소상세페이지 이미지 불러오기
+    useEffect(()=>{
+        axios.put('http://localhost:8080/lodgingDetailImage',null,{params: {idx:idx}})
+            .then((req)=>{
+                console.log('숙소상세페이지 이미지 통신 성공')
+                console.log(req);
+                setImage(req);
+            })
+            .catch((error)=>{
+                console.log('숙소상세페이지 이미지 통신 오류')
+                console.log(error)
+            })
+    },[])
+
+    //이미지 url 테스트
+    // const imageList = image;
+    // console.log('이미지 url 추출')
+    // console.log(imageList.photo);
+
+
+
     const contact = useSelector((state)=>state.contact.value);
     const navigate = useNavigate();
-    // console.log('dispatch테스트')
-    // console.log(contact.contact); //확인 완료
     const onClickContact = () =>{
 
         dispatch(contacts({contact:members.userId}))
@@ -92,7 +108,7 @@ function LodgingDetail(props) {
                     <LodgingDetailTitle lodging={lodging} review={review} avg={avg}/>
 
                     <PhotoContext.Provider>
-                        <HostImg photo={photo}/>
+                        <HostImg photo={image}/>
                     </PhotoContext.Provider>
 
                     <div className={'row'}>
@@ -140,17 +156,6 @@ function LodgingDetail(props) {
 
                     <HostIntroduce lodging={lodging} members={members} avg={avg}/>
                     <button className={'btn btn-outline-dark fw-bold'} style={{padding:"15px", marginLeft:"670px", marginBottom:"150px"}} onClick={onClickContact}>호스트에게 연락하기</button>
-                    {/*<div className={'row '}>*/}
-                    {/*    <div className={'col-1'}>*/}
-                    {/*        <img className={''} src={"/etcIcon/noticeBear4.png"} style={{width: 80}}/>*/}
-                    {/*    </div>*/}
-                    {/*    <div className={'col mt-1 ms-4'}>*/}
-                    {/*        /!*<div className={'IntroNoticeText'}>*!/*/}
-                    {/*        <p className={'fs-6'}>*/}
-                    {/*            안전한 결제를 위해 베어비앤비 웹사이트나 앱 외부에서 송금하거나 대화를 나누지 마세요.*/}
-                    {/*        </p>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
                 </div>
             </div>
             <Footer/>

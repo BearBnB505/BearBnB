@@ -10,4 +10,6 @@ public interface PhotoService {
 
     List<PhotoDto> lodgingPhotoList(String lodgingNum) throws Exception;
 
+    List<PhotoDto> lodgingDetailImage(String idx) throws Exception;
+
 }

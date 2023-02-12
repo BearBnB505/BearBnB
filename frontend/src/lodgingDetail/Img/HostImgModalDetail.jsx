@@ -8,8 +8,8 @@ import PhotoContext from "../Context/PhotoContext";
 function HostImgModalDetail(props) {
     const photo = useContext(PhotoContext);
     const image = [
-        "/hostImg/1.png",
-        "/hostImg/2.png",
+        // "/hostImg/1.png",
+        // "/hostImg/2.png",
         "/hostImg/3.png",
         "/hostImg/4.png",
         "/hostImg/5.png",
