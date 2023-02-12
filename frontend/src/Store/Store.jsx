@@ -15,6 +15,7 @@ import LodgingLocationDetailReducer from "../lodging_reg/Reducers/LodgingLocatio
 import  ChooseDateReducer from "../lodging_reg/Reducers/ChooseDateReducder";
 import AuthReducer from "../lodging_reg/Reducers/AuthReducer";
 import ContactHostReducer from "../lodging_reg/Reducers/ContactHostReducer";
+import LodgingMapReducer from "../lodging_reg/Reducers/LodgingMapReducer";
 // import Auth from "./Auth";
 
 
@@ -37,6 +38,8 @@ export default configureStore({
         chooseDate : ChooseDateReducer,
         auth : AuthReducer,
         contact :ContactHostReducer,
+        map : LodgingMapReducer,
+
 
         // authToken : Auth
     }

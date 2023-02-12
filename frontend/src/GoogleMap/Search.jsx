@@ -2,6 +2,10 @@ import React, {useState} from "react";
 import {LoadScript, MarkerF} from '@react-google-maps/api';
 import {GoogleMap, StandaloneSearchBox} from "@react-google-maps/api";
 import * as gvar from "./global_variables";
+import {basicInfo} from "../lodging_reg/Reducers/LodgingbedReducer";
+import {useDispatch} from "react-redux";
+import {maps} from "../lodging_reg/Reducers/LodgingMapReducer";
+import {Link} from "react-router-dom";
 
 function Search(props) {
 
@@ -50,15 +54,22 @@ function Search(props) {
     const [searchBox, setSearchBox] = useState(null);
     const [location, setLocation] = useState(center);
     const [zoom, setZoom] = useState(15);
+    const [address1, setAddress1] = useState('');
+    const dispatch = useDispatch();
+
+    const inputAddress = (e) => {
+        console.log(e.target.value)
+    }
 
     function handleLoad(ref) {
         setSearchBox(ref);
     }
 
     function handlePlacesChanged() {
-        console.log(searchBox.getPlaces());
+        // console.log(searchBox.getPlaces());
         // console.log(searchBox.getPlaces()[0].name);
         console.log(searchBox.getPlaces()[0].formatted_address);
+        setAddress1(searchBox.getPlaces()[0].formatted_address);
         // console.log(searchBox.getPlaces()[0].geometry.location.lat());
         // console.log(searchBox.getPlaces()[0].geometry.location.lng());
         const lat = searchBox.getPlaces()[0].geometry.location.lat();
@@ -74,10 +85,22 @@ function Search(props) {
         };
         setLocation(newPosition);
     }
-    
-    console.log(location);
+    console.log("위도, 경도 테스트")
+    const locations = location;
+    console.log('위도와 경도')
+    console.log(location)
+    console.log('위도')
+    console.log(locations.latitude)
+    console.log('경도')
+    console.log(locations.longitude)
+    // console.log(location.longitude);
+
+    const inputMap = (e) => {
+        dispatch(maps({address1:address1, latitude: locations.latitude, longitude: locations.longitude}))
+    }
 
     return (
+        <div>
         <div className={"d-flex justify-content-center mt-5"}>
             <LoadScript id="script-loader" googleMapsApiKey={gvar.BEE_API_KEY} libraries={["places"]} zoom={10}>
                 <StandaloneSearchBox
@@ -104,6 +127,7 @@ function Search(props) {
                             // left: "50%",
                             // marginLeft: "-120px",
                         }}
+                        onChange={inputAddress}
                     />
                 </StandaloneSearchBox>
 
@@ -123,6 +147,13 @@ function Search(props) {
                 </GoogleMap>
 
             </LoadScript>
+            
+        </div>
+            {/*<button onClick={inputMap}>다음</button>*/}
+            <Link to ={"/reg/lodgingConcept"}>
+                <button className={"btn btn-white position-absolute start-0 bottom-0"} style={{marginBottom:"70px", marginLeft:"120px", width:"200px", fontSize:"25px", padding:"8px", }}>이전</button></Link>
+            <Link to = {"/reg/lodgingLocationDetail"}>
+                <button className={"btn btn-primary position-absolute end-0 bottom-0"} style={{marginBottom:"70px", marginRight:"120px", width:"200px", fontSize:"25px", padding:"8px", }} onClick={inputMap}>다음</button></Link>
         </div>
     )
 

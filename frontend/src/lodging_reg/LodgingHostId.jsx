@@ -91,7 +91,7 @@ function LodgingHostId(){
                     console.log('업로드 성공');
                     dispatch(realhostIdUrl({idUrl:downloadURL}))
                     console.log('url 데이터 이동성공');
-                    navigate("/lodgingWelcome");
+                    navigate("/reg");
                 });
 
 

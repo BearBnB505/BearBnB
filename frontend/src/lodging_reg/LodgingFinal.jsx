@@ -22,6 +22,7 @@ function LodgingFinal(){
     const hostId = useSelector((state)=>state.realHostId.value);
     const chooseDate = useSelector((state)=>state.chooseDate.value);
     const locationDetail = useSelector((state) => state.locationDetail.value)
+    const map = useSelector((state)=>state.map.value);
     //숙소이미지
     const lodgingImg = useSelector((state)=>state.lodgingImg.value);
     const navigate = useNavigate();
@@ -118,7 +119,7 @@ function LodgingFinal(){
     console.log(locationDetail.addr1);
     console.log(locationDetail.addr2);
     const data = {
-                userId : '테스트아이디',
+                userId : 'dbfl14433@gmail.com',
                 lodgingNum: lodgingNum.num,
                 certifyImg: hostId.idUrl,
                 lodgingName: lodgingRealName.name,
@@ -134,10 +135,13 @@ function LodgingFinal(){
                 introHost:hostInfo.hostIntro,
                 zipCode : locationDetail.zipCode,
                 nation : locationDetail.nation,
-                address1 : locationDetail.addr1,
+                address1 : map.address1,
                 address2 : locationDetail.addr2,
                 checkInDt : chooseDate.startDate,
                 checkOutDt : chooseDate.endDate,
+                latitude : map.latitude,
+                longitude : map.longitude
+
     }
 
     const onclickButton = () => {
@@ -181,15 +185,15 @@ function LodgingFinal(){
             })
             .then((res) => {
                 console.log(res);
-                // Swal.fire({
-                //     icon: 'success',
-                //     title: '숙소등록이 완료되었습니다.',
-                //     showConfirmButton: false,
-                //     timer: 1500
-                // }).then(() => {
-                //     //main 페이지로 이동
-                //     navigate("/")
-                // })
+                Swal.fire({
+                    icon: 'success',
+                    title: '숙소등록이 완료되었습니다.',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    //main 페이지로 이동
+                    navigate("/")
+                })
             });
     }
 
