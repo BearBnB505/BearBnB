@@ -69,4 +69,17 @@ public class EmailController {
     }
 
 
+//    관리자가 승인 반려누르면 db update 되게
+@RequestMapping(value = "/rejectLodging", method = RequestMethod.POST)
+public void rejectLodging(@RequestBody LodgingDto lodging) throws Exception {
+    System.out.println(lodging);
+    emailService.rejectLodging(lodging.getLodgingNum());
+//    emailService.approveLodging(lodgingNum);
+}
+    @RequestMapping(value = "/rejectLodgingEmail", method = RequestMethod.POST)
+    public void rejectLodgingEmail(@RequestBody EmailDto emailDto) throws Exception{
+        System.out.println(emailDto);
+        emailService.rejectLodgingEmail(emailDto);
+    }
+
 }

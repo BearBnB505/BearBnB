@@ -7,7 +7,14 @@ function DetailTable2RejectModal(props) {
 
     const [show, setShow] = useState(false);
 
+    console.log('승인 반려 테스트')
     console.log(props.userId);
+    console.log(props.lodgingNum);
+
+    const userId = props.userId;
+    const lodgingNum = props.lodgingNum;
+
+
 
     // const approveLodging = () => {
     //     axios.post("http://localhost:8080/approveLodging",{
@@ -28,30 +35,87 @@ function DetailTable2RejectModal(props) {
     //             })
     //         })
     // }
-
     const rejectLodging = () => {
 
-
-
-
-
-
         axios.post("http://localhost:8080/rejectLodging",{
-            to : props.userId,
-            from : 'bearbnbproject@gmail.com',
-            title : '숙소가 승인되지 못하였습니다',
-            contents : '죄송합니다 귀하의 숙소가 승인되지 못하였습니다 BearBnB 서비스를 이용해주셔서 감사합니다.'
+            lodgingNum: lodgingNum,
         })
             .then((req)=>{
-                console.log(req);
-                Swal.fire({
-                    icon: 'success',
-                    title: '숙소가 승인 거절되었습니다',
-                    showConfirmButton: false,
-                    timer: 1500
-                }).then(() => {
-                    setShow(false);
-                })
+                console.log('승인반려 업데이트 첫번째 통신 성공')
+                axios.post("http://localhost:8080/rejectLodgingEmail",{
+                        to : userId,
+                        from : 'bearbnbproject@gmail.com',
+                        title : '숙소가 승인되지 못하였습니다',
+                        contents : '죄송합니다 귀하의 숙소가 승인되지 못하였습니다 BearBnB 서비스를 이용해주셔서 감사합니다.'
+                    })
+                        .then((req)=>{
+                            console.log(req);
+                            console.log('이메일보내기 통신 성공')
+                            Swal.fire({
+                                icon: 'success',
+                                title: '숙소가 승인 거절되었습니다',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(() => {
+                                setShow(false);
+                            })
+                        })
+                
+                
+                // alert('승인 업데이트 통신 성공')
+            //     axios.post("http://localhost:8080/rejectLodgingEmail",{
+            //         to : props.userId,
+            //             from : 'bearbnbproject@gmail.com',
+            //             title : '숙소가 승인되지 못하였습니다',
+            //             contents : '죄송합니다 귀하의 숙소가 승인되지 못하였습니다 BearBnB 서비스를 이용해주셔서 감사합니다.'
+            //     })
+            //         .then((req)=>{
+            //             console.log(req);
+            //             console.log('숙소 승인이메일보내기 통신 성공')
+            //             Swal.fire({
+            //                 icon: 'success',
+            //                 title: '숙소가 승인되었습니다',
+            //                 showConfirmButton: false,
+            //                 timer: 1500
+            //             }).then(() => {
+            //                 setShow(false);
+            //             })
+            //         })
+            // })
+            // .catch((err)=>{
+            //     console.log(err)
+            // })
+
+
+
+
+
+
+
+
+
+
+        // axios.post("http://localhost:8080/rejectLodging",{
+        //     to : props.userId,
+        //     from : 'bearbnbproject@gmail.com',
+        //     title : '숙소가 승인되지 못하였습니다',
+        //     contents : '죄송합니다 귀하의 숙소가 승인되지 못하였습니다 BearBnB 서비스를 이용해주셔서 감사합니다.'
+        // })
+        //     .then((req)=>{
+        //         console.log(req);
+        //         Swal.fire({
+        //             icon: 'success',
+        //             title: '숙소가 승인 거절되었습니다',
+        //             showConfirmButton: false,
+        //             timer: 1500
+        //         }).then(() => {
+        //             setShow(false);
+        //         })
+        //     })
+    })
+            .catch((err)=>{
+                console.log(err);
+                console.log('승인반려 첫 번째 오류')
             })
     }
     // {props.onHide}

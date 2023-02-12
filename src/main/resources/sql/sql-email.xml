@@ -9,4 +9,13 @@
         ]]>
     </update>
 
+
+    <update id="rejectLodging">
+        <![CDATA[
+        UPDATE lodging
+        SET reg_state = '승인거절'
+        WHERE lodging_num = #{lodgingNum}
+        ]]>
+    </update>
+
 </mapper>

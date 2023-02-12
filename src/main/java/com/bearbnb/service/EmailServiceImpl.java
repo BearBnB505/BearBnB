@@ -23,7 +23,7 @@ public class EmailServiceImpl implements EmailService {
 //    private JavaMailSender mailSender;
 //    private static final String FROM_ADDRESS = "YOUR_EMAIL_ADDRESS";
 
-//    호스트에게 연락하기
+    //    호스트에게 연락하기
     @Override
     public void sendContactHost(EmailDto emailDto) throws Exception{
 
@@ -37,7 +37,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
 
-//    숙소예약시 호스트에게
+    //    숙소예약시 호스트에게
     @Override
     public void paymentEmail(EmailDto emailDto) throws Exception{
 
@@ -74,13 +74,13 @@ public class EmailServiceImpl implements EmailService {
         }
     }
 
-//    숙소 승인
+    //    숙소 승인
     @Override
     public void approveLodging(String lodgingNum) throws Exception{
         emailMapper.approveLodging(lodgingNum);
     }
 
-//    숙소 승인 시 호스트에게 알림
+    //    숙소 승인 시 호스트에게 알림
     @Override
     public void approveLodgingEmail(EmailDto emailDto) throws Exception{
         MimeMessage message = sendContactHostMessage(emailDto);
@@ -91,6 +91,25 @@ public class EmailServiceImpl implements EmailService {
             throw new IllegalAccessException();
         }
     }
+
+    //    숙소반려
+    @Override
+    public void rejectLodging(String lodgingNum) throws Exception{
+        emailMapper.rejectLodging(lodgingNum);
+    }
+    
+//    숙소 반려 시 이메일 전송
+    @Override
+    public void rejectLodgingEmail(EmailDto emailDto) throws Exception{
+        MimeMessage message = sendContactHostMessage(emailDto);
+        try{
+            emailSender.send(message);
+        } catch (MailException e) {
+            e.printStackTrace();
+            throw new IllegalAccessException();
+        }
+    }
+
 
 
 

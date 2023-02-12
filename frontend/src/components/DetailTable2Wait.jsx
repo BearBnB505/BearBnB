@@ -72,11 +72,14 @@ function DetailTable2Wait({lodging, comfort}) {
                     <button className="col-6 w-25 btn btn btn-lg btn-secondary me-5" onClick={()=>setRejectModal(true)}>반려</button>
                     <button className="col-6 w-25 btn btn-lg btn-primary" onClick={() => setModal(true)}>승인</button>
                 </div>
+
+                {/*숙소 승인 거절*/}
                 <DetailTable2RejectModal  show={rejectModal}
                                           onHide={() => setRejectModal(false)}
                                           userId ={lodging.userId}
                                           lodgingNum = {lodging.lodgingNum}/>
 
+                {/*숙소 승인*/}
                 <DetailTable2WaitModal
                     show={modal}
                     onHide={() => setModal(false)}
