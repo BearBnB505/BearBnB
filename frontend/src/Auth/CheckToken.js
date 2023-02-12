@@ -7,7 +7,7 @@ export function CheckToken(key) {
 
     // const isAuth = '';
     let [isAuth, setIsAuth] = useState('Loaded');
-    // sessionStorage.setItem("isAuth", "Loaded");
+    sessionStorage.setItem("isAuth", "Loaded");
 
     const Auth = useSelector((state)=>state.auth.value);
     // console.log("로그인창");
@@ -22,22 +22,22 @@ export function CheckToken(key) {
     const checkAuthToken = () => {
         if (refreshToken === undefined) {
             dispatch(auths({accessToken: null, authenticated: false, expireTime: null}));
-            setIsAuth('Failed');
-            // sessionStorage.setItem("isAuth", "Failed");
+            // setIsAuth('Failed');
+            sessionStorage.setItem("isAuth", "Failed");
         // } else {
         //     if (authenticated && new Date().getTime() < expireTime) {
                 // setIsAuth('Success');
                 // sessionStorage.setItem("isAuth", "Success");
             }
             else {
-                // sessionStorage.setItem("isAuth", "Success");
+                sessionStorage.setItem("isAuth", "Success");
 
                 // const response = requestToken(refreshToken);
                 //
                 // if (response.status) {
                 //     const token = response.json.accessToken;
                 //     dispatch(SET_TOKEN(token));
-                    setIsAuth('Success');
+                //     setIsAuth('Success');
                 //     // sessionStorage.setItem("isAuth", "Success");
                 // } else {
                 //     dispatch(DELETE_TOKEN());

@@ -13,10 +13,11 @@ function Member(props) {
 
 
     const location = useLocation();
-    const {isAuth} = CheckToken(location.key);
+    // const {isAuth} = CheckToken(location.key);
+    CheckToken(location.key);
 
     // CheckToken();
-    // let isAuth = sessionStorage.getItem("isAuth");
+    let isAuth = sessionStorage.getItem("isAuth");
     console.log(`isAuth : ${isAuth}`);
 
     return (
