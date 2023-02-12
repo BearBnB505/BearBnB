@@ -34,11 +34,11 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
                     })
                         .then((req)=>{
                             console.log(req)
-                            alert('이메일 보내기 성공')
+                            // alert('이메일 보내기 성공')
                         })
                         .catch((err)=>{
                             console.log(err);
-                            alert('이메일보내기 실패')
+                            // alert('이메일보내기 실패')
                         })
 
 
@@ -81,11 +81,11 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
                             })
                                 .then((req)=>{
                                     console.log(req)
-                                    alert('이메일 보내기 성공')
+                                    // alert('이메일 보내기 성공')
                                 })
                                 .catch((err)=>{
                                     console.log(err);
-                                    alert('이메일보내기 실패')
+                                    // alert('이메일보내기 실패')
                                 })
                         })
                         .catch(function (error) {

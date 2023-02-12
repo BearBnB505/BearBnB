@@ -4,10 +4,36 @@ import {Link} from "react-router-dom";
 import DetailTable2WaitModal from "./DetailTable2WaitModal";
 import DetailTable2Image from "./DetailTable2Image";
 import DetailTable2Contents from "./DetailTable2Contents";
+import axios from "axios";
+import Swal from "sweetalert2";
+import DetailTable2RejectModal from "./DetailTable2RejectModal";
 
 function DetailTable2Wait({lodging, comfort}) {
 
+    const [rejectModal, setRejectModal] = useState(false);
     const [modal, setModal] = useState(false);
+    console.log('거절페이지 테스트')
+    console.log(lodging.lodgingNum);
+
+    const rejectLodging = () => {
+        axios.post("http://localhost:8080/rejectLodging",{
+            to : "props.userId,",
+            from : 'bearbnbproject@gmail.com',
+            title : '숙소가 승인되지 못하였습니다',
+            contents : '죄송합니다 귀하의 숙소가 승인되지 못하였습니다 BearBnB 서비스를 이용해주셔서 감사합니다.'
+        })
+            .then((req)=>{
+                console.log(req);
+                Swal.fire({
+                    icon: 'success',
+                    title: '숙소가 승인 거절되었습니다',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    // setShow(false);
+                })
+            })
+    }
 
     return (
         <div>
@@ -43,13 +69,20 @@ function DetailTable2Wait({lodging, comfort}) {
                 </div>
 
                 <div className="row justify-content-center mb-5">
-                    <button className="col-6 w-25 btn btn btn-lg btn-secondary me-5">반려</button>
+                    <button className="col-6 w-25 btn btn btn-lg btn-secondary me-5" onClick={()=>setRejectModal(true)}>반려</button>
                     <button className="col-6 w-25 btn btn-lg btn-primary" onClick={() => setModal(true)}>승인</button>
                 </div>
+                <DetailTable2RejectModal  show={rejectModal}
+                                          onHide={() => setRejectModal(false)}
+                                          userId ={lodging.userId}
+                                          lodgingNum = {lodging.lodgingNum}/>
 
                 <DetailTable2WaitModal
                     show={modal}
-                    onHide={() => setModal(false)}/>
+                    onHide={() => setModal(false)}
+                    userId ={lodging.userId}
+                    lodgingNum = {lodging.lodgingNum}
+                    />
 
             </Card>
         </div>

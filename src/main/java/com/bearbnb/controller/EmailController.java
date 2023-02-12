@@ -1,6 +1,7 @@
 package com.bearbnb.controller;
 
 import com.bearbnb.dto.EmailDto;
+import com.bearbnb.dto.LodgingDto;
 import com.bearbnb.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,11 +37,35 @@ public class EmailController {
         emailService.UpdateRejectStateMail(emailDto);
     }
 
+
+
+
+
+
     //    호스트가 숙소 예약 거절 시 고객에게 연락
     @RequestMapping(value = "/rejectGuestMail", method = RequestMethod.POST)
     public void rejectGuestMail(@RequestBody EmailDto emailDto) throws Exception{
         System.out.println(emailDto);
         emailService.rejectGuestMail(emailDto);
+    }
+
+
+
+//    관리자페이지
+//    숙소 승인 누르면 승인완료로 만들기
+    @RequestMapping(value = "/approveLodging", method = RequestMethod.POST)
+    public void approveLodging(@RequestBody LodgingDto lodging) throws Exception{
+    System.out.println(lodging);
+    emailService.approveLodging(lodging.getLodgingNum());
+//    emailService.approveLodging(lodgingNum);
+}
+
+
+//    관리자가 숙소 승인하면 호스트에게 연락
+    @RequestMapping(value = "/approveLodgingEmail", method = RequestMethod.POST)
+    public void approveLodgingEmail(@RequestBody EmailDto emailDto) throws Exception{
+        System.out.println(emailDto);
+        emailService.approveLodgingEmail(emailDto);
     }
 
 

@@ -101,6 +101,8 @@ public class JoinServiceImpl implements JoinService{
 
 
 
+
+
     @Override
     public String sendSimpleMessage(String to)throws Exception {
         // TODO Auto-generated method stub

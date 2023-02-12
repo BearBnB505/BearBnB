@@ -1,6 +1,7 @@
 package com.bearbnb.service;
 
 import com.bearbnb.dto.EmailDto;
+import com.bearbnb.mapper.EmailMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -16,6 +17,9 @@ public class EmailServiceImpl implements EmailService {
 
     @Autowired
     JavaMailSender emailSender;
+
+    @Autowired
+    EmailMapper emailMapper;
 //    private JavaMailSender mailSender;
 //    private static final String FROM_ADDRESS = "YOUR_EMAIL_ADDRESS";
 
@@ -61,6 +65,24 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void rejectGuestMail(EmailDto emailDto) throws Exception{
 
+        MimeMessage message = sendContactHostMessage(emailDto);
+        try{
+            emailSender.send(message);
+        } catch (MailException e) {
+            e.printStackTrace();
+            throw new IllegalAccessException();
+        }
+    }
+
+//    숙소 승인
+    @Override
+    public void approveLodging(String lodgingNum) throws Exception{
+        emailMapper.approveLodging(lodgingNum);
+    }
+
+//    숙소 승인 시 호스트에게 알림
+    @Override
+    public void approveLodgingEmail(EmailDto emailDto) throws Exception{
         MimeMessage message = sendContactHostMessage(emailDto);
         try{
             emailSender.send(message);
