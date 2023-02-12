@@ -2,6 +2,7 @@ package com.bearbnb.controller;
 
 import com.bearbnb.dto.MemberRequestDto;
 import com.bearbnb.dto.TokenDto;
+import com.bearbnb.jwt.JwtTokenProvider;
 import com.bearbnb.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthService authService;
+
+    private final JwtTokenProvider jwtTokenProvider;
 
 //    @PostMapping("/signup")
 //    public ResponseEntity<MemberResponseDto> signup(@RequestBody MemberRequestDto requestDto) {
@@ -28,8 +31,10 @@ public class AuthController {
     }
 
     @PostMapping("/token/refresh")
-    public ResponseEntity<TokenDto> refresh(String refreshToken) {
-        TokenDto token = authService.refresh(refreshToken);
+    public ResponseEntity<TokenDto> refresh(@RequestParam("refreshToken") String refreshToken) {
+//        TokenDto token = authService.refresh(refreshToken);
+        TokenDto token = jwtTokenProvider.refresh(refreshToken);
+
         return ResponseEntity.ok().body(token);
     }
 }

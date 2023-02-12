@@ -120,13 +120,13 @@ export const requestToken = (refreshToken) => {
     let response = {};
     // Example code to make an API call to get a new access token
     axios.post('/auth/token/refresh', { refreshToken: refreshToken })
-        .then((res) => {
+        .then(res => {
             response = {
                 status: true,
                 json: res.data
             };
         })
-        .catch((error) => {
+        .catch(error => {
             response = {
                 status: false,
                 json: error.response.data

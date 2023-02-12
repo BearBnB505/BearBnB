@@ -8,9 +8,13 @@ import {
 import {Link, Outlet} from "react-router-dom";
 import Anima from "./animaData";
 import {motion} from "framer-motion";
-import {useParams} from "react-router";
+import {useLocation, useParams} from "react-router";
 import axios from "axios";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {CheckToken} from "../Auth/CheckToken";
+import {auths} from "../lodging_reg/Reducers/AuthReducer";
+import {TOKEN_TIME_OUT} from "../Store/Auth";
+import {getCookie} from "../Storage/Cookies";
 
 function Mypage(props) {
 
@@ -18,23 +22,49 @@ function Mypage(props) {
     const {idx} = useParams();
 
     const Auth = useSelector((state)=>state.auth.value);
-    // console.log("로그인창");
-    // console.log(Auth.access);
     const accessToken = Auth.accessToken;
+    console.log(accessToken);
+
+    const dispatch = useDispatch();
+
+    const location = useLocation();
+    const {isAuth} = CheckToken(location.key);
 
     let [chooseDate, setChooseDate] = useState([]);
 
+    const refreshToken = getCookie('refreshToken');
+    console.log("mypage : "+refreshToken);
     useEffect(() => {
-        axios.post('/myPage', { accessToken: accessToken })
-            .then((req) => {
-                const {data} = req;
-                console.log(data);
-                // setLodging(data.lodging);
+        axios.post('/auth/token/refresh', {params: {refreshToken: refreshToken }}, {
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(res => {
+                const token = res.data;
+
+                dispatch(auths({accessToken:token.accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
+                console.log(token);
+                // setIsAuth('Success');
             })
-            .catch((err) => {
-                console.log("통신 오류");
-            })
-    }, []);
+            .catch(error => {
+                // dispatch(auths({accessToken:null, authenticated:true, expireTime:null}));
+                // removeCookie('refreshToken');
+                // setIsAuth('Failed');
+            });
+    }, [])
+
+    // useEffect(() => {
+    //     axios.get('/member/myPage', { accessToken: accessToken })
+    //         .then((req) => {
+    //             const {data} = req;
+    //             console.log(data);
+    //             // setLodging(data.lodging);
+    //         })
+    //         .catch((err) => {
+    //             console.log("통신 오류");
+    //         })
+    // }, []);
 
     return (
         <motion.div variants={Anima}

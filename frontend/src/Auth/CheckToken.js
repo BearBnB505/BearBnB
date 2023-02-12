@@ -4,6 +4,7 @@ import {getCookie, removeCookie} from "../Storage/Cookies";
 import {auths} from "../lodging_reg/Reducers/AuthReducer";
 import {TOKEN_TIME_OUT} from "../Store/Auth";
 import {requestToken} from "../Api/Users";
+import axios from "axios";
 
 export function CheckToken(key) {
 
@@ -26,17 +27,21 @@ export function CheckToken(key) {
                 if (authenticated && new Date().getTime() < expireTime){
                     setIsAuth('Success');
                 } else {
-                    const response = await requestToken(refreshToken);
+                    console.log(refreshToken);
 
-                    if (response.status) {
-                        const token = response.accessToken;
-                        dispatch(auths({accessToken:token.accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
-                        setIsAuth('Success');
-                    } else {
-                        dispatch(auths({accessToken:null, authenticated:true, expireTime:null}));
-                        removeCookie('refreshToken');
-                        setIsAuth('Failed');
-                    }
+                    axios.post('/auth/token/refresh', {params: { refreshToken: refreshToken }})
+                        .then(res => {
+                            const token = res.data;
+
+                            dispatch(auths({accessToken:token.accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
+                            setIsAuth('Success');
+                        })
+                        .catch(error => {
+                            // dispatch(auths({accessToken:null, authenticated:true, expireTime:null}));
+                            // removeCookie('refreshToken');
+                            // setIsAuth('Failed');
+                        });
+
                 }
             }
         };

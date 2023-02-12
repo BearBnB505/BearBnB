@@ -27,13 +27,15 @@ function Main(props) {
         }
     };
 
-    const location = useLocation();
-    const {isAuth} = CheckToken(location.key);
+    // const location = useLocation();
+    // const {isAuth} = CheckToken(location.key);
     // const {isAuth} = CheckToken();
 
 
     const Auth = useSelector((state)=>state.auth.value);
     // console.log(Auth);
+    const accessToken = Auth.accessToken;
+    console.log(accessToken);
 
     const [data, setData] = useState([]);
     const [category, setCategory] = useState('한옥');
@@ -52,9 +54,16 @@ function Main(props) {
     }, [category]);
 
     useEffect(() => {
-        console.log("메인창");
-        // console.log(Auth);
-        console.log(isAuth);
+        axios.get('/member/my', {headers: {
+            'Authorization': 'Bearer ' + accessToken
+        }})
+            .then((req) => {
+                const {data} = req;
+                console.log(data);
+            })
+            .catch((err) => {
+                console.log("통신 오류");
+            })
     }, [category]);
     
     useEffect(() => {

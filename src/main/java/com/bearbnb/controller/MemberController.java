@@ -18,9 +18,9 @@ public class MemberController {
     private final MemberService memberService;
     private final JwtTokenProvider jwtTokenProvider;
 
-    @PostMapping("/myPage")
+    @GetMapping("/myPage")
     public String membersDto(String accessToken) {
-        String userId = String.valueOf(jwtTokenProvider.parseClaims(accessToken));
+        String userId = jwtTokenProvider.getAuthentication(accessToken).getName();
         return userId;
     }
 
