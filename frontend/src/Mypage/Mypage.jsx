@@ -10,20 +10,26 @@ import Anima from "./animaData";
 import {motion} from "framer-motion";
 import {useParams} from "react-router";
 import axios from "axios";
+import {useSelector} from "react-redux";
 
 function Mypage(props) {
 
     const [lodging, setLodging] = useState([]);
     const {idx} = useParams();
 
+    const Auth = useSelector((state)=>state.auth.value);
+    // console.log("로그인창");
+    // console.log(Auth.access);
+    const accessToken = Auth.accessToken;
+
     let [chooseDate, setChooseDate] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/lodgingDetail/${idx}`)
+        axios.post('/myPage', { accessToken: accessToken })
             .then((req) => {
                 const {data} = req;
                 console.log(data);
-                setLodging(data.lodging);
+                // setLodging(data.lodging);
             })
             .catch((err) => {
                 console.log("통신 오류");

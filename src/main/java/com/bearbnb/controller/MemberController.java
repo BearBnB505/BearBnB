@@ -2,6 +2,8 @@ package com.bearbnb.controller;
 
 import com.bearbnb.dto.MemberRequestDto;
 import com.bearbnb.dto.MemberResponseDto;
+import com.bearbnb.dto.MembersDto;
+import com.bearbnb.jwt.JwtTokenProvider;
 import com.bearbnb.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +16,15 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
 
     private final MemberService memberService;
+    private final JwtTokenProvider jwtTokenProvider;
 
-    @GetMapping("/me")
+    @PostMapping("/myPage")
+    public String membersDto(String accessToken) {
+        String userId = String.valueOf(jwtTokenProvider.parseClaims(accessToken));
+        return userId;
+    }
+
+    @GetMapping("/my")
     public ResponseEntity<MemberResponseDto> getMyMemberInfo() {
         MemberResponseDto myInfoBySecurity = memberService.getMyInfoBySecurity();
 //        System.out.println(myInfoBySecurity.getNickname());
