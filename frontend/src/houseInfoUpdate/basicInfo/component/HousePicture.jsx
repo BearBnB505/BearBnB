@@ -4,6 +4,7 @@ import axios from "axios";
 import Keep from "../../../Main/Keep";
 import {Link} from "react-router-dom";
 import MainContents from "../../../Main/MainContents";
+import MultipleItems from "./MultipleItems";
 
 function HousePicture(props) {
     const location = useLocation();
@@ -28,17 +29,7 @@ function HousePicture(props) {
 
     return (
         <div>
-            {
-                data.map((item) => {
-                    return (
-                        
-                            <div className={"container"}>
-                                <img src={item.photo}/>
-                            </div>
-                    )
-                })
-            }
-
+            <MultipleItems data={data}/>
         </div>
     );
 }
