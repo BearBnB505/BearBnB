@@ -22,4 +22,12 @@ public class EmailController {
         emailService.sendContactHost(emailDto);
     }
 
+//    숙소 예약시 호스트에게 연락하기
+@RequestMapping(value = "/paymentEmail", method = RequestMethod.POST)
+public void paymentEmail(@RequestBody EmailDto emailDto) throws Exception{
+    System.out.println(emailDto);
+    emailService.paymentEmail(emailDto);
+}
+
+
 }

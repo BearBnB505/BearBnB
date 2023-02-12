@@ -19,6 +19,7 @@ public class EmailServiceImpl implements EmailService {
 //    private JavaMailSender mailSender;
 //    private static final String FROM_ADDRESS = "YOUR_EMAIL_ADDRESS";
 
+//    호스트에게 연락하기
     @Override
     public void sendContactHost(EmailDto emailDto) throws Exception{
 
@@ -30,6 +31,21 @@ public class EmailServiceImpl implements EmailService {
             throw new IllegalAccessException();
         }
     }
+
+
+//    숙소예약시 호스트에게
+    @Override
+    public void paymentEmail(EmailDto emailDto) throws Exception{
+
+        MimeMessage message = sendContactHostMessage(emailDto);
+        try{
+            emailSender.send(message);
+        } catch (MailException e) {
+            e.printStackTrace();
+            throw new IllegalAccessException();
+        }
+    }
+
 
 
 

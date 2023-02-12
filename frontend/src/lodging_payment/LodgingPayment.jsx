@@ -50,7 +50,7 @@ function LodgingPayment(props) {
 
 
     let startDt = moment(chooseDate[0]).format('YYYY-MM-DD 14:00:00');
-    let endDt = moment(chooseDate[0]).format('YYYY-MM-DD 10:00:00');
+    let endDt = moment(chooseDate[1]).format('YYYY-MM-DD 10:00:00');
 
     const dayCost = location.state.dayCost;
 
@@ -125,9 +125,15 @@ function LodgingPayment(props) {
         setTotalCost((parseInt(dayCost) * nightCount));
     }, [nightCount]);
 
-    console.log('test')
-    console.log(totalCost)
-    console.log(lodgingNum)
+    // console.log('test')
+    // console.log(totalCost)
+    // console.log(lodgingNum)
+
+    console.log('시작일')
+    console.log(startDt);
+    console.log('마지막 일')
+    console.log(endDt);
+
     return (
         <div className={'container mx-auto'}>
                             <div className={'row align-items-start mt-3'}>
