@@ -39,10 +39,12 @@ function DetailTable2WaitModal(props) {
                             setShow(false);
                         })
                     })
+                props.onHide(false);
             })
             .catch((err)=>{
                 console.log(err)
             })
+
 
         
         

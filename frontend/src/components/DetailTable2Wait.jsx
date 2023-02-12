@@ -50,7 +50,7 @@ function DetailTable2Wait({lodging, comfort}) {
                 <div className="py-5 text-center">
 
                     <div className="spinner-border mt-1 mb-4 text-secondary" style={{width: 50, height: 50}}
-                         role="status">
+                            role="status">
                         <span className="visually-hidden"></span>
                     </div>
 
@@ -86,7 +86,6 @@ function DetailTable2Wait({lodging, comfort}) {
                     userId ={lodging.userId}
                     lodgingNum = {lodging.lodgingNum}
                     />
-
             </Card>
         </div>
     )
