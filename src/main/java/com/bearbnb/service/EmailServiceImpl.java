@@ -46,6 +46,30 @@ public class EmailServiceImpl implements EmailService {
         }
     }
 
+    @Override
+    public void UpdateRejectStateMail(EmailDto emailDto) throws Exception{
+
+        MimeMessage message = sendContactHostMessage(emailDto);
+        try{
+            emailSender.send(message);
+        } catch (MailException e) {
+            e.printStackTrace();
+            throw new IllegalAccessException();
+        }
+    }
+
+    @Override
+    public void rejectGuestMail(EmailDto emailDto) throws Exception{
+
+        MimeMessage message = sendContactHostMessage(emailDto);
+        try{
+            emailSender.send(message);
+        } catch (MailException e) {
+            e.printStackTrace();
+            throw new IllegalAccessException();
+        }
+    }
+
 
 
 
