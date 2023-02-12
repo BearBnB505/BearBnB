@@ -22,8 +22,8 @@ function MainContents(props) {
             })
     },[])
 
-    console.log('잘 뽑아야 하는데')
-    console.log(image.data[0].photo);
+    // console.log('길이측정')
+    // console.log(image.data.length);
 
 
 
@@ -50,19 +50,33 @@ function MainContents(props) {
                 {/*    <img src="/img/btnKeep.png" alt="" style={keep} onClick={''}/>*/}
                 {/*</div>*/}
                 <Slider {...settings}>
+
                     {
-                        image.map((item)=>{
-                            <div>
-                            <img
-                                className="d-block w-100"
-                                src={item.photo}
-                                style={{height: 250}}/>
-                            </div>
+                        image.data.map((item) => {
+                            return (
+
+                                        <img src={item.photo} onError="this.style.display='none'" style={{borderRadius:"10px", height:"180px"}}/>
+
+                            )
                         })
                     }
 
+                    {/*{*/}
+                    {/*    image.data.map((item)=>{*/}
+                    {/*        <div>*/}
+                    {/*        <img*/}
+                    {/*            className="d-block w-100"*/}
+                    {/*            src={item.photo} onError='../public/BearBnB_logo.png'*/}
+                    {/*            style={{height: 250}}/>*/}
+                    {/*        </div>*/}
+                    {/*    })*/}
+                    {/*}*/}
+
+
 
                     {/*{}*/}
+
+
                     {/*<div>*/}
                     {/*    <img*/}
                     {/*        className="d-block w-100"*/}
