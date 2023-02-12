@@ -12,8 +12,11 @@ import {CheckToken} from "../Auth/CheckToken";
 function Member(props) {
 
 
-    CheckToken();
-    let isAuth = sessionStorage.getItem("isAuth");
+    const location = useLocation();
+    const {isAuth} = CheckToken(location.key);
+
+    // CheckToken();
+    // let isAuth = sessionStorage.getItem("isAuth");
     console.log(`isAuth : ${isAuth}`);
 
     return (
@@ -23,20 +26,20 @@ function Member(props) {
             </DropdownToggle>
 
             <DropdownMenu align={"end"} className={"shadow"}>
-                {((isAuth === 'Failed') || (isAuth === 'Loaded')) && <Login/>}
-                {((isAuth === 'Failed') || (isAuth === 'Loaded')) && <Join/>}
-                {(isAuth === 'Success') && <Logout/>}
-                {/*<Login/>*/}
-                {/*<Join/>*/}
+                {/*{((isAuth === 'Failed') || (isAuth === 'Loaded')) && <Login/>}*/}
+                {/*{((isAuth === 'Failed') || (isAuth === 'Loaded')) && <Join/>}*/}
+                {/*{(isAuth === 'Success') && <Logout/>}*/}
+                <Login/>
+                <Join/>
                 <Logout/>
 
-                {(isAuth === 'Success') && <>
+                {/*{(isAuth === 'Success') && <>*/}
                     <DropdownItem href={"/message"}>
                         <span>메세지알림</span>
                         <span className="badge bg-primary rounded-pill float-end">2</span>
                     </DropdownItem>
                     <DropdownItem href={"/mypage"}>마이페이지</DropdownItem>
-                </>}
+                {/*</>}*/}
             </DropdownMenu>
         </Dropdown>
     );

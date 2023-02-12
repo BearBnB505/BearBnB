@@ -12,9 +12,9 @@ import {CheckToken} from "../../Auth/CheckToken";
 
 function Payment(props) {
 
-    CheckToken();
-    const isAuth = sessionStorage.getItem("isAuth");
-    console.log(`isAuth : ${isAuth}`);
+    // CheckToken();
+    // const isAuth = sessionStorage.getItem("isAuth");
+    // console.log(`isAuth : ${isAuth}`);
 
     const styles = {
         navDate: {

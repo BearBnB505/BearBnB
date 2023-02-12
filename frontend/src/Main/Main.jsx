@@ -27,8 +27,8 @@ function Main(props) {
         }
     };
 
-    // const location = useLocation();
-    // const {isAuth} = CheckToken(location.key);
+    const location = useLocation();
+    const {isAuth} = CheckToken(location.key);
     // const {isAuth} = CheckToken();
 
 
@@ -51,10 +51,11 @@ function Main(props) {
             })
     }, [category]);
 
-    // useEffect(() => {
-    //     console.log("메인창");
-    //     console.log(Auth);
-    // }, [category]);
+    useEffect(() => {
+        console.log("메인창");
+        // console.log(Auth);
+        console.log(isAuth);
+    }, [category]);
     
     useEffect(() => {
         if (!sessionStorage.getItem("startDt")) {
