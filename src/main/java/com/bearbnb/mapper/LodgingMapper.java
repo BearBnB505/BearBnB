@@ -37,7 +37,7 @@ public interface LodgingMapper {
 
     ReviewAvgDto reviewAvg(String lodgingNum) throws Exception;
 
-    List<LodgingDto> searchLodgingList(String startDt, String endDt, int adultCount) throws Exception;
+    List<LodgingDto> searchLodgingList(String searchSpot, String startDt, String endDt, int adultCount) throws Exception;
 
     void LanguageUpdate(LodgingDto lodging);
 
