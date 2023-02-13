@@ -50,7 +50,8 @@ function LodgingDetail(props) {
     const lat = parseFloat(location.state.lat);
     const lng = parseFloat(location.state.lng);
     const dispatch = useDispatch();
-    
+
+    const [check, setCheck] = useState("ready");
     
     useEffect(() => {
         axios.get(`http://localhost:8080/lodgingDetail/${idx}`)
@@ -65,25 +66,12 @@ function LodgingDetail(props) {
                 setComforts(data.comforts);
                 setMembers(data.members);
 
+                setCheck("done");
             })
             .catch((err) => {
                 console.log("통신 오류");
             })
     }, []);
-
-    // 숙소상세페이지 이미지 불러오기
-    useEffect(()=>{
-        axios.put('http://localhost:8080/lodgingDetailImage',null,{params: {idx:idx}})
-            .then((req)=>{
-                console.log('숙소상세페이지 이미지 통신 성공')
-                console.log(req);
-                setImage(req);
-            })
-            .catch((error)=>{
-                console.log('숙소상세페이지 이미지 통신 오류')
-                console.log(error)
-            })
-    },[])
 
     //이미지 url 테스트
     // const imageList = image;
@@ -108,7 +96,7 @@ function LodgingDetail(props) {
                     <LodgingDetailTitle lodging={lodging} review={review} avg={avg}/>
 
                     <PhotoContext.Provider>
-                        <HostImg photo={image}/>
+                        <HostImg idx={idx} check={check}/>
                     </PhotoContext.Provider>
 
                     <div className={'row'}>
