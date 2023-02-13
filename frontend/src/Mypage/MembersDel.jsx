@@ -1,9 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Breadcrumb, FloatingLabel, InputGroup} from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Anima from "./animaData";
 import { motion } from "framer-motion";
 import {Link} from "react-router-dom";
+import axios from "axios";
+import Swal from "sweetalert2";
+
 
 function MembersDel() {
 
@@ -12,6 +15,104 @@ function MembersDel() {
     const onChangePwd = (e) => {
         setPwd(e.target.value);
     }
+
+    const [userId, setUserId] = useState('');
+
+
+    const [truePwd, setTruePwd] = useState('');
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/Members')
+          .then((req) => {
+              const {data} = req;
+              setData(data);
+              // setEmail(data[0].userId)
+              setUserId('민지')
+              // setTruePwd(data[0].pwd)
+              setTruePwd('123')
+          })
+          .catch((err) => {
+              console.log("통신 오류");
+              console.log(err);
+          })
+    }, []);
+
+    // const delBtn = ()=>{
+    //     if(truePwd == pwd){
+    //     axios.put("http://localhost:8080/memberDelete",null,{params:{userId : userId}})
+    //       .then(r => {
+    //           console.log("삭제 데이터 보내기 성공");
+    //       }).catch((err) => {
+    //           console.log("삭제데이터 보내기 실패");
+    //           console.log(err);
+    //     })
+    //         window.location.replace("http://localhost:3000/");
+    //     }
+    //     else {
+    //         console.log("삭제 실패");
+    //     }
+    // }
+
+
+    const delBtn = ()=>{
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-primary',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+        if(truePwd == pwd) {
+            swalWithBootstrapButtons.fire({
+                title: '회원탈회 하시겠습니까?',
+                text: "탈퇴 후 취소가 불가능합니다!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '탈퇴',
+                cancelButtonText: '취소',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    swalWithBootstrapButtons.fire(
+                      '탈퇴하였습니다!',
+                      '　',
+                      'success',
+                      axios.put("http://localhost:8080/memberDelete",null,{params:{userId : userId}})
+                        .then(r => {
+                            console.log("삭제 데이터 보내기 성공");
+                        }).catch((err) => {
+                          console.log("삭제데이터 보내기 실패");
+                          console.log(err);
+                      }),
+                    window.location.replace("http://localhost:3000/")
+                    )
+                } else if (
+                  /* Read more about handling dismissals below */
+                  result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                      '취소하였습니다',
+                      '　',
+                      'error'
+                    )
+                }
+            })
+        }else {
+            Swal.fire({
+                icon: 'error',
+                title: '비밀번호가 일치하지 않습니다',
+                text: '비밀번호를 다시 입력해 주세요!',
+            })
+            console.log("삭제 실패");
+        }
+
+    }
+
+
+
+
 
     return (
         <motion.div variants={Anima}
@@ -47,12 +148,12 @@ function MembersDel() {
                                 label="비밀번호"
                                 className="mb-3"
                             >
-                                <Form.Control value={pwd} onChange={onChangePwd}
+                                <Form.Control type="password" value={pwd} onChange={onChangePwd}
                                               placeholder={"*******"}></Form.Control>
                             </FloatingLabel></InputGroup>
                     </div>
                     <div className={"mt-2"}>
-                        <button className={"btn btn-dark btn-lg"}>저장</button>
+                        <button className={"btn btn-dark btn-lg"} onClick={delBtn}>회원탈퇴</button>
                     </div>
                 </div>
             </div>

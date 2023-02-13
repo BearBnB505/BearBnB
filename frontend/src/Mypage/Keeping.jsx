@@ -58,6 +58,8 @@ function Keeping() {
     // 첫 게시물의 위치(offset)
     const offset = (page - 1) * limit;
 
+    // const [Avg, setAvg] =useState(0)
+
 
     useEffect(() => {
         axios.get('http://localhost:8080/KeepList/')
@@ -72,11 +74,32 @@ function Keeping() {
           })
     }, []);
 
+
+    const cleanGradeSum = data.reduce((acc, item) => acc + Number(item.cleanGrade), 0);
+    const accuracyGradeSum = data.reduce((acc, item) => acc + Number(item.accuracyGrade), 0);
+    const communicationSum = data.reduce((acc, item) => acc + Number(item.communicationGrade), 0);
+    const locationSum = data.reduce((acc, item) => acc + Number(item.locationGrade), 0);
+    const checkInSum = data.reduce((acc, item) => acc + Number(item.checkInGrade), 0);
+    const costSum = data.reduce((acc, item) => acc + Number(item.costGrade), 0);
+    const AllGradeSum = (cleanGradeSum+accuracyGradeSum+communicationSum+locationSum+checkInSum+costSum);
+    const divisionNum = Number(data.length*6)
+    let Avg = (AllGradeSum/divisionNum)
+    Avg = Math.round(Avg * 10) / 10;
+
+    console.log("평균");
+    console.log(Avg);
+
+
+
     return (
+
+
         <motion.div variants={Anima}
                     initial="hidden"
                     animate="visible"
                     exit="exit" className={"container mt-5"}>
+
+
             <div className={"mb-5"}>
                 <Breadcrumb>
                     <Breadcrumb.Item><Link to={"../mypage"}>마이페이지</Link></Breadcrumb.Item>
@@ -89,9 +112,7 @@ function Keeping() {
                 {data.slice(offset, offset + limit).map((item) => {
                     return <KeepingItem idx={item.idx} imageUrl={item.photo} lodging_num={item.lodgingNum}
                                         lodging_name={item.lodgingName} addr={item.addr}
-                                        clean_grade={item.cleanGrade} accuracy_grade={item.accuracyGrade}
-                                        communication_grade={item.communicationGrade} location_grade={item.locationGrade}
-                                        check_in_grade={item.checkInGrade} cost_grade={item.costGrade}/>
+                                        Avg={Avg} count={data.length}/>
                                         // review_count={item.review_count}/>
                 })}
             </div>

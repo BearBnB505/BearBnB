@@ -9,4 +9,6 @@ public interface ReviewService {
     void UpdateReview(ReviewDto review);
 
     void DeleteReview(ReviewDto review);
+
+    void writeReview(ReviewDto review);
 }
