@@ -17,4 +17,7 @@ public interface ReviewMapper {
 
     List<ReviewDto> ReviewListContent();
 
+    void writeReview(ReviewDto review);
+
+    List<ReviewDto> allReviewList();
 }

@@ -3,8 +3,15 @@ package com.bearbnb.controller;
 import com.bearbnb.dto.*;
 import com.bearbnb.mapper.KeepingMapper;
 import com.bearbnb.mapper.MemberMapper;
+import com.bearbnb.mapper.MembersMapper;
 import com.bearbnb.mapper.ReviewMapper;
 import com.bearbnb.service.KeepingService;
+
+import com.bearbnb.dto.MemberRequestDto;
+import com.bearbnb.dto.MemberResponseDto;
+import com.bearbnb.dto.MembersDto;
+import com.bearbnb.jwt.JwtTokenProvider;
+
 import com.bearbnb.service.MemberService;
 import com.bearbnb.service.MembersService;
 import com.bearbnb.service.ReviewService;
@@ -24,6 +31,7 @@ import java.util.Map;
 public class MemberController {
 
     private final MemberService memberService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Autowired
     MemberMapper memberMapper;
@@ -39,7 +47,9 @@ public class MemberController {
     KeepingService keepingService;
 
 
-    @GetMapping("/me")
+
+
+    @GetMapping("/my")
     public ResponseEntity<MemberResponseDto> getMyMemberInfo() {
         MemberResponseDto myInfoBySecurity = memberService.getMyInfoBySecurity();
 //        System.out.println(myInfoBySecurity.getNickname());
@@ -95,7 +105,6 @@ public class MemberController {
     @RequestMapping(value = "/DeleteReview", method = RequestMethod.PUT)
     public String DeleteReview(ReviewDto review) throws Exception {
         reviewService.DeleteReview(review);
-
         return "redirect:/review";
     }
 
@@ -125,11 +134,46 @@ public class MemberController {
 
         ReviewAvgDto avg = keepingService.reviewAvg(lodgingNum);
         map.put("avg", avg);
-
-
         return map;
     }
 
+    @RequestMapping(value = "/complainList")
+    public List<ComplainDto> complainList() {
+        return memberMapper.complainList();
+    }
 
+    @RequestMapping(value = "/allReviewList")
+    public List<ReviewDto> allReviewList() {
+        return reviewMapper.allReviewList();
+    }
+
+
+
+//    @RequestMapping(value = "/complainDelete", method = RequestMethod.PUT)
+//    public String deleteComplain(ComplainDto complain) throws Exception {
+//        membersService.deleteComplain(complain);
+//        return "redirect:/deleteComplain";
+//    }
+
+    @RequestMapping(value = "/complainDelete", method = RequestMethod.PUT)
+    public List<ComplainDto> complainDelete(@RequestBody List<ComplainDto> ComplainBox ){
+
+        System.out.println(ComplainBox);
+        membersService.complainDelete(ComplainBox);
+
+        return ComplainBox;
+    }
+
+    @RequestMapping(value = "/memberDelete", method = RequestMethod.PUT)
+    public String memberDelete(MembersDto members) throws Exception {
+        membersService.memberDelete(members);
+        return "redirect:/memberDelete";
+    }
+
+    @RequestMapping(value = "/writeReview", method = RequestMethod.PUT)
+    public String writeReview(ReviewDto review) throws Exception {
+        reviewService.writeReview(review);
+        return "redirect:/writeReview";
+    }
 
 }

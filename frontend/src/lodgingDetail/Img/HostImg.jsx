@@ -39,7 +39,8 @@ function HostImg(props) {
             const timer = setTimeout(() => {
                 setIsLoaded(true);
 
-            },1000);
+            },400);
+
 
             return () => clearTimeout(timer);
             }, []);

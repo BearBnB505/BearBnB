@@ -73,4 +73,20 @@
         ]]>
     </select>
 
+    <select id="allReviewList" resultType="com.bearbnb.dto.ReviewDto">
+        <![CDATA[
+        SELECT idx
+        FROM review
+        ORDER BY idx DESC
+        ]]>
+    </select>
+
+
+    <insert id="writeReview" parameterType="com.bearbnb.dto.ReviewDto">
+        <![CDATA[
+        INSERT INTO review(idx, user_id, comment, clean_grade, accuracy_grade, communication_grade , location_grade, check_in_grade, cost_grade, lodging_num)
+        VALUES (#{idx}, #{userId}, #{comment}, #{cleanGrade},#{accuracyGrade},#{communicationGrade},#{locationGrade},#{checkInGrade},#{costGrade},#{lodgingNum})
+        ]]>
+    </insert>
+
 </mapper>

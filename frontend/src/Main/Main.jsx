@@ -8,7 +8,6 @@ import Keep from "./Keep";
 import {getCookie} from "../Storage/Cookies";
 import {useDispatch, useSelector} from "react-redux";
 // import {DELETE_TOKEN, SET_TOKEN, tokenSlice} from "../Store/Auth";
-import {requestToken} from "../Api/Users";
 import {removeCookieToken} from "../Storage/Cookie";
 import {useLocation} from "react-router";
 import {CheckToken} from "../Auth/CheckToken";
@@ -32,23 +31,10 @@ function Main(props) {
     // const {isAuth} = CheckToken();
 
 
-    // // console.log(`userID : ${accessToken}`);
-
-    // const isAuth = sessionStorage.getItem("isAuth");
-    // console.log(`isAuth : ${isAuth}`);
-
-    // const store = configureStore({reducer: tokenSlice.reducer});
-    // const auth = store.getState();
-    // console.log(auth);
-
-    // const auth = useSelector((state) => state.SET_TOKEN);
-    // console.log(auth);
-
-    // const accessToken = useSelector((state) => state.accessToken.value);
-    // console.log(accessToken);
-
     const Auth = useSelector((state)=>state.auth.value);
     // console.log(Auth);
+    const accessToken = Auth.accessToken;
+    console.log(accessToken);
 
     const [data, setData] = useState([]);
     const [category, setCategory] = useState('한옥');
@@ -56,6 +42,7 @@ function Main(props) {
     console.log(category);
     console.log('데이터 확인')
     console.log(data)
+
 
     useEffect(() => {
         axios.get('http://localhost:8080/lodgingList', {params: {category: category}})
@@ -72,8 +59,19 @@ function Main(props) {
             })
     }, [category]);
 
+    const refreshToken = getCookie('refreshToken');
+
     useEffect(() => {
-        console.log(Auth);
+        axios.get('/member/my', {headers: {
+            'Authorization': 'Bearer ' + refreshToken
+        }})
+            .then((req) => {
+                const {data} = req;
+                console.log(data.userId);
+            })
+            .catch((err) => {
+                console.log("통신 오류");
+            })
     }, [category]);
     
     useEffect(() => {
@@ -82,11 +80,13 @@ function Main(props) {
         }
         // else if (sessionStorage.getItem("startDt") != null) {
             // setSearchParam(sessionStorage.getItem(searchParam));
-            console.log(sessionStorage.getItem("startDt"));
+            // console.log(sessionStorage.getItem("startDt"));
+            let searchSpot = sessionStorage.getItem("searchSpot");
             let startDt = sessionStorage.getItem("startDt");
             let endDt = sessionStorage.getItem("endDt");
             let adultCount = sessionStorage.getItem("adultCount");
             let searchParam = {
+                searchSpot: searchSpot,
                 startDt: startDt,
                 endDt: endDt,
                 adultCount: adultCount,

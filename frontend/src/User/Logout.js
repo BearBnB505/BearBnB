@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 
 import {getCookieToken, removeCookieToken} from "../Storage/Cookie";
 import {DELETE_TOKEN} from "../Store/Auth";
-import {logoutUser} from "../Api/Users"
 import DropdownItem from "react-bootstrap/DropdownItem";
 import {removeCookie} from "../Storage/Cookies";
 
