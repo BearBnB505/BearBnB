@@ -51,15 +51,15 @@ function MainContents(props) {
                 {/*</div>*/}
                 <Slider {...settings}>
 
-                    {
-                        image.data.map((item) => {
-                            return (
+                    {/*{*/}
+                    {/*    image.data.map((item) => {*/}
+                    {/*        return (*/}
 
-                                        <img src={item.photo} onError="this.style.display='none'" style={{borderRadius:"10px", height:"180px"}}/>
+                    {/*                    <img src={item.photo} onError="this.style.display='none'" style={{borderRadius:"10px", height:"180px"}}/>*/}
 
-                            )
-                        })
-                    }
+                    {/*        )*/}
+                    {/*    })*/}
+                    {/*}*/}
 
                     {/*{*/}
                     {/*    image.data.map((item)=>{*/}
