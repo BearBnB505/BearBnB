@@ -41,6 +41,7 @@ function Main(props) {
     const [category, setCategory] = useState('한옥');
     console.log(category);
 
+
     useEffect(() => {
         axios.get('http://localhost:8080/lodgingList', {params: {category: category}})
             .then((req) => {
@@ -53,9 +54,11 @@ function Main(props) {
             })
     }, [category]);
 
+    const refreshToken = getCookie('refreshToken');
+
     useEffect(() => {
         axios.get('/member/my', {headers: {
-            'Authorization': 'Bearer ' + accessToken
+            'Authorization': 'Bearer ' + refreshToken
         }})
             .then((req) => {
                 const {data} = req;

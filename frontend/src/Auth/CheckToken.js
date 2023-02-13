@@ -9,13 +9,15 @@ import axios from "axios";
 export function CheckToken(key) {
 
     const [isAuth, setIsAuth] = useState('Loaded');
-    const Auth = useSelector((state)=>state.auth.value);
+    // const Auth = useSelector((state)=>state.auth.value);
     // console.log("로그인창");
     // console.log(Auth.access);
-    const authenticated = Auth.authenticated;
-    const accessToken = Auth.accessToken;
-    const expireTime = Auth.expireTime;
+    // const authenticated = Auth.authenticated;
+    // const accessToken = Auth.accessToken;
+    // const expireTime = Auth.expireTime;
     const refreshToken = getCookie('refreshToken');
+    const authenticated = refreshToken.authenticated;
+    const expireTime = refreshToken.expireTime;
     const dispatch = useDispatch();
 
     useEffect(()=> {
@@ -27,20 +29,24 @@ export function CheckToken(key) {
                 if (authenticated && new Date().getTime() < expireTime){
                     setIsAuth('Success');
                 } else {
-                    console.log(refreshToken);
 
-                    axios.post('/auth/token/refresh', {params: { refreshToken: refreshToken }})
-                        .then(res => {
-                            const token = res.data;
+                    // axios.post('/auth/token/refresh', {headers: {
+                    //         'Authorization': 'Bearer ' + refreshToken
+                    //     }})
+                    //     .then(res => {
+                    //         const token = res.data;
+                    //
+                    //         dispatch(auths({accessToken:token.accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
+                    //         setIsAuth('Success');
+                    //     })
+                    //     .catch(error => {
+                    //         // dispatch(auths({accessToken:null, authenticated:true, expireTime:null}));
+                    //         // removeCookie('refreshToken');
+                    //         // setIsAuth('Failed');
+                    //     });
 
-                            dispatch(auths({accessToken:token.accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
-                            setIsAuth('Success');
-                        })
-                        .catch(error => {
-                            // dispatch(auths({accessToken:null, authenticated:true, expireTime:null}));
-                            // removeCookie('refreshToken');
-                            // setIsAuth('Failed');
-                        });
+                    removeCookie('refreshToken');
+                    setIsAuth('Failed');
 
                 }
             }

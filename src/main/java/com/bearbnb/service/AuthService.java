@@ -1,9 +1,6 @@
 package com.bearbnb.service;
 
-import com.bearbnb.dto.MemberRequestDto;
-import com.bearbnb.dto.MemberResponseDto;
-import com.bearbnb.dto.MembersDto;
-import com.bearbnb.dto.TokenDto;
+import com.bearbnb.dto.*;
 import com.bearbnb.jwt.JwtTokenProvider;
 import com.bearbnb.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +38,17 @@ public class AuthService {
     }
 
     public TokenDto refresh(String refreshToken) {
-        return jwtTokenProvider.refresh(refreshToken);
+        jwtTokenProvider.validateToken(refreshToken);
+
+        String authorities = jwtTokenProvider.getAuthentication(refreshToken).getAuthorities().toString();
+        String userId = jwtTokenProvider.getAuthentication(refreshToken).getName();
+
+        return jwtTokenProvider.refresh(userId, authorities);
     }
+
+//    public RefreshTokenResponse refreshToken(String rToken) {
+//        TokenHelper.PrivateClaims privateClaims = refreshTokenHelper.parse(rToken).orElseThrow(RefreshTokenFailureException::new);
+//        String accessToken = accessTokenHelper.createToken(privateClaims);
+//        return new RefreshTokenResponse(accessToken);
+//    }
 }
