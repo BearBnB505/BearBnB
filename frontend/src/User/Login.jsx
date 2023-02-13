@@ -82,6 +82,8 @@ function Login() {
                     timer: 800
                 }).then(() => {
                     setShow(true);
+                    setUserId('');
+                    setUserPwd('');
                 })
             })
     }
