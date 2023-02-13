@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import BookingModalReview from "./BookingConfirm/BookingModalReview";
 import BookingModalDetail from "./BookingConfirm/BookingModalDetail";
 import axios from "axios";
+import ReviewPagenation from "./ReviewPagenation";
+import BookingPagenation from "./BookingPagenation";
 
 function BookingConfirm() {
 
@@ -27,6 +29,12 @@ function BookingConfirm() {
 
     const [waitArray, setWaitArray] = useState([]);
     const [agreeArray, setAgreeArray] = useState([]);
+  // 페이지당 게시물 수
+  const [limit, setLimit] = useState(2);
+  // 현재 페이지 번호(page)
+  const [page, setPage] = useState(1);
+  // 첫 게시물의 위치(offset)
+  const offset = (page - 1) * limit;
 
 
     useEffect(() => {
@@ -78,7 +86,7 @@ function BookingConfirm() {
 
                 <Tab eventKey="tab1" title={`예약승인 대기 (${waitArray.length}건)`}>
                     <div>
-                        {waitArray.map((item) => {
+                        {waitArray.slice(offset, offset + limit).map((item) => {
                             return <BookingWait idx={item.idx} lodging_name={item.lodgingName}
                                                 book_state={item.bookState}
                                                 book_dt={item.bookDt} pay_cost={item.payCost}
@@ -87,11 +95,17 @@ function BookingConfirm() {
                                                 tel={item.tel} book_state={item.bookState} user_id={item.userId} user_name={item.name} user_nation={item.nation}/>
                         })}
                     </div>
+                  <BookingPagenation
+                    total={waitArray.length}
+                    limit={limit}
+                    page={page}
+                    setPage={setPage}
+                  />
                 </Tab>
 
                 <Tab eventKey="tab2" title={`예약완료 (${agreeArray.length}건)`}>
                     <div>
-                        {agreeArray.map((item) => {
+                        {agreeArray.slice(offset, offset + limit).map((item) => {
                             return <BookingItem idx={item.idx} lodging_name={item.lodgingName}
                                                 book_state={item.bookState} lodging_num={item.lodgingNum}
                                                 book_dt={item.bookDt} pay_cost={item.payCost}
@@ -100,12 +114,21 @@ function BookingConfirm() {
                                                 tel={item.tel} book_state={item.bookState} user_id={item.userId} user_name={item.name} user_nation={item.nation}/>
                         })}
                     </div>
+                  <BookingPagenation
+                    total={agreeArray.length}
+                    limit={limit}
+                    page={page}
+                    setPage={setPage}
+                  />
                 </Tab>
 
             </Tabs>
 
 
+
+
         </motion.div>
+
     )
 }
 
