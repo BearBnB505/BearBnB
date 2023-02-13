@@ -61,6 +61,7 @@ import LodgingRegHeader from "./lodging_reg/layout/LodgingRegHeader";
 import LodgingLayout from "./lodging_reg/layout/LodgingLayout";
 import ReviewContent from "./HostMypage/ReviewContent";
 import Search from "./GoogleMap/Search";
+import MyPageProfile from "./Mypage/MyPageProfile";
 
 
 function ProjectRouter(props) {
@@ -89,6 +90,7 @@ function ProjectRouter(props) {
                     <Route path={"complain"} element={<Complain/>}/>
                     <Route path={"keeping"} element={<Keeping/>}/>
                     <Route path={"membersDel"} element={<MembersDel/>}/>
+                    <Route path = {"myPageProfile"} element={<MyPageProfile/>}/>
 
 
                     {/*<Route path={"imgUploadBox"} element={<ImgUploadBox/>}/>*/}

@@ -9,10 +9,6 @@ import moment from "moment";
 function MainContents(props) {
     console.log('넘어온 숙소번호확인')
     const lodgingNum = props.lodgingNum
-    // console.log('lodgingNum')
-    // console.log(lodgingNum);
-
-
     const [imageList, setImageList] = useState([]);
     const [categories, setCategories] = useState('');
     const [isLoaded, setIsLoaded] = useState(false);
@@ -123,11 +119,9 @@ function MainContents(props) {
                     </div>
                 </Slider>
             </div>
-
-
             <div className={"text-start mt-2"}>
                 <span><b>{props.data.lodgingName}</b></span><br/>
-                <span><b>{props.data.address1}, 한국</b></span><br/>
+                <span><b>{props.data.address1}</b></span><br/>
                 <span className={"text-muted"}>{props.data.lodgingConcept}</span><br/>
                 <span className={"text-muted"}>{checkInDt} ~ {checkOutDt}</span><br/>
                 <span><b>₩{props.data.cost}</b> /박</span>

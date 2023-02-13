@@ -66,9 +66,8 @@ function Mypage(props) {
 
                   <strong>{item.name}&nbsp;&nbsp;</strong>
                   {item.userId},&nbsp;&nbsp;
-                  <strong>· 프로필로 이동</strong>
+                <Link to={"/myPageProfile"}><strong>· 프로필로 이동</strong></Link>
               </div>
-
             </h5>
           </div>
         )
