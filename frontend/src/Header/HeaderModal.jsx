@@ -102,8 +102,8 @@ function HeaderModal(props) {
     let startDate = moment(chooseDate[0]).format('M월 D일');
     let endDate = moment(chooseDate[1]).format('M월 D일');
 
-    const startDt = moment(chooseDate[0]).format('YYYY-MM-DD 14:00:00');
-    const endDt = moment(chooseDate[1]).format('YYYY-MM-DD 10:00:00');
+    let startDt = moment(chooseDate[0]).format('YYYY-MM-DD 14:00:00');
+    let endDt = moment(chooseDate[1]).format('YYYY-MM-DD 10:00:00');
 
     let adultCount = selectGuest[0];
     let childCount = selectGuest[1];
@@ -123,6 +123,15 @@ function HeaderModal(props) {
 
     const search = () => {
         sessionStorage.setItem("searchSpot", searchSpot);
+        // {startDt == 'Invalid date' ? '' : startDt};
+        // {endDt == 'Invalid date' ? '' : endDt};
+        if (startDt == 'Invalid date') {
+            startDt = '';
+            return
+        }
+        if (endDt == 'Invalid date') {
+            endDt = '';
+        }
         sessionStorage.setItem("startDt", startDt);
         sessionStorage.setItem("endDt", endDt);
         sessionStorage.setItem("adultCount", adultCount);
@@ -185,7 +194,6 @@ function HeaderModal(props) {
 
                                             {/*여행지 검색 input*/}
                                             <SearchHeader spot={setSearchSpot}/>
-
 
                                         </div>
                                     </div>
