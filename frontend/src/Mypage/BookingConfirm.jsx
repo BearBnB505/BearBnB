@@ -97,7 +97,7 @@ function BookingConfirm() {
                                                 book_dt={item.bookDt} pay_cost={item.payCost}
                                                 book_num={item.bookNum} book_check_in_dt={item.bookCheckInDt} book_check_out_dt={item.bookCheckOutDt}
                                                 adult_num={item.adultNum} baby_num={item.babyNum} pet_num={item.petNum}
-                                                book_state={item.bookState} user_id={item.userId} user_name={item.userName} user_tel={item.userTel} user_nation={item.userNation}/>
+                                                tel={item.tel} book_state={item.bookState} user_id={item.userId} user_name={item.name} user_nation={item.nation}/>
                         })}
                     </div>
                 </Tab>
