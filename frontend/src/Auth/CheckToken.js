@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {getCookie, removeCookie} from "../Storage/Cookies";
 import {auths} from "../lodging_reg/Reducers/AuthReducer";
 import {TOKEN_TIME_OUT} from "../Store/Auth";
-import {requestToken} from "../Api/Users";
 import axios from "axios";
 
 export function CheckToken(key) {

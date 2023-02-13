@@ -13,7 +13,7 @@
 <!--    숙소 상세페이지 이미지 가져오기-->
     <select id="lodgingDetailImage" resultType="com.bearbnb.dto.PhotoDto">
         <![CDATA[
-        SELECT photo.photo
+        SELECT *
         FROM photo
                  JOIN lodging
                       ON photo.lodging_num = lodging.lodging_num
@@ -24,11 +24,11 @@
     <!--    메인페이지 이미지 가져오기-->
     <select id="mainImage" resultType="com.bearbnb.dto.PhotoDto">
         <![CDATA[
-        SELECT photo.photo, photo.lodging_num, photo.idx, photo.deleted_yn
+        SELECT *
         FROM photo
                  JOIN lodging
                       ON photo.lodging_num = lodging.lodging_num
-        WHERE lodging.idx = #{idx}
+        WHERE lodging.lodging_num = #{lodgingNum}
         ]]>
     </select>
 

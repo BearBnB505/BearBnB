@@ -1,17 +1,16 @@
 package com.bearbnb.controller;
 
-<<<<<<< HEAD
 import com.bearbnb.dto.*;
 import com.bearbnb.mapper.KeepingMapper;
 import com.bearbnb.mapper.MemberMapper;
 import com.bearbnb.mapper.ReviewMapper;
 import com.bearbnb.service.KeepingService;
-=======
+
 import com.bearbnb.dto.MemberRequestDto;
 import com.bearbnb.dto.MemberResponseDto;
 import com.bearbnb.dto.MembersDto;
 import com.bearbnb.jwt.JwtTokenProvider;
->>>>>>> develop_login_redux
+
 import com.bearbnb.service.MemberService;
 import com.bearbnb.service.MembersService;
 import com.bearbnb.service.ReviewService;
@@ -33,7 +32,6 @@ public class MemberController {
     private final MemberService memberService;
     private final JwtTokenProvider jwtTokenProvider;
 
-<<<<<<< HEAD
     @Autowired
     MemberMapper memberMapper;
     @Autowired
@@ -48,16 +46,9 @@ public class MemberController {
     KeepingService keepingService;
 
 
-    @GetMapping("/me")
-=======
-    @GetMapping("/myPage")
-    public String membersDto(String accessToken) {
-        String userId = jwtTokenProvider.getAuthentication(accessToken).getName();
-        return userId;
-    }
+
 
     @GetMapping("/my")
->>>>>>> develop_login_redux
     public ResponseEntity<MemberResponseDto> getMyMemberInfo() {
         MemberResponseDto myInfoBySecurity = memberService.getMyInfoBySecurity();
 //        System.out.println(myInfoBySecurity.getNickname());

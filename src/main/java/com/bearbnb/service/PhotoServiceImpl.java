@@ -25,7 +25,7 @@ public class PhotoServiceImpl implements PhotoService{
     }
 
     @Override
-    public List<PhotoDto> mainImage(String idx) throws Exception {
-        return photoMapper.mainImage(idx);
+    public List<PhotoDto> mainImage(String lodgingNum) throws Exception {
+        return photoMapper.mainImage(lodgingNum);
     }
 }
