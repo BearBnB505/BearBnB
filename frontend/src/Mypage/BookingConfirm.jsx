@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Breadcrumb, Tab, Tabs} from "react-bootstrap";
 import {faPencil, faList, faClose} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -6,8 +6,10 @@ import Anima from "./animaData";
 import { motion } from "framer-motion";
 import BookingModalReview from "./BookingConfirm/BookingModalReview";
 import BookingModalDetail from "./BookingConfirm/BookingModalDetail";
+import axios from "axios";
 
 function BookingConfirm() {
+
 
     const bookingConfirm = [
         {idx: 1, lodging_name: "해운대 신라 호텔", book_state: "예약완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
@@ -23,7 +25,37 @@ function BookingConfirm() {
         {idx: 2, lodging_name: "제주도 신라 호텔", book_state: "승인대기", book_dt: "2023-01-17", pay_cost: "560,200원"},
     ]
 
+    const [waitArray, setWaitArray] = useState([]);
+    const [agreeArray, setAgreeArray] = useState([]);
+
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/bookingList/')
+          .then((req) => {
+              const {data} = req;
+              // console.log(data);
+              // setData(data);
+
+              // dbArray를 기반으로 새로운 배열을 만듭니다.
+              const waitArray = data.filter(item => item.bookState === "승인대기");
+              setWaitArray(waitArray);
+              // console.log(waitArray);
+
+              const agreeArray = data.filter(item => item.bookState === '예약완료');
+              setAgreeArray(agreeArray);
+              // console.log(agreeArray);
+
+
+          })
+          .catch((err) => {
+              console.log("통신 오류");
+              console.log(err);
+          })
+    }, []);
+
+
     return (
+
         <motion.div variants={Anima}
                      initial="hidden"
                      animate="visible"
@@ -43,22 +75,29 @@ function BookingConfirm() {
                 className="mb-3"
                 justify
             >
-                <Tab eventKey="tab1" title="예약승인 대기 (2건)">
+
+                <Tab eventKey="tab1" title={`예약승인 대기 (${waitArray.length}건)`}>
                     <div>
-                        {bookingWait.map((item) => {
-                            return <BookingWait idx={item.idx} lodging_name={item.lodging_name}
-                                                book_state={item.book_state}
-                                                book_dt={item.book_dt} pay_cost={item.pay_cost}/>
+                        {waitArray.map((item) => {
+                            return <BookingWait idx={item.idx} lodging_name={item.lodgingName}
+                                                book_state={item.bookState}
+                                                book_dt={item.bookDt} pay_cost={item.payCost}
+                                                book_num={item.bookNum} book_check_in_dt={item.bookCheckInDt} book_check_out_dt={item.bookCheckOutDt}
+                                                adult_num={item.adultNum} baby_num={item.babyNum} pet_num={item.petNum}
+                                                tel={item.tel} book_state={item.bookState} user_id={item.userId} user_name={item.name} user_nation={item.nation}/>
                         })}
                     </div>
                 </Tab>
 
-                <Tab eventKey="tab2" title="예약완료 확인 (10건)">
+                <Tab eventKey="tab2" title={`예약완료 (${agreeArray.length}건)`}>
                     <div>
-                        {bookingConfirm.map((item) => {
-                            return <BookingItem idx={item.idx} lodging_name={item.lodging_name}
-                                                book_state={item.book_state}
-                                                book_dt={item.book_dt} pay_cost={item.pay_cost}/>
+                        {agreeArray.map((item) => {
+                            return <BookingItem idx={item.idx} lodging_name={item.lodgingName}
+                                                book_state={item.bookState}
+                                                book_dt={item.bookDt} pay_cost={item.payCost}
+                                                book_num={item.bookNum} book_check_in_dt={item.bookCheckInDt} book_check_out_dt={item.bookCheckOutDt}
+                                                adult_num={item.adultNum} baby_num={item.babyNum} pet_num={item.petNum}
+                                                book_state={item.bookState} user_id={item.userId} user_name={item.userName} user_tel={item.userTel} user_nation={item.userNation}/>
                         })}
                     </div>
                 </Tab>
@@ -73,7 +112,12 @@ function BookingConfirm() {
 
 export default BookingConfirm;
 
-function BookingWait({lodging_name, book_state, book_dt, pay_cost}) {
+function BookingWait({idx, lodging_name, book_state, book_dt, pay_cost,
+                         book_num, book_check_in_dt, book_check_out_dt,
+                         adult_num, baby_num, pet_num,
+                         user_id, user_name, user_tel, user_nation, tel}) {
+    const [modalDetail, setModalDetail] = useState(false);
+
     return (
         <ul className={"list-group mb-4"} style={styles.ul}>
             <li className={"list-group-item p-4"} style={styles.li}>
@@ -82,6 +126,20 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost}) {
                 <div>{lodging_name}</div>
                 <div>결제 금액 : {pay_cost}</div>
                 <div>
+                    <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit" onClick={()=> setModalDetail(true)}>
+                        <span><FontAwesomeIcon icon={faList} size="1x"/> 상세내역</span>
+                    </button>
+
+                    {/*<BookingModalDetail*/}
+                    <BookingModalDetail
+                      show={modalDetail}
+                      onHide = {() => setModalDetail(false)}
+                      idx={idx} lodging_name={lodging_name}
+                      book_num={book_num} book_check_in_dt={book_check_in_dt} book_check_out_dt={book_check_out_dt}
+                      adult_num={adult_num} baby_num={baby_num} pet_num={pet_num}
+                      book_state={book_state} user_id={user_id} user_name={user_name} user_tel={user_tel} user_nation={user_nation}
+                      book_dt={book_dt} pay_cost={pay_cost} tel={tel}/>
+
                     <button type="button" className="btn btn-outline-secondary btn-sm my-2 me-2" title="Edit">
                         <span><FontAwesomeIcon icon={faClose} size="1x"/> 취소신청</span>
                     </button>
