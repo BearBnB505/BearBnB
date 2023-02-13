@@ -67,6 +67,12 @@ function Payment(props) {
         setNightCount(moment.duration(moment(chooseDate[1]).diff(moment(chooseDate[0]))).asDays());
     }, chooseDate);
 
+    const [isLoad, setIsLoad] = useState(false);
+
+    const check = () => {
+        setIsLoad(true);
+    }
+
     console.log(nightCount);
 
     const total = props.cost * nightCount;
@@ -137,9 +143,8 @@ function Payment(props) {
                     </div>
 
 
-                    {/*{`${nightCount} === NaN` ?*/}
-                    {/*    <Button className={'w-100 py-2 mb-2'} variant="primary">예약 가능 여부 보기</Button>*/}
-                    {/*    : <>*/}
+                    {isLoad ?
+                        <>
                     <Link to={"/lodgingPayment"} state={{chooseDate: chooseDate, dayCost: props.cost, nightCount: nightCount, totalCost: total, selectGuest: selectGuest }}>
                         <Button className={'w-100 py-2 mb-2'} variant="primary">예약하기</Button>
                     </Link>
@@ -166,8 +171,8 @@ function Payment(props) {
                             </div>
                         </div>
                     </div>
-                    {/*    </>*/}
-                    {/*}*/}
+                        </> : <Button className={'w-100 py-2 mb-2'} variant="primary" onClick={check}>예약 가능 여부 보기</Button>
+                    }
                 </div>
             </div>
 
