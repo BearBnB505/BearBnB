@@ -16,9 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -103,29 +101,31 @@ public class JwtTokenProvider {
         try {
             return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken).getBody();
         }
-        catch (ExpiredJwtException e) {
+        catch (ExpiredJwtException e) {  // 만료된 토큰이어도 일단 파싱 (재발급때문)
             return e.getClaims();
         }
     }
 
-    public TokenDto refresh(String refreshToken) {
-
-        validateToken(refreshToken);
+    public TokenDto reissue(Authentication authentication) {
+        // 권한 가져오기
+        String authorities = authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.joining(","));
 
         long now = (new Date()).getTime();
 
         // Access Token 재발급
         Date accessTokenExpiresIn = new Date(now + 86400000);  // 테스트 용 1일 ( 나중에 30분으로 수정 -> ACCESS_TOKEN_EXPIRE_TIME )
         String accessToken = Jwts.builder()
+                .setSubject(authentication.getName())
+                .claim("auth", authorities)
                 .setExpiration(accessTokenExpiresIn)
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
-
         return TokenDto.builder()
                 .grantType("Bearer")
                 .accessToken(accessToken)
-                .refreshToken(refreshToken)
                 .build();
     }
 

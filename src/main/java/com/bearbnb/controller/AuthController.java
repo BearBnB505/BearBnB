@@ -1,6 +1,7 @@
 package com.bearbnb.controller;
 
 import com.bearbnb.dto.MemberRequestDto;
+import com.bearbnb.dto.MemberResponseDto;
 import com.bearbnb.dto.TokenDto;
 import com.bearbnb.jwt.JwtTokenProvider;
 import com.bearbnb.service.AuthService;
@@ -33,7 +34,7 @@ public class AuthController {
     @PostMapping("/token/refresh")
     public ResponseEntity<TokenDto> refresh(@RequestParam("refreshToken") String refreshToken) {
 //        TokenDto token = authService.refresh(refreshToken);
-        TokenDto token = jwtTokenProvider.refresh(refreshToken);
+        TokenDto token = authService.refresh(refreshToken);
 
         return ResponseEntity.ok().body(token);
     }

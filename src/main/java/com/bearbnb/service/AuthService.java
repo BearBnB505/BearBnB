@@ -41,6 +41,8 @@ public class AuthService {
     }
 
     public TokenDto refresh(String refreshToken) {
-        return jwtTokenProvider.refresh(refreshToken);
+        jwtTokenProvider.validateToken(refreshToken);
+        Authentication authentication = jwtTokenProvider.getAuthentication(refreshToken);
+        return jwtTokenProvider.reissue(authentication);
     }
 }

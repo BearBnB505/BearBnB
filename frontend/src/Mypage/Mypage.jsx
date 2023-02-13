@@ -27,32 +27,14 @@ function Mypage(props) {
 
     const dispatch = useDispatch();
 
-    const location = useLocation();
-    const {isAuth} = CheckToken(location.key);
+    // const location = useLocation();
+    // const {isAuth} = CheckToken(location.key);
+    // console.log(isAuth);
 
     let [chooseDate, setChooseDate] = useState([]);
 
     const refreshToken = getCookie('refreshToken');
-    console.log("mypage : "+refreshToken);
-    useEffect(() => {
-        axios.post('/auth/token/refresh', {params: {refreshToken: refreshToken }}, {
-            headers: {
-                'content-type': 'application/json'
-            }
-        })
-            .then(res => {
-                const token = res.data;
-
-                dispatch(auths({accessToken:token.accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
-                console.log(token);
-                // setIsAuth('Success');
-            })
-            .catch(error => {
-                // dispatch(auths({accessToken:null, authenticated:true, expireTime:null}));
-                // removeCookie('refreshToken');
-                // setIsAuth('Failed');
-            });
-    }, [])
+    // console.log("mypage : "+refreshToken);
 
     // useEffect(() => {
     //     axios.get('/member/myPage', { accessToken: accessToken })

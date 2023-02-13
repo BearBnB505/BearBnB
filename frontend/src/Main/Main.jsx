@@ -30,6 +30,7 @@ function Main(props) {
     // const location = useLocation();
     // const {isAuth} = CheckToken(location.key);
     // const {isAuth} = CheckToken();
+    // console.log(isAuth);
 
 
     const Auth = useSelector((state)=>state.auth.value);
@@ -54,6 +55,7 @@ function Main(props) {
     }, [category]);
 
     useEffect(() => {
+        // console.log(isAuth);
         axios.get('/member/my', {headers: {
             'Authorization': 'Bearer ' + accessToken
         }})

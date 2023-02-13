@@ -18,6 +18,26 @@ export function CheckToken(key) {
     const refreshToken = getCookie('refreshToken');
     const dispatch = useDispatch();
 
+    const refresh = () => {
+        axios.post('/auth/token/refresh', {params: {refreshToken: refreshToken}}, {
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(res => {
+                const token = res.data;
+                console.log(token);
+
+                dispatch(auths({accessToken:token.accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
+                setIsAuth('Success');
+            })
+            .catch(error => {
+                // dispatch(auths({accessToken:null, authenticated:true, expireTime:null}));
+                // removeCookie('refreshToken');
+                setIsAuth('Failed');
+            });
+    }
+
     useEffect(()=> {
         const checkAuthToken = async () => {
             if (refreshToken === undefined) {
@@ -29,18 +49,7 @@ export function CheckToken(key) {
                 } else {
                     console.log(refreshToken);
 
-                    axios.post('/auth/token/refresh', {params: { refreshToken: refreshToken }})
-                        .then(res => {
-                            const token = res.data;
-
-                            dispatch(auths({accessToken:token.accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
-                            setIsAuth('Success');
-                        })
-                        .catch(error => {
-                            // dispatch(auths({accessToken:null, authenticated:true, expireTime:null}));
-                            // removeCookie('refreshToken');
-                            // setIsAuth('Failed');
-                        });
+                    refresh();
 
                 }
             }

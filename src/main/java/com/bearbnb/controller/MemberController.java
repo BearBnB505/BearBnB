@@ -18,12 +18,6 @@ public class MemberController {
     private final MemberService memberService;
     private final JwtTokenProvider jwtTokenProvider;
 
-    @GetMapping("/myPage")
-    public String membersDto(String accessToken) {
-        String userId = jwtTokenProvider.getAuthentication(accessToken).getName();
-        return userId;
-    }
-
     @GetMapping("/my")
     public ResponseEntity<MemberResponseDto> getMyMemberInfo() {
         MemberResponseDto myInfoBySecurity = memberService.getMyInfoBySecurity();
