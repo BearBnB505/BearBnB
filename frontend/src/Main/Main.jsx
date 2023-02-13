@@ -117,7 +117,7 @@ function Main(props) {
                                         <Keep idx={item.idx}/>
                                     </div>
                                     <Link to={`/lodgingDetail/${item.idx}`} style={{color: "black"}} state={{lat: `${item.latitude}`, lng: `${item.longitude}`}}>
-                                        <MainContents idx={item.idx} data={item} />
+                                        <MainContents idx={item.idx} data={item} category={category}/>
                                     </Link>
                                 </li>
                             )
