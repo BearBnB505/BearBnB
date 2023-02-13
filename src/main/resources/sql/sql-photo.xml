@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bearbnb.mapper.PhotoMapper">
+
+
+    <!--    숙소 수정페이지 사진 정보 가져오기-->
+    <select id="lodgingPhotoList" resultType="com.bearbnb.dto.PhotoDto">
+        <![CDATA[
+        SELECT * FROM photo WHERE lodging_num = #{lodgingNum};
+        ]]>
+    </select>
+
+<!--    숙소 상세페이지 이미지 가져오기-->
+    <select id="lodgingDetailImage" resultType="com.bearbnb.dto.PhotoDto">
+        <![CDATA[
+        SELECT photo.photo
+        FROM photo
+                 JOIN lodging
+                      ON photo.lodging_num = lodging.lodging_num
+        WHERE lodging.idx = #{idx}
+        ]]>
+    </select>
+
+    <!--    메인페이지 이미지 가져오기-->
+    <select id="mainImage" resultType="com.bearbnb.dto.PhotoDto">
+        <![CDATA[
+        SELECT photo.photo, photo.lodging_num, photo.idx, photo.deleted_yn
+        FROM photo
+                 JOIN lodging
+                      ON photo.lodging_num = lodging.lodging_num
+        WHERE lodging.idx = #{idx}
+        ]]>
+    </select>
+
+</mapper>

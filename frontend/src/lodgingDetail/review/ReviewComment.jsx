@@ -1,6 +1,5 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import ReviewContext from "../Context/ReviewContext";
-import {Button} from "react-bootstrap";
 
 function ReviewComment() {
     const review = useContext(ReviewContext);

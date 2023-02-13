@@ -35,7 +35,7 @@ import LodgingPayment from "./lodging_payment/LodgingPayment";
 import LodgingPaymentEnd from "./lodging_payment/LodgingPaymentEnd";
 import LodgingPaymentFailure from "./lodging_payment/LodgingPaymentFailure";
 import Message from "./Message/Message";
-import Join from "./Join";
+import Join from "./User/Join";
 import Table1 from "./components/Table1";
 import Table2 from "./components/Table2";
 import Table3 from "./components/Table3";
@@ -51,12 +51,17 @@ import HostMyPageBooking from "./HostMypage/HostBookingPage/HostMyPageBooking";
 import GuestInfoModal from "./HostMypage/GuestInfoModal";
 import HostMyPageRevenue from "./HostMypage/HostMyPageRevenue";
 import HostMyPageLodging from "./HostMypage/HostMyPageLodging";
+import LodgingChooseDate from "./lodging_reg/LodgingChooseDate";
 
 import './App.css';
+
 import DetailTable2 from "./components/DetailTable2";
 import DetailTable3 from "./components/DetailTable3";
-import SearchMap from "./GoogleMap/SearchMap";
+import LodgingRegHeader from "./lodging_reg/layout/LodgingRegHeader";
+import LodgingLayout from "./lodging_reg/layout/LodgingLayout";
 import ReviewContent from "./HostMypage/ReviewContent";
+import Search from "./GoogleMap/Search";
+
 
 function ProjectRouter(props) {
     return (
@@ -69,7 +74,7 @@ function ProjectRouter(props) {
                     <Route path={"lodgingDetail/:idx"} element={<LodgingDetail/>}/>
                     <Route path={"hostInfo"} element={<HostInfo/>}/>
 
-                    <Route path={"search"} element={<SearchMap/>}/>
+                    <Route path={"search"} element={<Search/>}/>
 
                     {/* 메세지알림 */}
                     <Route path={"message"} element={<Message/>}/>
@@ -85,25 +90,6 @@ function ProjectRouter(props) {
                     <Route path={"keeping"} element={<Keeping/>}/>
                     <Route path={"membersDel"} element={<MembersDel/>}/>
 
-
-                    {/* 숙소 등록 */}
-                    <Route path={"lodgingWelcome"} element={<LodgingWelcome />}/>
-                    <Route path={"lodgingSecondWelcome"} element={<LodgingSecondWelcome />}/>
-                    <Route path={"lodgingThirdWelcome"} element={<LodgingThirdWelcome />}/>
-                    <Route path={"lodgingConcept"} element={<LodgingConcept/>}/>
-                    <Route path={"lodgingMap"} element={<LodgingMap/>}/>
-                    <Route path={"lodgingLocationDetail"} element={<LodgingLocationDetail/>}/>
-                    <Route path={"lodgingBasicInfo"} element={<LodgingBasicInfo/>}/>
-                    <Route path={"lodgingCategorySelect"} element={<LodgingCategorySelect/>}/>
-                    <Route path={"lodgingImg"} element={<LodgingImg/>}/>
-                    <Route path={"lodgingName"} element={<LodgingName/>}/>
-                    <Route path={"lodgingIntro"} element={<LodgingIntro/>}/>
-                    <Route path={"lodgingCost"} element={<LodgingCost/>}/>
-                    <Route path={"lodgingCheck"} element={<LodgingCheck/>}/>
-                    <Route path={"lodgingBedSelect"} element={<LodgingBedSelect/>}/>
-                    <Route path={"lodgingHostInfo"} element={<LodgingHostInfo/>}/>
-                    <Route path = {"lodgingFinal" } element={<LodgingFinal/>}/>
-                    <Route path={"lodgingHostId"} element={<LodgingHostId/>}/>
 
                     {/*<Route path={"imgUploadBox"} element={<ImgUploadBox/>}/>*/}
                     {/*<Route path={"lodgingHostInfoTest"} element={<LodgingHostInfoTest/>}/>*/}
@@ -137,16 +123,39 @@ function ProjectRouter(props) {
 
                 </Route>
 
+
                 {/* 관리자페이지 */}
-                <Route path={"/admin"} element={<Navbar/>}>
+                <Route path={"/admin?"} element={<Navbar/>}>
                     <Route index element={<Table1 />} />
                     <Route path={"lodging"} element={<Table2/>}/>
                     <Route path={"report"} element={<Table3/>}/>
                     <Route path={"sales"} element={<Table4/>}/>
 
-                    <Route path={"detail2"} element={<DetailTable2/>}/>
+                    <Route path={"/admin/lodging/detail2/:lodgingNum"} element={<DetailTable2/>}/>
                     <Route path={"detail3"} element={<DetailTable3/>}/>
 
+                </Route>
+
+                {/* 숙소 등록 */}
+                <Route path = {"/reg"} element={<LodgingLayout/>}>
+                    <Route index element={<LodgingWelcome />}/>
+                    <Route path={"lodgingSecondWelcome"} element={<LodgingSecondWelcome />}/>
+                    <Route path={"lodgingThirdWelcome"} element={<LodgingThirdWelcome />}/>
+                    <Route path={"lodgingConcept"} element={<LodgingConcept/>}/>
+                    <Route path={"lodgingMap"} element={<LodgingMap/>}/>
+                    <Route path={"lodgingLocationDetail"} element={<LodgingLocationDetail/>}/>
+                    <Route path={"lodgingBasicInfo"} element={<LodgingBasicInfo/>}/>
+                    <Route path={"lodgingCategorySelect"} element={<LodgingCategorySelect/>}/>
+                    <Route path={"lodgingImg"} element={<LodgingImg/>}/>
+                    <Route path={"lodgingName"} element={<LodgingName/>}/>
+                    <Route path={"lodgingIntro"} element={<LodgingIntro/>}/>
+                    <Route path={"lodgingCost"} element={<LodgingCost/>}/>
+                    <Route path={"lodgingCheck"} element={<LodgingCheck/>}/>
+                    <Route path={"lodgingBedSelect"} element={<LodgingBedSelect/>}/>
+                    <Route path={"lodgingHostInfo"} element={<LodgingHostInfo/>}/>
+                    <Route path = {"lodgingFinal" } element={<LodgingFinal/>}/>
+                    <Route path={"lodgingHostId"} element={<LodgingHostId/>}/>
+                    <Route path = {"lodgingChooseDate" } element={<LodgingChooseDate/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

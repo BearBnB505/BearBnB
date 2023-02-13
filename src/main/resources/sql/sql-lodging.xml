@@ -48,32 +48,44 @@
 
     <select id="reviewDetail" resultType="com.bearbnb.dto.ReviewDto">
         <![CDATA[
-        SELECT
-            idx, user_id, comment, clean_grade, accuracy_grade, communication_grade, location_grade, check_in_grade, cost_grade, lodging_num, deleted_yn,
-            (CASE
-                 WHEN TIMESTAMPDIFF(MINUTE, review_create_dt, NOW()) <= 0 THEN '방금 전'
-                 WHEN TIMESTAMPDIFF(MINUTE, review_create_dt, NOW()) < 60 THEN CONCAT(TIMESTAMPDIFF(MINUTE, review_create_dt, NOW()), '분 전')
-                 WHEN TIMESTAMPDIFF(HOUR, review_create_dt, NOW()) < 24 THEN CONCAT(TIMESTAMPDIFF(HOUR, review_create_dt, NOW()), '시간 전')
-                 WHEN TIMESTAMPDIFF(DAY, review_create_dt, NOW()) < 30 THEN CONCAT(TIMESTAMPDIFF(DAY, review_create_dt, NOW()), '일 전')
-                 ELSE CONCAT(TIMESTAMPDIFF(MONTH, review_create_dt, NOW()), '달 전')
-                END) AS review_create_dt
+        SELECT idx,
+               user_id,
+               comment,
+               clean_grade,
+               accuracy_grade,
+               communication_grade,
+               location_grade,
+               check_in_grade,
+               cost_grade,
+               lodging_num,
+               deleted_yn,
+               (CASE
+                    WHEN TIMESTAMPDIFF(MINUTE, review_create_dt, NOW()) <= 0 THEN '방금 전'
+                    WHEN TIMESTAMPDIFF(MINUTE, review_create_dt, NOW()) < 60
+                        THEN CONCAT(TIMESTAMPDIFF(MINUTE, review_create_dt, NOW()), '분 전')
+                    WHEN TIMESTAMPDIFF(HOUR, review_create_dt, NOW()) < 24
+                        THEN CONCAT(TIMESTAMPDIFF(HOUR, review_create_dt, NOW()), '시간 전')
+                    WHEN TIMESTAMPDIFF(DAY, review_create_dt, NOW()) < 30
+                        THEN CONCAT(TIMESTAMPDIFF(DAY, review_create_dt, NOW()), '일 전')
+                    ELSE CONCAT(TIMESTAMPDIFF(MONTH, review_create_dt, NOW()), '달 전')
+                   END) AS review_create_dt
         FROM review
         WHERE lodging_num = #{lodgingNum}
           AND deleted_yn = 'N'
         ]]>
     </select>
 
-    <select id="reviewAvg" resultType="com.bearbnb.dto.ReviewDto">
+    <select id="reviewAvg" resultType="com.bearbnb.dto.ReviewAvgDto">
         <![CDATA[
-        SELECT
-            avg(cast(clean_grade as float)) as clean_grade,
-            avg(cast(accuracy_grade as float)) as accuracy_grade,
-            avg(cast(communication_grade as float)) as communication_grade,
-            avg(cast(location_grade as float)) as location_grade,
-            avg(cast(check_in_grade as float)) as check_in_grade,
-            avg(cast(cost_grade as float)) as cost_grade,
-            round((clean_grade + accuracy_grade + communication_grade + location_grade + check_in_grade + cost_grade) / 6, 1) as review_total,
-            count(*) as review_count
+        SELECT avg(cast(clean_grade as float))         as clean_grade,
+               avg(cast(accuracy_grade as float))      as accuracy_grade,
+               avg(cast(communication_grade as float)) as communication_grade,
+               avg(cast(location_grade as float))      as location_grade,
+               avg(cast(check_in_grade as float))      as check_in_grade,
+               avg(cast(cost_grade as float))          as cost_grade,
+               round((clean_grade + accuracy_grade + communication_grade + location_grade + check_in_grade +
+                      cost_grade) / 6, 1)              as review_total,
+               count(*)                                as review_count
         FROM review
         WHERE lodging_num = #{lodgingNum}
           AND deleted_yn = 'N'
@@ -82,41 +94,44 @@
 
     <select id="comfortsDetail" resultType="com.bearbnb.dto.ComfortsDto">
         <![CDATA[
-        SELECT idx, lodging_num, usable_yn,
-               (CASE comfort_id WHEN 'SD101' THEN '보안카메라'
-                                WHEN 'SD102' THEN '화재경보기'
-                                WHEN 'SD103' THEN '일산화탄소경보기'
-                                WHEN 'SD104' THEN '소화기'
-                                WHEN 'SD105' THEN '구급상자'
-                                WHEN 'PD101' THEN '건물내무료주차'
-                                WHEN 'PD102' THEN '건물내유료주차'
-                                WHEN 'CD101' THEN '에어컨'
-                                WHEN 'CD102' THEN '난방'
-                                WHEN 'ED101' THEN '무선인터넷'
-                                WHEN 'ED102' THEN 'TV'
-                                WHEN 'BD101' THEN '욕조'
-                                WHEN 'BD102' THEN '샤워기'
-                                WHEN 'BD103' THEN '수건'
-                                WHEN 'BD104' THEN '비누'
-                                WHEN 'BD105' THEN '화장지'
-                                WHEN 'BD106' THEN '헤어드라이어'
-                                WHEN 'BD107' THEN '샴푸'
-                                WHEN 'BD108' THEN '세탁기'
-                                WHEN 'BD109' THEN '건조기'
-                                WHEN 'BD110' THEN '청소용품'
-                                WHEN 'BD201' THEN '침대'
-                                WHEN 'BD202' THEN '침대시트'
-                                WHEN 'BD203' THEN '침구'
-                                WHEN 'KD101' THEN '냉장고'
-                                WHEN 'KD102' THEN '전자레인지'
-                                WHEN 'KD103' THEN '가스레인지인덕션'
-                                WHEN 'KD104' THEN '식기류'
-                                WHEN 'SD201' THEN '장기숙박가능'
-                                WHEN 'SD202' THEN '반려동물입실가능'
-                                WHEN 'SD203' THEN '게스트전용출입문'
-                                WHEN 'SD204' THEN '바베큐그릴'
-                                WHEN 'SD205' THEN '수영장'
-                                WHEN 'SD206' THEN '조식'
+        SELECT idx,
+               lodging_num,
+               usable_yn,
+               (CASE comfort_id
+                    WHEN 'SD101' THEN '보안카메라'
+                    WHEN 'SD102' THEN '화재경보기'
+                    WHEN 'SD103' THEN '일산화탄소경보기'
+                    WHEN 'SD104' THEN '소화기'
+                    WHEN 'SD105' THEN '구급상자'
+                    WHEN 'PD101' THEN '건물내무료주차'
+                    WHEN 'PD102' THEN '건물내유료주차'
+                    WHEN 'CD101' THEN '에어컨'
+                    WHEN 'CD102' THEN '난방'
+                    WHEN 'ED101' THEN '무선인터넷'
+                    WHEN 'ED102' THEN 'TV'
+                    WHEN 'BD101' THEN '욕조'
+                    WHEN 'BD102' THEN '샤워기'
+                    WHEN 'BD103' THEN '수건'
+                    WHEN 'BD104' THEN '비누'
+                    WHEN 'BD105' THEN '화장지'
+                    WHEN 'BD106' THEN '헤어드라이어'
+                    WHEN 'BD107' THEN '샴푸'
+                    WHEN 'BD108' THEN '세탁기'
+                    WHEN 'BD109' THEN '건조기'
+                    WHEN 'BD110' THEN '청소용품'
+                    WHEN 'BD201' THEN '침대'
+                    WHEN 'BD202' THEN '침대시트'
+                    WHEN 'BD203' THEN '침구'
+                    WHEN 'KD101' THEN '냉장고'
+                    WHEN 'KD102' THEN '전자레인지'
+                    WHEN 'KD103' THEN '가스레인지인덕션'
+                    WHEN 'KD104' THEN '식기류'
+                    WHEN 'SD201' THEN '장기숙박가능'
+                    WHEN 'SD202' THEN '반려동물입실가능'
+                    WHEN 'SD203' THEN '게스트전용출입문'
+                    WHEN 'SD204' THEN '바베큐그릴'
+                    WHEN 'SD205' THEN '수영장'
+                    WHEN 'SD206' THEN '조식'
                    END) as comfort_id
         FROM comforts
         WHERE lodging_num = #{lodgingNum}
@@ -127,7 +142,17 @@
 
     <select id="membersDetail" resultType="com.bearbnb.dto.MembersDto">
         <![CDATA[
-        SELECT idx, user_id, tel, gender, name, nation, profile_img, birth_dt, deleted_yn, authority, DATE_FORMAT(join_dt, '%Y년 %m월') AS join_dt
+        SELECT idx,
+               user_id,
+               tel,
+               gender,
+               name,
+               nation,
+               profile_img,
+               birth_dt,
+               deleted_yn,
+               authority,
+               DATE_FORMAT(join_dt, '%Y년 %m월') AS join_dt
         FROM members
         WHERE user_id = #{userId}
         ]]>

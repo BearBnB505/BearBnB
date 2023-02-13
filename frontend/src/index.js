@@ -4,17 +4,23 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProjectRouter from "./ProjectRouter";
-import HouseInfo from "./houseInfoUpdate/HouseInfo";
-import Posts from "./PagenationTest/Posts";
+import {Provider} from "react-redux";
+
+import store from './Store/Store'
+import {CookiesProvider} from "react-cookie";
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
-        <ProjectRouter/>
-      {/*<Posts/>*/}
-      {/*<App />*/}
-      {/*<HouseInfo/>*/}
-    </React.StrictMode>
+    <CookiesProvider>
+        <Provider store={store}>
+            <ProjectRouter />
+        </Provider>
+    </CookiesProvider>
+    // <React.StrictMode>
+    //     <ProjectRouter />
+    //     {/*<App />*/}
+    // </React.StrictMode>
 
 );
 

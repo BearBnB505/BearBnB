@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bearbnb.mapper.RegLodgingMapper">
+
+<!--    사진 입력-->
+    <insert id="insertUrl" parameterType="com.bearbnb.dto.PhotoDto">
+        <![CDATA[
+    INSERT INTO photo(lodging_num,photo,deleted_yn)
+    values
+]]>
+        <foreach collection="list" item="item" separator=",">
+            (#{item.lodgingNum}, #{item.photo}, #{item.deletedYn})
+        </foreach>
+    </insert>
+
+<!--    선생님 카테고리 입력-->
+    <insert id="insertCategory" parameterType="com.bearbnb.dto.ComfortsDto">
+        <![CDATA[
+        INSERT INTO comforts(lodging_num,comfort_id,usable_yn)
+        VALUES
+        ]]>
+        <foreach collection="list" item="item" separator=",">
+            (#{item.lodgingNum}, #{item.comfortId}, #{item.usableYn})
+        </foreach>
+
+    </insert>
+
+    <insert id="insertLodgingTable" parameterType="com.bearbnb.dto.LodgingDto">
+        <![CDATA[
+            INSERT INTO lodging
+           (lodging_num, user_id, certify_img, lodging_name,lodging_concept, language, intro_host,intro_lodging
+           ,cost, people_num,bedroom_num,bed_num,bed_size,bathroom_num,reg_state,create_dt,deleted_yn,zip_code, address1, address2, check_in_dt, check_out_dt,latitude,longitude)
+        values (#{lodgingNum},#{userId},#{certifyImg},#{lodgingName},#{lodgingConcept},#{language},#{introHost},#{introLodging},
+                #{cost},#{peopleNum},#{bedroomNum},#{bedNum},#{bedSize},#{bathroomNum},'승인대기',NOW(),'N', #{zipCode},
+                #{address1}, #{address2},#{checkInDt}, #{checkOutDt},#{latitude}, #{longitude})
+        ]]>
+    </insert>
+
+    <update id="updateAuthority">
+        <![CDATA[
+        UPDATE members
+            INNER JOIN lodging ON members.user_id = lodging.user_id
+            SET members.authority = 'ROLE_HOST'
+            WHERE lodging.user_id = #{userId}
+        ]]>
+    </update>
+
+    <select id="checkAuthority" resultType="String">
+        <![CDATA[
+            SELECT authority from members
+            where user_id = #{userId}
+        ]]>
+    </select>
+</mapper>

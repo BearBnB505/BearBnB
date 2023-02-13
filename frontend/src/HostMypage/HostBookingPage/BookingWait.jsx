@@ -12,6 +12,7 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
 
     const [show, setShow] = useState(false);
 
+    // 숙소 예약 승인시
     const onClickConfirm = () => {
         Swal.fire({
             icon: 'success',
@@ -21,18 +22,37 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
         }).then(() => {
             setShow(false);
             axios.put('http://localhost:8080/UpdateAgreeState',null,{params: {idx: idx }})
-              .then((response) => {
-                  console.log(response);
-              })
-              .catch(function (error) {
-                  console.log(error);
-                  console.log({idx});
-                  console.log({adult_num});
-              });
+                .then((response) => {
+                    console.log(response);
+                    
+                    //승인되면 게스트에게 이메일 전송
+                    axios.post('http://localhost:8080/UpdateRejectStateMail',{
+                        from:'bearbnbproject@gmail.com',
+                        to:user_id,
+                        title:'숙소 예약이 승인되었습니다',
+                        contents : '귀하의 숙소 예약이 승인되었습니다. BearBnB서비스를 이용해주셔서 감사합니다'
+                    })
+                        .then((req)=>{
+                            console.log(req)
+                            // alert('이메일 보내기 성공')
+                        })
+                        .catch((err)=>{
+                            console.log(err);
+                            // alert('이메일보내기 실패')
+                        })
+
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    console.log({idx});
+                    console.log({adult_num});
+                });
             childValue('tab2');
         })
     };
 
+    //숙소 예약 거절시
     const onClickReject = () => {
         Swal.fire({
             title: '정말 거절하시겠습니까?',
@@ -50,14 +70,29 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
                 }).then(() => {
                     setShow(false);
                     axios.put('http://localhost:8080/UpdateRejectState',null,{params: {idx: idx }})
-                      .then((response) => {
-                          console.log(response);
-                      })
-                      .catch(function (error) {
-                          console.log(error);
-                          console.log({idx});
-                          console.log({adult_num});
-                      });
+                        .then((response) => {
+                            console.log(response);
+                        //    거절되면 게스트에게 이메일이 간다.
+                            axios.post('http://localhost:8080/rejectGuestMail',{
+                                from:'bearbnbproject@gmail.com',
+                                to:user_id,
+                                title:'숙소 예약이 거절되었습니다',
+                                contents : '귀하의 숙소 예약이 거절되었습니다. BearBnB서비스를 이용해주셔서 감사합니다'
+                            })
+                                .then((req)=>{
+                                    console.log(req)
+                                    // alert('이메일 보내기 성공')
+                                })
+                                .catch((err)=>{
+                                    console.log(err);
+                                    // alert('이메일보내기 실패')
+                                })
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                            console.log({idx});
+                            console.log({adult_num});
+                        });
                     childValue('tab3');
                 })
             }
@@ -77,6 +112,7 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
         },
         li: {}
     };
+
 
     return (
 

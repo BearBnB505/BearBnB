@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bearbnb.mapper.EmailMapper">
+    <update id="approveLodging">
+        <![CDATA[
+        UPDATE lodging
+        SET reg_state = '승인완료'
+        WHERE lodging_num = #{lodgingNum}
+        ]]>
+    </update>
+
+
+    <update id="rejectLodging">
+        <![CDATA[
+        UPDATE lodging
+        SET reg_state = '승인거절'
+        WHERE lodging_num = #{lodgingNum}
+        ]]>
+    </update>
+
+</mapper>

@@ -2,6 +2,7 @@ import React from "react";
 import "./GuestInfoModalCss.scss";
 
 function GuestInfoModal(props) {
+    // console.log(props.user_id)
 
     return (
         <div className={'container pb-2'}>
