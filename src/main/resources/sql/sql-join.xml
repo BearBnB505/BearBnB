@@ -4,7 +4,7 @@
     <insert id="insertJoin" parameterType="com.bearbnb.dto.MembersDto">
         <![CDATA[
             insert into members (user_id, pwd, tel, gender, name, nation, profile_img, birth_dt, join_dt, deleted_yn, authority)
-            values (#{userId}, #{pwd}, #{tel}, #{gender}, #{name}, #{nation}, #{profileImg}, #{birthDt}, now(), 'N','ROLE_HOST')
+            values (#{userId}, #{pwd}, #{tel}, #{gender}, #{name}, #{nation}, #{profileImg}, #{birthDt}, now(), 'N','ROLE_USER')
         ]]>
     </insert>
 

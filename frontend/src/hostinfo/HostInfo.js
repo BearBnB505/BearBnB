@@ -4,6 +4,7 @@ import HostInfoContents from "./HostInfoContents";
 import './HostInfo.css'
 import {useSelector} from "react-redux";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 
 
@@ -16,6 +17,8 @@ const HostInfo=()=>{
     const [title, setTitle] = useState('제목');
     //내용
     const [contents, setContents] = useState('내용');
+
+    const [re, setRe] = useState(false);
 
     const titleOnChange = (e) => {
 
@@ -35,6 +38,10 @@ const HostInfo=()=>{
     // 보내는 사람 이메일주소를 넣습니다.
     // setFrom('dbfl1443@naver.com');
 
+    useEffect(()=>{
+        setRe(false)
+    },[re]);
+
     
 
     
@@ -50,6 +57,14 @@ const HostInfo=()=>{
             .then((reg)=>{
                 console.log(reg)
                 console.log('통신성공')
+                Swal.fire({
+                    icon: 'success',
+                    title: '이메일이 전송되었습니다',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    setRe(true)
+                })
             })
             .catch((err) => {
                 console.log(err)

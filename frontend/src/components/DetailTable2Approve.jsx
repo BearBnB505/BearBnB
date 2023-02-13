@@ -22,7 +22,6 @@ function DetailTable2Approve({lodging, comfort}) {
 
             <div className="py-5 text-center">
                 <div className={"feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3 rounded-circle p-3"}><FontAwesomeIcon icon={faCheck} size="1x"/></div>
-
                 <h2 className="display-5 fw-bold text-primary">{lodging.regState}</h2>
                     <div className="col-lg-6 mx-auto">
                         <p className="lead mb-4">심사승인이 완료된 호스트 입니다.</p>
