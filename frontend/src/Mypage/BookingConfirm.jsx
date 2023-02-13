@@ -30,7 +30,7 @@ function BookingConfirm() {
     const [waitArray, setWaitArray] = useState([]);
     const [agreeArray, setAgreeArray] = useState([]);
   // 페이지당 게시물 수
-  const [limit, setLimit] = useState(2);
+  const [limit, setLimit] = useState(5);
   // 현재 페이지 번호(page)
   const [page, setPage] = useState(1);
   // 첫 게시물의 위치(offset)
