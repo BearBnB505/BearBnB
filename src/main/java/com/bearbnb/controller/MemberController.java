@@ -1,8 +1,10 @@
 package com.bearbnb.controller;
 
 import com.bearbnb.dto.*;
+import com.bearbnb.mapper.KeepingMapper;
 import com.bearbnb.mapper.MemberMapper;
 import com.bearbnb.mapper.ReviewMapper;
+import com.bearbnb.service.KeepingService;
 import com.bearbnb.service.MemberService;
 import com.bearbnb.service.MembersService;
 import com.bearbnb.service.ReviewService;
@@ -11,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
@@ -23,20 +27,23 @@ public class MemberController {
 
     @Autowired
     MemberMapper memberMapper;
-
+    @Autowired
+    ReviewMapper reviewMapper;
+    @Autowired
+    KeepingMapper keepingMapper;
     @Autowired
     MembersService membersService;
     @Autowired
     ReviewService reviewService;
-
-
     @Autowired
-    ReviewMapper reviewMapper;
+    KeepingService keepingService;
+
 
     @GetMapping("/me")
     public ResponseEntity<MemberResponseDto> getMyMemberInfo() {
         MemberResponseDto myInfoBySecurity = memberService.getMyInfoBySecurity();
 //        System.out.println(myInfoBySecurity.getNickname());
+
         return ResponseEntity.ok((myInfoBySecurity));
         // return ResponseEntity.ok(memberService.getMyInfoBySecurity());
     }
@@ -96,5 +103,33 @@ public class MemberController {
     public List<ReviewDto> MemberReviewList() {
         return reviewMapper.MemberReviewList();
     }
+
+//    @RequestMapping(value = "/KeepList")
+//    public List<KeepingDto> KeepList() {
+//        return keepingService.KeepList();
+//    }
+    @RequestMapping(value = "/KeepList")
+    public List<KeepingDto> KeepList() {
+        return keepingService.KeepList();
+    }
+
+//    @RequestMapping(value = "/LodgingAvg")
+//    public List<ReviewAvgDto> LodgingAvg(@RequestParam("lodging_num") String lodgingNum) {
+//        return keepingService.LodgingAvg(lodgingNum);
+//    }
+
+    @RequestMapping(value = "/LodgingAvg", method = RequestMethod.GET)
+    public Map<String, Object> lodgingDetail(@RequestParam("lodgingNum") String lodgingNum) throws Exception {
+
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        ReviewAvgDto avg = keepingService.reviewAvg(lodgingNum);
+        map.put("avg", avg);
+
+
+        return map;
+    }
+
+
 
 }

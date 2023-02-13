@@ -14,6 +14,7 @@ public class ReviewDto {
     private double checkInGrade;
     private double costGrade;
     private String lodgingNum;
+
     private String reviewCreateDt;
     private String deletedYn;
 
