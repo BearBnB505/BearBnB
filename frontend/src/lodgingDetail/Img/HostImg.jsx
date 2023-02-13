@@ -38,7 +38,7 @@ function HostImg(props) {
     useEffect(()=>{
             const timer = setTimeout(() => {
                 setIsLoaded(true);
-            },200);
+            },250);
             return () => clearTimeout(timer);
             }, []);
 
