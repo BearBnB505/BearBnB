@@ -1,7 +1,7 @@
 package com.bearbnb.mapper;
 
+import com.bearbnb.dto.ComplainDto;
 import com.bearbnb.dto.MembersDto;
-import com.bearbnb.dto.ReviewDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,4 +22,7 @@ public interface MemberMapper {
 
     void MemberPwdUpdate(MembersDto members);
 
+    List<ComplainDto> complainList();
+
+    void complainDelete(ComplainDto complain);
 }

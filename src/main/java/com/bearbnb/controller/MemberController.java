@@ -3,6 +3,7 @@ package com.bearbnb.controller;
 import com.bearbnb.dto.*;
 import com.bearbnb.mapper.KeepingMapper;
 import com.bearbnb.mapper.MemberMapper;
+import com.bearbnb.mapper.MembersMapper;
 import com.bearbnb.mapper.ReviewMapper;
 import com.bearbnb.service.KeepingService;
 import com.bearbnb.service.MemberService;
@@ -128,6 +129,19 @@ public class MemberController {
 
 
         return map;
+    }
+
+    @RequestMapping(value = "/complainList")
+    public List<ComplainDto> complainList() {
+        return memberMapper.complainList();
+    }
+
+
+
+    @RequestMapping(value = "/complainDelete", method = RequestMethod.PUT)
+    public String deleteComplain(ComplainDto complain) throws Exception {
+        membersService.deleteComplain(complain);
+        return "redirect:/deleteComplain";
     }
 
 

@@ -9,4 +9,5 @@ public interface MembersService {
 
     void UpdateMemberPwd(MembersDto members);
 
+    void deleteComplain(ComplainDto complain);
 }

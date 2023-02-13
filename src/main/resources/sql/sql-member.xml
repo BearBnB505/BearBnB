@@ -20,6 +20,17 @@
         ]]>
     </select>
 
+
+<!--    불만 리스트-->
+
+    <select id="complainList"  resultType="com.bearbnb.dto.ComplainDto">
+        <![CDATA[
+        SELECT *
+        FROM complain
+        WHERE user_id = 'test1' and deleted_yn = 'N'
+        ]]>
+    </select>
+
 <!--    멤버 정보 수정-->
     <update id="MemberNameUpdate" parameterType="com.bearbnb.dto.MembersDto">
         <![CDATA[
@@ -44,6 +55,16 @@
         where idx = '${idx}'
         ]]>
     </update>
+
+    <update id="complainDelete" parameterType="com.bearbnb.dto.ComplainDto">
+        <![CDATA[
+        update complain
+        set deleted_yn = 'Y'
+        where idx = '${idx}'
+        ]]>
+    </update>
+
+
 
 
 

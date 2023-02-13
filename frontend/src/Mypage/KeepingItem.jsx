@@ -6,22 +6,22 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 
 function KeepingItem({idx, imageUrl, lodging_num,lodging_name, addr,
-                       clean_grade, accuracy_grade, communication_grade, location_grade,check_in_grade, cost_grade}){
+                       Avg,count}){
 
-  const [avg, setAvg] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:8080/LodgingAvg/', {params:{lodgingNum:lodging_num}})
-      .then((req) => {
-        const {avg} = req;
-        setAvg(avg);
-        console.log(avg);
-      })
-      .catch((err) => {
-        console.log("통신 오류");
-        console.log(err);
-      })
-  }, []);
+  // const [avg, setAvg] = useState([]);
+  //
+  // useEffect(() => {
+  //   axios.get('http://localhost:8080/LodgingAvg/', {params:{lodgingNum:lodging_num}})
+  //     .then((req) => {
+  //       const {avg} = req;
+  //       setAvg(avg);
+  //       console.log(avg);
+  //     })
+  //     .catch((err) => {
+  //       console.log("통신 오류");
+  //       console.log(err);
+  //     })
+  // }, []);
 
   return (
     <div className={"col-sm-6 col-md-6 col-lg-4 mb-2"}>
@@ -38,7 +38,8 @@ function KeepingItem({idx, imageUrl, lodging_num,lodging_name, addr,
                                 <span className={"me-2"}>
                                     <strong>{lodging_name}</strong>
                                     </span>
-                  <span className={"blueColor"}><FontAwesomeIcon icon={faStar} size="1x"/> {((Number(clean_grade) + Number(accuracy_grade) + Number(communication_grade) + Number(location_grade) + Number(check_in_grade) + Number(cost_grade))/6).toFixed(1)} ({clean_grade})</span>
+                  {/*<span className={"blueColor"}><FontAwesomeIcon icon={faStar} size="1x"/> {((Number(clean_grade) + Number(accuracy_grade) + Number(communication_grade) + Number(location_grade) + Number(check_in_grade) + Number(cost_grade))/6).toFixed(1)} ({clean_grade})</span>*/}
+                  <span className={"blueColor"}><FontAwesomeIcon icon={faStar} size="1x"/> {Avg} ({count})</span>
                 </div>
                 <p>{addr}</p>
 

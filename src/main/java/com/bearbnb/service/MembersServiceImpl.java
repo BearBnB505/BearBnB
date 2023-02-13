@@ -28,6 +28,10 @@ public class MembersServiceImpl implements MembersService{
 
     }
 
+    @Override
+    public void deleteComplain(ComplainDto complain) {
+        memberMapper.complainDelete(complain);
+    }
 
 
 }
