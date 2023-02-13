@@ -27,7 +27,7 @@ function MainContents(props) {
                 .catch((err)=>{
                     console.log(err);
                 })
-        },150)
+        },400)
     }
 
     // 메인페이지에서 글을 불러오면 상태가 done으로 바뀐다. 그 값이 바뀌면
@@ -44,7 +44,7 @@ function MainContents(props) {
     useEffect(()=>{
         const timer = setTimeout(()=>{
             setIsLoaded(true);
-        },300);
+        },500);
         return () => clearTimeout(timer);
     },[])
 
