@@ -5,6 +5,8 @@ import com.bearbnb.dto.*;
 import com.bearbnb.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @Service
 public class MembersServiceImpl implements MembersService{
 
@@ -31,6 +33,13 @@ public class MembersServiceImpl implements MembersService{
     @Override
     public void deleteComplain(ComplainDto complain) {
         memberMapper.complainDelete(complain);
+    }
+
+    @Override
+    public void complainDelete(List<ComplainDto> complainBox) {
+        for (ComplainDto item : complainBox) {
+            memberMapper.complainDelete(item);
+        }
     }
 
 

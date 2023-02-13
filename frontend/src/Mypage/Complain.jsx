@@ -23,20 +23,33 @@ function Complain() {
   // 현재 페이지 번호(page)
   const [page, setPage] = useState(1);
   // 첫 게시물의 위치(offset)
-  const offset = (page - 1) * limit;
+  const offset = (page - 1)*limit;
 
   const [checkYN, setCheckYN] = useState(false);
   const [checkIdx, setCheckIdx] = useState(0);
+  const [checkBox, setCheckBox] = useState([]);
+  const [selectedValues, setSelectedValues] = useState([]);
+
+
 
 
   const deleteBtn=()=>{
-    axios.put('http://localhost:8080/complainDelete/', null, {params:{idx: checkIdx}} )
+    // axios.put('http://localhost:8080/complainDelete/', null, {params:{idx: checkIdx}} )
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+
+    axios.put('http://localhost:8080/complainDelete', selectedValues, null)
       .then((response) => {
         console.log(response);
       })
       .catch(function (error) {
         console.log(error);
       });
+    console.log(checkBox);
   }
 
   useEffect(() => {
@@ -80,7 +93,8 @@ function Complain() {
                 </thead>
                 <tbody>
                 {data.slice(offset, offset + limit).map((item) => {
-                    return <ComplainList idx={item.idx} lodging_num={item.lodgingNum} reason={item.reason} reason_detail={item.reasonDetail} complain_dt={item.complainDt} setCheckYN={setCheckYN} checkYN={checkYN} setCheckIdx={setCheckIdx}/>
+                    // return <ComplainList idx={item.idx} lodging_num={item.lodgingNum} reason={item.reason} reason_detail={item.reasonDetail} complain_dt={item.complainDt} setCheckYN={setCheckYN} checkYN={checkYN} setCheckIdx={setCheckIdx} setSelectedValues={setSelectedValues} selectedValues={selectedValues}/>
+                    return <ComplainList idx={item.idx} lodging_num={item.lodgingNum} reason={item.reason} reason_detail={item.reasonDetail} complain_dt={item.complainDt} setCheckYN={setCheckYN} checkYN={checkYN} setCheckIdx={setCheckIdx} setSelectedValues={setSelectedValues} selectedValues={selectedValues}/>
                 })}
                 </tbody>
             </table>
@@ -106,50 +120,42 @@ function Complain() {
 
 export default Complain;
 
-function ComplainList({idx, lodging_num, reason, reason_detail, complain_dt, setCheckYN, checkYN,setCheckIdx}) {
+function ComplainList({idx, lodging_num, reason, reason_detail, complain_dt, setCheckYN, checkYN,setCheckIdx, selectedValues,setSelectedValues}) {
   const [isChecked, setIsChecked] = useState(false);
+
+  // 체크박스에서 선택된 값을 담을 배열
+
+
+  // const [selectedValues, setSelectedValues] = useState([]);
 
   function CheckboxChange(event) {
     console.log(isChecked);
     setIsChecked(event.target.checked);
+
     console.log(isChecked);
     setCheckYN(!checkYN)
     setCheckIdx(idx)
+
+    const value = event.target.value;
+    // 체크박스가 체크된 경우
+    if (event.target.checked) {
+      setSelectedValues([...selectedValues, {value,idx}]);
+    } else {
+      // 체크박스가 해제된 경우
+      setSelectedValues(selectedValues.filter((v) => v.value !== value));
+    }
   }
-  // console.log(isChecked);
-  // console.log(checkYN);
-
-
-
-
-
-  // const [checkedItems, setCheckedItems] = useState([]);
-
-  // const handleCheckboxChange = (event) => {
-  //   if (event.target.checked) {
-  //     setCheckedItems([...checkedItems, event.target.name]);
-  //   } else {
-  //     setCheckedItems(checkedItems.filter((item) => item !== event.target.name));
-  //   }
-  // };
-
-
+    console.log(selectedValues);
 
     return (
         <tr>
             <td>
                 <Form>
-                    {/*{['checkbox'].map((type) => (*/}
-                    {/*    <div key={`default-${type}`}>*/}
-                    {/*        <Form.Check*/}
-                    {/*            type={type}*/}
-                    {/*            onChange={handleCheckboxChange}*/}
-                    {/*            checked={checkedItems.includes(type)}*/}
-                    {/*        />*/}
                           {['checkbox'].map((type) => (
                             <div key={`default-${type}`}>
                               <Form.Check
                                 type={type}
+                                value={idx}
                                 onChange={CheckboxChange}
                               />
                         </div>
