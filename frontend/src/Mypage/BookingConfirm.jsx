@@ -149,16 +149,19 @@ function BookingWait({idx, lodging_name, book_state, book_dt, pay_cost,
     );
 }
 
-function BookingItem(props) {
+function BookingItem({idx, lodging_name, book_state, book_dt, pay_cost,
+                         book_num, book_check_in_dt, book_check_out_dt,
+                         adult_num, baby_num, pet_num,
+                         user_id, user_name, user_tel, user_nation, tel}) {
     const [modalReview, setModalReview] = useState(false);
     const [modalDetail, setModalDetail] = useState(false);
     return (
         <ul className={"list-group mb-4"} style={styles.ul}>
             <li className={"list-group-item p-4"} style={styles.li}>
-                <div><span className={"fs-5 fw-bold"}>{props.book_state}</span> <small
-                    className={"text-secondary"}>{props.book_dt}</small></div>
-                <div>{props.lodging_name}</div>
-                <div>결제 금액 : {props.pay_cost}</div>
+                <div><span className={"fs-5 fw-bold"}>{book_state}</span> <small
+                    className={"text-secondary"}>{book_dt}</small></div>
+                <div>{lodging_name}</div>
+                <div>결제 금액 : {pay_cost}</div>
                 <div>
                     <button type="button" className="btn btn-outline-secondary btn-sm my-2 me-2" title="Edit" onClick={() => setModalReview(true)}>
                         <span><FontAwesomeIcon icon={faPencil} size="1x"/> 후기작성</span>
@@ -173,8 +176,13 @@ function BookingItem(props) {
                     </button>
 
                     <BookingModalDetail
-                        show={modalDetail}
-                        onHide = {() => setModalDetail(false)}/>
+                      show={modalDetail}
+                      onHide = {() => setModalDetail(false)}
+                      idx={idx} lodging_name={lodging_name}
+                      book_num={book_num} book_check_in_dt={book_check_in_dt} book_check_out_dt={book_check_out_dt}
+                      adult_num={adult_num} baby_num={baby_num} pet_num={pet_num}
+                      book_state={book_state} user_id={user_id} user_name={user_name} user_tel={user_tel} user_nation={user_nation}
+                      book_dt={book_dt} pay_cost={pay_cost} tel={tel}/>
 
                 </div>
             </li>
