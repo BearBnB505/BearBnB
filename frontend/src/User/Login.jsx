@@ -65,7 +65,7 @@ function Login() {
                         secure: true,
                         sameSite: 'strict',
                         expires: new Date(expireDate),
-                        httpOnly:true
+                        // httpOnly:true
                     });
 
                     dispatch(auths({accessToken:token.accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
