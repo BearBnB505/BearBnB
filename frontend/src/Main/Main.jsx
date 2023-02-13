@@ -52,6 +52,7 @@ function Main(props) {
 
     const [data, setData] = useState([]);
     const [category, setCategory] = useState('한옥');
+    const [check, setCheck] = useState("ready");
     console.log(category);
     console.log('데이터 확인')
     console.log(data)
@@ -60,8 +61,11 @@ function Main(props) {
         axios.get('http://localhost:8080/lodgingList', {params: {category: category}})
             .then((req) => {
                 const {data} = req;
-                // console.log(data);
+                console.log('메인페이지 리스트 출력')
+                console.log(data);
                 setData(data);
+
+                setCheck("done");
             })
             .catch((err) => {
                 console.log("통신 오류");
@@ -117,7 +121,7 @@ function Main(props) {
                                         <Keep idx={item.idx}/>
                                     </div>
                                     <Link to={`/lodgingDetail/${item.idx}`} style={{color: "black"}} state={{lat: `${item.latitude}`, lng: `${item.longitude}`}}>
-                                        <MainContents idx={item.idx} data={item} category={category}/>
+                                        <MainContents idx={item.idx} data={item} category={category} lodgingNum={item.lodgingNum} check={check}/>
                                     </Link>
                                 </li>
                             )
@@ -125,8 +129,6 @@ function Main(props) {
                     }
                 </ul>
             </div>
-
-
         </div>
     );
 }
