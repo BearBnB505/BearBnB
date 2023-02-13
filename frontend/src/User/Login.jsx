@@ -6,33 +6,26 @@ import Container from 'react-bootstrap/Container';
 import React, {useState} from "react";
 import {Modal, ModalBody, ModalHeader, ModalTitle} from "react-bootstrap";
 import DropdownItem from "react-bootstrap/DropdownItem";
-import DropdownMenu from "react-bootstrap/DropdownMenu";
 
 import {useLocation, useNavigate} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 
-import {loginUser, requestToken} from "../Api/Users";
-import {removeCookieToken, setRefreshToken} from "../Storage/Cookie";
-// import {DELETE_TOKEN, SET_TOKEN, tokenSlice} from "../Store/Auth";
-import {Auth, SETTOKEN} from "../Store/Auth";
 import axios from "axios";
 import {getCookie, setCookie} from "../Storage/Cookies";
 import Swal from "sweetalert2";
-import {configureStore} from "@reduxjs/toolkit";
-import {CheckToken} from "../Auth/CheckToken";
 import {auths} from "../lodging_reg/Reducers/AuthReducer";
+import {TOKEN_TIME_OUT} from "../Store/Auth";
 
 
 function Login() {
-    const lodgingNum = useSelector((state)=>state.lodgingNum.value);
-    console.log(lodgingNum)
+
     const Auth = useSelector((state)=>state.auth.value);
+    console.log("로그인창");
     console.log(Auth);
+    console.log(Auth.accessToken);
+    console.log(Auth.authenticated);
+    console.log(Auth.expireTime);
 
-
-    const onclickbutton = () => {
-        dispatch(auths({access:'hahaha'}));
-    }
     const [show, setShow] = useState(false);
 
     const navigate = useNavigate();
@@ -48,8 +41,6 @@ function Login() {
     const handlePwdInput = (e) => {
         setUserPwd(e.target.value);
     }
-
-    // const store = configureStore({reducer: tokenSlice.reducer});
 
 
     const loginClicked = () => {
@@ -73,20 +64,13 @@ function Login() {
                         path: '/',
                         secure: true,
                         sameSite: 'strict',
-                        expires: new Date(expireDate)
+                        expires: new Date(expireDate),
+                        // httpOnly:true
                     });
 
-                    dispatch(auths({access:token.accessToken}));
-                    // dispatch(SETTOKEN({access:token.accessToken}));
-                    // dispatch(SETTOKEN({access:'dd'}))
+                    dispatch(auths({accessToken:token.accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
+
                     setShow(false);
-
-                    // dispatch(tokenSlice.reducer.SET_TOKEN(token.accessToken));
-
-                    // const auth = store.getState().authenticated;
-                    // const auth = store.getState();
-                    // console.log(auth);
-                    // checkAuthToken();
                 }
             })
             .catch(err => {
@@ -99,13 +83,11 @@ function Login() {
                     timer: 800
                 }).then(() => {
                     setShow(true);
+                    setUserId('');
+                    setUserPwd('');
                 })
             })
     }
-
-    // const redux = useSelector(state => state.authToken);
-    // const redux = useSelector((state)=>state.authToken.value);
-    // console.log("redux : " + redux);
 
     return (
         <>
@@ -134,7 +116,6 @@ function Login() {
                                     />
                                 </Col>
                             </Form.Group>
-                            <button onClick={onclickbutton}>testButton</button>
 
                             <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
                                 <Col sm>

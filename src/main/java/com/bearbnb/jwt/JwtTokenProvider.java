@@ -53,6 +53,8 @@ public class JwtTokenProvider {
 
         // Refresh Token 생성
         String refreshToken = Jwts.builder()
+                .setSubject(authentication.getName())
+                .claim("auth", authorities)
                 .setExpiration(new Date(now + 86400000))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
@@ -99,13 +101,33 @@ public class JwtTokenProvider {
         return false;
     }
 
-    private Claims parseClaims(String accessToken) {
+    public Claims parseClaims(String accessToken) {
         try {
             return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken).getBody();
         }
         catch (ExpiredJwtException e) {
             return e.getClaims();
         }
+    }
+
+    public TokenDto refresh(String userId, String authorities) {
+
+        long now = (new Date()).getTime();
+
+        // Access Token 재발급
+        Date accessTokenExpiresIn = new Date(now + 86400000);  // 테스트 용 1일 ( 나중에 30분으로 수정 -> ACCESS_TOKEN_EXPIRE_TIME )
+        String accessToken = Jwts.builder()
+                .setSubject(userId)
+                .claim("auth", authorities)
+                .setExpiration(accessTokenExpiresIn)
+                .signWith(key, SignatureAlgorithm.HS256)
+                .compact();
+
+
+        return TokenDto.builder()
+                .grantType("Bearer")
+                .accessToken(accessToken)
+                .build();
     }
 
 }

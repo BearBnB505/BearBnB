@@ -32,29 +32,17 @@ function Main(props) {
     // const {isAuth} = CheckToken();
 
 
-    // // console.log(`userID : ${accessToken}`);
-
-    // const isAuth = sessionStorage.getItem("isAuth");
-    // console.log(`isAuth : ${isAuth}`);
-
-    // const store = configureStore({reducer: tokenSlice.reducer});
-    // const auth = store.getState();
-    // console.log(auth);
-
-    // const auth = useSelector((state) => state.SET_TOKEN);
-    // console.log(auth);
-
-    // const accessToken = useSelector((state) => state.accessToken.value);
-    // console.log(accessToken);
-
     const Auth = useSelector((state)=>state.auth.value);
     // console.log(Auth);
+    const accessToken = Auth.accessToken;
+    console.log(accessToken);
 
     const [data, setData] = useState([]);
     const [category, setCategory] = useState('한옥');
     console.log(category);
     console.log('데이터 확인')
     console.log(data)
+
 
     useEffect(() => {
         axios.get('http://localhost:8080/lodgingList', {params: {category: category}})
@@ -68,8 +56,19 @@ function Main(props) {
             })
     }, [category]);
 
+    const refreshToken = getCookie('refreshToken');
+
     useEffect(() => {
-        console.log(Auth);
+        axios.get('/member/my', {headers: {
+            'Authorization': 'Bearer ' + refreshToken
+        }})
+            .then((req) => {
+                const {data} = req;
+                console.log(data.userId);
+            })
+            .catch((err) => {
+                console.log("통신 오류");
+            })
     }, [category]);
     
     useEffect(() => {

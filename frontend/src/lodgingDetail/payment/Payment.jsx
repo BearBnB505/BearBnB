@@ -8,8 +8,14 @@ import DropdownMenu from "react-bootstrap/DropdownMenu";
 import Overlay from "react-bootstrap/Overlay";
 import Calendar from "../../Calendar/Calendar";
 import {Link} from "react-router-dom";
+import {CheckToken} from "../../Auth/CheckToken";
 
 function Payment(props) {
+
+    // CheckToken();
+    // const isAuth = sessionStorage.getItem("isAuth");
+    // console.log(`isAuth : ${isAuth}`);
+
     const styles = {
         navDate: {
             width: 120
@@ -61,6 +67,12 @@ function Payment(props) {
         setNightCount(moment.duration(moment(chooseDate[1]).diff(moment(chooseDate[0]))).asDays());
     }, chooseDate);
 
+    const [isLoad, setIsLoad] = useState(false);
+
+    const check = () => {
+        setIsLoad(true);
+    }
+
     console.log(nightCount);
 
     const total = props.cost * nightCount;
@@ -77,7 +89,7 @@ function Payment(props) {
             <div className={'container border shadow rounded-4 px-5 py-4 mb-4'}>
                 <div>
                     <div>
-                        <span className={'fs-4 fw-bold me-1'}>&#92;{props.cost}</span>
+                        <span className={'fs-4 fw-bold me-1'}>&#8361;{props.cost}</span>
                         <span>/박</span>
                     </div>
                     <div className={'btn-group-vertical container mx-0 px-0 my-3'}>
@@ -131,10 +143,9 @@ function Payment(props) {
                     </div>
 
 
-                    {/*{`${nightCount} === NaN` ?*/}
-                    {/*    <Button className={'w-100 py-2 mb-2'} variant="primary">예약 가능 여부 보기</Button>*/}
-                    {/*    : <>*/}
-                    <Link to={"/lodgingPayment"} state={{lodgingNum: props.lodgingNum, lodgingName: props.lodgingName, chooseDate: chooseDate, dayCost: props.cost, nightCount: nightCount, totalCost: total, selectGuest: selectGuest }}>
+                    {isLoad ?
+                        <>
+                    <Link to={"/lodgingPayment"} state={{chooseDate: chooseDate, dayCost: props.cost, nightCount: nightCount, totalCost: total, selectGuest: selectGuest }}>
                         <Button className={'w-100 py-2 mb-2'} variant="primary">예약하기</Button>
                     </Link>
 
@@ -143,10 +154,10 @@ function Payment(props) {
                     <div>
                         <div className={'row'}>
                             <div className={'col-7'}>
-                                <span>&#92;{props.cost} x {nightCount}박</span>
+                                <span>&#8361;{props.cost} x {nightCount}박</span>
                             </div>
                             <div className={'col text-end'}>
-                                <span>&#92;{total}</span>
+                                <span>&#8361; {total}</span>
                             </div>
                         </div>
                         <hr className={'my-4'}/>
@@ -156,12 +167,12 @@ function Payment(props) {
                                 <p>총 합계</p>
                             </div>
                             <div className={'col text-end'}>
-                                <p>&#92;{total}</p>
+                                <p>&#8361; {total}</p>
                             </div>
                         </div>
                     </div>
-                    {/*    </>*/}
-                    {/*}*/}
+                        </> : <Button className={'w-100 py-2 mb-2'} variant="primary" onClick={check}>예약 가능 여부 보기</Button>
+                    }
                 </div>
             </div>
 
