@@ -4,6 +4,8 @@ import {Link} from "react-router-dom";
 
 function HostIntroContents(props) {
 
+  console.log('언어 선택')
+  console.log(props)
 
   return (
     <div className={'container p-2'}>
@@ -21,7 +23,7 @@ function HostIntroContents(props) {
               {/*<div className={'IntroTextLine2'}>언어:</div>*/}
               <span className={''}>언어 : </span>
               {/*<div className={'IntroTextLine2'} style={{marginLeft:5}}>한국어</div>*/}
-              <span className={''} style={{marginLeft:5}}>한국어</span>
+              <span className={''} style={{marginLeft:5}}>{props.language}</span>
             </div>
 
             {/*<div className={'IntroTextLine1'}>숙박 중 게스트와의 교류</div>*/}

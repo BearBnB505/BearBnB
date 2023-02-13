@@ -19,7 +19,6 @@ function LodgingHostId(){
 
     const onClickImageUpload = () => {
         imageInput.current.click();
-
     }
 
     const handleImage = (event) => {
@@ -136,11 +135,7 @@ function LodgingHostId(){
                         style={idImageUrl.length<=0 ? {width:"50px", display: 'block',margin:'auto', marginTop :"130px"}:{width:"400px", height:'250px', marginTop:"250px",borderRadius : "15px",boxShadow:" 5px 5px 10px gray",}}/>
                                 {/*style={{ width:"50px", display: 'block',margin:'auto', marginTop :"120px"}}/>*/}
                     </div>
-                    {/*<button onClick={onSubmit}>서버 테스트</button>*/}
-                    {/*<img src={require(`../images`)}/>*/}
                 </div>
-                {/*<Profile/>*/}
-                {/*<LodgingFinal/>*/}
             </div>
             <footer style={styles.footer} className={"mt-5"}>
                 <Link to = {"/reg"}>

@@ -39,10 +39,21 @@ public class JoinController {
         System.out.println("emailcode");
         System.out.println(userId);
         joinService.sendSimpleMessage(userId);
-
-
-
         return JoinServiceImpl.ePw;
+    }
+
+//    프로필 저장
+    @RequestMapping(value = "/insertProfile", method = RequestMethod.POST)
+    public void insertProfile(@RequestParam("userId") String userId, @RequestParam("profileImg")String profileImg) throws Exception {
+        System.out.println(userId);
+        System.out.println(profileImg);
+
+        joinService.insertProfile(userId,profileImg);
+    }
+
+    @RequestMapping(value = "/selectProfile", method = RequestMethod.GET)
+    public String selectProfile(@RequestParam("userId") String userId) throws Exception {
+        return joinService.selectProfile(userId);
     }
 
 

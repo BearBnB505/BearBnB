@@ -4,7 +4,7 @@
     <insert id="insertJoin" parameterType="com.bearbnb.dto.MembersDto">
         <![CDATA[
             insert into members (user_id, pwd, tel, gender, name, nation, profile_img, birth_dt, join_dt, deleted_yn, authority)
-            values (#{userId}, #{pwd}, #{tel}, #{gender}, #{name}, #{nation}, #{profileImg}, #{birthDt}, now(), 'N','ROLE_HOST')
+            values (#{userId}, #{pwd}, #{tel}, #{gender}, #{name}, #{nation}, #{profileImg}, #{birthDt}, now(), 'N','ROLE_USER')
         ]]>
     </insert>
 
@@ -12,6 +12,18 @@
         <![CDATA[
             select COUNT(*) FROM members
             WHERE user_id=#{userId}
+        ]]>
+    </select>
+
+    <update id="insertProfile">
+        <![CDATA[
+        UPDATE members SET profile_img = #{profileImg} WHERE user_id=#{userId};
+        ]]>
+    </update>
+
+    <select id="selectProfile" resultType="String">
+        <![CDATA[
+            SELECT profile_img from members where user_id=#{userId}
         ]]>
     </select>
 </mapper>

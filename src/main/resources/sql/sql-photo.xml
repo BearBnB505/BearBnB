@@ -28,7 +28,7 @@
         FROM photo
                  JOIN lodging
                       ON photo.lodging_num = lodging.lodging_num
-        WHERE lodging.idx = #{idx}
+        WHERE lodging.lodging_num = #{lodgingNum}
         ]]>
     </select>
 

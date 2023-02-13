@@ -117,5 +117,15 @@ public class JoinServiceImpl implements JoinService{
         return to;
     }
 
+//    프로필 업데이트
+    @Override
+    public void insertProfile(String userId, String profileImg) throws Exception{
+        joinMapper.insertProfile(userId, profileImg);
+    }
+
+    @Override
+    public String selectProfile(String userId) throws Exception {
+        return joinMapper.selectProfile(userId);
+    }
 
 }

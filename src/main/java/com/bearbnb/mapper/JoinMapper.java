@@ -11,4 +11,8 @@ public interface JoinMapper {
 
     int emailCheck(String userId) throws Exception;
 
+    void insertProfile(String userId,String profileImg) throws Exception;
+
+    String selectProfile(String userId) throws Exception;
+
 }
