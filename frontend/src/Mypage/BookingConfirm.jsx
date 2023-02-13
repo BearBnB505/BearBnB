@@ -93,7 +93,7 @@ function BookingConfirm() {
                     <div>
                         {agreeArray.map((item) => {
                             return <BookingItem idx={item.idx} lodging_name={item.lodgingName}
-                                                book_state={item.bookState}
+                                                book_state={item.bookState} lodging_num={item.lodgingNum}
                                                 book_dt={item.bookDt} pay_cost={item.payCost}
                                                 book_num={item.bookNum} book_check_in_dt={item.bookCheckInDt} book_check_out_dt={item.bookCheckOutDt}
                                                 adult_num={item.adultNum} baby_num={item.babyNum} pet_num={item.petNum}
@@ -151,7 +151,7 @@ function BookingWait({idx, lodging_name, book_state, book_dt, pay_cost,
 
 function BookingItem({idx, lodging_name, book_state, book_dt, pay_cost,
                          book_num, book_check_in_dt, book_check_out_dt,
-                         adult_num, baby_num, pet_num,
+                         adult_num, baby_num, pet_num, lodging_num,
                          user_id, user_name, user_tel, user_nation, tel}) {
     const [modalReview, setModalReview] = useState(false);
     const [modalDetail, setModalDetail] = useState(false);
@@ -169,7 +169,10 @@ function BookingItem({idx, lodging_name, book_state, book_dt, pay_cost,
 
                     <BookingModalReview
                             show={modalReview}
-                            onHide={() => setModalReview(false)}/>
+                            onHide={() => setModalReview(false)}
+                            lodging_num={lodging_num}
+                            user_id={user_id}
+                    />
 
                     <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit" onClick={()=> setModalDetail(true)}>
                         <span><FontAwesomeIcon icon={faList} size="1x"/> 상세내역</span>
@@ -178,7 +181,7 @@ function BookingItem({idx, lodging_name, book_state, book_dt, pay_cost,
                     <BookingModalDetail
                       show={modalDetail}
                       onHide = {() => setModalDetail(false)}
-                      idx={idx} lodging_name={lodging_name}
+                      idx={idx} lodging_name={lodging_name} lodging_name={lodging_name}
                       book_num={book_num} book_check_in_dt={book_check_in_dt} book_check_out_dt={book_check_out_dt}
                       adult_num={adult_num} baby_num={baby_num} pet_num={pet_num}
                       book_state={book_state} user_id={user_id} user_name={user_name} user_tel={user_tel} user_nation={user_nation}

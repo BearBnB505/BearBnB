@@ -133,6 +133,11 @@ public class MemberController {
         return memberMapper.complainList();
     }
 
+    @RequestMapping(value = "/allReviewList")
+    public List<ReviewDto> allReviewList() {
+        return reviewMapper.allReviewList();
+    }
+
 
 
 //    @RequestMapping(value = "/complainDelete", method = RequestMethod.PUT)
@@ -154,6 +159,12 @@ public class MemberController {
     public String memberDelete(MembersDto members) throws Exception {
         membersService.memberDelete(members);
         return "redirect:/memberDelete";
+    }
+
+    @RequestMapping(value = "/writeReview", method = RequestMethod.PUT)
+    public String writeReview(ReviewDto review) throws Exception {
+        reviewService.writeReview(review);
+        return "redirect:/writeReview";
     }
 
 }

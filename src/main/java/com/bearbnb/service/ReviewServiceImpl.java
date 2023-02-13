@@ -27,4 +27,9 @@ public class ReviewServiceImpl implements ReviewService{
         reviewMapper.ReviewDelete(review);
 
     }
+
+    @Override
+    public void writeReview(ReviewDto review) {
+        reviewMapper.writeReview(review);
+    }
 }
