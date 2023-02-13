@@ -46,9 +46,9 @@ function Member(props) {
                 {((isAuth === 'Failed') || (isAuth === 'Loaded')) && <Login/>}
                 {((isAuth === 'Failed') || (isAuth === 'Loaded')) && <Join/>}
                 {(isAuth === 'Success') && <Logout/>}
-                {/*<Login/>*/}
-                {/*<Join/>*/}
-                {/*<Logout/>*/}
+                <Login/>
+                <Join/>
+                <Logout/>
 
                 {(isAuth === 'Success') && <>
                     <DropdownItem href={"/message"}>
