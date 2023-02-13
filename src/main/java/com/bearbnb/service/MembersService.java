@@ -14,4 +14,6 @@ public interface MembersService {
     void deleteComplain(ComplainDto complain);
 
     void complainDelete(List<ComplainDto> complainBox);
+
+    void memberDelete(MembersDto members);
 }

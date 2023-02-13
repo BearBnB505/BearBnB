@@ -96,7 +96,6 @@ public class MemberController {
     @RequestMapping(value = "/DeleteReview", method = RequestMethod.PUT)
     public String DeleteReview(ReviewDto review) throws Exception {
         reviewService.DeleteReview(review);
-
         return "redirect:/review";
     }
 
@@ -126,8 +125,6 @@ public class MemberController {
 
         ReviewAvgDto avg = keepingService.reviewAvg(lodgingNum);
         map.put("avg", avg);
-
-
         return map;
     }
 
@@ -153,5 +150,10 @@ public class MemberController {
         return ComplainBox;
     }
 
+    @RequestMapping(value = "/memberDelete", method = RequestMethod.PUT)
+    public String memberDelete(MembersDto members) throws Exception {
+        membersService.memberDelete(members);
+        return "redirect:/memberDelete";
+    }
 
 }

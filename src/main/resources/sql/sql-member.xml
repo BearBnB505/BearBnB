@@ -64,6 +64,15 @@
         ]]>
     </update>
 
+    <update id="memberDelete" parameterType="com.bearbnb.dto.MembersDto">
+        <![CDATA[
+        update members
+        set deleted_yn = 'Y'
+        where user_id = '${userId}'
+        ]]>
+    </update>
+
+
 
 
 

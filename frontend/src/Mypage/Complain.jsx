@@ -45,6 +45,7 @@ function Complain() {
     axios.put('http://localhost:8080/complainDelete', selectedValues, null)
       .then((response) => {
         console.log(response);
+        window.location.replace("http://localhost:3000/complain/")
       })
       .catch(function (error) {
         console.log(error);

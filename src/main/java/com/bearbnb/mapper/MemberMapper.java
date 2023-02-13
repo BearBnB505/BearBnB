@@ -25,4 +25,6 @@ public interface MemberMapper {
     List<ComplainDto> complainList();
 
     void complainDelete(ComplainDto complain);
+
+    void memberDelete(MembersDto members);
 }

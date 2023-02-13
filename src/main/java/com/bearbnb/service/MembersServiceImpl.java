@@ -42,5 +42,10 @@ public class MembersServiceImpl implements MembersService{
         }
     }
 
+    @Override
+    public void memberDelete(MembersDto members) {
+        memberMapper.memberDelete(members);
+    }
+
 
 }
