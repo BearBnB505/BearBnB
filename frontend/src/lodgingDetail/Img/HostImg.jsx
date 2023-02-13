@@ -22,7 +22,7 @@ function HostImg(props) {
                     console.log('숙소상세페이지 이미지 통신 오류')
                     console.log(error)
                 })
-        },50);
+        },100);
     }
 
     const [isLoaded, setIsLoaded] = useState(false);
@@ -38,7 +38,7 @@ function HostImg(props) {
     useEffect(()=>{
             const timer = setTimeout(() => {
                 setIsLoaded(true);
-            },200);
+            },300);
             return () => clearTimeout(timer);
             }, []);
 
