@@ -62,7 +62,7 @@ function Main(props) {
         }})
             .then((req) => {
                 const {data} = req;
-                console.log(data);
+                console.log(data.userId);
             })
             .catch((err) => {
                 console.log("통신 오류");

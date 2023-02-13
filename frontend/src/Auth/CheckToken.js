@@ -16,19 +16,19 @@ export function CheckToken(key) {
     // const accessToken = Auth.accessToken;
     // const expireTime = Auth.expireTime;
     const refreshToken = getCookie('refreshToken');
-    const authenticated = refreshToken.authenticated;
-    const expireTime = refreshToken.expireTime;
+    // const authenticated = refreshToken.authenticated;
+    // const expireTime = refreshToken.expireTime;
     const dispatch = useDispatch();
 
     useEffect(()=> {
         const checkAuthToken = async () => {
             if (refreshToken === undefined) {
-                dispatch(auths({accessToken:null, authenticated:true, expireTime:null}));
+                // dispatch(auths({accessToken:null, authenticated:true, expireTime:null}));
                 setIsAuth('Failed');
             } else {
-                if (authenticated && new Date().getTime() < expireTime){
+                // if (authenticated && new Date().getTime() < expireTime){
                     setIsAuth('Success');
-                } else {
+                // } else {
 
                     // axios.post('/auth/token/refresh', {headers: {
                     //         'Authorization': 'Bearer ' + refreshToken
@@ -45,10 +45,10 @@ export function CheckToken(key) {
                     //         // setIsAuth('Failed');
                     //     });
 
-                    removeCookie('refreshToken');
-                    setIsAuth('Failed');
+                    // removeCookie('refreshToken');
+                    // setIsAuth('Failed');
 
-                }
+                // }
             }
         };
 

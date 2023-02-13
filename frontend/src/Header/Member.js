@@ -12,8 +12,8 @@ import {CheckToken} from "../Auth/CheckToken";
 function Member(props) {
 
 
-    // const location = useLocation();
-    // const {isAuth} = CheckToken(location.key);
+    const location = useLocation();
+    const {isAuth} = CheckToken(location.key);
 
     // CheckToken();
     // let isAuth = sessionStorage.getItem("isAuth");
