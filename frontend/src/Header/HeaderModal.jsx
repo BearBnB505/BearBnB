@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import {ButtonGroup, Dropdown, Modal, ModalBody, NavDropdown} from "react-bootstrap";
 
 import './Header.css';
@@ -11,13 +11,12 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import GuestCount from "../GuestCount";
 import Calendar from "../Calendar/Calendar";
 import moment from "moment";
-import {GoogleMap, StandaloneSearchBox} from "@react-google-maps/api";
-import {SearchMap} from "../GoogleMap/Map";
 import axios from "axios";
 import Logout from "../User/Logout";
 import {useLocation} from "react-router";
 import {CheckToken} from "../Auth/CheckToken";
 import Member from "./Member";
+import {SearchHeader} from "../GoogleMap/Search";
 
 function HeaderModal(props) {
     const styles = {
@@ -51,12 +50,7 @@ function HeaderModal(props) {
         navInput: {
             cursor:"pointer",
             width:90,
-            fontSize:14
-        },
-        navInputSpot: {
-            // cursor:"pointer",
-            width:180,
-            fontSize:14
+            fontSize:15
         },
     }
 
@@ -115,9 +109,6 @@ function HeaderModal(props) {
     let childCount = selectGuest[1];
     let petCount = selectGuest[2];
 
-    const [map, setMap] = useState(null);
-    const [googlemaps, setGooglemaps] = useState(null);
-
     const searchParam = {
         startDt: startDt,
         endDt: endDt,
@@ -128,7 +119,10 @@ function HeaderModal(props) {
 
     const navigate = useNavigate();
 
+    const [searchSpot, setSearchSpot] = useState('');
+
     const search = () => {
+        sessionStorage.setItem("searchSpot", searchSpot);
         sessionStorage.setItem("startDt", startDt);
         sessionStorage.setItem("endDt", endDt);
         sessionStorage.setItem("adultCount", adultCount);
@@ -188,8 +182,11 @@ function HeaderModal(props) {
                                             <label htmlFor="chooseSpot" className={"fw-bold p-0"} style={{cursor:"pointer", fontSize:13}}>여행지</label>
                                         </div>
                                         <div className={"row ps-3"}>
+
                                             {/*여행지 검색 input*/}
-                                            <input type="text" id={"chooseSpot"} className={"border-0 p-0"} placeholder={"여행지 검색"} style={styles.navInputSpot}/>
+                                            <SearchHeader spot={setSearchSpot}/>
+
+
                                         </div>
                                     </div>
                                 </button>
@@ -259,13 +256,15 @@ function HeaderModal(props) {
                                     placement={"bottom"}
                                     target={target.current}
                                 >
-                                    <Popover className={"shadow-lg"} style={{width: 500, height: 460, borderRadius:30, maxWidth:800, marginLeft:-170}}>
+                                    {/*<Popover className={"shadow-lg"} style={{width: 500, height: 460, borderRadius:30, maxWidth:800, marginLeft:-170}}>*/}
                                         <div>
                                             {/*<SearchMap map={map} mapApi={googlemaps}/>*/}
                                             {/*<SearchMap/>*/}
                                             {/*<SearchMap/>*/}
+                                            {/*<SearchHeader/>*/}
+
                                         </div>
-                                    </Popover>
+                                    {/*</Popover>*/}
                                 </Overlay>
 
                             </div>

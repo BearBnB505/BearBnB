@@ -41,8 +41,8 @@ public class mainController {
     }
 
     @RequestMapping(value = "/searchLodgingList", method = RequestMethod.GET)
-    public List<LodgingDto> searchLodgingList(@RequestParam("startDt") String startDt, @RequestParam("endDt") String endDt, @RequestParam("adultCount") int adultCount) throws Exception {
-        return lodgingMapper.searchLodgingList(startDt, endDt, adultCount);
+    public List<LodgingDto> searchLodgingList(@RequestParam("searchSpot") String searchSpot, @RequestParam("startDt") String startDt, @RequestParam("endDt") String endDt, @RequestParam("adultCount") int adultCount) throws Exception {
+        return lodgingMapper.searchLodgingList(searchSpot, startDt, endDt, adultCount);
     }
 
 

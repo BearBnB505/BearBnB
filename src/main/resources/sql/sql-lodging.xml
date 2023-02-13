@@ -24,7 +24,7 @@
         <![CDATA[
         SELECT *
         FROM lodging
-        WHERE (check_in_dt <= #{startDt}) AND (check_out_dt >= #{endDt}) AND (people_num >= #{adultCount})
+        WHERE (address1 REGEXP #{searchSpot}) AND (check_in_dt <= #{startDt}) AND (check_out_dt >= #{endDt}) AND (people_num >= #{adultCount})
         ]]>
     </select>
 

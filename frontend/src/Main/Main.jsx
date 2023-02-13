@@ -76,11 +76,13 @@ function Main(props) {
         }
         // else if (sessionStorage.getItem("startDt") != null) {
             // setSearchParam(sessionStorage.getItem(searchParam));
-            console.log(sessionStorage.getItem("startDt"));
+            // console.log(sessionStorage.getItem("startDt"));
+            let searchSpot = sessionStorage.getItem("searchSpot");
             let startDt = sessionStorage.getItem("startDt");
             let endDt = sessionStorage.getItem("endDt");
             let adultCount = sessionStorage.getItem("adultCount");
             let searchParam = {
+                searchSpot: searchSpot,
                 startDt: startDt,
                 endDt: endDt,
                 adultCount: adultCount,
