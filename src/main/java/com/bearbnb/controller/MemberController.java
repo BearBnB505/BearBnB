@@ -47,9 +47,7 @@ public class MemberController {
     KeepingService keepingService;
 
 
-
-
-    @GetMapping("/my")
+    @GetMapping("/member/my")
     public ResponseEntity<MemberResponseDto> getMyMemberInfo() {
         MemberResponseDto myInfoBySecurity = memberService.getMyInfoBySecurity();
 //        System.out.println(myInfoBySecurity.getNickname());
