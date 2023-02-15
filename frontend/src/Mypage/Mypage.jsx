@@ -18,18 +18,18 @@ function Mypage(props) {
 
     const refreshToken = getCookie('refreshToken');
     
-    useEffect(() => {
-        axios.get('/member/my', {headers: {
-                'Authorization': 'Bearer ' + refreshToken
-            }})
-            .then((req) => {
-                const {data} = req;
-                console.log(data.userId);
-            })
-            .catch((err) => {
-                console.log("통신 오류");
-            })
-    }, []);
+    // useEffect(() => {
+    //     axios.get('/member/my', {headers: {
+    //             'Authorization': 'Bearer ' + refreshToken
+    //         }})
+    //         .then((req) => {
+    //             const {data} = req;
+    //             console.log(data.userId);
+    //         })
+    //         .catch((err) => {
+    //             console.log("통신 오류");
+    //         })
+    // }, []);
 
     const [data, setData] = useState([]);
     useEffect(() => {
