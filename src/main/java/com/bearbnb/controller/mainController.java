@@ -16,10 +16,10 @@ public class mainController {
     @Autowired
     LodgingMapper lodgingMapper;
 
-    @RequestMapping("/")
-    public String index() throws Exception {
-        return "Hello World";
-    }
+//    @RequestMapping("/")
+//    public String index() throws Exception {
+//        return "Hello World";
+//    }
 
     @RequestMapping("test")
     public List<String> test() throws Exception {
