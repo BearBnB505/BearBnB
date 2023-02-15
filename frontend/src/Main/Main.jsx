@@ -34,22 +34,22 @@ function Main(props) {
     const Auth = useSelector((state)=>state.auth.value);
     // console.log(Auth);
     const accessToken = Auth.accessToken;
-    console.log(accessToken);
+    // console.log(accessToken);
 
     const [data, setData] = useState([]);
     const [category, setCategory] = useState('한옥');
     const [check, setCheck] = useState("ready");
-    console.log(category);
-    console.log('데이터 확인')
-    console.log(data)
+    // console.log(category);
+    // console.log('데이터 확인')
+    // console.log(data)
 
 
     useEffect(() => {
-        axios.get('http://localhost:8080/lodgingList', {params: {category: category}})
+        axios.get('/lodgingList', {params: {category: category}})
             .then((req) => {
                 const {data} = req;
-                console.log('메인페이지 리스트 출력')
-                console.log(data);
+                // console.log('메인페이지 리스트 출력')
+                // console.log(data);
                 setData(data);
 
                 setCheck("done");
@@ -57,7 +57,7 @@ function Main(props) {
             .catch((err) => {
                 console.log("통신 오류");
             })
-    }, [category]);
+    }, ['', category]);
 
     const refreshToken = getCookie('refreshToken');
 

@@ -18,7 +18,7 @@ function MainContents(props) {
     const timer = () => {
         setTimeout(()=>{
             setCategories(props.category);
-            axios.put('http://localhost:8080/mainImage',null,{params: {lodgingNum:lodgingNum}})
+            axios.put('/mainImage',null,{params: {lodgingNum:lodgingNum}})
                 .then((req)=>{
                     console.log('메인 페이지 이미지 데이터')
                     console.log(req);
@@ -27,7 +27,7 @@ function MainContents(props) {
                 .catch((err)=>{
                     console.log(err);
                 })
-        },400)
+        },100)
     }
 
     // 메인페이지에서 글을 불러오면 상태가 done으로 바뀐다. 그 값이 바뀌면
@@ -36,22 +36,22 @@ function MainContents(props) {
         if(props.check==="done"){
             timer();
             return() => clearTimeout(timer);
-            setIsLoaded(false)
+            setIsLoaded(true);
         }
-    },[props.check])
+    },[props.category]);
 
     // 이미지 리스트를 불러오면 화면에 띄운다
     useEffect(()=>{
         const timer = setTimeout(()=>{
             setIsLoaded(true);
-        },500);
+        },300);
         return () => clearTimeout(timer);
     },[])
 
 
-    console.log('imageList')
-    console.log(imageList);
-    console.log('url빼내기')
+    // console.log('imageList')
+    // console.log(imageList);
+    // console.log('url빼내기')
     // console.log(imageList.data[0].photo)
 
 

@@ -10,6 +10,7 @@ import {useLocation} from "react-router";
 import {CheckToken} from "../Auth/CheckToken";
 import axios from "axios";
 import {getCookie} from "../Storage/Cookies";
+import {Link} from "react-router-dom";
 
 function Member(props) {
 
@@ -55,7 +56,9 @@ function Member(props) {
                 {/*        <span>메세지알림</span>*/}
                 {/*        <span className="badge bg-primary rounded-pill float-end">2</span>*/}
                 {/*    </DropdownItem>*/}
-                    <DropdownItem href={"/mypage"}>마이페이지</DropdownItem>
+
+                    <DropdownItem><Link to={'/mypage'}>마이페이지</Link></DropdownItem>
+
                 {/*</>}*/}
             </DropdownMenu>
         </Dropdown>

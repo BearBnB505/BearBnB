@@ -14,8 +14,8 @@ function HostImg(props) {
         setTimeout(() => {
             axios.put('/lodgingDetailImage',null,{params: {idx: idx}})
                 .then((req)=>{
-                    console.log('숙소상세페이지 이미지 통신 성공')
-                    console.log(req);
+                    // console.log('숙소상세페이지 이미지 통신 성공')
+                    // console.log(req);
                     setImage(req);
                 })
                 .catch((error)=>{

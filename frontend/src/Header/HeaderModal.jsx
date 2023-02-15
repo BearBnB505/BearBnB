@@ -136,8 +136,8 @@ function HeaderModal(props) {
         sessionStorage.setItem("endDt", endDt);
         sessionStorage.setItem("adultCount", adultCount);
         setShowExpandedHeader(false);
-        navigate('/', { replace: true });
-        window.location.reload();
+        navigate('/', { replace: true }, {reload: true});
+        // window.location.reload();
     }
 
     return (

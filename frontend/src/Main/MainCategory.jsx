@@ -35,8 +35,8 @@ function MainCategory(props) {
                             <Link to={"/"}
                                   key={categoryClick}
                                   onClick={() => {
-                                      handleClick(categoryClick)
-                                      props.categoryValue(categoryClick)
+                                      handleClick(categoryClick);
+                                      props.categoryValue(categoryClick);
                                   }}>
                                 <div className={"d-flex justify-content-center"}>
                                     <img src={`/img/navCategory/${categoriesImg[index]}.jpg`} alt="" style={styles.navImg}/>
