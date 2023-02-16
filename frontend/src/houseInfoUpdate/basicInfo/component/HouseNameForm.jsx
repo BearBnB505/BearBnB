@@ -24,7 +24,7 @@ function HouseNameForm(props) {
     axios.put('http://localhost:8080/UpdateLodgingName/',null,{params: {lodgingNum: lodgingNum, lodgingName: props.lodgingName}})
 
       .then((response) => {
-        console.log(response);
+        //console.log(response);
       })
       .catch(function (error) {
         console.log(error);

@@ -129,10 +129,10 @@ function LodgingPayment(props) {
     // console.log(totalCost)
     // console.log(lodgingNum)
 
-    console.log('시작일')
-    console.log(startDt);
-    console.log('마지막 일')
-    console.log(endDt);
+    //console.log('시작일')
+    //console.log(startDt);
+   // console.log('마지막 일')
+    //console.log(endDt);
 
     return (
         <div className={'container mx-auto'}>

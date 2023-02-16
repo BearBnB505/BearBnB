@@ -25,11 +25,11 @@ const HostInfo=()=>{
         setTitle(e.target.value);
 
     }
-    console.log('제목')
-    console.log(title)
+   // console.log('제목')
+    //console.log(title)
     const contentsOnChange =(e)=>{
         setContents(e.target.value);
-        console.log(contents)
+        //console.log(contents)
     }
     //
     const contact = useSelector((state)=>state.contact.value);
@@ -55,8 +55,8 @@ const HostInfo=()=>{
             contents:contents
         })
             .then((reg)=>{
-                console.log(reg)
-                console.log('통신성공')
+                //console.log(reg)
+                //console.log('통신성공')
                 Swal.fire({
                     icon: 'success',
                     title: '이메일이 전송되었습니다',

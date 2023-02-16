@@ -34,7 +34,7 @@ const HouseConceptForm=(props)=>{
     axios.put('http://localhost:8080/UpdateLodgingConcept', null, {params: {lodgingNum: lodgingNum, lodgingConcept: props.concept}})
 
       .then((response) => {
-        console.log(response);
+        //console.log(response);
       })
       .catch(function (error) {
         console.log(error);

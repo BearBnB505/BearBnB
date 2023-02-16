@@ -32,7 +32,7 @@ function HostMyPageLodging() {
             .then((req)=>{
                 const {data} = req;
                 setData(data);
-                console.log(data)
+                //console.log(data)
 
                 if(data ==='ROLE_USER'){
                     navigate("/reg/lodgingHostId")
@@ -117,7 +117,7 @@ function ComplainList(props) {
                 const {data} = req;
                 const length = data.length
                 Number(length)
-                console.log(length);
+                //console.log(length);
 
                 // console.log(data);
                 setData(data);

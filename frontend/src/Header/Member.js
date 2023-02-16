@@ -20,7 +20,7 @@ function Member(props) {
 
     // CheckToken();
     // let isAuth = sessionStorage.getItem("isAuth");
-    console.log(`isAuth : ${isAuth}`);
+    // console.log(`isAuth : ${isAuth}`);
 
     const refreshToken = getCookie('refreshToken');
 
@@ -30,7 +30,7 @@ function Member(props) {
             }})
             .then((req) => {
                 const {data} = req;
-                console.log(data.userId);
+                // console.log(data.userId);
             })
             .catch((err) => {
                 console.log("통신 오류");

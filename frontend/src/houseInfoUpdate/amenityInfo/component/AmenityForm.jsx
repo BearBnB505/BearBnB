@@ -491,7 +491,7 @@ const AmenityForm = (props) => {
 
     axios.put('http://localhost:8080/UpdateComfortsList', SetComfortList, null)
       .then((response) => {
-        console.log(response);
+        //console.log(response);
       })
       .catch(function (error) {
         console.log(error);

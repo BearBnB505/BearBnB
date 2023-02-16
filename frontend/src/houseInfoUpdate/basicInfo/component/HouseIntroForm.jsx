@@ -22,7 +22,7 @@ const HouseIntroForm=(props)=>{
     axios.put('http://localhost:8080/UpdateLodgingIntro', null, {params: {lodgingNum: lodgingNum,introLodging: props.introLodging}})
 
       .then((response) => {
-        console.log(response);
+        //console.log(response);
       })
       .catch(function (error) {
         console.log(error);

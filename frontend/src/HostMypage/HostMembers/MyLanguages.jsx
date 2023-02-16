@@ -14,7 +14,7 @@ const MyLanguages = (props) => {
 
     axios.put('http://localhost:8080/UpdateLanguage',null,{params: {language: props.language}})
       .then((response) => {
-        console.log(response);
+        //console.log(response);
       })
       .catch(function (error) {
         console.log(error);

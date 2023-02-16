@@ -45,19 +45,74 @@ function Main(props) {
 
 
     useEffect(() => {
-        axios.get('/lodgingList', {params: {category: category}})
-            .then((req) => {
-                const {data} = req;
-                // console.log('메인페이지 리스트 출력')
-                // console.log(data);
-                setData(data);
+        // axios.get('/lodgingList', {params: {category: '한옥'}})
+        //     .then((req) => {
+        //         const {data} = req;
+        //         setData(data);
+        //
+        //         setCheck("done");
+        //     })
+        //     .catch((err) => {
+        //         console.log("통신 오류");
+        //     })
+    }, []);
 
-                setCheck("done");
+
+    useEffect(() => {
+        // const mainLodgingList = async () => {
+        //     const mainLodgingListData = (await axios.get('/lodgingList', {params: {category: category}})).data
+        //     console.log("메인 숙소 데이터" +mainLodgingListData[0]);
+        // }
+        // mainLodgingList();
+        axios.get('/lodgingList', {params: {category: category}})
+            .then(async (req) => {
+                try {
+                    const {data} = await req;
+                    setData(data);
+                    console.log("카테고리 변경 데이터");
+                    console.log(data);
+                    setCheck("done");
+
+                    let lodgingNumA = data.lodgingNum;
+                    console.log("메인페이지 데이터 통신"+lodgingNumA);
+                } catch (err) {
+                    console.log("통신 오류");
+                }
             })
             .catch((err) => {
                 console.log("통신 오류");
             })
-    }, ['', category]);
+
+        // axios.put('/mainImage', null, {params: {lodgingNum: lodgingNumA}})
+        //     .then(async (req) => {
+        //         try {
+        //             console.log('메인 페이지 이미지 데이터')
+        //             console.log(lodgingNumA);
+        //             setImageList(req);
+        //
+        //         } catch (err) {
+        //             console.log("통신 오류");
+        //         }
+        //     })
+        //     .catch((err) => {
+        //         console.log("통신 오류");
+        //     })
+
+
+        // axios.get('/lodgingList', {params: {category: category}})
+        //     .then((req) => {
+        //         const {data} = req;
+        //         setData(data);
+        //
+        //         console.log("카테고리 변경 데이터");
+        //         console.log(data);
+        //
+        //         setCheck("done");
+        //     })
+        //     .catch((err) => {
+        //         console.log("통신 오류");
+        //     })
+    }, [category]);
 
     const refreshToken = getCookie('refreshToken');
 
@@ -73,7 +128,8 @@ function Main(props) {
     //             console.log("통신 오류");
     //         })
     // }, [category]);
-    
+
+    // 헤더 검색
     useEffect(() => {
         if (!sessionStorage.getItem("startDt")) {
             return;
@@ -121,7 +177,7 @@ function Main(props) {
                                         <Keep idx={item.idx}/>
                                     </div>
                                     <Link to={`/lodgingDetail/${item.idx}`} style={{color: "black"}} state={{lat: `${item.latitude}`, lng: `${item.longitude}`}}>
-                                        <MainContents idx={item.idx} data={item} category={category} lodgingNum={item.lodgingNum} check={check}/>
+                                        <MainContents idx={item.idx} data={item} category={category} check={check}/>
                                     </Link>
                                 </li>
                             )

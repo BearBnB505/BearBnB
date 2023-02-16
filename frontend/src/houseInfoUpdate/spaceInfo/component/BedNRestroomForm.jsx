@@ -63,7 +63,7 @@ const BedNRestroomForm=(props)=>{
     axios.put('http://localhost:8080/UpdateLodgingBedNBath', null, {params: ({lodgingNum: lodgingNum, bedNum: props.bedNum, bedroomNum: props.bedroomNum,bathroomNum: props.restroomNum})})
 
       .then((response) => {
-        console.log(response);
+        //console.log(response);
       })
       .catch(function (error) {
         console.log(error);

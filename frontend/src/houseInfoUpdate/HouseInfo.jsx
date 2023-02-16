@@ -12,7 +12,7 @@ function HouseInfo(){
   const location = useLocation();
   const lodgingNum = location.state.lodgingNum;
 
-  console.log(lodgingNum);
+  //console.log(lodgingNum);
 
   return(
     <div className={'HouseInfo'} >

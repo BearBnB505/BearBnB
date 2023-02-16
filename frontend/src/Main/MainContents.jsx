@@ -7,46 +7,78 @@ import axios from "axios";
 import moment from "moment";
 
 function MainContents(props) {
-    console.log('넘어온 숙소번호확인')
-    const lodgingNum = props.lodgingNum
+    // console.log('넘어온 숙소번호확인')
+    // const [lodgingNum, setLodgingNum] = useState('');
+    const lodgingNumA = props.data.lodgingNum;
+    console.log("이미지" + lodgingNumA);
     const [imageList, setImageList] = useState([]);
     const [categories, setCategories] = useState('');
     const [isLoaded, setIsLoaded] = useState(false);
     const images = [];
 
+
     //이미지 불러오는 통신
-    const timer = () => {
-        setTimeout(()=>{
-            setCategories(props.category);
-            axios.put('/mainImage',null,{params: {lodgingNum:lodgingNum}})
-                .then((req)=>{
-                    console.log('메인 페이지 이미지 데이터')
-                    console.log(req);
+    useEffect(() => {
+        console.log("useEffect 카테고리");
+        axios.put('/mainImage', null, {params: {lodgingNum: lodgingNumA}})
+            .then(async (req) => {
+                try {
+                    // console.log('메인 페이지 이미지 데이터')
+                    // console.log(lodgingNumA);
                     setImageList(req);
-                })
-                .catch((err)=>{
-                    console.log(err);
-                })
-        },100)
-    }
+
+                } catch (err) {
+                    console.log("통신 오류");
+                }
+            })
+            .catch((err) => {
+                console.log("통신 오류");
+            })
+    }, [props.category])
+
+
+    // const timer = () => {
+    //     setTimeout(()=>{
+    //         // setCategories(props.category);
+    //         // setLodgingNum(props.data.lodgingNum);
+    //         // const lodgingNum = props.data.lodgingNum;
+    //         axios.put('/mainImage', null, {params: {lodgingNum: lodgingNumA}})
+    //             .then((req)=>{
+    //                 console.log('메인 페이지 이미지 데이터')
+    //                 // console.log(req);
+    //                 console.log(lodgingNumA);
+    //                 setImageList(req);
+    //             })
+    //             .catch((err)=>{
+    //                 console.log(err);
+    //             })
+    //     },1000)
+    // }
 
     // 메인페이지에서 글을 불러오면 상태가 done으로 바뀐다. 그 값이 바뀌면
     // 이미지 리스트를 불러오는 함수를 실행시킨다.
-    useEffect(()=>{
-        if(props.check==="done"){
-            timer();
-            return() => clearTimeout(timer);
-            setIsLoaded(true);
-        }
-    },[props.category]);
+    // useEffect(()=>{
+    //     // setCategories(props.category);
+    //     console.log("이미지불러오기"+props.category);
+    //     // setLodgingNum(props.data.lodgingNum);
+    //     if(props.check==="done"){
+    //         // timer();
+    //         // return() => clearTimeout(timer);
+    //         setIsLoaded(true);
+    //     }
+    //     // setLodgingNum('');
+    // },[props.check, props.category]);
+
 
     // 이미지 리스트를 불러오면 화면에 띄운다
     useEffect(()=>{
         const timer = setTimeout(()=>{
             setIsLoaded(true);
-        },300);
+        },5000);
+        // timer();
         return () => clearTimeout(timer);
-    },[])
+    },[props.category])
+
 
 
     // console.log('imageList')
@@ -121,6 +153,7 @@ function MainContents(props) {
             </div>
             <div className={"text-start mt-2"}>
                 <span><b>{props.data.lodgingName}</b></span><br/>
+                <span><b>{props.data.lodgingNum}</b></span><br/>
                 <span><b>{props.data.address1}</b></span><br/>
                 <span className={"text-muted"}>{props.data.lodgingConcept}</span><br/>
                 <span className={"text-muted"}>{checkInDt} ~ {checkOutDt}</span><br/>
