@@ -43,75 +43,25 @@ function Main(props) {
     // console.log('데이터 확인')
     // console.log(data)
 
-
-    useEffect(() => {
-        // axios.get('/lodgingList', {params: {category: '한옥'}})
-        //     .then((req) => {
-        //         const {data} = req;
-        //         setData(data);
-        //
-        //         setCheck("done");
-        //     })
-        //     .catch((err) => {
-        //         console.log("통신 오류");
-        //     })
-    }, []);
-
-
     useEffect(() => {
         // const mainLodgingList = async () => {
         //     const mainLodgingListData = (await axios.get('/lodgingList', {params: {category: category}})).data
         //     console.log("메인 숙소 데이터" +mainLodgingListData[0]);
         // }
-        // mainLodgingList();
-        axios.get('/lodgingList', {params: {category: category}})
-            .then(async (req) => {
-                try {
-                    const {data} = await req;
-                    setData(data);
-                    console.log("카테고리 변경 데이터");
-                    console.log(data);
-                    setCheck("done");
 
-                    let lodgingNumA = data.lodgingNum;
-                    console.log("메인페이지 데이터 통신"+lodgingNumA);
-                } catch (err) {
-                    console.log("통신 오류");
-                }
+        axios.get('/lodgingList', {params: {category: category}})
+            .then((req) => {
+                const {data} = req;
+                setData(data);
+
+                // console.log("카테고리 변경 데이터");
+                // console.log(data);
+
+                setCheck("done");
             })
             .catch((err) => {
                 console.log("통신 오류");
             })
-
-        // axios.put('/mainImage', null, {params: {lodgingNum: lodgingNumA}})
-        //     .then(async (req) => {
-        //         try {
-        //             console.log('메인 페이지 이미지 데이터')
-        //             console.log(lodgingNumA);
-        //             setImageList(req);
-        //
-        //         } catch (err) {
-        //             console.log("통신 오류");
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         console.log("통신 오류");
-        //     })
-
-
-        // axios.get('/lodgingList', {params: {category: category}})
-        //     .then((req) => {
-        //         const {data} = req;
-        //         setData(data);
-        //
-        //         console.log("카테고리 변경 데이터");
-        //         console.log(data);
-        //
-        //         setCheck("done");
-        //     })
-        //     .catch((err) => {
-        //         console.log("통신 오류");
-        //     })
     }, [category]);
 
     const refreshToken = getCookie('refreshToken');
@@ -177,7 +127,7 @@ function Main(props) {
                                         <Keep idx={item.idx}/>
                                     </div>
                                     <Link to={`/lodgingDetail/${item.idx}`} style={{color: "black"}} state={{lat: `${item.latitude}`, lng: `${item.longitude}`}}>
-                                        <MainContents idx={item.idx} data={item} category={category} check={check}/>
+                                        <MainContents idx={item.idx} data={item} category={category} check={check} key={item.idx}/>
                                     </Link>
                                 </li>
                             )
