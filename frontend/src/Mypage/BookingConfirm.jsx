@@ -9,6 +9,7 @@ import BookingModalDetail from "./BookingConfirm/BookingModalDetail";
 import axios from "axios";
 import ReviewPagenation from "./ReviewPagenation";
 import BookingPagenation from "./BookingPagenation";
+import {useLocation} from "react-router";
 
 function BookingConfirm() {
 
@@ -27,6 +28,10 @@ function BookingConfirm() {
         {idx: 2, lodging_name: "제주도 신라 호텔", book_state: "승인대기", book_dt: "2023-01-17", pay_cost: "560,200원"},
     ]
 
+  const location = useLocation();
+  const userId = location.state.userId;
+  // console.log('userId: '+ userId);
+
     const [waitArray, setWaitArray] = useState([]);
     const [agreeArray, setAgreeArray] = useState([]);
   // 페이지당 게시물 수
@@ -38,7 +43,7 @@ function BookingConfirm() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:8080/bookingList/')
+        axios.get('http://localhost:8080/bookingList/', {params: {userId: userId}})
           .then((req) => {
               const {data} = req;
               // console.log(data);

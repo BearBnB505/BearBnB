@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import ComplainPagenation from "./ComplainPagenation";
+import {useLocation} from "react-router";
 
 // const complain = [
 //     {idx: 1, lodging_num: "1521", reason: "잘못된 정보", reason_detail: "객실 정보, 이미지 오류", complain_dt: "2023-01-17"},
@@ -16,6 +17,9 @@ import ComplainPagenation from "./ComplainPagenation";
 // ]
 
 function Complain() {
+
+  const location = useLocation();
+  const userId = location.state.userId;
 
   const [data, setData] = useState([]);
   // 페이지당 게시물 수
@@ -54,7 +58,7 @@ function Complain() {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:8080/complainList/')
+    axios.get('http://localhost:8080/complainList/', {params:{userId:userId}})
       .then((req) => {
         const {data} = req;
         setData(data)

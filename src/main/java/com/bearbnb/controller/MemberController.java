@@ -60,9 +60,14 @@ public class MemberController {
 //    }
 
 
+//    @RequestMapping(value = "/AllMembers")
+//    public List<MembersDto> AllMembersList() {
+//        return memberMapper.AllMembersList();
+//    }
+
     @RequestMapping(value = "/Members")
-    public List<MembersDto> MemberList() {
-        return memberMapper.MemberList();
+    public List<MembersDto> MemberList(MembersDto members) {
+        return memberMapper.MemberList(members);
     }
 
     @RequestMapping(value = "/UpdateMemberName", method = RequestMethod.PUT)
@@ -100,8 +105,8 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/MemberReviewList")
-    public List<ReviewDto> MemberReviewList() {
-        return reviewMapper.MemberReviewList();
+    public List<ReviewDto> MemberReviewList(MembersDto members) {
+        return reviewMapper.MemberReviewList(members);
     }
 
 //    @RequestMapping(value = "/KeepList")
@@ -109,8 +114,8 @@ public class MemberController {
 //        return keepingService.KeepList();
 //    }
     @RequestMapping(value = "/KeepList")
-    public List<KeepingDto> KeepList() {
-        return keepingService.KeepList();
+    public List<KeepingDto> KeepList(KeepingDto keeping) {
+        return keepingService.KeepList(keeping);
     }
 
 //    @RequestMapping(value = "/LodgingAvg")
@@ -129,8 +134,8 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/complainList")
-    public List<ComplainDto> complainList() {
-        return memberMapper.complainList();
+    public List<ComplainDto> complainList(ComplainDto complain) {
+        return memberMapper.complainList(complain);
     }
 
     @RequestMapping(value = "/allReviewList")

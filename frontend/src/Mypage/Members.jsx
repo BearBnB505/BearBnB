@@ -9,8 +9,15 @@ import MyPwd from "./Members/MyPwd";
 import { motion } from "framer-motion";
 import Anima from "./animaData";
 import axios from "axios";
+import {useLocation} from "react-router";
+
 
 function Members(props) {
+
+    const location = useLocation();
+    const userId = location.state.userId;
+    // console.log('userId: '+ userId);
+
 
 
 
@@ -28,7 +35,7 @@ function Members(props) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/Members')
+        axios.get('http://localhost:8080/Members', {params:{userId: userId}})
 
           .then((req) => {
               const {data} = req;

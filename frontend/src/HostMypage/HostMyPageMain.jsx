@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styles from "../Mypage/Style.css";
 import Card from "../Mypage/Card.jsx";
 import {
@@ -7,9 +7,32 @@ import {
 import {Link, Outlet} from "react-router-dom";
 import Anima from "../Mypage/animaData.jsx";
 import {motion} from "framer-motion";
+import {useLocation} from "react-router";
+import axios from "axios";
 
 
 function HostMyPageMain(props) {
+  const location = useLocation();
+  const userId = location.state.userId;
+  // console.log('userId: '+ userId);
+
+  const [data, setData] = useState([]);
+  const [name, setName] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/Members',{params: {userId: userId}})
+      .then((req) => {
+        const {data} = req;
+        // console.log(data);
+        setData(data);
+        setName(data[0].name)
+      })
+      .catch((err) => {
+        console.log("통신 오류");
+        console.log(err);
+      })
+  }, []);
+
     return (
         <motion.div variants={Anima}
                     initial="hidden"
@@ -17,7 +40,7 @@ function HostMyPageMain(props) {
                     exit="exit" className={"container mt-5"}>
             <div className={"row p-2 mb-5"}>
                 <h2 className={"fw-bold"}>호스트 마이페이지</h2>
-                <h5><strong>유리 정</strong>, gradispo@gmail.com</h5>
+                <h5><strong>{name}</strong>, {userId}</h5>
             </div>
             <div className={"row"}>
                 <Link className={"col-sm-4"} to={"/hostMyPageHostInfo"}><Card id={"1"} icon={faUser} title={"호스트정보관리"}

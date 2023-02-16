@@ -11,34 +11,16 @@ import Anima from "./animaData";
 import {motion} from "framer-motion";
 import {useParams} from "react-router";
 import axios from "axios";
+import MainContents from "../Main/MainContents";
 
 
 function Mypage(props) {
 
-  // const [lodging, setLodging] = useState([]);
-  // const [members, setmembers] = useState([]);
-  // const {idx} = useParams();
-  //
-  // let [chooseDate, setChooseDate] = useState([]);
-  //
-  // // useEffect(() => {
-  // //     axios.get(`http://localhost:8080/lodgingDetail/${idx}`)
-  // //         .then((req) => {
-  // //             const {data} = req;
-  // //             console.log(data);
-  // //             setLodging(data.lodging);
-  // //         })
-  // //         .catch((err) => {
-  // //             console.log("통신 오류");
-  // //             console.log(err);
-  // //         })
-  // // }, []);
-
-
+  const [userId, setUserId] = useState('newJeansHanni@gmail.com');
   const [data, setData] = useState([]);
-  useEffect(() => {
-    axios.get('http://localhost:8080/Members')
 
+  useEffect(() => {
+    axios.get('http://localhost:8080/Members',{params: {userId: userId}})
       .then((req) => {
         const {data} = req;
         // console.log(data);
@@ -52,7 +34,6 @@ function Mypage(props) {
 
 
   return (
-
     <motion.div variants={Anima}
                 initial="hidden"
                 animate="visible"
@@ -76,28 +57,33 @@ function Mypage(props) {
 
 
       <div className={"row"}>
-        <Link className={"col-sm-6 col-md-6 col-lg-4"} to={"/members"}>
+
+        <Link to={`/members/${userId}`}  state={{userId : userId}} className="col-sm-6 col-md-6 col-lg-4">
           <Card id={"1"} icon={faUser} title={"본인정보 수정"} content={"성별, 이메일, 전화번호를 수정합니다"}/>
         </Link>
-        <Link className={"col-sm-6 col-md-6 col-lg-4"} to={"/review"}>
+
+        <Link to={`/review/${userId}`}  state={{userId : userId}} className="col-sm-6 col-md-6 col-lg-4">
+        {/*<Link className={"col-sm-6 col-md-6 col-lg-4"} to={"/review"}>*/}
           <Card id={"2"} icon={faCamera} title={"후기 관리"} content={"후기 내역을 확인, 수정, 삭제합니다"}/>
         </Link>
-        <Link className={"col-sm-6 col-md-6 col-lg-4"} to={"/keeping"}>
+
+        <Link to={`/keeping/${userId}`}  state={{userId : userId}} className="col-sm-6 col-md-6 col-lg-4">
           <Card id={"3"} icon={faHeart} title={"찜한 숙소 목록"} content={"내가 찜한 숙소 목록을 보여줍니다"}/>
         </Link>
-        <Link className={"col-sm-6 col-md-6 col-lg-4"} to={"/bookingConfirm"}>
+
+        <Link to={`/bookingConfirm/${userId}`}  state={{userId : userId}} className="col-sm-6 col-md-6 col-lg-4">
           <Card id={"4"} icon={faCalendarCheck} title={"예약내역 확인"} content={"내가 예약한 숙박 내역을 확인합니다"}/>
         </Link>
         <Link className={"col-sm-6 col-md-6 col-lg-4"} to={"/bookingCancel"}>
           <Card id={"5"} icon={faCalendarMinus} title={"예약취소 확인"} content={"내가 예약 취소한 내역을 확인합니다"}/>
         </Link>
-        <Link className={"col-sm-6 col-md-6 col-lg-4"} to={"/hostMyPageMain"}>
+        <Link to={`/hostMyPageMain/${userId}`}  state={{userId : userId}} className="col-sm-6 col-md-6 col-lg-4">
           <Card id={"6"} icon={faUserCog} title={"호스트"} content={"숙소 관리, 예약, 매출, 대금 신청"}/>
         </Link>
-        <Link className={"col-sm-6 col-md-6 col-lg-4"} to={"/complain"}>
+        <Link to={`/complain/${userId}`}  state={{userId : userId}} className="col-sm-6 col-md-6 col-lg-4">
           <Card id={"7"} icon={faList} title={"신고 내역 확인"} content={"내가 신고한 내역을 확인합니다"}/>
         </Link>
-        <Link className={"col-sm-6 col-md-6 col-lg-4"} to={"/membersDel"}>
+        <Link to={`/membersDel/${userId}`}  state={{userId : userId}} className="col-sm-6 col-md-6 col-lg-4">
           <Card id={"8"} icon={faRightFromBracket} title={"회원 탈퇴"} content={"비밀번호 확인후 회원을 탈퇴합니다"}/>
         </Link>
       </div>

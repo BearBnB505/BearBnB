@@ -82,13 +82,14 @@ function ProjectRouter(props) {
                     {/* 일반회원 마이페이지 */}
 
                     <Route path={"mypage"} element={<Mypage/>}/>
-                    <Route path={"members"} element={<Members/>}/>
-                    <Route path={"review"} element={<Review/>}/>
-                    <Route path={"bookingConfirm"} element={<BookingConfirm/>}/>
+                    {/*<Route path={"members"} element={<Members/>}/>*/}
+                    <Route path={"members/:userId"} element={<Members/>}/>
+                    <Route path={"review/:userId"} element={<Review/>}/>
+                    <Route path={"bookingConfirm/:userId"} element={<BookingConfirm/>}/>
                     <Route path={"bookingCancel"} element={<BookingCancel/>}/>
-                    <Route path={"complain"} element={<Complain/>}/>
-                    <Route path={"keeping"} element={<Keeping/>}/>
-                    <Route path={"membersDel"} element={<MembersDel/>}/>
+                    <Route path={"complain/:userId"} element={<Complain/>}/>
+                    <Route path={"keeping/:userId"} element={<Keeping/>}/>
+                    <Route path={"membersDel/:userId"} element={<MembersDel/>}/>
 
 
                     {/*<Route path={"imgUploadBox"} element={<ImgUploadBox/>}/>*/}
@@ -106,7 +107,7 @@ function ProjectRouter(props) {
 
 
                     {/* 호스트 마이페이지*/}
-                    <Route path={"hostMyPageMain"} element={<HostMyPageMain/>}/>
+                    <Route path={"hostMyPageMain/:userId"} element={<HostMyPageMain/>}/>
                     <Route path={"hostMyPageHostInfo"} element={<HostMyPageHostInfo/>}/>
                     <Route path={"hostMyPageReview"} element={<HostMyPageReview/>}/>
                     <Route path={"hostMyPageBooking"} element={<HostMyPageBooking/>}/>

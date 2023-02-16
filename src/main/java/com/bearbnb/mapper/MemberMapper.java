@@ -14,7 +14,7 @@ public interface MemberMapper {
     public Optional<MembersDto> findById(@Param("userId") String userId);
 
 
-    List<MembersDto> MemberList();
+    List<MembersDto> MemberList(MembersDto members);
 
     void MemberNameUpdate(MembersDto members);
 
@@ -22,9 +22,11 @@ public interface MemberMapper {
 
     void MemberPwdUpdate(MembersDto members);
 
-    List<ComplainDto> complainList();
+    List<ComplainDto> complainList(ComplainDto complain);
 
     void complainDelete(ComplainDto complain);
 
     void memberDelete(MembersDto members);
+
+//    List<MembersDto> AllMembersList();
 }

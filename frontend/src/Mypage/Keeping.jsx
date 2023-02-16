@@ -7,47 +7,55 @@ import {motion} from "framer-motion";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import KeepingItem from "./KeepingItem";
+import {useLocation} from "react-router";
 
 
-const keeping = [
-    {
-        idx: "1",
-        imageUrl: "https://pix8.agoda.net/hotelImages/62746/-1/f668694b59f90226aa6e2c42a6003102.jpg?ca=15&ce=1&s=1024x768",
-        lodging_num: "4221",
-        lodging_name: "제주도 신라 호텔",
-        addr: "제주 서귀포시 중문관광로72번길 75",
-        review_grade: "4.9",
-        review_count: "72",
-    },
-    {
-        idx: "1",
-        imageUrl: "https://pix8.agoda.net/hotelImages/627/62746/62746_15081811410034485661.jpg?ca=5&ce=1&s=1024x768",
-        lodging_num: "4221",
-        lodging_name: "제주도 신라 호텔",
-        addr: "제주 서귀포시 중문관광로72번길 75",
-        review_grade: "4.9",
-        review_count: "72",
-    },
-    {
-        idx: "1",
-        imageUrl: "https://pix8.agoda.net/hotelImages/62746/-1/98398aa801fd3f64b6f38599a5728c0c.jpg?ca=8&ce=1&s=1024x768",
-        lodging_num: "4221",
-        lodging_name: "제주도 신라 호텔",
-        addr: "제주 서귀포시 중문관광로72번길 75",
-        review_grade: "4.9",
-        review_count: "72",
-    },{
-        idx: "1",
-        imageUrl: "https://pix8.agoda.net/hotelImages/62746/-1/98398aa801fd3f64b6f38599a5728c0c.jpg?ca=8&ce=1&s=1024x768",
-        lodging_num: "4221",
-        lodging_name: "제주도 신라 호텔",
-        addr: "제주 서귀포시 중문관광로72번길 75",
-        review_grade: "4.9",
-        review_count: "72",
-    },
-]
+// const keeping = [
+//     {
+//         idx: "1",
+//         imageUrl: "https://pix8.agoda.net/hotelImages/62746/-1/f668694b59f90226aa6e2c42a6003102.jpg?ca=15&ce=1&s=1024x768",
+//         lodging_num: "4221",
+//         lodging_name: "제주도 신라 호텔",
+//         addr: "제주 서귀포시 중문관광로72번길 75",
+//         review_grade: "4.9",
+//         review_count: "72",
+//     },
+//     {
+//         idx: "1",
+//         imageUrl: "https://pix8.agoda.net/hotelImages/627/62746/62746_15081811410034485661.jpg?ca=5&ce=1&s=1024x768",
+//         lodging_num: "4221",
+//         lodging_name: "제주도 신라 호텔",
+//         addr: "제주 서귀포시 중문관광로72번길 75",
+//         review_grade: "4.9",
+//         review_count: "72",
+//     },
+//     {
+//         idx: "1",
+//         imageUrl: "https://pix8.agoda.net/hotelImages/62746/-1/98398aa801fd3f64b6f38599a5728c0c.jpg?ca=8&ce=1&s=1024x768",
+//         lodging_num: "4221",
+//         lodging_name: "제주도 신라 호텔",
+//         addr: "제주 서귀포시 중문관광로72번길 75",
+//         review_grade: "4.9",
+//         review_count: "72",
+//     },{
+//         idx: "1",
+//         imageUrl: "https://pix8.agoda.net/hotelImages/62746/-1/98398aa801fd3f64b6f38599a5728c0c.jpg?ca=8&ce=1&s=1024x768",
+//         lodging_num: "4221",
+//         lodging_name: "제주도 신라 호텔",
+//         addr: "제주 서귀포시 중문관광로72번길 75",
+//         review_grade: "4.9",
+//         review_count: "72",
+//     },
+// ]
 
 function Keeping() {
+
+    const location = useLocation();
+    const userId = location.state.userId;
+    // console.log('userId: '+ userId);
+
+
+  // console.log('userId: '+ userId);
 
     // 리뷰 DB 가져와서 리스트 형식으로 담길 배열
     const [data, setData] = useState([]);
@@ -62,7 +70,7 @@ function Keeping() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:8080/KeepList/')
+        axios.get('http://localhost:8080/KeepList/', {params:{userId: userId}})
           .then((req) => {
               const {data} = req;
               setData(data);

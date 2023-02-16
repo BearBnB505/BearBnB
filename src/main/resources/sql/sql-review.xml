@@ -23,8 +23,8 @@
                  JOIN lodging lod
                       ON re.lodging_num = lod.lodging_num
                  JOIN members mem
-                      ON re.user_id= mem.user_id
-        WHERE re.deleted_yn = 'N'
+                      ON re.user_id = mem.user_id
+        WHERE re.deleted_yn = 'N' and re.user_id = '${userId}'
         ORDER BY re.review_create_dt desc
         ]]>
     </select>

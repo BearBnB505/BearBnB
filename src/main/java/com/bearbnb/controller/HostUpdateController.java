@@ -38,8 +38,8 @@ public class HostUpdateController {
 //    }
 
     @RequestMapping(value = "/bookingList")
-    public List<BookingDto> bookingList() {
-        return bookingMapper.bookingList();
+    public List<BookingDto> bookingList(BookingDto booking) {
+        return bookingMapper.bookingList(booking);
     }
 
     @RequestMapping(value = "/ReviewList")

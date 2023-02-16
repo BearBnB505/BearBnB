@@ -16,9 +16,18 @@
         <![CDATA[
         SELECT *
         FROM members
-        WHERE idx = '5'
+        WHERE user_id = '${userId}'
         ]]>
     </select>
+
+<!--    <select id="AllMembersList"  resultType="com.bearbnb.dto.MembersDto">-->
+<!--        <![CDATA[-->
+<!--        SELECT *-->
+<!--        FROM members-->
+<!--        ]]>-->
+<!--    </select>-->
+
+
 
 
 <!--    불만 리스트-->
@@ -27,7 +36,7 @@
         <![CDATA[
         SELECT *
         FROM complain
-        WHERE user_id = 'test1' and deleted_yn = 'N'
+        WHERE user_id = '${userId}' and deleted_yn = 'N'
         ]]>
     </select>
 

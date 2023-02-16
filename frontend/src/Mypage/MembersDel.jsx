@@ -6,17 +6,22 @@ import { motion } from "framer-motion";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import {useLocation} from "react-router";
 
 
 function MembersDel() {
 
     const [pwd, setPwd] = useState("");
 
+    const location = useLocation();
+    const userId = location.state.userId;
+
+
     const onChangePwd = (e) => {
         setPwd(e.target.value);
     }
 
-    const [userId, setUserId] = useState('');
+    // const [userId, setUserId] = useState('');
 
 
     const [truePwd, setTruePwd] = useState('');
@@ -24,14 +29,14 @@ function MembersDel() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/Members')
+        axios.get('http://localhost:8080/Members', {params:{userId:userId}})
           .then((req) => {
               const {data} = req;
               setData(data);
               // setEmail(data[0].userId)
-              setUserId('민지')
-              // setTruePwd(data[0].pwd)
-              setTruePwd('123')
+              // setUserId('민지')
+              setTruePwd(data[0].pwd)
+              // setTruePwd('123')
           })
           .catch((err) => {
               console.log("통신 오류");

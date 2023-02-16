@@ -8,13 +8,17 @@
         <![CDATA[
         SELECT keep.* , lod.lodging_name, lod.addr, pho.photo, re.clean_grade, re.accuracy_grade, re.communication_grade, re.location_grade, re.check_in_grade, re.cost_grade
         FROM keeping keep
+
         JOIN lodging lod
         ON keep.lodging_num = lod.lodging_num
+
         JOIN photo pho
         ON keep.lodging_num = pho.lodging_num
+
         JOIN review re
         ON keep.user_id = re.user_id
-        WHERE keep.user_id = "tester2" and keep.delete_yn = 'N'
+
+        WHERE keep.user_id = '${userId}' and keep.delete_yn = 'N'
         ]]>
     </select>
 

@@ -23,7 +23,7 @@
                       on book.lodging_num = lod.lodging_num
                  join members mem
                       on book.user_id = mem.user_id
-        where book.lodging_num='2301251111111113'
+        where book.user_id='${userId}'
         ]]>
     </select>
 
