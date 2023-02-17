@@ -10,6 +10,7 @@ import axios from "axios";
 import ReviewPagenation from "./ReviewPagenation";
 import BookingPagenation from "./BookingPagenation";
 import {useLocation} from "react-router";
+import Swal from "sweetalert2";
 
 function BookingConfirm() {
 
@@ -146,6 +147,41 @@ function BookingWait({idx, lodging_name, book_state, book_dt, pay_cost,
                          user_id, user_name, user_tel, user_nation, tel}) {
     const [modalDetail, setModalDetail] = useState(false);
 
+    const bookingStateBtn = () => {
+        Swal.fire({
+            title: '예약을 취소하시겠습니까?',
+            text: "호스트의 확인 후 취소 처리됩니다.",
+            icon: 'warning',
+            showCancelButton: true,
+            cancelButtonText: '아니요',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '네'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.put('http://localhost:8080/updateState/',null,{params: {idx: idx, bookState: '취소대기'}})
+                    .then((response) => {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                // Swal.fire(
+                //     '예약을 취소하였습니다',
+                //     '　',
+                //     'success'
+                // )
+
+            }
+            window.location.replace(`http://localhost:3000/bookingConfirm/`+user_id)
+
+        })
+
+    }
+
+
+
+
     return (
         <ul className={"list-group mb-4"} style={styles.ul}>
             <li className={"list-group-item p-4"} style={styles.li}>
@@ -154,7 +190,7 @@ function BookingWait({idx, lodging_name, book_state, book_dt, pay_cost,
                 <div>{lodging_name}</div>
                 <div>결제 금액 : {pay_cost}</div>
                 <div>
-                    <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit" onClick={()=> setModalDetail(true)}>
+                    <button type="button" className="btn btn-outline-secondary btn-sm my-2" style={{marginRight:5}} title="Edit" onClick={()=> setModalDetail(true)}>
                         <span><FontAwesomeIcon icon={faList} size="1x"/> 상세내역</span>
                     </button>
 
@@ -168,7 +204,7 @@ function BookingWait({idx, lodging_name, book_state, book_dt, pay_cost,
                       book_state={book_state} user_id={user_id} user_name={user_name} user_tel={user_tel} user_nation={user_nation}
                       book_dt={book_dt} pay_cost={pay_cost} tel={tel}/>
 
-                    <button type="button" className="btn btn-outline-secondary btn-sm my-2 me-2" title="Edit">
+                    <button type="button" className="btn btn-outline-secondary btn-sm my-2 me-2" title="Edit" onClick={bookingStateBtn}>
                         <span><FontAwesomeIcon icon={faClose} size="1x"/> 취소신청</span>
                     </button>
                 </div>

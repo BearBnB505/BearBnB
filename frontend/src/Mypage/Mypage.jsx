@@ -74,7 +74,8 @@ function Mypage(props) {
         <Link to={`/bookingConfirm/${userId}`}  state={{userId : userId}} className="col-sm-6 col-md-6 col-lg-4">
           <Card id={"4"} icon={faCalendarCheck} title={"예약내역 확인"} content={"내가 예약한 숙박 내역을 확인합니다"}/>
         </Link>
-        <Link className={"col-sm-6 col-md-6 col-lg-4"} to={"/bookingCancel"}>
+
+        <Link to={`/bookingCancel/${userId}`}  state={{userId : userId}} className="col-sm-6 col-md-6 col-lg-4">
           <Card id={"5"} icon={faCalendarMinus} title={"예약취소 확인"} content={"내가 예약 취소한 내역을 확인합니다"}/>
         </Link>
         <Link to={`/hostMyPageMain/${userId}`}  state={{userId : userId}} className="col-sm-6 col-md-6 col-lg-4">

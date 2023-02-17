@@ -86,7 +86,7 @@ function ProjectRouter(props) {
                     <Route path={"members/:userId"} element={<Members/>}/>
                     <Route path={"review/:userId"} element={<Review/>}/>
                     <Route path={"bookingConfirm/:userId"} element={<BookingConfirm/>}/>
-                    <Route path={"bookingCancel"} element={<BookingCancel/>}/>
+                    <Route path={"bookingCancel/:userId"} element={<BookingCancel/>}/>
                     <Route path={"complain/:userId"} element={<Complain/>}/>
                     <Route path={"keeping/:userId"} element={<Keeping/>}/>
                     <Route path={"membersDel/:userId"} element={<MembersDel/>}/>

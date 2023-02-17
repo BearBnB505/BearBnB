@@ -139,8 +139,8 @@ function ReviewItem({
       text: "삭제 후 되돌릴 수 없습니다!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: '삭제',
-      cancelButtonText: '취소',
+      confirmButtonText: '네',
+      cancelButtonText: '아니요',
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {

@@ -27,6 +27,18 @@
         ]]>
     </select>
 
+    <select id="cancelList"  resultType="com.bearbnb.dto.BookingDto">
+        <![CDATA[
+        select book.*, lod.lodging_name, mem.name, mem.nation, mem.tel
+        from booking book
+                 join lodging lod
+                 on book.lodging_num = lod.lodging_num
+                 join members mem
+                 on book.user_id = mem.user_id
+        where book.user_id='${userId}'
+        ]]>
+    </select>
+
     <select id="HostBookingList"  resultType="com.bearbnb.dto.BookingDto">
         <![CDATA[
         select lod.lodging_name, mem.name, mem.nation, mem.tel, book.*
@@ -40,10 +52,21 @@
     </select>
 
 
+
+
     <update id="BookingStateUpdate" parameterType="com.bearbnb.dto.BookingDto">
         <![CDATA[
         update booking
         set book_state = "예약완료"
+        where idx = #{idx}
+        ]]>
+    </update>
+
+
+    <update id="stateUpdate" parameterType="com.bearbnb.dto.BookingDto">
+        <![CDATA[
+        update booking
+        set book_state = #{bookState}
         where idx = #{idx}
         ]]>
     </update>

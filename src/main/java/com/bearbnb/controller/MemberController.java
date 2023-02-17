@@ -1,14 +1,8 @@
 package com.bearbnb.controller;
 
 import com.bearbnb.dto.*;
-import com.bearbnb.mapper.KeepingMapper;
-import com.bearbnb.mapper.MemberMapper;
-import com.bearbnb.mapper.MembersMapper;
-import com.bearbnb.mapper.ReviewMapper;
-import com.bearbnb.service.KeepingService;
-import com.bearbnb.service.MemberService;
-import com.bearbnb.service.MembersService;
-import com.bearbnb.service.ReviewService;
+import com.bearbnb.mapper.*;
+import com.bearbnb.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,11 +27,16 @@ public class MemberController {
     @Autowired
     KeepingMapper keepingMapper;
     @Autowired
+    BookingMapper bookingMapper;
+    @Autowired
     MembersService membersService;
     @Autowired
     ReviewService reviewService;
     @Autowired
     KeepingService keepingService;
+
+    @Autowired
+    BookingService bookingService;
 
 
     @GetMapping("/me")
@@ -118,10 +117,19 @@ public class MemberController {
         return keepingService.KeepList(keeping);
     }
 
+
+
 //    @RequestMapping(value = "/LodgingAvg")
 //    public List<ReviewAvgDto> LodgingAvg(@RequestParam("lodging_num") String lodgingNum) {
 //        return keepingService.LodgingAvg(lodgingNum);
 //    }
+
+    @RequestMapping(value = "/cancelList")
+    public List<BookingDto> cancelList(BookingDto booking) {
+        return bookingService.cancelList(booking);
+    }
+
+
 
     @RequestMapping(value = "/LodgingAvg", method = RequestMethod.GET)
     public Map<String, Object> lodgingDetail(@RequestParam("lodgingNum") String lodgingNum) throws Exception {
@@ -166,10 +174,19 @@ public class MemberController {
         return "redirect:/memberDelete";
     }
 
+    @RequestMapping(value = "/updateState", method = RequestMethod.PUT)
+    public String updateState(BookingDto booking) throws Exception {
+        bookingService.updateState(booking);
+        return "redirect:/updateState";
+    }
+
+
+
     @RequestMapping(value = "/writeReview", method = RequestMethod.PUT)
     public String writeReview(ReviewDto review) throws Exception {
         reviewService.writeReview(review);
         return "redirect:/writeReview";
     }
+
 
 }
