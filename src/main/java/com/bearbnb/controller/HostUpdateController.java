@@ -42,6 +42,11 @@ public class HostUpdateController {
         return bookingMapper.bookingList(booking);
     }
 
+    @RequestMapping(value = "/HostBookingList")
+    public List<BookingDto> HostBookingList(BookingDto booking) {
+        return bookingMapper.HostBookingList(booking);
+    }
+
     @RequestMapping(value = "/ReviewList")
     public List<ReviewDto> ReviewList() {
         return reviewMapper.ReviewList();
@@ -51,6 +56,8 @@ public class HostUpdateController {
     public List<ReviewDto> ReviewListContent() {
         return reviewMapper.ReviewListContent();
     }
+
+
 
 
     @RequestMapping(value = "/UpdateLanguage", method = RequestMethod.PUT)

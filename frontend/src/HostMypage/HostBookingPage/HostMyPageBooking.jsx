@@ -45,7 +45,7 @@ function HostMyPageBooking() {
     const userId = location.state.userId;
 
     useEffect(() => {
-        axios.get('http://localhost:8080/bookingList/', {params:{userId:userId}})
+        axios.get('http://localhost:8080/HostBookingList/', {params:{userId:userId}})
           .then((req) => {
               const {data} = req;
               // console.log(data);
