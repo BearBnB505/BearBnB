@@ -20,10 +20,22 @@
         select book.*, lod.lodging_name, mem.name, mem.nation, mem.tel
         from booking book
                  join lodging lod
-                      on book.lodging_num = lod.lodging_num
+                 on book.lodging_num = lod.lodging_num
+                 join members mem
+                 on book.user_id = mem.user_id
+        where book.user_id='${userId}'
+        ]]>
+    </select>
+
+    <select id="hostBookingList"  resultType="com.bearbnb.dto.BookingDto">
+        <![CDATA[
+        select lod.lodging_name, mem.name, mem.nation, mem.tel, book.*,
+        from lodgign lod
+                 join booking book
+                      on lod.lodging_num = book.lodging_num
                  join members mem
                       on book.user_id = mem.user_id
-        where book.user_id='${userId}'
+        where lod.user_id='${userId}'
         ]]>
     </select>
 

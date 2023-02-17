@@ -5,8 +5,12 @@ import Anima from "../Mypage/animaData";
 import MyLanguages from "./HostMembers/MyLanguages";
 import MyIntoduce from "./HostMembers/MyIntoduce";
 import axios from "axios";
+import {useLocation} from "react-router";
 
 function HostMyPageHostInfo(props) {
+    const location = useLocation();
+    const userId = location.state.userId;
+
     const [onClickLanguage, setOnClickLanguage] = useState(false);
     const [onClickIntroduce, setOnClickIntroduce] = useState(false);
 
@@ -15,16 +19,17 @@ function HostMyPageHostInfo(props) {
 
     const [data, setData] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:8080/AllLodgingList/')
-
+        axios.get('http://localhost:8080/AllLodgingList/', {params:{userId: userId}})
           .then((req) => {
               const {data} = req;
               setData(data);
+              // console.log("인포페이지 정보:"+ data)
+              // console.log("아이디:"+ userId)
               setLanguage(data[0].language)
               setIntroHost(data[0].introHost)
           })
           .catch((err) => {
-              console.log("통신 오류");
+              console.log("통신 오류"+err);
           })
     }, []);
 
@@ -58,7 +63,7 @@ function HostMyPageHostInfo(props) {
                                 setOnClickLanguage(!onClickLanguage);
                             }}>{onClickLanguage ? "취소" : "수정"}</button>
                         </div>
-                        {onClickLanguage && <MyLanguages language={language} setLanguage={setLanguage}/>}
+                        {onClickLanguage && <MyLanguages language={language} setLanguage={setLanguage} userId={userId}/>}
                     </div>
                     <hr/>
                     {/*호스트 본인 소개*/}
@@ -72,7 +77,7 @@ function HostMyPageHostInfo(props) {
                                 setOnClickIntroduce(!onClickIntroduce);
                             }}>{onClickIntroduce ? "취소" : "수정"}</button>
                         </div>
-                        {onClickIntroduce && <MyIntoduce introHost={introHost} setIntroHost = {setIntroHost}/>}
+                        {onClickIntroduce && <MyIntoduce userId={userId} introHost={introHost} setIntroHost = {setIntroHost}/>}
                     </div>
                     <hr/>
 

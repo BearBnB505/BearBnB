@@ -12,11 +12,11 @@ const MyIntroduce = (props) => {
 
   const clickSave = () => {
 
-    axios.put('http://localhost:8080/UpdateIntroHost',null,{params: {introHost: props.introHost}})
+    axios.put('http://localhost:8080/UpdateIntroHost',null,{params: {introHost: props.introHost, userId: props.userId}})
 
       .then((response) => {
         console.log(response);
-        console.log(props.introHost);
+        // console.log(props.introHost);
       })
       .catch(function (error) {
         console.log(error);

@@ -12,7 +12,7 @@ const MyLanguages = (props) => {
 
   const clickSave = () => {
 
-    axios.put('http://localhost:8080/UpdateLanguage',null,{params: {language: props.language}})
+    axios.put('http://localhost:8080/UpdateLanguage',null,{params: {language: props.language, userId: props.userId}})
       .then((response) => {
         console.log(response);
       })

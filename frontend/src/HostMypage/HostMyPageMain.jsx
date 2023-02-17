@@ -43,14 +43,21 @@ function HostMyPageMain(props) {
                 <h5><strong>{name}</strong>, {userId}</h5>
             </div>
             <div className={"row"}>
-                <Link className={"col-sm-4"} to={"/hostMyPageHostInfo"}><Card id={"1"} icon={faUser} title={"호스트정보관리"}
-                                                                   content={"소개, 사용언어 등을 수정합니다"}/></Link>
-                <Link style={styles.a} className={"col-sm-4"} to={"/hostMyPageLodging"}><Card id={"2"} icon={faHouse}
-                                                                                   title={"숙소관리"}
-                                                                                   content={"새로운 숙소 등록, 등록된 숙소를 관리합니다."}/></Link>
-                <Link className={"col-sm-4"} to={"/hostMyPageBooking"}><Card id={"3"} icon={faCalendarCheck} title={"예약관리"}
-                                                                   content={"예약목록, 예약 취소 목록을 확인할 수 있습니다."}/></Link>
+                <Link className={"col-sm-4"} to={`/hostMyPageHostInfo/${userId}`} state={{userId: userId}}>
+                    <Card id={"1"} icon={faUser} title={"호스트정보관리"} content={"소개, 사용언어 등을 수정합니다"}/>
+                </Link>
+
+                <Link className={"col-sm-4"} to={`/hostMyPageLodging/${userId}`} state={{userId: userId}}>
+                {/*<Link style={styles.a} className={"col-sm-4"} to={"/hostMyPageLodging"}>*/}
+                    <Card id={"2"} icon={faHouse} title={"숙소관리"} content={"새로운 숙소 등록, 등록된 숙소를 관리합니다."}/>
+                </Link>
+
+                <Link className={"col-sm-4"} to={`/hostMyPageBooking/${userId}`} state={{userId: userId}}>
+                    <Card id={"3"} icon={faCalendarCheck} title={"예약관리"} content={"예약목록, 예약 취소 목록을 확인할 수 있습니다."}/>
+                </Link>
+
                 <div className={"mt-3"}></div>
+
                 <Link className={"col-sm-4"} to={"/hostMyPageReview"}><Card id={"4"} icon={faCamera}
                                                                           title={"후기관리"}
                                                                           content={"숙소에 달린 후기를 확인할 수 있습니다."}/></Link>
