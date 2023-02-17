@@ -58,9 +58,11 @@ function HostMyPageMain(props) {
 
                 <div className={"mt-3"}></div>
 
-                <Link className={"col-sm-4"} to={"/hostMyPageReview"}><Card id={"4"} icon={faCamera}
-                                                                          title={"후기관리"}
-                                                                          content={"숙소에 달린 후기를 확인할 수 있습니다."}/></Link>
+                <Link className={"col-sm-4"} to={`/hostMyPageReview/${userId}`} state={{userId: userId}}>
+                {/*<Link className={"col-sm-4"} to={"/hostMyPageReview"}>*/}
+                    <Card id={"4"} icon={faCamera} title={"후기관리"} content={"숙소에 달린 후기를 확인할 수 있습니다."}/>
+                </Link>
+
                 <Link className={"col-sm-4"} to={"/hostMyPageRevenue"}><Card id={"5"} icon={faSackDollar}
                                                                          title={"매출관리"}
                                                                          content={"달 별 매출 확인과 대금 신청을 할 수 있습니다."}/></Link>

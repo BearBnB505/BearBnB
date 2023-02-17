@@ -109,7 +109,7 @@ function ProjectRouter(props) {
                     {/* 호스트 마이페이지*/}
                     <Route path={"hostMyPageMain/:userId"} element={<HostMyPageMain/>}/>
                     <Route path={"hostMyPageHostInfo/:userId"} element={<HostMyPageHostInfo/>}/>
-                    <Route path={"hostMyPageReview"} element={<HostMyPageReview/>}/>
+                    <Route path={"hostMyPageReview/:userId"} element={<HostMyPageReview/>}/>
                     <Route path={"hostMyPageBooking/:userId"} element={<HostMyPageBooking/>}/>
                     <Route path={"guestInfoModal"} element={<GuestInfoModal/>}/>
                     <Route path={"hostMyPageRevenue"} element={<HostMyPageRevenue/>}/>

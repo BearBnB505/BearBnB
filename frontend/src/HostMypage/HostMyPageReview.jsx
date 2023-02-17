@@ -5,6 +5,7 @@ import {Breadcrumb, Tabs} from "react-bootstrap";
 import Anima from "../Mypage/animaData";
 import {motion} from "framer-motion";
 import ReviewList from "./ReviewList";
+import {useLocation} from "react-router";
 
 
 function Review() {
@@ -17,6 +18,9 @@ function Review() {
     const [page, setPage] = useState(1);
     // 첫 게시물의 위치(offset)
     const offset = (page - 1) * limit;
+
+    const location = useLocation();
+    const userId = location.state.userId;
 
 
     return (
@@ -31,7 +35,7 @@ function Review() {
                 </Breadcrumb>
                 <h2 className={"fw-bold"}>숙소에 작성된 후기</h2>
             </div>
-            <ReviewList/>
+            <ReviewList userId={userId}/>
 
         </motion.div>
     )

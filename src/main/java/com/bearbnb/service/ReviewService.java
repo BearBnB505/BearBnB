@@ -4,7 +4,7 @@ import com.bearbnb.dto.*;
 import java.util.List;
 
 public interface ReviewService {
-    List<ReviewDto> ReviewList();
+    List<ReviewDto> ReviewList(ReviewDto review);
 
     void UpdateReview(ReviewDto review);
 
