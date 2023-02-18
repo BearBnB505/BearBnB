@@ -151,6 +151,11 @@ public class MemberController {
         return reviewMapper.allReviewList();
     }
 
+    @RequestMapping(value = "/imgList")
+    public List<PhotoDto> imgList(PhotoDto photo) {
+        return memberMapper.imgList(photo);
+    }
+
 
 
 //    @RequestMapping(value = "/complainDelete", method = RequestMethod.PUT)

@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 import {useLocation} from "react-router";
 
 
+
 function Review() {
 
   const location = useLocation();
@@ -34,7 +35,7 @@ function Review() {
       .then((req) => {
         const {data} = req;
         setData(data);
-        console.log(data);
+        // console.log(data);
       })
       .catch((err) => {
         console.log("통신 오류");
@@ -101,7 +102,7 @@ function ReviewItem({
     setView(false)
     setView2(true)
     setReview(comment)
-    console.log(view);
+    // console.log(view);
   }
 
   const ReviewBtn2 = () => {
@@ -112,6 +113,8 @@ function ReviewItem({
 
       .then((response) => {
         console.log(response);
+        Swal.fire("후기를 수정하였습니다","　","success")
+
       })
       .catch(function (error) {
         console.log(error);

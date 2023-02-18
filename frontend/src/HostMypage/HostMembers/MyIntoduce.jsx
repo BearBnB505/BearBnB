@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import Form from 'react-bootstrap/Form';
 import {FloatingLabel, InputGroup} from "react-bootstrap";
 import axios from "axios";
+import Swal from "sweetalert2";
+
 
 const MyIntroduce = (props) => {
     const [languages, setLanguages] = useState("");
@@ -16,7 +18,7 @@ const MyIntroduce = (props) => {
 
       .then((response) => {
         console.log(response);
-        // console.log(props.introHost);
+        Swal.fire("소개를 수정하였습니다","　","success")
       })
       .catch(function (error) {
         console.log(error);

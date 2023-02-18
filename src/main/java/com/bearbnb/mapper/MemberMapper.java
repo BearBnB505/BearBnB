@@ -2,6 +2,7 @@ package com.bearbnb.mapper;
 
 import com.bearbnb.dto.ComplainDto;
 import com.bearbnb.dto.MembersDto;
+import com.bearbnb.dto.PhotoDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,6 +28,8 @@ public interface MemberMapper {
     void complainDelete(ComplainDto complain);
 
     void memberDelete(MembersDto members);
+
+    List<PhotoDto> imgList(PhotoDto photo);
 
 //    List<MembersDto> AllMembersList();
 }

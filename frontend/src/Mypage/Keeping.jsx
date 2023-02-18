@@ -52,6 +52,7 @@ function Keeping() {
 
     const location = useLocation();
     const userId = location.state.userId;
+    // console.log("이용자"+userId)
     // console.log('userId: '+ userId);
 
 
@@ -66,6 +67,9 @@ function Keeping() {
     // 첫 게시물의 위치(offset)
     const offset = (page - 1) * limit;
 
+
+
+
     // const [Avg, setAvg] =useState(0)
 
 
@@ -75,6 +79,7 @@ function Keeping() {
               const {data} = req;
               setData(data);
               console.log(data);
+              console.log(data.length)
           })
           .catch((err) => {
               console.log("통신 오류");
@@ -83,19 +88,26 @@ function Keeping() {
     }, []);
 
 
+
+
+
+
     const cleanGradeSum = data.reduce((acc, item) => acc + Number(item.cleanGrade), 0);
     const accuracyGradeSum = data.reduce((acc, item) => acc + Number(item.accuracyGrade), 0);
     const communicationSum = data.reduce((acc, item) => acc + Number(item.communicationGrade), 0);
     const locationSum = data.reduce((acc, item) => acc + Number(item.locationGrade), 0);
     const checkInSum = data.reduce((acc, item) => acc + Number(item.checkInGrade), 0);
     const costSum = data.reduce((acc, item) => acc + Number(item.costGrade), 0);
+
     const AllGradeSum = (cleanGradeSum+accuracyGradeSum+communicationSum+locationSum+checkInSum+costSum);
     const divisionNum = Number(data.length*6)
+
     let Avg = (AllGradeSum/divisionNum)
+
     Avg = Math.round(Avg * 10) / 10;
 
-    console.log("평균");
-    console.log(Avg);
+    // console.log("평균");
+    // console.log(Avg);
 
 
 
@@ -118,9 +130,13 @@ function Keeping() {
 
             <div className={"row"}>
                 {data.slice(offset, offset + limit).map((item) => {
-                    return <KeepingItem idx={item.idx} imageUrl={item.photo} lodging_num={item.lodgingNum}
+                    // return <KeepingItem idx={item.idx}lodging_num={item.lodgingNum}
+                    //                     lodging_name={item.lodgingName} addr={item.addr}
+                    //                     Avg={Avg} count={data.length}  imageUrl={item.photo} />
+
+                    return <KeepingItem idx={item.idx} lodging_num={item.lodgingNum}
                                         lodging_name={item.lodgingName} addr={item.addr}
-                                        Avg={Avg} count={data.length}/>
+                                        Avg={Avg} count={data.length} />
                                         // review_count={item.review_count}/>
                 })}
             </div>

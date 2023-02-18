@@ -4,19 +4,22 @@
 <mapper namespace="com.bearbnb.mapper.KeepingMapper">
 
     <!--  편의시설 리스트 가져오기  -->
+
+
     <select id="KeepList" resultType="com.bearbnb.dto.KeepingDto">
         <![CDATA[
-        SELECT keep.* , lod.lodging_name, lod.addr, pho.photo, re.clean_grade, re.accuracy_grade, re.communication_grade, re.location_grade, re.check_in_grade, re.cost_grade
+        SELECT lod.idx , lod.lodging_name, lod.addr,re.clean_grade, re.accuracy_grade, re.communication_grade, re.location_grade, re.check_in_grade, re.cost_grade, keep.lodging_num --  pho.photo
         FROM keeping keep
 
-        JOIN lodging lod
-        ON keep.lodging_num = lod.lodging_num
+                 JOIN lodging lod
+                      ON keep.lodging_num = lod.lodging_num
 
-        JOIN photo pho
-        ON keep.lodging_num = pho.lodging_num
+--                  JOIN photo pho
+--                       ON keep.lodging_num = pho.lodging_num
 
-        JOIN review re
-        ON keep.user_id = re.user_id
+                 JOIN review re
+--                       ON keep.user_id = re.user_id
+                      ON keep.lodging_num = re.lodging_num
 
         WHERE keep.user_id = '${userId}' and keep.delete_yn = 'N'
         ]]>
@@ -24,22 +27,23 @@
 
 
 
-    <select id="reviewAvg" resultType="com.bearbnb.dto.ReviewAvgDto">
-        <![CDATA[
-        SELECT avg(cast(clean_grade as float))         as clean_grade,
-               avg(cast(accuracy_grade as float))      as accuracy_grade,
-               avg(cast(communication_grade as float)) as communication_grade,
-               avg(cast(location_grade as float))      as location_grade,
-               avg(cast(check_in_grade as float))      as check_in_grade,
-               avg(cast(cost_grade as float))          as cost_grade,
-               round((clean_grade + accuracy_grade + communication_grade + location_grade + check_in_grade +
-                      cost_grade) / 6, 1)              as review_total,
-               count(*)                                as review_count
-        FROM review
-        WHERE lodging_num = #{lodgingNum}
-          AND deleted_yn = 'N'
-        ]]>
-    </select>
+
+<!--    <select id="reviewAvg" resultType="com.bearbnb.dto.ReviewAvgDto">-->
+<!--        <![CDATA[-->
+<!--        SELECT avg(cast(clean_grade as float))         as clean_grade,-->
+<!--               avg(cast(accuracy_grade as float))      as accuracy_grade,-->
+<!--               avg(cast(communication_grade as float)) as communication_grade,-->
+<!--               avg(cast(location_grade as float))      as location_grade,-->
+<!--               avg(cast(check_in_grade as float))      as check_in_grade,-->
+<!--               avg(cast(cost_grade as float))          as cost_grade,-->
+<!--               round((clean_grade + accuracy_grade + communication_grade + location_grade + check_in_grade +-->
+<!--                      cost_grade) / 6, 1)              as review_total,-->
+<!--               count(*)                                as review_count-->
+<!--        FROM review-->
+<!--        WHERE lodging_num = #{lodgingNum}-->
+<!--          AND deleted_yn = 'N'-->
+<!--        ]]>-->
+<!--    </select>-->
 
 
 </mapper>
