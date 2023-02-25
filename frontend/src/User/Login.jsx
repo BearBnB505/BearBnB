@@ -53,14 +53,16 @@ function Login() {
             }
         })
             .then(res => {
-                const token = res.data;
+                const accessToken = res.headers.authorization.substring(7);
+                const refreshToken = res.data;
+                // console.log("accessToken : " +accessToken);
+                // console.log(refreshToken);
+
                 const today = new Date();
                 const expireDate = today.setDate(today.getDate() * 7);
 
-                // console.log(token.accessToken);
-
-                if (token.refreshToken != undefined) {
-                    setCookie('refreshToken', token.refreshToken, {
+                if (refreshToken !== undefined) {
+                    setCookie('refreshToken', refreshToken, {
                         path: '/',
                         secure: true,
                         sameSite: 'strict',
@@ -68,12 +70,13 @@ function Login() {
                         // httpOnly:true
                     });
 
-                    dispatch(auths({accessToken:token.accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
+                    dispatch(auths({accessToken:accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
 
-                    setShow(false);
+                    setShow(true);
                 }
             })
             .catch(err => {
+                console.log(err);
                 Swal.fire({
                     width: 300,
                     icon: 'error',
@@ -129,7 +132,7 @@ function Login() {
                             <br/>
 
                             <div className="d-grid gap-1">
-                                <button className={"btn btn-primary"} onClick={loginClicked}>Login</button>
+                                <button type={"button"} className={"btn btn-primary"} onClick={loginClicked}>Login</button>
                             </div>
                         </Form>
                     </Container>

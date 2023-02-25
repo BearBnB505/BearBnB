@@ -737,7 +737,7 @@ function Join() {
                                         동의 및 계속하기를 선택하여 베어비앤비 서비스 약관, 결제 서비스 약관, 위치기반서비스 이용약관,
                                         차별 금지 정책, 개인정보 처리방침에 동의합니다.
                                     </div>
-                                    <button className={'btn btn-danger col-12 mt-5 mb-5'}
+                                    <button type={"button"} className={'btn btn-danger col-12 mt-5 mb-5'}
                                             onClick={onClickJoin}>회원가입완료
                                     </button>
                                 </div>
