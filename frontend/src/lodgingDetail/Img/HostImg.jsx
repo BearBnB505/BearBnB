@@ -28,7 +28,7 @@ function HostImg(props) {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        if (props.check === "done") {
+        if (props.check == "done") {
             timer();
             return () => clearTimeout(timer);
             setIsLoaded(true);
@@ -38,7 +38,7 @@ function HostImg(props) {
     useEffect(()=>{
         const timer = setTimeout(() => {
             setIsLoaded(true);
-        },300);
+        },400);
         return () => clearTimeout(timer);
     }, []);
 

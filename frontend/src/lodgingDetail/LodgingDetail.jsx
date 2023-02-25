@@ -96,7 +96,7 @@ function LodgingDetail(props) {
                     <LodgingDetailTitle lodging={lodging} review={review} avg={avg}/>
 
                     <PhotoContext.Provider>
-                        <HostImg idx={idx} check={check}/>
+                        <HostImg idx={idx} check={check} key={idx}/>
                     </PhotoContext.Provider>
 
                     <div className={'row'}>
