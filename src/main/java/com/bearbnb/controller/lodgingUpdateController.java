@@ -119,7 +119,7 @@ public class lodgingUpdateController {
     @RequestMapping(value = "/UpdateComfortsList", method = RequestMethod.PUT)
     public List<ComfortsDto> UpdateComfortsList(@RequestBody List<ComfortsDto> ComfortBox ){
 
-        System.out.println(ComfortBox);
+//        System.out.println(ComfortBox);
         hostUpdateService.UpdateComfortsList(ComfortBox);
 
         return ComfortBox;

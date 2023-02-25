@@ -156,7 +156,7 @@ public class MemberController {
     @RequestMapping(value = "/complainDelete", method = RequestMethod.PUT)
     public List<ComplainDto> complainDelete(@RequestBody List<ComplainDto> ComplainBox ){
 
-        System.out.println(ComplainBox);
+//        System.out.println(ComplainBox);
         membersService.complainDelete(ComplainBox);
 
         return ComplainBox;

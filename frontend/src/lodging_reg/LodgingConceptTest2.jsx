@@ -107,7 +107,7 @@ function LodgingConceptTest2(){
     const toggleActive = (e) => {
         setBtnActive((prev) => {
             return e.target.value;
-            console.log(e.target.value);
+            // console.log(e.target.value);
         });
 
 

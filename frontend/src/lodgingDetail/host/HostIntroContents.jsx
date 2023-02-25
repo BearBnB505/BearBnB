@@ -4,8 +4,8 @@ import {Link} from "react-router-dom";
 
 function HostIntroContents(props) {
 
-  console.log('언어 선택')
-  console.log(props)
+  // console.log('언어 선택')
+  // console.log(props)
 
   return (
     <div className={'container p-2'}>

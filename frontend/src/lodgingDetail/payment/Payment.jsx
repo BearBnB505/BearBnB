@@ -73,7 +73,7 @@ function Payment(props) {
         setIsLoad(true);
     }
 
-    console.log(nightCount);
+    // console.log(nightCount);
 
     const total = props.cost * nightCount;
     // console.log(total);

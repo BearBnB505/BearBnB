@@ -16,32 +16,32 @@ public class RegLodgingServiceImpl implements RegLodgingService {
     @Override
     public LodgingDto insertLodgingTable(LodgingDto lodging) throws Exception{
         regLodgingMapper.insertLodgingTable(lodging);
-        System.out.println("입력 끝");
+//        System.out.println("입력 끝");
         return null;
     }
     
 ////  선생님께 도움받을 위치(category 테이블 삽입)
     @Override
     public void insertCategory(List<ComfortsDto> dataList) throws Exception {
-        System.out.println(dataList);
+//        System.out.println(dataList);
 
         regLodgingMapper.insertCategory(dataList);
-        System.out.println("입력 끝");
+//        System.out.println("입력 끝");
     }
 
     @Override
     public void insertUrl(List<PhotoDto> photoList) throws Exception {
-        System.out.println(photoList);
+//        System.out.println(photoList);
 
         regLodgingMapper.insertUrl(photoList);
-        System.out.println("입력 끝");
+//        System.out.println("입력 끝");
     }
 
 //    호스트로 업데이트
     @Override
     public void updateAuthority(String userId) throws Exception {
         regLodgingMapper.updateAuthority(userId);
-        System.out.println("업데이트 성공");
+//        System.out.println("업데이트 성공");
     }
     
     @Override

@@ -20,7 +20,7 @@ function MainContents(props) {
     // 이미지 불러오는 통신
     useEffect(() => {
         let lodgingNumA = props.data.lodgingNum;
-        console.log("useEffect 카테고리");
+        // console.log("useEffect 카테고리");
         axios.put('/mainImage', null, {params: {lodgingNum: lodgingNumA}})
             .then(async (req) => {
                 try {

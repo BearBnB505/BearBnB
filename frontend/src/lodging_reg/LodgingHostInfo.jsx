@@ -119,7 +119,7 @@ function LodgingHostInfo(){
 
                             // languages.concat(imgSrc[id].name),
                             // console.log(languages),
-                            console.log(imgSrc[id].name),
+                            // console.log(imgSrc[id].name),
                             // languages.push(selectLanguage[id]!== true? imgSrc[id].name:''),
                             
                             setChooseLanguage(imgSrc[id].name),

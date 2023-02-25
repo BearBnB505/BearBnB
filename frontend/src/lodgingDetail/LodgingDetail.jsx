@@ -58,7 +58,7 @@ function LodgingDetail(props) {
             .then((req) => {
                 const {data} = req;
                 // console.log(data);
-                console.log('통신성공');
+                // console.log('통신성공');
                 setLodging(data.lodging);
                 // setPhoto(data.photo);
                 setReview(data.review);

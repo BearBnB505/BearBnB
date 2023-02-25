@@ -23,26 +23,26 @@ public class RegLodgingController {
     @RequestMapping(value = "/insertUrl", method = RequestMethod.POST)
     public void insertUrl(@RequestBody List<PhotoDto> photoList) throws Exception{
         regLodgingService.insertUrl(photoList);
-        System.out.println(photoList);
+//        System.out.println(photoList);
     }
 
 //    데이터 전체로 받음(선생님코드)
     @RequestMapping(value = "/insertCategory", method = RequestMethod.POST)
     public void insertCategory(@RequestBody List<ComfortsDto> dataList) throws Exception{
         regLodgingService.insertCategory(dataList);
-        System.out.println(dataList);
+//        System.out.println(dataList);
     }
 
     @RequestMapping(value = "/insertLodgingTable", method = RequestMethod.POST)
     public String insertLodgingTable(@RequestBody LodgingDto lodging) throws Exception{
-        System.out.println(lodging);
+//        System.out.println(lodging);
         String userId = lodging.getUserId();
-        System.out.println(lodging.getUserId());// 테스트 출력 확인
+//        System.out.println(lodging.getUserId());// 테스트 출력 확인
         regLodgingService.insertLodgingTable(lodging);
         regLodgingService.updateAuthority(userId);
 
 
-        System.out.println(lodging);
+//        System.out.println(lodging);
 
         // 받아온 데이터를 서비스로 넘김
 
@@ -54,7 +54,7 @@ public class RegLodgingController {
     public String checkAuthority(@RequestParam("userId") String userId) throws Exception{
 
 
-        System.out.println(userId);
+//        System.out.println(userId);
 
         String authority = regLodgingService.checkAuthority(userId);
         return authority;

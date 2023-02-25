@@ -7,7 +7,7 @@ import {lodgingNums} from "./Reducers/LodgingNumReducer";
 
 function LodgingWelcome(){
     const hostIdUrl = useSelector((state) => state.realHostId.value);
-    console.log(hostIdUrl);
+    // console.log(hostIdUrl);
 
     const dispatch = useDispatch();
     const now = new Date();
@@ -39,7 +39,7 @@ function LodgingWelcome(){
     const dayPlusRandom = dayday + random;
     // 숙소번호=> 날짜6자리 + 랜덤 숫자 10자리
     const lodgingNum = dayPlusRandom.split(',').join("");
-    console.log(lodgingNum);
+    // console.log(lodgingNum);
 
 
     return(

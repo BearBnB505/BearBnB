@@ -46,7 +46,7 @@ function HostImg(props) {
 
     const imageList = image.data;
 
-    console.log(imageList);
+    // console.log(imageList);
 
     return isLoaded ? (
         <>
