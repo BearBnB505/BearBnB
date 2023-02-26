@@ -9,27 +9,21 @@ import {
 import {Link, Outlet} from "react-router-dom";
 import Anima from "./animaData";
 import {motion} from "framer-motion";
-import {useParams} from "react-router";
+import {useLocation, useParams} from "react-router";
 import axios from "axios";
 import {getCookie} from "../Storage/Cookies";
+import {CheckToken} from "../Auth/CheckToken";
+import {useSelector} from "react-redux";
+import {Auth} from "../Auth/Auth";
 
 
 function Mypage(props) {
 
-    const refreshToken = getCookie('refreshToken');
-    
-    // useEffect(() => {
-    //     axios.get('/member/my', {headers: {
-    //             'Authorization': 'Bearer ' + refreshToken
-    //         }})
-    //         .then((req) => {
-    //             const {data} = req;
-    //             console.log(data.userId);
-    //         })
-    //         .catch((err) => {
-    //             console.log("통신 오류");
-    //         })
-    // }, []);
+    const location = useLocation();
+    const {isAuth} = CheckToken(location.key);
+
+    const userId = Auth();
+    console.log("userId: " + userId.userId);
 
     const [data, setData] = useState([]);
     useEffect(() => {
