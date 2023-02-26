@@ -8,46 +8,47 @@ import axios from "axios";
 export function CheckToken(key) {
 
     const [isAuth, setIsAuth] = useState('Loaded');
-    // const Auth = useSelector((state)=>state.auth.value);
-    // console.log("로그인창");
-    // console.log(Auth.access);
-    // const authenticated = Auth.authenticated;
-    // const accessToken = Auth.accessToken;
-    // const expireTime = Auth.expireTime;
+    const Auth = useSelector((state)=>state.auth.value);
+    console.log(Auth);
+    console.log(Auth.accessToken);
+    console.log(Auth.authenticated);
+    console.log(Auth.expireTime);
+    const authenticated = Auth.authenticated;
+    const accessToken = Auth.accessToken;
+    const expireTime = Auth.expireTime;
     const refreshToken = getCookie('refreshToken');
-    // const authenticated = refreshToken.authenticated;
-    // const expireTime = refreshToken.expireTime;
     const dispatch = useDispatch();
 
     useEffect(()=> {
         const checkAuthToken = async () => {
-            if (refreshToken === undefined) {
-                // dispatch(auths({accessToken:null, authenticated:true, expireTime:null}));
+
+            if (refreshToken == undefined) {
+                dispatch(auths({accessToken:null, authenticated:false, expireTime:null}));
                 setIsAuth('Failed');
             } else {
-                // if (authenticated && new Date().getTime() < expireTime){
+
+                if (authenticated && (new Date().getTime() < expireTime)){
                     setIsAuth('Success');
-                // } else {
 
-                    // axios.post('/auth/token/refresh', {headers: {
-                    //         'Authorization': 'Bearer ' + refreshToken
-                    //     }})
-                    //     .then(res => {
-                    //         const token = res.data;
-                    //
-                    //         dispatch(auths({accessToken:token.accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
-                    //         setIsAuth('Success');
-                    //     })
-                    //     .catch(error => {
-                    //         // dispatch(auths({accessToken:null, authenticated:true, expireTime:null}));
-                    //         // removeCookie('refreshToken');
-                    //         // setIsAuth('Failed');
-                    //     });
+                } else {
 
-                    // removeCookie('refreshToken');
-                    // setIsAuth('Failed');
+                    axios.post('/auth/token/refresh', {headers: {
+                            'Authorization': 'Bearer ' + refreshToken
+                        }})
+                        .then(res => {
+                            // const token = res.data;
+                            const accessToken = res.headers.authorization.substring(7);
 
-                // }
+                            dispatch(auths({accessToken:accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
+                            setIsAuth('Success');
+                        })
+                        .catch(error => {
+                            dispatch(auths({accessToken:null, authenticated:false, expireTime:null}));
+                            removeCookie('refreshToken');
+                            setIsAuth('Failed');
+                        });
+
+                }
             }
         };
 

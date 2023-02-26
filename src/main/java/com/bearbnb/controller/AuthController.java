@@ -38,12 +38,17 @@ public class AuthController {
                 .body(token.getRefreshToken());
     }
 
-//    @PostMapping("/token/refresh")
-//    public ResponseEntity<TokenDto> refresh(@RequestHeader(value = "Authorization") String refreshToken) {
-////        TokenDto token = authService.refresh(refreshToken);
-////        TokenDto token = authService.refresh(refreshToken);
-//
-////        return ResponseEntity.ok().body(token);
-//        return authService.refreshToken(refreshToken);
-//    }
+    @PostMapping("/token/refresh")
+    public ResponseEntity<Void> refresh(@RequestHeader(value = "Authorization") String authorizationHeader) {
+        String refreshToken = authorizationHeader.substring("Bearer ".length());
+        TokenDto token = authService.refresh(refreshToken);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + token.getAccessToken());
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .build();
+    }
+
 }

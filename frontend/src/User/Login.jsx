@@ -72,7 +72,7 @@ function Login() {
 
                     dispatch(auths({accessToken:accessToken, authenticated:true, expireTime:new Date().getTime() + TOKEN_TIME_OUT}));
 
-                    setShow(true);
+                    setShow(false);
                 }
             })
             .catch(err => {

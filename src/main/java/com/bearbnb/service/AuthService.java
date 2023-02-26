@@ -1,5 +1,10 @@
 package com.bearbnb.service;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.bearbnb.configuration.SecurityUtil;
 import com.bearbnb.dto.*;
 import com.bearbnb.jwt.JwtTokenProvider;
 import com.bearbnb.mapper.MemberMapper;
@@ -10,6 +15,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -38,17 +45,19 @@ public class AuthService {
     }
 
     public TokenDto refresh(String refreshToken) {
-        jwtTokenProvider.validateToken(refreshToken);
+//        jwtTokenProvider.validateToken(refreshToken);
 
-        String authorities = jwtTokenProvider.getAuthentication(refreshToken).getAuthorities().toString();
-        String userId = jwtTokenProvider.getAuthentication(refreshToken).getName();
+        JWTVerifier verifier = JWT.require(Algorithm.HMAC256("VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa")).build();
+        DecodedJWT decodedJWT = verifier.verify(refreshToken);
 
-        return jwtTokenProvider.refresh(userId, authorities);
+        // Access Token 재발급
+        long now = (new Date()).getTime();
+        String userId = decodedJWT.getSubject();
+        MembersDto membersDto = memberMapper.findById(SecurityUtil.getCurrentMemberId())
+                .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다"));
+        Authority authorities = membersDto.getAuthority();
+
+        return jwtTokenProvider.refresh(userId, String.valueOf(authorities));
     }
 
-//    public RefreshTokenResponse refreshToken(String rToken) {
-//        TokenHelper.PrivateClaims privateClaims = refreshTokenHelper.parse(rToken).orElseThrow(RefreshTokenFailureException::new);
-//        String accessToken = accessTokenHelper.createToken(privateClaims);
-//        return new RefreshTokenResponse(accessToken);
-//    }
 }
