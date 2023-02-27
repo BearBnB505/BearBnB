@@ -13,6 +13,7 @@ import axios from "axios";
 import {useLocation} from "react-router";
 import moment from "moment";
 import Calendar from "../Calendar/Calendar";
+import {Auth} from "../Auth/Auth";
 
 
 
@@ -288,10 +289,13 @@ function LodgingPayment(props) {
                                                     {state:{lodgingNum:lodgingNum, lodgingName:lodgingName,startDate:startDate,endDate:endDate,
                                                             adultNum: adultCount, babyNum: childCount,petNum: petCount,dayCost:dayCost, nightCount:nightCount,totalCost:totalCost}})
                                             }
+                                            const auth = Auth();
+                                            const userId = auth.userId;
+
                                             axios.post("http://localhost:8080/paymentInsert", null,
                                                 {
                                                     params: {
-                                                        userId: "dbfl1443@nate.com",
+                                                        userId: userId,
                                                         lodgingNum: lodgingNum,
                                                         bookNum: BookNum,
                                                         payType: "PAYPAL",

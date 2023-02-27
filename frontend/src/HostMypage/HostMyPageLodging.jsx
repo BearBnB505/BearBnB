@@ -10,12 +10,15 @@ import './Lodging.css'
 
 import PageNation from "./LodgingPagenation";
 import {useLocation} from "react-router";
+import {Auth} from "../Auth/Auth";
 
 
 function HostMyPageLodging() {
 
-    const location = useLocation();
-    const userId = location.state.userId;
+    // const location = useLocation();
+    // const userId = location.state.userId;
+    const auth = Auth();
+    const userId = auth.userId;
 
     const [lengthInfo, setLengthInfo] = useState(1);
     const [limitInfo , setLimitInfo] = useState(5);

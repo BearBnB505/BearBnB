@@ -5,6 +5,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import {Auth} from "../Auth/Auth";
 
 function MyPageProfile() {
     const [img, setImg] = useState("https://cdn-icons-png.flaticon.com/512/3177/3177440.png")
@@ -19,9 +20,12 @@ function MyPageProfile() {
     //db에 저장되어있던 기존 이미지
     const [dbImage,setDbImage] = useState('');
 
+    const auth = Auth();
+    const userId = auth.userId;
+
     useEffect(()=>{
         axios.get('http://localhost:8080/selectProfile',{
-            params:{userId : "newJeansHanniS2@gmail.com"}
+            params:{userId : userId}
         })
             .then((req)=>{
                 console.log(req)
@@ -102,9 +106,9 @@ function MyPageProfile() {
                 upLoadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
                         console.log("File available at", downloadURL);
                         setFirebaseUrl(downloadURL);
-                        console.log('업로드 성공');
-                        console.log('url 데이터 이동성공');
-                        console.log(firebaseUrl);
+                        // console.log('업로드 성공');
+                        // console.log('url 데이터 이동성공');
+                        // console.log(firebaseUrl);
 
                         //    axios 통신
                         axios.post('http://localhost:8080/insertProfile', null,
@@ -125,7 +129,7 @@ function MyPageProfile() {
                                     timer: 1500
                                 }).then(() => {
                                     // setShow(false);
-                                    console.log('프로필 통신 성공')
+                                    // console.log('프로필 통신 성공')
                                 })
                                 navigate(-1);
 
