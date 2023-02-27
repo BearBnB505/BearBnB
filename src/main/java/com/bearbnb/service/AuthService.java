@@ -9,6 +9,7 @@ import com.bearbnb.dto.*;
 import com.bearbnb.jwt.JwtTokenProvider;
 import com.bearbnb.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -26,6 +27,9 @@ public class AuthService {
     private final MemberMapper memberMapper;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
+
+    @Value("${jwt.secret}")
+    private String secretKey;
 
 //    public MemberResponseDto signup(MemberRequestDto requestDto) {
 //        if (memberMapper.existsByEmail(requestDto.getEmail())) {
@@ -47,7 +51,7 @@ public class AuthService {
     public TokenDto refresh(String refreshToken) {
 //        jwtTokenProvider.validateToken(refreshToken);
 
-        JWTVerifier verifier = JWT.require(Algorithm.HMAC256("VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa")).build();
+        JWTVerifier verifier = JWT.require(Algorithm.HMAC256(secretKey)).build();
         DecodedJWT decodedJWT = verifier.verify(refreshToken);
 
         // Access Token 재발급
