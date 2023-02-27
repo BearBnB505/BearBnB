@@ -20,7 +20,7 @@ function MainContents(props) {
     // 이미지 불러오는 통신
     useEffect(() => {
         let lodgingNumA = props.data.lodgingNum;
-        console.log("useEffect 카테고리");
+        // console.log("useEffect 카테고리");
         axios.put('/mainImage', null, {params: {lodgingNum: lodgingNumA}})
             .then(async (req) => {
                 try {
@@ -37,70 +37,6 @@ function MainContents(props) {
                 console.log("통신 오류");
             })
     }, [props.category])
-
-    // useLayoutEffect(() => {
-    //     let lodgingNumA = props.data.lodgingNum;
-    //     console.log("이미지" + lodgingNumA);
-    //     axios.put('/mainImage', null, {params: {lodgingNum: lodgingNumA}})
-    //         .then(async (req) => {
-    //             try {
-    //                 // console.log('메인 페이지 이미지 데이터')
-    //                 // console.log(lodgingNumA);
-    //                 setImageList(req);
-    //                 setIsLoaded(true);
-    //
-    //             } catch (err) {
-    //                 console.log("통신 오류");
-    //             }
-    //         })
-    //         .catch((err) => {
-    //             console.log("통신 오류");
-    //         })
-    //     lodgingNumA = '';
-    // })
-
-    // const timer = () => {
-    //     setTimeout(()=>{
-    //         // setCategories(props.category);
-    //         // setLodgingNum(props.data.lodgingNum);
-    //         // const lodgingNum = props.data.lodgingNum;
-    //         axios.put('/mainImage', null, {params: {lodgingNum: lodgingNumA}})
-    //             .then((req)=>{
-    //                 console.log('메인 페이지 이미지 데이터')
-    //                 // console.log(req);
-    //                 console.log(lodgingNumA);
-    //                 setImageList(req);
-    //             })
-    //             .catch((err)=>{
-    //                 console.log(err);
-    //             })
-    //     },1000)
-    // }
-
-    // 메인페이지에서 글을 불러오면 상태가 done으로 바뀐다. 그 값이 바뀌면
-    // 이미지 리스트를 불러오는 함수를 실행시킨다.
-    // useEffect(()=>{
-    //     // setCategories(props.category);
-    //     console.log("이미지불러오기"+props.category);
-    //     // setLodgingNum(props.data.lodgingNum);
-    //     if(props.check==="done"){
-    //         // timer();
-    //         // return() => clearTimeout(timer);
-    //         setIsLoaded(true);
-    //     }
-    //     // setLodgingNum('');
-    // },[props.check, props.category]);
-
-
-    // 이미지 리스트를 불러오면 화면에 띄운다
-    // useEffect(()=>{
-    //     const timer = setTimeout(()=>{
-    //         setIsLoaded(true);
-    //     },5000);
-    //     // timer();
-    //     return () => clearTimeout(timer);
-    // },[props.category])
-
 
     const settings = {
         dots: true,

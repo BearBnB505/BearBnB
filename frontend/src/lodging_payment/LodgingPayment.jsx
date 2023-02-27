@@ -306,8 +306,8 @@ function LodgingPayment(props) {
                                                 }
                                             )
                                                 .then((req) => {
-                                                    console.log("post방식으로 통신성공")
-                                                    console.log(req); //데이터 넘어오는지 확인
+                                                    // console.log("post방식으로 통신성공")
+                                                    // console.log(req); //데이터 넘어오는지 확인
                                                     
                                                     axios.post("/paymentEmail",{
                                                         to:'dbfl14433@gmail.com',

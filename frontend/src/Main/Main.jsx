@@ -5,13 +5,6 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import MainCategory from "./MainCategory";
 import Keep from "./Keep";
-import {getCookie} from "../Storage/Cookies";
-import {useDispatch, useSelector} from "react-redux";
-// import {DELETE_TOKEN, SET_TOKEN, tokenSlice} from "../Store/Auth";
-import {removeCookieToken} from "../Storage/Cookie";
-import {useLocation} from "react-router";
-import {CheckToken} from "../Auth/CheckToken";
-import {configureStore} from "@reduxjs/toolkit";
 
 function Main(props) {
 
@@ -25,16 +18,6 @@ function Main(props) {
             // opacity: .60
         }
     };
-
-    // const location = useLocation();
-    // const {isAuth} = CheckToken(location.key);
-    // const {isAuth} = CheckToken();
-
-
-    const Auth = useSelector((state)=>state.auth.value);
-    // console.log(Auth);
-    const accessToken = Auth.accessToken;
-    // console.log(accessToken);
 
     const [data, setData] = useState([]);
     const [category, setCategory] = useState('한옥');
@@ -64,20 +47,6 @@ function Main(props) {
             })
     }, [category]);
 
-    const refreshToken = getCookie('refreshToken');
-
-    // useEffect(() => {
-    //     axios.get('/member/my', {headers: {
-    //         'Authorization': 'Bearer ' + refreshToken
-    //     }})
-    //         .then((req) => {
-    //             const {data} = req;
-    //             console.log(data.userId);
-    //         })
-    //         .catch((err) => {
-    //             console.log("통신 오류");
-    //         })
-    // }, [category]);
 
     // 헤더 검색
     useEffect(() => {
@@ -126,7 +95,7 @@ function Main(props) {
                                     <div className={"position-absolute"} style={{zIndex:1, marginLeft:215, marginTop:8}}>
                                         <Keep idx={item.idx}/>
                                     </div>
-                                    <Link to={`/lodgingDetail/${item.idx}`} style={{color: "black"}} state={{lat: `${item.latitude}`, lng: `${item.longitude}`}}>
+                                    <Link to={`/lodgingDetail/${item.idx}`} key={item.idx} style={{color: "black"}} state={{lat: `${item.latitude}`, lng: `${item.longitude}`}}>
                                         <MainContents idx={item.idx} data={item} category={category} check={check} key={item.idx}/>
                                     </Link>
                                 </li>

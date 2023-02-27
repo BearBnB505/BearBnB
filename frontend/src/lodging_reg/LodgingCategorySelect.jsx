@@ -266,11 +266,11 @@ const LoadingConcept = () => {
             categoryArray.push({comfortId: imgSrc[index].comfortId, usableYn:'N',lodgingNum:lodgingNum.num})
         }
     })
-    console.log('categoryArray')
-    console.log(categoryArray)
+    // console.log('categoryArray')
+    // console.log(categoryArray)
 
-    console.log("categoryArray.comfortId");
-    console.log(categoryArray[0].comfortId);
+    // console.log("categoryArray.comfortId");
+    // console.log(categoryArray[0].comfortId);
 
     const dbTest = () =>{
 
@@ -329,7 +329,7 @@ const LoadingConcept = () => {
                 },
             })
             .then((res) => {
-                console.log(res);
+                // console.log(res);
             });
     }
 

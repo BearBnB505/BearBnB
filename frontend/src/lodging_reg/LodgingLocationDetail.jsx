@@ -25,8 +25,8 @@ function LodgingLocationDetail(){
     // }
     const onChangeAddress2 = (e) =>{
         setAddress2(e.target.value)
-        console.log("address2");
-        console.log(address2A);
+        // console.log("address2");
+        // console.log(address2A);
         // dispatch(locationDetails({address2:address2A}))
     }
     const onChangeZipCode = (e) =>{

@@ -11,7 +11,7 @@ function LodgingCost(){
     const lodgingImg = useSelector((state)=>state.lodgingImg.value);
     const chooseDate = useSelector((state)=>state.chooseDate.value);
 
-    console.log(lodgingImg.url);
+    // console.log(lodgingImg.url);
 
     const styles = {
         border1:{

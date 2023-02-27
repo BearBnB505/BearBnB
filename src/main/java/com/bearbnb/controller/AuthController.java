@@ -7,6 +7,7 @@ import com.bearbnb.jwt.JwtTokenProvider;
 import com.bearbnb.service.AuthService;
 import com.bearbnb.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,22 +27,28 @@ public class AuthController {
 //    }
 
     @PostMapping("/login")
-    public ResponseEntity<TokenDto> login(@RequestBody MemberRequestDto requestDto) {
-//        return ResponseEntity.ok(authService.login(requestDto));
+    public ResponseEntity<String> login(@RequestBody MemberRequestDto requestDto) {
         TokenDto token = authService.login(requestDto);
-//        response.setHeader("accessToken", token.getAccessToken());
-//        response.setHeader("refreshToken", token.getRefreshToken());
-//        return ResponseEntity.ok().build();
-        return ResponseEntity.ok().body(token);
-//        return ResponseEntity.ok(authService.login(requestDto));
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + token.getAccessToken());
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .body(token.getRefreshToken());
     }
 
-//    @PostMapping("/token/refresh")
-//    public ResponseEntity<TokenDto> refresh(@RequestHeader(value = "Authorization") String refreshToken) {
-////        TokenDto token = authService.refresh(refreshToken);
-////        TokenDto token = authService.refresh(refreshToken);
-//
-////        return ResponseEntity.ok().body(token);
-//        return authService.refreshToken(refreshToken);
-//    }
+    @PostMapping("/token/refresh")
+    public ResponseEntity<Void> refresh(@RequestHeader(value = "Authorization") String authorizationHeader) {
+        String refreshToken = authorizationHeader.substring("Bearer ".length());
+        TokenDto token = authService.refresh(refreshToken);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + token.getAccessToken());
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .build();
+    }
+
 }

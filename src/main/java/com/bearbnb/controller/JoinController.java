@@ -26,7 +26,7 @@ public class JoinController {
 //    이메일 중복 체크
     @RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
     public int emailCheck(@RequestParam String userId) throws Exception {
-        System.out.println(userId);
+//        System.out.println(userId);
         int result = joinService.emailCheck(userId);
 //        String authKey = mailSendService.sendAuthMail(userId);
 
@@ -36,8 +36,8 @@ public class JoinController {
 //    이메일 인증 문자 보내기
     @RequestMapping(value = "/emailCode", method = RequestMethod.GET)
     public String emilCode(@RequestParam String userId) throws Exception{
-        System.out.println("emailcode");
-        System.out.println(userId);
+//        System.out.println("emailcode");
+//        System.out.println(userId);
         joinService.sendSimpleMessage(userId);
         return JoinServiceImpl.ePw;
     }
@@ -45,8 +45,8 @@ public class JoinController {
 //    프로필 저장
     @RequestMapping(value = "/insertProfile", method = RequestMethod.POST)
     public void insertProfile(@RequestParam("userId") String userId, @RequestParam("profileImg")String profileImg) throws Exception {
-        System.out.println(userId);
-        System.out.println(profileImg);
+//        System.out.println(userId);
+//        System.out.println(profileImg);
 
         joinService.insertProfile(userId,profileImg);
     }

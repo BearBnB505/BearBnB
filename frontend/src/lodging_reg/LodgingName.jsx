@@ -27,9 +27,9 @@ function LodgingName(){
     };
 
     const lodgingImg = useSelector((state)=>state.lodgingImg.value);
-    console.log(lodgingName);
-    console.log('서버데이터 확인용')
-    console.log(lodgingImg.url);
+    // console.log(lodgingName);
+    // console.log('서버데이터 확인용')
+    // console.log(lodgingImg.url);
 
 
     return(

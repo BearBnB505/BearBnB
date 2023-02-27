@@ -72,11 +72,11 @@ function Join() {
         setBirth(insertBirths);
         setInsertBirth(insertBirths);
 
-        console.log(insertBirth)
+        // console.log(insertBirth)
 
         const age = numberThisYear-birthCurrent;
         setThisYearAge(age);
-        console.log(age);
+        // console.log(age);
         if(age < 19){
             setBirthMessage('미성년자는 가입할 수 없습니다.')
             setIsBirth('error')
@@ -110,7 +110,7 @@ function Join() {
         const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
         const passwordCurrent = e.target.value
         setPassword(passwordCurrent)
-        console.log(password)
+        // console.log(password)
 
         if (!passwordRegex.test(passwordCurrent)) {
             setPasswordMessage('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요')
@@ -149,43 +149,43 @@ function Join() {
 
     const onChangeTelNum = (e) =>{
         setInsertTelNum(e.target.value)
-        console.log(insertTelNum)
+        // console.log(insertTelNum)
     }
 
     const onChangeEmailCode = (e) => {
         setWriteEmailCode(e.target.value)
-        console.log(writeEmailCode);
+        // console.log(writeEmailCode);
     }
 
     // 최종 넣을 이름
     const insertFinalName = insertLastName+insertFirstName;
-    console.log("insertFinalName");
-    console.log(insertFinalName);
+    // console.log("insertFinalName");
+    // console.log(insertFinalName);
     // setInsertFirstName(insertFinalName);
 
     const optionItems = document.getElementById("countryItems")
     const options =(e)=>{
         // console.log(optionItems.options[optionItems.selectedIndex].text);
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setInsertCountry(e.target.value)
     }
 
     const radio1 =(e)=>{
         // console.log(optionItems.options[optionItems.selectedIndex].text);
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setInsertGender(e.target.value)
     }
 
     const radio2 =(e)=>{
         // console.log(optionItems.options[optionItems.selectedIndex].text);
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setInsertGender(e.target.value)
     }
 
 
 
-    console.log('선택된 성별')
-    console.log(insertGender);
+    // console.log('선택된 성별')
+    // console.log(insertGender);
 
     const [data, setData] = useState('');
 
@@ -201,7 +201,7 @@ function Join() {
             .then(async (req) => {
                 const {data} = req;
                 setData(data);
-                console.log(data)
+                // console.log(data)
                 if (data === 1) {
                     Swal.fire({
                         icon: 'error',
@@ -219,7 +219,7 @@ function Join() {
                     })
                         //아이디가 중복되지 않았다면 이메일로 인증 번호 발송
                         .then((req) => {
-                            console.log(req);
+                            // console.log(req);
                             axios.get('http://localhost:8080/emailCode', {
                                 params: {
                                     userId: email,
@@ -227,11 +227,11 @@ function Join() {
                             })
                                 //인증번호 보낸 것이 성공했을 때 실행
                                 .then((req) => {
-                                    console.log(req);
+                                    // console.log(req);
                                     alert('인증번호를 보냈습니다.')
                                     let {data} = req;
-                                    console.log('인증번호는 말이다')
-                                    console.log(data);
+                                    // console.log('인증번호는 말이다')
+                                    // console.log(data);
                                     setCode(data);
                                     // console.log(code);
                                 })
@@ -240,7 +240,7 @@ function Join() {
                                         icon: 'error',
                                         title: '두번째 통신 오류',
                                     })
-                                    console.log(err);
+                                    // console.log(err);
                                 })
                         })
                         .catch(
@@ -249,8 +249,8 @@ function Join() {
                 }
             })
     }
-    console.log("code")
-    console.log(code);
+    // console.log("code")
+    // console.log(code);
 
 
     // 인증번호 일치 테스트
@@ -315,7 +315,7 @@ function Join() {
                 }
             })
                 .then(function (response) {
-                    console.log(response)
+                    // console.log(response)
                     Swal.fire({
                         icon: 'success',
                         title: '가입이 완료되었습니다.',
@@ -327,7 +327,7 @@ function Join() {
 
                 })
                 .catch(function (error) {
-                    console.log(error);
+                    // console.log(error);
                 });
         }
 
@@ -737,7 +737,7 @@ function Join() {
                                         동의 및 계속하기를 선택하여 베어비앤비 서비스 약관, 결제 서비스 약관, 위치기반서비스 이용약관,
                                         차별 금지 정책, 개인정보 처리방침에 동의합니다.
                                     </div>
-                                    <button className={'btn btn-danger col-12 mt-5 mb-5'}
+                                    <button type={"button"} className={'btn btn-danger col-12 mt-5 mb-5'}
                                             onClick={onClickJoin}>회원가입완료
                                     </button>
                                 </div>

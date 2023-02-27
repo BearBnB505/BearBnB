@@ -62,20 +62,20 @@ function LodgingFinal(){
     // const lodgingNum = dayPlusRandom.split(',').join("");
     // console.log(lodgingNum);
 
-    console.log("lodgingImg.url");
-    console.log(lodgingImg.url);
+    // console.log("lodgingImg.url");
+    // console.log(lodgingImg.url);
 
     const lod = [...lodgingImg.url];
-    console.log("lod")
-    console.log(lod)
+    // console.log("lod")
+    // console.log(lod)
 
     let final = [];
     const filter = lod.map(data=>({
         ...data, lodgingNum:lodgingNum
     }))
     final=[...filter];
-    console.log("final");
-    console.log(final);
+    // console.log("final");
+    // console.log(final);
     // lod.lodgingNum = lodgingNum
     // console.log("lod");
     // console.log(lod);
@@ -113,11 +113,11 @@ function LodgingFinal(){
 
     // console.log("finalmap")
     // console.log(finalmap);
-    console.log("숙소 디테일주소")
-    console.log(locationDetail.nation);
-    console.log(locationDetail.zipCode);
-    console.log(locationDetail.addr1);
-    console.log(locationDetail.addr2);
+    // console.log("숙소 디테일주소")
+    // console.log(locationDetail.nation);
+    // console.log(locationDetail.zipCode);
+    // console.log(locationDetail.addr1);
+    // console.log(locationDetail.addr2);
     const data = {
                 userId : 'dbfl14433@gmail.com',
                 lodgingNum: lodgingNum.num,
@@ -184,7 +184,7 @@ function LodgingFinal(){
                 // },
             })
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 Swal.fire({
                     icon: 'success',
                     title: '숙소등록이 완료되었습니다.',
@@ -197,12 +197,12 @@ function LodgingFinal(){
             });
     }
 
-        console.log('숙소이름')
-        console.log(lodgingRealName.name)
+        // console.log('숙소이름')
+        // console.log(lodgingRealName.name)
 
 
-        console.log('숙소설명')
-        console.log(lodgingName.lodgingIntro)
+        // console.log('숙소설명')
+        // console.log(lodgingName.lodgingIntro)
 
 
     return(

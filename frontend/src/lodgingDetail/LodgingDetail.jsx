@@ -58,7 +58,7 @@ function LodgingDetail(props) {
             .then((req) => {
                 const {data} = req;
                 // console.log(data);
-                console.log('통신성공');
+                // console.log('통신성공');
                 setLodging(data.lodging);
                 // setPhoto(data.photo);
                 setReview(data.review);
@@ -96,7 +96,7 @@ function LodgingDetail(props) {
                     <LodgingDetailTitle lodging={lodging} review={review} avg={avg}/>
 
                     <PhotoContext.Provider>
-                        <HostImg idx={idx} check={check}/>
+                        <HostImg idx={idx} check={check} key={idx}/>
                     </PhotoContext.Provider>
 
                     <div className={'row'}>

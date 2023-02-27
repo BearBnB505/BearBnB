@@ -11,31 +11,16 @@ import {CheckToken} from "../Auth/CheckToken";
 import axios from "axios";
 import {getCookie} from "../Storage/Cookies";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {Auth} from "../Auth/Auth";
 
 function Member(props) {
-
 
     const location = useLocation();
     const {isAuth} = CheckToken(location.key);
 
-    // CheckToken();
-    // let isAuth = sessionStorage.getItem("isAuth");
-    // console.log(`isAuth : ${isAuth}`);
-
-    const refreshToken = getCookie('refreshToken');
-
-    useEffect(() => {
-        axios.get('/member/my', {headers: {
-                'Authorization': 'Bearer ' + refreshToken
-            }})
-            .then((req) => {
-                const {data} = req;
-                // console.log(data.userId);
-            })
-            .catch((err) => {
-                console.log("통신 오류");
-            })
-    }, []);
+    const auth = Auth();
+    // console.log("userId: " + auth.userId);
 
     return (
         <Dropdown>
@@ -44,22 +29,22 @@ function Member(props) {
             </DropdownToggle>
 
             <DropdownMenu align={"end"} className={"shadow"}>
-                {/*{((isAuth === 'Failed') || (isAuth === 'Loaded')) && <Login/>}*/}
-                {/*{((isAuth === 'Failed') || (isAuth === 'Loaded')) && <Join/>}*/}
-                {/*{(isAuth === 'Success') && <Logout/>}*/}
-                <Login/>
-                <Join/>
-                <Logout/>
+                {((isAuth === 'Failed') || (isAuth === 'Loaded')) && <Login/>}
+                {((isAuth === 'Failed') || (isAuth === 'Loaded')) && <Join/>}
+                {(isAuth === 'Success') && <Logout/>}
+                {/*<Login/>*/}
+                {/*<Join/>*/}
+                {/*<Logout/>*/}
 
-                {/*{(isAuth === 'Success') && <>*/}
-                {/*    <DropdownItem href={"/message"}>*/}
-                {/*        <span>메세지알림</span>*/}
-                {/*        <span className="badge bg-primary rounded-pill float-end">2</span>*/}
-                {/*    </DropdownItem>*/}
+                {(isAuth === 'Success') && <>
+                    {/*<DropdownItem href={"/message"}>*/}
+                    {/*    <span>메세지알림</span>*/}
+                    {/*    <span className="badge bg-primary rounded-pill float-end">2</span>*/}
+                    {/*</DropdownItem>*/}
 
                     <DropdownItem><Link to={'/mypage'}>마이페이지</Link></DropdownItem>
 
-                {/*</>}*/}
+                </>}
             </DropdownMenu>
         </Dropdown>
     );

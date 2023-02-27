@@ -1,5 +1,10 @@
 package com.bearbnb.jwt;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.bearbnb.dto.MembersDto;
 import com.bearbnb.dto.TokenDto;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -54,7 +59,7 @@ public class JwtTokenProvider {
         // Refresh Token 생성
         String refreshToken = Jwts.builder()
                 .setSubject(authentication.getName())
-                .claim("auth", authorities)
+//                .claim("auth", authorities)
                 .setExpiration(new Date(now + 86400000))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
@@ -112,9 +117,9 @@ public class JwtTokenProvider {
 
     public TokenDto refresh(String userId, String authorities) {
 
+        // Access Token 재발급
         long now = (new Date()).getTime();
 
-        // Access Token 재발급
         Date accessTokenExpiresIn = new Date(now + 86400000);  // 테스트 용 1일 ( 나중에 30분으로 수정 -> ACCESS_TOKEN_EXPIRE_TIME )
         String accessToken = Jwts.builder()
                 .setSubject(userId)

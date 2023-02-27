@@ -25,8 +25,8 @@ function LodgingHostId(){
         setIdImageUrl(URL.createObjectURL(event.target.files[0]));
         setServerHostIdImage(event.target.files[0]);
     }
-    console.log("serverHostIdImage");
-    console.log(serverHostIdImage);
+    // console.log("serverHostIdImage");
+    // console.log(serverHostIdImage);
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -64,32 +64,32 @@ function LodgingHostId(){
         const dayPlusRandom = dayday + random;
         // 이미지 이름=> 날짜6자리 + 랜덤 숫자 11자리
         const imgName = dayPlusRandom.split(',').join("");
-        console.log(imgName);
+        // console.log(imgName);
 
 
         // 업로드 처리
-        console.log("업로드 처리");
+        // console.log("업로드 처리");
         const storageRef = storage.ref("BearBnB/"); //어떤 폴더 아래에 넣을지 설정
         const imagesRef = storageRef.child(imgName+serverHostIdImage.name); //파일명
 
-        console.log("파일을 업로드하는 행위");
+        // console.log("파일을 업로드하는 행위");
         const upLoadTask = imagesRef.put(serverHostIdImage);
 
         upLoadTask.on(
             "state_changed",
             (snapshot) => {
-                console.log("snapshot", snapshot);
+                // console.log("snapshot", snapshot);
             },
             (error) => {
                 console.log("err", error);
             },
             () => {
                 upLoadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                    console.log("File available at", downloadURL);
+                    // console.log("File available at", downloadURL);
                     setFirebaseUrl(downloadURL);
-                    console.log('업로드 성공');
+                    // console.log('업로드 성공');
                     dispatch(realhostIdUrl({idUrl:downloadURL}))
-                    console.log('url 데이터 이동성공');
+                    // console.log('url 데이터 이동성공');
                     navigate("/reg");
                 });
 
@@ -100,8 +100,8 @@ function LodgingHostId(){
 
     };
 
-    console.log("firebaseUrl");
-    console.log(firebaseUrl);
+    // console.log("firebaseUrl");
+    // console.log(firebaseUrl);
 
 
     const styles = {

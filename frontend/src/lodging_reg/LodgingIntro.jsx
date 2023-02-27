@@ -25,7 +25,7 @@ function LodgingIntro(){
     };
 
     const dispatch = useDispatch();
-    console.log(intro);
+    // console.log(intro);
 
     const styles={
         font:{
