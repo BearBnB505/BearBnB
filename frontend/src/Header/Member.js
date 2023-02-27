@@ -19,8 +19,8 @@ function Member(props) {
     const location = useLocation();
     const {isAuth} = CheckToken(location.key);
 
-    const userId = Auth();
-    // console.log("userId: " + userId.userId);
+    const auth = Auth();
+    // console.log("userId: " + auth.userId);
 
     return (
         <Dropdown>

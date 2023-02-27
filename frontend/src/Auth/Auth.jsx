@@ -4,7 +4,7 @@ import {CheckToken} from "./CheckToken";
 import {useSelector} from "react-redux";
 import axios from "axios";
 
-export function Auth(props) {
+export function Auth() {
     const location = useLocation();
     const {isAuth} = CheckToken(location.key);
 
