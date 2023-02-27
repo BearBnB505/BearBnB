@@ -8,6 +8,7 @@ import HostUserInfoModal from "../HostUserInfoModal";
 import GuestInfoModal from "../GuestInfoModal";
 import BookingWait from "./BookingWait";
 import axios from "axios";
+import {useLocation} from "react-router";
 
 
 function HostMyPageBooking() {
@@ -39,8 +40,12 @@ function HostMyPageBooking() {
     const [agreeArray, setAgreeArray] = useState([]);
     const [rejectArray, setRejectArray] = useState([]);
 
+    //유저 정보
+    const location = useLocation();
+    const userId = location.state.userId;
+
     useEffect(() => {
-        axios.get('http://localhost:8080/bookingList/')
+        axios.get('http://localhost:8080/HostBookingList/', {params:{userId:userId}})
           .then((req) => {
               const {data} = req;
               // console.log(data);

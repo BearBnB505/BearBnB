@@ -13,8 +13,8 @@ public class ReviewServiceImpl implements ReviewService{
     ReviewMapper reviewMapper;
 
     @Override
-    public List<ReviewDto> ReviewList() {
-      return reviewMapper.ReviewList();
+    public List<ReviewDto> ReviewList(ReviewDto review) {
+      return reviewMapper.ReviewList(review);
     }
 
     @Override

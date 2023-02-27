@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Form from 'react-bootstrap/Form';
 import {FloatingLabel, InputGroup} from "react-bootstrap";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const MyLanguages = (props) => {
     // const [languages, setLanguages] = useState("");
@@ -12,14 +13,16 @@ const MyLanguages = (props) => {
 
   const clickSave = () => {
 
-    axios.put('http://localhost:8080/UpdateLanguage',null,{params: {language: props.language}})
+    axios.put('http://localhost:8080/UpdateLanguage',null,{params: {language: props.language, userId: props.userId}})
       .then((response) => {
         //console.log(response);
+          Swal.fire("언어 정보를 수정하였습니다","　","success")
       })
       .catch(function (error) {
         console.log(error);
       });
   }
+
 
     return (
         <div className={"mb-3"}>

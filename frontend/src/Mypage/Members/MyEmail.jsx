@@ -16,7 +16,6 @@ function MyEmail(props) {
 
     const saveBtn = (e) => {
         axios.put('http://localhost:8080/UpdateMemberName/',null,{params: {idx: props.idx , userId: props.email}})
-
           .then((response) => {
             console.log(response);
             swal("이메일 변경 완료","　","success")

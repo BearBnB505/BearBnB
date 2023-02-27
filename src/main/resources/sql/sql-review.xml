@@ -4,13 +4,25 @@
 <mapper namespace="com.bearbnb.mapper.ReviewMapper">
 
     <!--  호스트 페이지 리뷰 리스트 가져오기  -->
+<!--    <select id="ReviewList" resultType="com.bearbnb.dto.ReviewDto">-->
+<!--        <![CDATA[-->
+<!--        SELECT re.*, lod.lodging_name-->
+<!--        FROM review re-->
+<!--                JOIN lodging lod-->
+<!--                ON re.lodging_num = lod.lodging_num-->
+<!--        WHERE re.deleted_yn = 'N'-->
+<!--        ORDER BY re.review_create_dt desc-->
+<!--        ]]>-->
+<!--    </select>-->
+
+
     <select id="ReviewList" resultType="com.bearbnb.dto.ReviewDto">
         <![CDATA[
         SELECT re.*, lod.lodging_name
-        FROM review re
-                 JOIN lodging lod
-                      ON re.lodging_num = lod.lodging_num
-        WHERE re.deleted_yn = 'N'
+        FROM lodging lod
+                JOIN review re
+                ON lod.lodging_num = re.lodging_num
+        WHERE lod.user_id = '${userId}' and re.deleted_yn = 'N'
         ORDER BY re.review_create_dt desc
         ]]>
     </select>
@@ -23,8 +35,8 @@
                  JOIN lodging lod
                       ON re.lodging_num = lod.lodging_num
                  JOIN members mem
-                      ON re.user_id= mem.user_id
-        WHERE re.deleted_yn = 'N'
+                      ON re.user_id = mem.user_id
+        WHERE re.deleted_yn = 'N' and re.user_id = '${userId}'
         ORDER BY re.review_create_dt desc
         ]]>
     </select>

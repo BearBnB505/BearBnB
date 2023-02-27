@@ -8,7 +8,7 @@
         <![CDATA[
         update lodging
         set language = '${language}'
-        where user_Id = 'tester3'
+        where user_Id = '${userId}'
         ]]>
     </update>
 
@@ -17,7 +17,7 @@
         <![CDATA[
         update lodging
         set intro_host = '${introHost}'
-        where user_Id = 'tester3'
+        where user_Id = '${userId}'
         ]]>
     </update>
 

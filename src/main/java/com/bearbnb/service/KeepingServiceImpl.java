@@ -34,8 +34,8 @@ public class KeepingServiceImpl implements KeepingService{
 //    }
 
     @Override
-    public List<KeepingDto> KeepList() {
-        return keepingMapper.KeepList();
+    public List<KeepingDto> KeepList(KeepingDto keeping) {
+        return keepingMapper.KeepList(keeping);
     }
 
     @Override

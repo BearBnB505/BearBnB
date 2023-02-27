@@ -16,6 +16,7 @@
         <![CDATA[
         SELECT *
         FROM lodging
+        WHERE user_id= #{userId}
         ORDER BY create_dt DESC
         ]]>
     </select>

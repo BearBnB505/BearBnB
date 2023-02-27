@@ -83,14 +83,15 @@ function ProjectRouter(props) {
                     {/* 일반회원 마이페이지 */}
 
                     <Route path={"mypage"} element={<Mypage/>}/>
-                    <Route path={"members"} element={<Members/>}/>
-                    <Route path={"review"} element={<Review/>}/>
-                    <Route path={"bookingConfirm"} element={<BookingConfirm/>}/>
-                    <Route path={"bookingCancel"} element={<BookingCancel/>}/>
-                    <Route path={"complain"} element={<Complain/>}/>
-                    <Route path={"keeping"} element={<Keeping/>}/>
-                    <Route path={"membersDel"} element={<MembersDel/>}/>
                     <Route path = {"myPageProfile"} element={<MyPageProfile/>}/>
+                    {/*<Route path={"members"} element={<Members/>}/>*/}
+                    <Route path={"members/:userId"} element={<Members/>}/>
+                    <Route path={"review/:userId"} element={<Review/>}/>
+                    <Route path={"bookingConfirm/:userId"} element={<BookingConfirm/>}/>
+                    <Route path={"bookingCancel/:userId"} element={<BookingCancel/>}/>
+                    <Route path={"complain/:userId"} element={<Complain/>}/>
+                    <Route path={"keeping/:userId"} element={<Keeping/>}/>
+                    <Route path={"membersDel/:userId"} element={<MembersDel/>}/>
 
 
                     {/*<Route path={"imgUploadBox"} element={<ImgUploadBox/>}/>*/}
@@ -108,20 +109,18 @@ function ProjectRouter(props) {
 
 
                     {/* 호스트 마이페이지*/}
-                    <Route path={"hostMyPageMain"} element={<HostMyPageMain/>}/>
-                    <Route path={"hostMyPageHostInfo"} element={<HostMyPageHostInfo/>}/>
-                    <Route path={"hostMyPageReview"} element={<HostMyPageReview/>}/>
-                    <Route path={"hostMyPageBooking"} element={<HostMyPageBooking/>}/>
+                    <Route path={"hostMyPageMain/:userId"} element={<HostMyPageMain/>}/>
+                    <Route path={"hostMyPageHostInfo/:userId"} element={<HostMyPageHostInfo/>}/>
+                    <Route path={"hostMyPageReview/:userId"} element={<HostMyPageReview/>}/>
+                    <Route path={"hostMyPageBooking/:userId"} element={<HostMyPageBooking/>}/>
                     <Route path={"guestInfoModal"} element={<GuestInfoModal/>}/>
                     <Route path={"hostMyPageRevenue"} element={<HostMyPageRevenue/>}/>
-                    <Route path={"hostMyPageLodging"} element={<HostMyPageLodging/>}/>
+                    <Route path={"hostMyPageLodging/:userId"} element={<HostMyPageLodging/>}/>
 
                     {/*<HouseInfo/>*/}
                     <Route path={"hostMyPageLodging/HouseInfoUpdate/:lodgingNum"} element={<HouseInfo/>}/>
                     <Route path={"ReviewContent"} element={<ReviewContent/>}/>
 
-
-                    {/*  */}
 
                 </Route>
 

@@ -10,9 +10,14 @@ import Form from "react-bootstrap/Form";
 import ReviewPagenation from "./ReviewPagenation";
 import axios from "axios";
 import Swal from "sweetalert2";
+import {useLocation} from "react-router";
+
 
 
 function Review() {
+
+  const location = useLocation();
+  const userId = location.state.userId;
 
 
   // 리뷰 DB 가져와서 리스트 형식으로 담길 배열
@@ -26,11 +31,11 @@ function Review() {
 
 
   useEffect(() => {
-    axios.get('http://localhost:8080/MemberReviewList/')
+    axios.get('http://localhost:8080/MemberReviewList/', {params:{userId: userId}})
       .then((req) => {
         const {data} = req;
         setData(data);
-        console.log(data);
+        // console.log(data);
       })
       .catch((err) => {
         console.log("통신 오류");
@@ -97,7 +102,7 @@ function ReviewItem({
     setView(false)
     setView2(true)
     setReview(comment)
-    console.log(view);
+    // console.log(view);
   }
 
   const ReviewBtn2 = () => {
@@ -108,6 +113,8 @@ function ReviewItem({
 
       .then((response) => {
         console.log(response);
+        Swal.fire("후기를 수정하였습니다","　","success")
+
       })
       .catch(function (error) {
         console.log(error);
@@ -135,8 +142,8 @@ function ReviewItem({
       text: "삭제 후 되돌릴 수 없습니다!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: '삭제',
-      cancelButtonText: '취소',
+      confirmButtonText: '네',
+      cancelButtonText: '아니요',
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {

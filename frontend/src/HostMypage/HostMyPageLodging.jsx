@@ -9,9 +9,13 @@ import axios from "axios";
 import './Lodging.css'
 
 import PageNation from "./LodgingPagenation";
+import {useLocation} from "react-router";
 
 
 function HostMyPageLodging() {
+
+    const location = useLocation();
+    const userId = location.state.userId;
 
     const [lengthInfo, setLengthInfo] = useState(1);
     const [limitInfo , setLimitInfo] = useState(5);
@@ -26,7 +30,8 @@ function HostMyPageLodging() {
     const onClickRegLodging = () => {
         axios.get("http://localhost:8080/checkAuthority",{
             params :{
-                userId : "gione@naver.com",
+                // userId : "gione@naver.com",
+                userId : userId,
             }
         })
             .then((req)=>{
@@ -110,9 +115,13 @@ function ComplainList(props) {
     // 첫 게시물의 위치(offset)
     const offset = (page - 1) * limit;
 
+    // 유저정보 호출
+    const location = useLocation();
+    const userId = location.state.userId;
+
 
     useEffect(() => {
-        axios.get('http://localhost:8080/AllLodgingList/')
+        axios.get('http://localhost:8080/AllLodgingList/', {params:{userId:userId}})
             .then((req) => {
                 const {data} = req;
                 const length = data.length

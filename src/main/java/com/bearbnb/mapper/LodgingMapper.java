@@ -11,7 +11,7 @@ public interface LodgingMapper {
 //    List<LodgingDto> lodgingList();
     List<LodgingDto> lodgingList(String category);
 
-    List<LodgingDto> AllLodgingList();
+    List<LodgingDto> AllLodgingList(LodgingDto lodging);
     List<LodgingDto> CallLodgingList(LodgingDto lodging);
 
     LodgingDto lodgingDetail(int idx) throws Exception;

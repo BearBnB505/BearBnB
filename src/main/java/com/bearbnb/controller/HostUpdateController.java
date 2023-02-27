@@ -8,6 +8,7 @@ import com.bearbnb.mapper.LodgingMapper;
 import com.bearbnb.mapper.ComfortMapper;
 import com.bearbnb.mapper.ReviewMapper;
 import com.bearbnb.service.HostUpdateService;
+import com.bearbnb.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
@@ -32,25 +33,40 @@ public class HostUpdateController {
     @Autowired
     private HostUpdateService hostUpdateService;
 
+    @Autowired
+    private ReviewService reviewService;
+
 //    @RequestMapping(value = "/bookingList")
 //    public List<BookingDto> bookingList(@RequestParam("bookState") String bookState) {
 //        return bookingMapper.bookingList(bookState);
 //    }
 
     @RequestMapping(value = "/bookingList")
-    public List<BookingDto> bookingList() {
-        return bookingMapper.bookingList();
+    public List<BookingDto> bookingList(BookingDto booking) {
+        return bookingMapper.bookingList(booking);
     }
 
+    @RequestMapping(value = "/HostBookingList")
+    public List<BookingDto> HostBookingList(BookingDto booking) {
+        return bookingMapper.HostBookingList(booking);
+    }
+
+//    @RequestMapping(value = "/ReviewList")
+//    public List<ReviewDto> ReviewList(ReviewDto review) {
+//        return reviewMapper.ReviewList(review);
+//    }
+
     @RequestMapping(value = "/ReviewList")
-    public List<ReviewDto> ReviewList() {
-        return reviewMapper.ReviewList();
+    public List<ReviewDto> ReviewList(ReviewDto review) {
+        return reviewService.ReviewList(review);
     }
 
     @RequestMapping(value = "/ReviewListContent")
     public List<ReviewDto> ReviewListContent() {
         return reviewMapper.ReviewListContent();
     }
+
+
 
 
     @RequestMapping(value = "/UpdateLanguage", method = RequestMethod.PUT)

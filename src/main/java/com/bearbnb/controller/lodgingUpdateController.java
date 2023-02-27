@@ -34,8 +34,8 @@ public class lodgingUpdateController {
     }
 
     @RequestMapping(value = "/AllLodgingList")
-    public List<LodgingDto> AllLodgingList() {
-        return CallLodgingMapper.AllLodgingList();
+    public List<LodgingDto> AllLodgingList(LodgingDto lodging) {
+        return CallLodgingMapper.AllLodgingList(lodging);
     }
 
 

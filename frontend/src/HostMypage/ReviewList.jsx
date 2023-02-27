@@ -4,7 +4,7 @@ import ReviewItem from "./ReviewItem";
 import ReviewPagenation from "./ReviewPagenation";
 
 
-function ReviewList() {
+function ReviewList(props) {
   // 리뷰 DB 가져와서 리스트 형식으로 담길 배열
   const [data, setData] = useState([]);
   // 페이지당 게시물 수
@@ -18,10 +18,11 @@ function ReviewList() {
 
 
   useEffect(() => {
-    axios.get('http://localhost:8080/ReviewList/')
+    axios.get('http://localhost:8080/ReviewList/', {params: {userId : props.userId}})
       .then((req) => {
         const {data} = req;
         setData(data);
+        console.log("리스트"+data)
       })
       .catch((err) => {
         console.log("통신 오류");

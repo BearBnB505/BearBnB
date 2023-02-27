@@ -3,11 +3,9 @@ package com.bearbnb.controller;
 import com.bearbnb.dto.*;
 import com.bearbnb.mapper.KeepingMapper;
 import com.bearbnb.mapper.MemberMapper;
-import com.bearbnb.mapper.MembersMapper;
 import com.bearbnb.mapper.ReviewMapper;
 import com.bearbnb.service.KeepingService;
 
-import com.bearbnb.dto.MemberRequestDto;
 import com.bearbnb.dto.MemberResponseDto;
 import com.bearbnb.dto.MembersDto;
 import com.bearbnb.jwt.JwtTokenProvider;
@@ -15,6 +13,8 @@ import com.bearbnb.jwt.JwtTokenProvider;
 import com.bearbnb.service.MemberService;
 import com.bearbnb.service.MembersService;
 import com.bearbnb.service.ReviewService;
+import com.bearbnb.mapper.*;
+import com.bearbnb.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,11 +40,16 @@ public class MemberController {
     @Autowired
     KeepingMapper keepingMapper;
     @Autowired
+    BookingMapper bookingMapper;
+    @Autowired
     MembersService membersService;
     @Autowired
     ReviewService reviewService;
     @Autowired
     KeepingService keepingService;
+
+    @Autowired
+    BookingService bookingService;
 
 
     @GetMapping("/member/my")
@@ -56,20 +61,9 @@ public class MemberController {
         // return ResponseEntity.ok(memberService.getMyInfoBySecurity());
     }
 
-//    @PostMapping("/nickname")
-//    public ResponseEntity<MemberResponseDto> setMemberNickname(@RequestBody MemberRequestDto request) {
-//        return ResponseEntity.ok(memberService.changeMemberNickname(request.getEmail(), request.getNickname()));
-//    }
-//
-//    @PostMapping("/password")
-//    public ResponseEntity<MemberResponseDto> setMemberPassword(@RequestBody ChangePasswordRequestDto request) {
-//        return ResponseEntity.ok(memberService.changeMemberPassword(request.getExPassword(), request.getNewPassword()));
-//    }
-
-
     @RequestMapping(value = "/Members")
-    public List<MembersDto> MemberList() {
-        return memberMapper.MemberList();
+    public List<MembersDto> MemberList(MembersDto members) {
+        return memberMapper.MemberList(members);
     }
 
     @RequestMapping(value = "/UpdateMemberName", method = RequestMethod.PUT)
@@ -107,23 +101,21 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/MemberReviewList")
-    public List<ReviewDto> MemberReviewList() {
-        return reviewMapper.MemberReviewList();
+    public List<ReviewDto> MemberReviewList(MembersDto members) {
+        return reviewMapper.MemberReviewList(members);
     }
 
-//    @RequestMapping(value = "/KeepList")
-//    public List<KeepingDto> KeepList() {
-//        return keepingService.KeepList();
-//    }
     @RequestMapping(value = "/KeepList")
-    public List<KeepingDto> KeepList() {
-        return keepingService.KeepList();
+    public List<KeepingDto> KeepList(KeepingDto keeping) {
+        return keepingService.KeepList(keeping);
     }
 
-//    @RequestMapping(value = "/LodgingAvg")
-//    public List<ReviewAvgDto> LodgingAvg(@RequestParam("lodging_num") String lodgingNum) {
-//        return keepingService.LodgingAvg(lodgingNum);
-//    }
+    @RequestMapping(value = "/cancelList")
+    public List<BookingDto> cancelList(BookingDto booking) {
+        return bookingService.cancelList(booking);
+    }
+
+
 
     @RequestMapping(value = "/LodgingAvg", method = RequestMethod.GET)
     public Map<String, Object> lodgingDetail(@RequestParam("lodgingNum") String lodgingNum) throws Exception {
@@ -136,8 +128,8 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/complainList")
-    public List<ComplainDto> complainList() {
-        return memberMapper.complainList();
+    public List<ComplainDto> complainList(ComplainDto complain) {
+        return memberMapper.complainList(complain);
     }
 
     @RequestMapping(value = "/allReviewList")
@@ -145,13 +137,11 @@ public class MemberController {
         return reviewMapper.allReviewList();
     }
 
+    @RequestMapping(value = "/imgList")
+    public List<PhotoDto> imgList(PhotoDto photo) {
+        return memberMapper.imgList(photo);
+    }
 
-
-//    @RequestMapping(value = "/complainDelete", method = RequestMethod.PUT)
-//    public String deleteComplain(ComplainDto complain) throws Exception {
-//        membersService.deleteComplain(complain);
-//        return "redirect:/deleteComplain";
-//    }
 
     @RequestMapping(value = "/complainDelete", method = RequestMethod.PUT)
     public List<ComplainDto> complainDelete(@RequestBody List<ComplainDto> ComplainBox ){
@@ -168,10 +158,19 @@ public class MemberController {
         return "redirect:/memberDelete";
     }
 
+    @RequestMapping(value = "/updateState", method = RequestMethod.PUT)
+    public String updateState(BookingDto booking) throws Exception {
+        bookingService.updateState(booking);
+        return "redirect:/updateState";
+    }
+
+
+
     @RequestMapping(value = "/writeReview", method = RequestMethod.PUT)
     public String writeReview(ReviewDto review) throws Exception {
         reviewService.writeReview(review);
         return "redirect:/writeReview";
     }
+
 
 }

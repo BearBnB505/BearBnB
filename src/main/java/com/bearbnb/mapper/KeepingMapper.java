@@ -12,7 +12,7 @@ public interface KeepingMapper {
         return CallReviewAvg(lodgingNum);
     }
 
-    List<KeepingDto> KeepList();
+    List<KeepingDto> KeepList(KeepingDto keeping);
 
     List<KeepInfoDto> keepInfoList();
 
