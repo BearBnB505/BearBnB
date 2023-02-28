@@ -13,7 +13,8 @@ function MembersDel() {
 
     const [pwd, setPwd] = useState("");
 
-    const location = useLocation();
+    // const location = useLocation();
+    //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
     const userId = location.state.userId;
 
 

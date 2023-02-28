@@ -50,7 +50,8 @@ import {useLocation} from "react-router";
 
 function Keeping() {
 
-    const location = useLocation();
+    // const location = useLocation();
+    //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
     const userId = location.state.userId;
     // console.log("이용자"+userId)
     // console.log('userId: '+ userId);

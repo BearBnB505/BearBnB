@@ -19,7 +19,8 @@ function Review() {
     // 첫 게시물의 위치(offset)
     const offset = (page - 1) * limit;
 
-    const location = useLocation();
+    // const location = useLocation();
+    //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
     const userId = location.state.userId;
 
 

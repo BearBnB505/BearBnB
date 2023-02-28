@@ -100,6 +100,8 @@ function ProjectRouter(props) {
                     {/*<Route path={"membersDel/:userId"} element={<MembersDel/>}/>*/}
 
 
+                    {/*아래는 관련 없음*/}
+
                     {/*<Route path={"imgUploadBox"} element={<ImgUploadBox/>}/>*/}
                     {/*<Route path={"lodgingHostInfoTest"} element={<LodgingHostInfoTest/>}/>*/}
 
@@ -128,8 +130,6 @@ function ProjectRouter(props) {
                     {/*<Route path={"hostMyPageHostInfo/:userId"} element={<HostMyPageHostInfo/>}/>*/}
                     {/*<Route path={"hostMyPageReview/:userId"} element={<HostMyPageReview/>}/>*/}
                     {/*<Route path={"hostMyPageBooking/:userId"} element={<HostMyPageBooking/>}/>*/}
-                    {/*<Route path={"guestInfoModal"} element={<GuestInfoModal/>}/>*/}
-                    {/*<Route path={"hostMyPageRevenue"} element={<HostMyPageRevenue/>}/>*/}
                     {/*<Route path={"hostMyPageLodging/:userId"} element={<HostMyPageLodging/>}/>*/}
 
                     {/*<HouseInfo/>*/}
