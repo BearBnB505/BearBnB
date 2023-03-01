@@ -63,7 +63,7 @@ function MainContents(props) {
                     <div>
                         <img
                             className="d-block w-100"
-                            src={imageList.data[0].photo}
+                            // src={imageList.data[0].photo}
                             alt="First slide"
                             style={{height: 250}}
                         />
@@ -71,7 +71,7 @@ function MainContents(props) {
                     <div>
                         <img
                             className="d-block w-100"
-                            src={imageList.data[1].photo}
+                            // src={imageList.data[1].photo}
                             alt="Second slide"
                             style={{height: 250}}
                         />
@@ -79,7 +79,7 @@ function MainContents(props) {
                     <div>
                         <img
                             className="d-block w-100"
-                            src={imageList.data[2].photo}
+                            // src={imageList.data[2].photo}
                             alt="Third slide"
                             style={{height: 250}}
                         />
@@ -87,7 +87,7 @@ function MainContents(props) {
                     <div>
                         <img
                             className="d-block w-100"
-                            src={imageList.data[3].photo}
+                            // src={imageList.data[3].photo}
                             alt="Fourth slide"
                             style={{height: 250}}
                         />
@@ -95,7 +95,7 @@ function MainContents(props) {
                     <div>
                         <img
                             className="d-block w-100"
-                            src={imageList.data[4].photo}
+                            // src={imageList.data[4].photo}
                             alt="Fifth slide"
                             style={{height: 250}}
                         />
