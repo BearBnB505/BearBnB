@@ -18,8 +18,9 @@ import {useLocation} from "react-router";
 
 function Complain() {
 
-  const location = useLocation();
-  const userId = location.state.userId;
+  // const location = useLocation();
+    //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
+    const userId = location.state.userId;
 
   const [data, setData] = useState([]);
   // 페이지당 게시물 수

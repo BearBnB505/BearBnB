@@ -15,8 +15,6 @@ import {Auth} from "../Auth/Auth";
 
 function HostMyPageLodging() {
 
-    // const location = useLocation();
-    // const userId = location.state.userId;
     const auth = Auth();
     const userId = auth.userId;
 

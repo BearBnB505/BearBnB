@@ -29,8 +29,9 @@ function BookingConfirm() {
         {idx: 2, lodging_name: "제주도 신라 호텔", book_state: "승인대기", book_dt: "2023-01-17", pay_cost: "560,200원"},
     ]
 
-  const location = useLocation();
-  const userId = location.state.userId;
+  // const location = useLocation();
+    //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
+    const userId = location.state.userId;
   // console.log('userId: '+ userId);
 
     const [waitArray, setWaitArray] = useState([]);
