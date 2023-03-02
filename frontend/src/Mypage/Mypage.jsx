@@ -47,22 +47,21 @@ function Mypage(props) {
                     initial="hidden"
                     animate="visible"
                     exit="exit" className={"container mt-5"}>
-            {data.map((item) => {
-                return (
+            {/*{data.map((item) => {*/}
+            {/*    return (*/}
                     <div className={"row p-2 mb-5"}>
                         <h2 className={"fw-bold"}>마이페이지</h2>
                         <h5>
                             <div className={'MyFrame'}>
 
-                                <strong>{item.name}&nbsp;&nbsp;</strong>
-                                {item.userId},&nbsp;&nbsp;
+                                <strong>{data.name}&nbsp;&nbsp;</strong>
+                                {userId},&nbsp;&nbsp;
                                 <Link to={"/myPageProfile"}><strong>· 프로필로 이동</strong></Link>
                             </div>
                         </h5>
                     </div>
-                )
-            })}
-
+                {/*)*/}
+            {/*})}*/}
 
             <div className={"row"}>
 

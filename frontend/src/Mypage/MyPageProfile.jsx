@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {Auth} from "../Auth/Auth";
+import {CheckToken} from "../Auth/CheckToken";
 
 function MyPageProfile() {
     const [img, setImg] = useState("https://cdn-icons-png.flaticon.com/512/3177/3177440.png")
@@ -35,10 +36,10 @@ function MyPageProfile() {
             .catch((err)=>{
                 console.log(err)
             })
-    },[])
+    },[userId])
 
-    console.log('가져온 이미지 데이터 확인')
-    console.log(dbImage);
+    // console.log('가져온 이미지 데이터 확인')
+    // console.log(dbImage);
 
 
 
@@ -50,8 +51,8 @@ function MyPageProfile() {
         setSelectImage(URL.createObjectURL(event.target.files[0]));
         setProfileImg(event.target.files[0]);
     }
-    console.log("serverHostIdImage");
-    console.log(profileImg);
+    // console.log("serverHostIdImage");
+    // console.log(profileImg);
 
     const navigate = useNavigate();
     const onSubmit = (event) => {
@@ -83,28 +84,33 @@ function MyPageProfile() {
         const dayPlusRandom = dayday + random;
         // 이미지 이름=> 날짜6자리 + 랜덤 숫자 11자리
         const imgName = dayPlusRandom.split(',').join("");
-        console.log(imgName);
+        // console.log(imgName);
 
 
         // 업로드 처리
-        console.log("업로드 처리");
+        // console.log("업로드 처리");
         const storageRef = storage.ref("BearBnB/profile/"); //어떤 폴더 아래에 넣을지 설정
         const imagesRef = storageRef.child(imgName + profileImg.name); //파일명
 
-        console.log("파일을 업로드하는 행위");
+        // console.log("파일을 업로드하는 행위");
         const upLoadTask = imagesRef.put(profileImg);
+
+
+        const auth = Auth();
+        console.log("auth.userId: " + auth.userId);
+        const userId = auth.userId;
 
         upLoadTask.on(
             "state_changed",
             (snapshot) => {
-                console.log("snapshot", snapshot);
+                // console.log("snapshot", snapshot);
             },
             (error) => {
-                console.log("err", error);
+                // console.log("err", error);
             },
             () => {
                 upLoadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                        console.log("File available at", downloadURL);
+                        // console.log("File available at", downloadURL);
                         setFirebaseUrl(downloadURL);
                         // console.log('업로드 성공');
                         // console.log('url 데이터 이동성공');
@@ -114,7 +120,7 @@ function MyPageProfile() {
                         axios.post('http://localhost:8080/insertProfile', null,
                             {
                                 params: {
-                                    userId: "newJeansHanniS2@gmail.com",
+                                    userId: "dbfl1443@naver.com",
                                     profileImg: downloadURL,
                                 }
                             })
@@ -136,7 +142,7 @@ function MyPageProfile() {
                             })
                             .catch((error) => {
                                 console.log("사진 업로드 후 통신 에러")
-                                console.log(error)
+                                // console.log(error)
                             })
                     }
                 )
