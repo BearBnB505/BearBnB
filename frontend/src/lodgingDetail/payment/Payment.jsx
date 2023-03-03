@@ -83,6 +83,10 @@ function Payment(props) {
     let childCount = selectGuest[1];
     let petCount = selectGuest[2];
 
+    const lodgingNum = props.lodgingNum;
+    const lodgingName = props.lodgingName;
+
+
 
     return (
         <div id={'aside'}>
@@ -145,7 +149,7 @@ function Payment(props) {
 
                     {isLoad ?
                         <>
-                    <Link to={"/lodgingPayment"} state={{chooseDate: chooseDate, dayCost: props.cost, nightCount: nightCount, totalCost: total, selectGuest: selectGuest }}>
+                    <Link to={"/lodgingPayment"} state={{chooseDate: chooseDate, dayCost: props.cost, nightCount: nightCount, totalCost: total, selectGuest: selectGuest, lodgingNum :lodgingNum, lodgingName : props.lodgingName  }}>
                         <Button className={'w-100 py-2 mb-2'} variant="primary">예약하기</Button>
                     </Link>
 

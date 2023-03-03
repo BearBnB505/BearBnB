@@ -73,6 +73,8 @@ function LodgingDetail(props) {
             })
     }, []);
 
+    const lodgingName = lodging.lodgingName;
+
     //이미지 url 테스트
     // const imageList = image;
     // console.log('이미지 url 추출')
@@ -120,7 +122,7 @@ function LodgingDetail(props) {
 
                         <div className={'col ms-4 me-5 mt-5'} style={{zIndex:2}}>
                             {/*<Payment cost={lodging.cost} chooseDate={chooseDate} nightCount={nightCount}/>*/}
-                            <Payment cost={lodging.cost} lodgingName={lodging.lodgingName} lodgingNum={lodging.lodgingNum}/>
+                            <Payment cost={lodging.cost} lodgingName={lodgingName} lodgingNum={lodging.lodgingNum}/>
                         </div>
                     </div>
 

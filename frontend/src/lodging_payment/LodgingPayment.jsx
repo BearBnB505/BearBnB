@@ -43,6 +43,8 @@ function LodgingPayment(props) {
 
     const lodgingNum = location.state.lodgingNum;
     const lodgingName = location.state.lodgingName;
+    // console.log('결제 숙소명')
+    // console.log(lodgingName)
 
     const [chooseDate, setChooseDate] = useState(location.state.chooseDate);
     // const chooseDate = location.state.chooseDate;
@@ -126,17 +128,14 @@ function LodgingPayment(props) {
         setTotalCost((parseInt(dayCost) * nightCount));
     }, [nightCount]);
 
-    // console.log('test')
-    // console.log(totalCost)
-    // console.log(lodgingNum)
 
-    //console.log('시작일')
-    //console.log(startDt);
-   // console.log('마지막 일')
-    //console.log(endDt);
+    const auth = Auth();
+    const userId = auth.userId;
+
 
     return (
         <div className={'container mx-auto'}>
+
                             <div className={'row align-items-start mt-3'}>
                                 <div className={'col-1'} style={{display: "block", marginTop: 15, cursor: "pointer"}} onClick={()=>{navigate(-1)}}>
                                     {/*누르면 상세페이지로 이동*/}
@@ -207,6 +206,7 @@ function LodgingPayment(props) {
                                 {childCount !== 0 ? ", 유아 " + childCount + "명" : ""}
                                 {petCount !== 0 ? ", 반려동물 " + petCount + "마리" : ""}
                             </p>
+
                         </div>
                         <div className={'col-2'}>
                             <p style={{
@@ -289,8 +289,9 @@ function LodgingPayment(props) {
                                                     {state:{lodgingNum:lodgingNum, lodgingName:lodgingName,startDate:startDate,endDate:endDate,
                                                             adultNum: adultCount, babyNum: childCount,petNum: petCount,dayCost:dayCost, nightCount:nightCount,totalCost:totalCost}})
                                             }
-                                            const auth = Auth();
-                                            const userId = auth.userId;
+                                            // const auth = Auth();
+                                            // const userId = auth.userId;
+
 
                                             axios.post("http://localhost:8080/paymentInsert", null,
                                                 {

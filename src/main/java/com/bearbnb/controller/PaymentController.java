@@ -35,17 +35,6 @@ public class PaymentController {
             @RequestParam("adultNum") int adultNum,
             @RequestParam("babyNum") int babyNum,
             @RequestParam("petNum") int petNum) throws Exception {
-//        System.out.println(userId);
-//        System.out.println(lodgingNum);
-//        System.out.println(bookNum);
-//        System.out.println(payType);
-//        System.out.println(payCost);
-//        System.out.println(bookState);
-//        System.out.println(bookCheckInDt);
-//        System.out.println(bookCheckOutDt);
-//        System.out.println(adultNum);
-//        System.out.println(babyNum);
-//        System.out.println(petNum);
 
         paymentService.paymentInsert(userId,lodgingNum,bookNum,payType,payCost,bookState,bookCheckInDt,bookCheckOutDt,adultNum,babyNum,petNum);
 

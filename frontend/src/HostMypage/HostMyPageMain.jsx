@@ -29,8 +29,8 @@ function HostMyPageMain(props) {
         setName(data[0].name)
       })
       .catch((err) => {
-        console.log("통신 오류");
-        console.log(err);
+        // console.log("통신 오류");
+        // console.log(err);
       })
   }, []);
 

@@ -61,6 +61,7 @@ function Mypage(props) {
                     initial="hidden"
                     animate="visible"
                     exit="exit" className={"container mt-5"}>
+
                     <div className={"row p-2 mb-5"}>
                         <h2 className={"fw-bold"}>마이페이지</h2>
                         <h5>
@@ -68,7 +69,7 @@ function Mypage(props) {
 
                                 <strong>{data[0].name}&nbsp;&nbsp;</strong>
                                 {userId}&nbsp;&nbsp;
-                                <strong>· 프로필로 이동</strong>
+                                <Link to={"/myPageProfile"}><strong>· 프로필로 이동</strong></Link>
                             </div>
 
                         </h5>
