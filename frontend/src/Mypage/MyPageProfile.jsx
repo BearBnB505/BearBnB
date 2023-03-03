@@ -28,8 +28,8 @@ function MyPageProfile() {
             params:{userId : userId}
         })
             .then((req)=>{
-                console.log(req)
-                console.log("프로필 가져오기 성공")
+                // console.log(req)
+                // console.log("프로필 가져오기 성공")
                 setDbImage(req);
             })
             .catch((err)=>{
@@ -37,8 +37,8 @@ function MyPageProfile() {
             })
     },[userId])
 
-    console.log('가져온 이미지 데이터 확인')
-    console.log(dbImage);
+    // console.log('가져온 이미지 데이터 확인')
+    // console.log(dbImage);
 
 
 
@@ -83,7 +83,7 @@ function MyPageProfile() {
         const dayPlusRandom = dayday + random;
         // 이미지 이름=> 날짜6자리 + 랜덤 숫자 11자리
         const imgName = dayPlusRandom.split(',').join("");
-        console.log(imgName);
+        // console.log(imgName);
 
 
         // 업로드 처리
@@ -104,11 +104,11 @@ function MyPageProfile() {
             },
             () => {
                 upLoadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                        console.log("File available at", downloadURL);
+                        // console.log("File available at", downloadURL);
                         setFirebaseUrl(downloadURL);
-                        console.log('업로드 성공');
-                        console.log('url 데이터 이동성공');
-                        console.log(firebaseUrl);
+                        // console.log('업로드 성공');
+                        // console.log('url 데이터 이동성공');
+                        // console.log(firebaseUrl);
 
                         //    axios 통신
                         axios.post('http://localhost:8080/insertProfile', null,
@@ -129,13 +129,13 @@ function MyPageProfile() {
                                     timer: 1500
                                 }).then(() => {
                                     // setShow(false);
-                                    console.log('프로필 통신 성공')
+                                    // console.log('프로필 통신 성공')
                                 })
                                 navigate(-1);
 
                             })
                             .catch((error) => {
-                                console.log("사진 업로드 후 통신 에러")
+                                // console.log("사진 업로드 후 통신 에러")
                                 console.log(error)
                             })
                     }
@@ -160,7 +160,7 @@ function MyPageProfile() {
                     <div style={{textAlign: 'center'}}>
                         <img
                             src={profileImg.length < 1 ? dbImage.data : selectImage}
-                            style={{borderRadius: "70%", width: "300px", marginTop: "90px"}}/>
+                            style={{borderRadius: "70%", width: "300px", height:"300px",marginTop: "90px"}}/>
                     </div>
                     <div style={{textAlign: 'center', marginTop: "30px"}}>
                         <button className={'btn btn-outline-primary'} onClick={onClickImageUpload}>프로필 선택</button>
