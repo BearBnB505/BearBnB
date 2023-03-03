@@ -30,11 +30,11 @@ function MainContents(props) {
                     setIsLoaded(true);
 
                 } catch (err) {
-                    console.log("통신 오류");
+                    // console.log("통신 오류");
                 }
             })
             .catch((err) => {
-                console.log("통신 오류");
+                // console.log("통신 오류");
             })
     }, [props.category])
 

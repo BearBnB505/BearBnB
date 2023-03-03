@@ -43,7 +43,7 @@ function Main(props) {
                 setCheck("done");
             })
             .catch((err) => {
-                console.log("통신 오류");
+                // console.log("통신 오류");
             })
     }, [category]);
 
