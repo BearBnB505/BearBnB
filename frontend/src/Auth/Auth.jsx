@@ -21,6 +21,7 @@ export function Auth() {
                 const {data} = req;
                 // console.log(data.userId);
                 setUserId(data.userId);
+                sessionStorage.setItem('check', 'done');
             })
             .catch((err) => {
                 console.log("통신 오류");

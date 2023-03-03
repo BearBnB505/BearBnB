@@ -61,9 +61,9 @@ public class MemberController {
         // return ResponseEntity.ok(memberService.getMyInfoBySecurity());
     }
 
-    @RequestMapping(value = "/Members")
-    public List<MembersDto> MemberList(MembersDto members) {
-        return memberMapper.MemberList(members);
+    @RequestMapping(value = "/Members", method = RequestMethod.PUT)
+    public List<MembersDto> MemberList(@RequestParam("userId") String userId) {
+        return memberMapper.MemberList(userId);
     }
 
     @RequestMapping(value = "/UpdateMemberName", method = RequestMethod.PUT)
