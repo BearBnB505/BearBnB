@@ -25,12 +25,11 @@ function Mypage(props) {
 
     const getUserData = () => {
         setTimeout(() => {
-            axios.put('http://localhost:8080/Members', null, {params: {userId: userId}})
+            axios.put('http://localhost:8080/getMemberData', null, {params: {userId: userId}})
                 .then((req) => {
                     const {data} = req;
                     setData(data);
                     // console.log(data);
-                    // setIsLoaded(true);
                     sessionStorage.setItem('check', 'pause');
                 })
                 .catch((err) => {

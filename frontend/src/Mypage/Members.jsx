@@ -10,16 +10,17 @@ import { motion } from "framer-motion";
 import Anima from "./animaData";
 import axios from "axios";
 import {useLocation} from "react-router";
+import {Auth} from "../Auth/Auth";
 
 
 function Members(props) {
 
     // const location = useLocation();
     //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
-    const userId = location.state.userId;
+    // const userId = location.state.userId;
     // console.log('userId: '+ userId);
 
-
+    const { userId } = Auth();
 
 
     const [idx, setIdx] = useState('');
@@ -36,7 +37,7 @@ function Members(props) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/Members', {params:{userId: userId}})
+        axios.get('http://localhost:8080/getMemberData', {params:{userId: userId}})
 
           .then((req) => {
               const {data} = req;
@@ -44,7 +45,7 @@ function Members(props) {
               setEmail(data[0].userId)
               setIdx(data[0].idx)
               setTel(data[0].tel)
-              setPwd(data[0].pwd)
+              // setPwd(data[0].pwd)
           })
           .catch((err) => {
               console.log("통신 오류");

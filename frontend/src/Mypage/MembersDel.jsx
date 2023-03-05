@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import {useLocation} from "react-router";
+import {Auth} from "../Auth/Auth";
 
 
 function MembersDel() {
@@ -15,8 +16,8 @@ function MembersDel() {
 
     // const location = useLocation();
     //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
-    const userId = location.state.userId;
-
+    // const userId = location.state.userId;
+    const {userId} = Auth();
 
     const onChangePwd = (e) => {
         setPwd(e.target.value);
@@ -30,7 +31,7 @@ function MembersDel() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/Members', {params:{userId:userId}})
+        axios.get('http://localhost:8080/getMemberData', {params:{userId:userId}})
           .then((req) => {
               const {data} = req;
               setData(data);

@@ -9,19 +9,21 @@ import Anima from "../Mypage/animaData.jsx";
 import {motion} from "framer-motion";
 import {useLocation} from "react-router";
 import axios from "axios";
+import {Auth} from "../Auth/Auth";
 
 
 function HostMyPageMain(props) {
   // const location = useLocation();
     //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
-  const userId = location.state.userId;
+  // const userId = location.state.userId;
   // console.log('userId: '+ userId);
+    const {userId} = Auth();
 
   const [data, setData] = useState([]);
   const [name, setName] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/Members',{params: {userId: userId}})
+    axios.get('http://localhost:8080/getMemberData',{params: {userId: userId}})
       .then((req) => {
         const {data} = req;
         // console.log(data);

@@ -12,7 +12,7 @@
 
 
 <!--멤버 리스트-->
-    <select id="MemberList" resultType="com.bearbnb.dto.MembersDto">
+    <select id="getMemberData" resultType="com.bearbnb.dto.MembersDto">
         <![CDATA[
         SELECT user_id, tel, gender, name, nation, profile_img, birth_dt, join_dt, authority
         FROM members
