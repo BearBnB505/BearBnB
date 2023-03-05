@@ -5,8 +5,6 @@ import com.bearbnb.dto.LodgingDto;
 import com.bearbnb.mapper.LodgingMapper;
 import com.bearbnb.mapper.ComfortMapper;
 import com.bearbnb.service.HostUpdateService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +18,7 @@ public class lodgingUpdateController {
 
 
     @Autowired
-    LodgingMapper CallLodgingMapper;
+    LodgingMapper lodgingMapper;
     @Autowired
     ComfortMapper comfortMapper;
     @Autowired
@@ -30,47 +28,13 @@ public class lodgingUpdateController {
 
     @RequestMapping(value = "CallLodgingList",method = RequestMethod.PUT)
     public List<LodgingDto> CallLodgingList(LodgingDto lodging) {
-        return CallLodgingMapper.CallLodgingList(lodging);
+        return lodgingMapper.CallLodgingList(lodging);
     }
 
     @RequestMapping(value = "/AllLodgingList")
     public List<LodgingDto> AllLodgingList(LodgingDto lodging) {
-        return CallLodgingMapper.AllLodgingList(lodging);
+        return lodgingMapper.AllLodgingList(lodging);
     }
-
-
-    //페이지 헬퍼 쓴 페이지네이션
-//    @RequestMapping(value = "/AllLodgingList")
-//    public List<LodgingDto> AllLodgingList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
-//                                           @RequestParam(value = "pageSize", defaultValue = "3") int pageSize) {
-//        PageHelper.startPage(pageNum, pageSize);
-//        List<LodgingDto> lodgingList = CallLodgingMapper.AllLodgingList();
-//        PageInfo<LodgingDto> pageInfo = new PageInfo<>(lodgingList);
-//
-//        return lodgingList;
-//    }
-
-
-
-
-
-
-
-
-
-
-//페이지네이션 발버둥
-//    @RequestMapping(value = "/AllLodgingList")
-//    public List<LodgingDto> AllLodgingList(@RequestParam(required = false, defaultValue = "1") int pageNum) {
-//        PageInfo<LodgingDto> pageList = new PageInfo<>(hostUpdateService.selectPageList(pageNum),5);
-//        return CallLodgingMapper.AllLodgingList("pageList",pageList);
-//    }
-
-
-//    @RequestMapping(value = "CallLodgingList")
-//    public List<LodgingDto> CallLodgingList() {
-//        return CallLodgingMapper.CallLodgingList();
-//    }
 
     @RequestMapping(value = "/comfortList" ,method = RequestMethod.PUT)
     public List<ComfortsDto> comfortList(LodgingDto lodging) {
@@ -114,12 +78,9 @@ public class lodgingUpdateController {
     }
 
 
-
-
     @RequestMapping(value = "/UpdateComfortsList", method = RequestMethod.PUT)
     public List<ComfortsDto> UpdateComfortsList(@RequestBody List<ComfortsDto> ComfortBox ){
 
-//        System.out.println(ComfortBox);
         hostUpdateService.UpdateComfortsList(ComfortBox);
 
         return ComfortBox;

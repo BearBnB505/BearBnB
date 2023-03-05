@@ -12,13 +12,6 @@
         ]]>
     </select>
 
-    <select id="CallLodgingMapper" resultType="com.bearbnb.dto.LodgingDto">
-        <![CDATA[
-        SELECT *
-        FROM lodging
-        ]]>
-    </select>
-
     <!--  헤더에서 숙소 검색  -->
     <select id="searchLodgingList" resultType="com.bearbnb.dto.LodgingDto">
         <![CDATA[
