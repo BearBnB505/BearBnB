@@ -20,9 +20,6 @@ import java.util.List;
 @RestController
 public class HostUpdateController {
 
-
-    @Autowired
-    LodgingMapper CallLodgingMapper;
     @Autowired
     ComfortMapper comfortMapper;
     @Autowired

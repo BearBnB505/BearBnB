@@ -6,11 +6,11 @@ import MyLanguages from "./HostMembers/MyLanguages";
 import MyIntoduce from "./HostMembers/MyIntoduce";
 import axios from "axios";
 import {useLocation} from "react-router";
+import {Auth} from "../Auth/Auth";
 
 function HostMyPageHostInfo(props) {
-    const location = useLocation();
-    //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
-    const userId = location.state.userId;
+
+    const { userId } = Auth();
 
     const [onClickLanguage, setOnClickLanguage] = useState(false);
     const [onClickIntroduce, setOnClickIntroduce] = useState(false);
