@@ -52,11 +52,11 @@ function HostImg(props) {
         <>
             <div className={'containerGrid'}>
                 {/*화면 출력 확인*/}
-                <img src={imageList[0].photo} className={'img1'} alt={'image'}/>
-                <img src={imageList[1].photo} className={'img2'}/>
-                <img src={imageList[2].photo} className={'img3'}/>
-                <img src={imageList[3].photo} className={'img4'}/>
-                <img src={imageList[4].photo} className={'img5'}/>
+                {/*<img src={imageList[0].photo} className={'img1'} alt={'image'}/>*/}
+                {/*<img src={imageList[1].photo} className={'img2'}/>*/}
+                {/*<img src={imageList[2].photo} className={'img3'}/>*/}
+                {/*<img src={imageList[3].photo} className={'img4'}/>*/}
+                {/*<img src={imageList[4].photo} className={'img5'}/>*/}
                 <Button className={'HouseImgBtn'} variant="dark"
                         onClick={() => setModal(true)}>
                     사진 모두보기</Button>

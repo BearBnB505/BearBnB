@@ -6,7 +6,7 @@ import {
     faCamera, faUser, faHeart, faCalendarCheck,
     faCalendarMinus, faUserCog, faList, faRightFromBracket
 } from "@fortawesome/free-solid-svg-icons";
-import {Link, Outlet} from "react-router-dom";
+import {Link, Outlet, useNavigate} from "react-router-dom";
 import Anima from "./animaData";
 import {motion} from "framer-motion";
 import axios from "axios";
@@ -36,7 +36,7 @@ function Mypage(props) {
                     console.log("통신 오류");
                     console.log(err);
                 })
-        }, 50);
+        }, 200);
     }
 
     useEffect(() => {
@@ -50,9 +50,33 @@ function Mypage(props) {
     useEffect(()=>{
         const timer = setTimeout(() => {
             setIsLoaded(true);
-        },350);
+        },1000);
         return () => clearTimeout(timer);
     }, []);
+
+    // 숙소등록을 한 적이 없다면 등록페이지로 이동하기
+    const navigate = useNavigate();
+    const onClickHostMyPage = () => {
+        axios.get("http://localhost:8080/checkAuthority",{
+            params :{
+                userId : userId,
+            }
+        })
+            .then((req)=>{
+                const {data} = req;
+                setData(data);
+
+                if(data ==='ROLE_USER'){
+                    navigate("/reg/lodgingHostId")
+                } else if(data ==='ROLE_HOST'){
+                    navigate("/hostMyPageMain")
+                }
+            })
+            .catch((err)=>{
+                console.log(err);
+                console.log('에러발생')
+            })
+    }
 
 
     return isLoaded ? (
@@ -74,7 +98,7 @@ function Mypage(props) {
                         </h5>
                     </div>
 
-            <div className={"row"}>
+            <Link className={"row"}>
                 <Link to={`/members`}   className="col-sm-6 col-md-6 col-lg-4">
                     <Card id={"1"} icon={faUser} title={"본인정보 수정"} content={"성별, 이메일, 전화번호를 수정합니다"}/>
                 </Link>
@@ -95,9 +119,9 @@ function Mypage(props) {
                     <Card id={"5"} icon={faCalendarMinus} title={"예약취소 확인"} content={"내가 예약 취소한 내역을 확인합니다"}/>
                 </Link>
 
-                <Link to={`/hostMyPageMain`}   className="col-sm-6 col-md-6 col-lg-4">
-                    <Card id={"6"} icon={faUserCog} title={"호스트"} content={"숙소 관리, 예약, 매출, 대금 신청"}/>
-                </Link>
+                <div className="col-sm-6 col-md-6 col-lg-4" onClick={onClickHostMyPage}>
+                    <Card id={"6"} icon={faUserCog} title={"호스트"} content={"숙소 관리, 예약, 매출, 대금 신청"} />
+                </div>
 
                 <Link to={`/complain`}   className="col-sm-6 col-md-6 col-lg-4">
                     <Card id={"7"} icon={faList} title={"신고 내역 확인"} content={"내가 신고한 내역을 확인합니다"}/>
@@ -106,7 +130,7 @@ function Mypage(props) {
                 <Link to={`/membersDel`}   className="col-sm-6 col-md-6 col-lg-4">
                     <Card id={"8"} icon={faRightFromBracket} title={"회원 탈퇴"} content={"비밀번호 확인후 회원을 탈퇴합니다"}/>
                 </Link>
-            </div>
+            </Link>
             <Outlet/>
         </motion.div>
     ) : <></>
