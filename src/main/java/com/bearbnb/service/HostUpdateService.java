@@ -20,7 +20,7 @@ public interface HostUpdateService {
 
     void UpdateCapacity(LodgingDto lodging);
 
-    void UpdateLanguage(LodgingDto lodging);
+    void UpdateLanguage(String userId, String language);
 
     void UpdateIntroHost(LodgingDto lodging);
 

@@ -36,7 +36,7 @@ function Mypage(props) {
                     console.log("통신 오류");
                     console.log(err);
                 })
-        }, 200);
+        }, 600);
     }
 
     useEffect(() => {
@@ -50,7 +50,7 @@ function Mypage(props) {
     useEffect(()=>{
         const timer = setTimeout(() => {
             setIsLoaded(true);
-        },1000);
+        },3000);
         return () => clearTimeout(timer);
     }, []);
 
@@ -90,7 +90,7 @@ function Mypage(props) {
                         <h5>
                             <div className={'MyFrame'}>
 
-                                <strong>{data[0].name}&nbsp;&nbsp;</strong>
+                                {/*<strong>{data[0].name}&nbsp;&nbsp;</strong>*/}
                                 {userId}&nbsp;&nbsp;
                                 <Link to={"/myPageProfile"}><strong>· 프로필로 이동</strong></Link>
                             </div>

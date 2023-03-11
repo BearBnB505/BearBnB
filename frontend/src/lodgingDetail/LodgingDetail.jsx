@@ -45,6 +45,7 @@ function LodgingDetail(props) {
     let endDate = moment(chooseDate[1]).format('Y년 M월 D일');
 
 
+    
 
     const location = useLocation();
     const lat = parseFloat(location.state.lat);
@@ -122,7 +123,7 @@ function LodgingDetail(props) {
 
                         <div className={'col ms-4 me-5 mt-5'} style={{zIndex:2}}>
                             {/*<Payment cost={lodging.cost} chooseDate={chooseDate} nightCount={nightCount}/>*/}
-                            <Payment cost={lodging.cost} lodgingName={lodgingName} lodgingNum={lodging.lodgingNum}/>
+                            <Payment cost={lodging.cost} lodgingName={lodgingName} lodgingNum={lodging.lodgingNum} userId={lodging.userId} />
                         </div>
                     </div>
 

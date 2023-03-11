@@ -33,11 +33,6 @@ public class HostUpdateController {
     @Autowired
     private ReviewService reviewService;
 
-//    @RequestMapping(value = "/bookingList")
-//    public List<BookingDto> bookingList(@RequestParam("bookState") String bookState) {
-//        return bookingMapper.bookingList(bookState);
-//    }
-
     @RequestMapping(value = "/bookingList")
     public List<BookingDto> bookingList(BookingDto booking) {
         return bookingMapper.bookingList(booking);
@@ -47,11 +42,6 @@ public class HostUpdateController {
     public List<BookingDto> HostBookingList(BookingDto booking) {
         return bookingMapper.HostBookingList(booking);
     }
-
-//    @RequestMapping(value = "/ReviewList")
-//    public List<ReviewDto> ReviewList(ReviewDto review) {
-//        return reviewMapper.ReviewList(review);
-//    }
 
     @RequestMapping(value = "/ReviewList")
     public List<ReviewDto> ReviewList(ReviewDto review) {
@@ -63,21 +53,17 @@ public class HostUpdateController {
         return reviewMapper.ReviewListContent();
     }
 
-
-
-
     @RequestMapping(value = "/UpdateLanguage", method = RequestMethod.PUT)
-    public String UpdateLanguage(LodgingDto lodging) throws Exception {
-        hostUpdateService.UpdateLanguage(lodging);
-
-        return "redirect:/UpdateLodgingList";
+    public String UpdateLanguage(@RequestParam String language, @RequestParam String userId) throws Exception {
+        hostUpdateService.UpdateLanguage(language,userId);
+        return null;
     }
 
     @RequestMapping(value = "/UpdateIntroHost", method = RequestMethod.PUT)
     public String UpdateIntroHost(LodgingDto lodging) throws Exception {
         hostUpdateService.UpdateIntroHost(lodging);
 
-        return "redirect:/UpdateLodgingList";
+        return null;
     }
 
     @RequestMapping(value = "/UpdateAgreeState", method = RequestMethod.PUT)

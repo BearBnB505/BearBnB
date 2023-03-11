@@ -31,8 +31,8 @@ public class HostUpdateServiceImpl implements HostUpdateService{
     }
 
     @Override
-    public void UpdateLanguage(LodgingDto lodging) {
-        lodgingMapper.LanguageUpdate(lodging);
+    public void UpdateLanguage(String userId, String language) {
+        lodgingMapper.LanguageUpdate( userId, language);
     }
 
     @Override

@@ -9,16 +9,10 @@ import MyPwd from "./Members/MyPwd";
 import { motion } from "framer-motion";
 import Anima from "./animaData";
 import axios from "axios";
-import {useLocation} from "react-router";
 import {Auth} from "../Auth/Auth";
 
 
 function Members(props) {
-
-    // const location = useLocation();
-    //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
-    // const userId = location.state.userId;
-    // console.log('userId: '+ userId);
 
     const { userId } = Auth();
 
