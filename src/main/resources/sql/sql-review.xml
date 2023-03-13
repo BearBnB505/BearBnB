@@ -47,8 +47,8 @@
         FROM review re
                  JOIN lodging lod
                       ON re.lodging_num = lod.lodging_num
-        WHERE re.deleted_yn = 'N'and re.user_id = 'tester2'
-        ORDER BY re.review_create_dt desc
+        WHERE re.deleted_yn = 'N'and re.idx=#{idx}
+--         ORDER BY re.review_create_dt desc
         ]]>
     </select>
 

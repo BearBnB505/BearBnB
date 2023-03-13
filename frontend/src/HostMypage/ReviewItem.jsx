@@ -5,7 +5,7 @@ import HostModalReview from "./HostModalReview";
 import {Link} from "react-router-dom";
 
 
-function ReviewItem({user_id, comment, review_create_dt}) {
+function ReviewItem({user_id, comment, review_create_dt,idx}) {
 
   // 리뷰 모달창 온 오프
   const [modalOpen, setModalOpen] = useState(false);
@@ -29,7 +29,7 @@ function ReviewItem({user_id, comment, review_create_dt}) {
           <small className={"text-secondary"}>{review_create_dt}</small>
         </div>
         {/*<a href="/Review"></a>*/}
-        <Link to={`/ReviewContent`} className={'text'}>
+        <Link to={`/ReviewContent`} className={'text'} state={{idx : idx}}>
           {comment}
         </Link>
       </li>
@@ -38,40 +38,6 @@ function ReviewItem({user_id, comment, review_create_dt}) {
 }
 
 export default ReviewItem;
-
-  // //
-  // function ReviewItem({user_id, comment, review_create_dt}) {
-  //
-  //   // 리뷰 모달창 온 오프
-  //   const [modalOpen, setModalOpen] = useState(false);
-  //
-  //   // 모달창 노출
-  //   const showModal = (flag, event) => {
-  //     console.log(event.target);
-  //     console.log("부모컴포넌트 ul : " + flag);
-  //     setModalOpen(flag);
-  //   };
-  //
-  //
-  //   return (
-  //     <ul className={"list-group mb-4"} style={styles.ul} onClick={(event) => showModal(true, event)}>
-  //       {/*<ul className={"list-group mb-4"} style={styles.ul} >*/}
-  //       <li className={"list-group-item p-4"} style={styles.li}>
-  //         <div>
-  //           <span className={"fs-5 fw-bold me-1"}>{user_id}</span>
-  //           <span className="me-2">
-  //           <FontAwesomeIcon icon={faStar} size="1x"/> 4.97/5
-  //         </span>
-  //           <small className={"text-secondary"}>{review_create_dt}</small>
-  //         </div>
-  //         <div className={'text'}>{comment}</div>
-  //       </li>
-  //       {modalOpen && <HostModalReview modalOpen={modalOpen} setModalOpen={setModalOpen}/>}
-  //       {modalOpen}
-  //     </ul>);
-  // }
-  //
-  // export default ReviewItem;
 
 
 

@@ -15,7 +15,7 @@ public interface ReviewMapper {
 
     void ReviewDelete(ReviewDto review);
 
-    List<ReviewDto> ReviewListContent();
+    void ReviewListContent(int idx);
 
     void writeReview(ReviewDto review);
 

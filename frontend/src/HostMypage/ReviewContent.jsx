@@ -4,13 +4,17 @@ import {faStar} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import MainContents from "../Main/MainContents";
-
+import {useLocation} from "react-router";
+// 리뷰 상세보기 페이지
 function ReviewContent() {
 
   const [data, setData] = useState([]);
+   const location = useLocation();
+   const idx = location.state;
+   console.log(idx);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/ReviewListContent/')
+    axios.get('http://localhost:8080/reviewListContent/',{params:{idx:idx}})
       .then((req) => {
         const {data} = req;
         setData(data);

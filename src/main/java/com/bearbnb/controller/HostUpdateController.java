@@ -33,6 +33,9 @@ public class HostUpdateController {
     @Autowired
     private ReviewService reviewService;
 
+    @Autowired
+    LodgingMapper lodgingMapper;
+
     @RequestMapping(value = "/bookingList")
     public List<BookingDto> bookingList(BookingDto booking) {
         return bookingMapper.bookingList(booking);
@@ -48,15 +51,14 @@ public class HostUpdateController {
         return reviewService.ReviewList(review);
     }
 
-    @RequestMapping(value = "/ReviewListContent")
-    public List<ReviewDto> ReviewListContent() {
-        return reviewMapper.ReviewListContent();
+    @RequestMapping(value = "/reviewListContent", method = RequestMethod.GET)
+    public void reviewListContent(@RequestParam("idx") int idx) {
+        reviewMapper.ReviewListContent(idx);
     }
 
-    @RequestMapping(value = "/UpdateLanguage", method = RequestMethod.PUT)
-    public String UpdateLanguage(@RequestParam String language, @RequestParam String userId) throws Exception {
-        hostUpdateService.UpdateLanguage(language,userId);
-        return null;
+    @RequestMapping(value = "/updateLanguage", method = RequestMethod.PUT)
+    public void UpdateLanguage(LodgingDto lodging) throws Exception {
+        hostUpdateService.updateLanguage(lodging);
     }
 
     @RequestMapping(value = "/UpdateIntroHost", method = RequestMethod.PUT)

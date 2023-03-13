@@ -30,9 +30,14 @@ public class HostUpdateServiceImpl implements HostUpdateService{
         lodgingMapper.hostLodgingUpdate(lodging);
     }
 
+//    호스트 언어수정
     @Override
-    public void UpdateLanguage(String userId, String language) {
-        lodgingMapper.LanguageUpdate( userId, language);
+    public void updateLanguage(LodgingDto lodging)  throws Exception{
+        try{
+        lodgingMapper.updateLanguage(lodging);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -28,10 +28,12 @@ function HostMyPageLodging() {
 
     const [data, setData] = useState('');
     const navigate = useNavigate();
+
+
+    // 숙소등록 버튼 누르면 가는 루트. 숙소 등록한 적이 없다면 신분증 업로드 페이지로 이동된다.
     const onClickRegLodging = () => {
         axios.get("http://localhost:8080/checkAuthority",{
             params :{
-                // userId : "gione@naver.com",
                 userId : userId,
             }
         })
@@ -107,6 +109,7 @@ export default HostMyPageLodging;
 
 function ComplainList(props) {
 
+
     // 숙소 DB 가져와서 리스트 형식으로 담길 배열
     const [data, setData] = useState([]);
     // 페이지당 게시물 수
@@ -117,33 +120,47 @@ function ComplainList(props) {
     const offset = (page - 1) * limit;
 
     // 유저정보 호출
-    const location = useLocation();
-    const userId = location.state.userId;
+    const auth = Auth();
+    const userId = auth.userId;
+    const [isLoaded, setIsLoaded] = useState(false);
+    const check = sessionStorage.getItem('check');
 
+    // 유저 아이디에 맞게 유저의 데이터를 가져오는 통신
+    const getHostLodgingInfo = () => {
+        setTimeout(()=>{
+            axios.get('http://localhost:8080/AllLodgingList/', {params:{userId:userId}})
+                .then((req) => {
+                    const {data} = req;
+                    const length = data.length
+                    Number(length)
+                    setData(data);
+                    props.setLengthInfo(length)
+                    props.setLimitInfo(limit)
+                    props.setOffsetInfo(offset)
+                    setPage(props.pageInfo)
+                })
+                .catch((err) => {
+                    console.log("통신 오류");
+                    console.log(err)
+                })
+        },300)
+    }
 
-    useEffect(() => {
-        axios.get('http://localhost:8080/AllLodgingList/', {params:{userId:userId}})
-            .then((req) => {
-                const {data} = req;
-                const length = data.length
-                Number(length)
-                //console.log(length);
+    useEffect(()=>{
+        if(check == 'done'){
+            getHostLodgingInfo();
+            return () => clearTimeout(getHostLodgingInfo());
+        }
+    },[check]);
 
-                // console.log(data);
-                setData(data);
-                props.setLengthInfo(length)
-                props.setLimitInfo(limit)
-                // props.setPageInfo(page)
-                props.setOffsetInfo(offset)
-                setPage(props.pageInfo)
-            })
-            .catch((err) => {
-                console.log("통신 오류");
-            })
+    useEffect(()=>{
+        const timer = setTimeout(() => {
+            setIsLoaded(true);
+        },1800);
+        return () => clearTimeout(timer);
     }, []);
 
-
-    return (
+    return isLoaded ? (
 
         data.slice(props.offsetInfo, props.offsetInfo + limit).map((item, index) => {
 
@@ -169,5 +186,5 @@ function ComplainList(props) {
                 </table>
             )
         })
-    )
+    ): <></>
 }

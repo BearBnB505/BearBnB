@@ -26,7 +26,6 @@ function HostMyPageMain(props) {
                 .then((req) => {
                     const {data} = req;
                     setData(data);
-                    // console.log(data);
                     sessionStorage.setItem('check', 'pause');
                 })
                 .catch((err) => {
@@ -51,8 +50,6 @@ function HostMyPageMain(props) {
         return () => clearTimeout(timer);
     }, []);
 
-    console.log(data);
-
     return isLoaded ? (
         <motion.div variants={Anima}
                     initial="hidden"
@@ -61,7 +58,7 @@ function HostMyPageMain(props) {
             <div className={"row p-2 mb-5"}>
                 <h2 className={"fw-bold"}>호스트 마이페이지</h2>
                 <h5>
-                    {/*<strong>{data[0].name}</strong>, */}
+                    {/*<strong>{data[0].name}&nbsp;</strong>*/}
                     {userId}</h5>
             </div>
             <div className={"row"}>
@@ -88,8 +85,8 @@ function HostMyPageMain(props) {
                 </Link>
 
                 <Link className={"col-sm-4"} to={"/hostMyPageRevenue"}><Card id={"5"} icon={faSackDollar}
-                                                                         title={"매출관리"}
-                                                                         content={"달 별 매출 확인과 대금 신청을 할 수 있습니다."}/></Link>
+                                                                            title={"매출관리"}
+                                                                            content={"달 별 매출 확인과 대금 신청을 할 수 있습니다."}/></Link>
             </div>
 
             <Outlet/>

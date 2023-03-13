@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Breadcrumb} from "react-bootstrap";
+import {Breadcrumb, FloatingLabel, InputGroup} from "react-bootstrap";
 import { motion } from "framer-motion";
 import Anima from "../Mypage/animaData";
 import MyLanguages from "./HostMembers/MyLanguages";
@@ -7,6 +7,8 @@ import MyIntoduce from "./HostMembers/MyIntoduce";
 import axios from "axios";
 import {useLocation} from "react-router";
 import {Auth} from "../Auth/Auth";
+import Form from "react-bootstrap/Form";
+import Swal from "sweetalert2";
 
 function HostMyPageHostInfo(props) {
 
@@ -21,6 +23,9 @@ function HostMyPageHostInfo(props) {
     const [data, setData] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const check = sessionStorage.getItem('check');
+    const onChangeLanguages = (e) => {
+        props.setLanguage(e.target.value);
+    }
     const getHostInfo = () =>{
         setTimeout(()=>{
             axios.get('http://localhost:8080/AllLodgingList/', {params:{userId: userId}})
@@ -29,7 +34,7 @@ function HostMyPageHostInfo(props) {
                     setData(data);
                     setLanguage(data[0].language)
                     setIntroHost(data[0].introHost)
-                    console.log('숙소정보데이터 가져오기')
+                    // console.log('숙소정보데이터 가져오기')
                     console.log(data);
                 })
                 .catch((err) => {
@@ -37,6 +42,17 @@ function HostMyPageHostInfo(props) {
                     console.log(err);
                 })
         },300);
+    }
+
+    const clickSave = () => {
+        axios.put('http://localhost:8080/UpdateLanguage',null,{params: {language: props.language, userId: props.userId}})
+            .then((response) => {
+                //console.log(response);
+                Swal.fire("언어 정보를 수정하였습니다","　","success")
+            })
+            .catch(function (error){
+                console.log(error);
+            });
     }
 
     useEffect(()=>{

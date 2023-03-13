@@ -13,11 +13,10 @@ const MyLanguages = (props) => {
         props.setLanguage(e.target.value);
     }
 
-
     const clickSave = () => {
-        axios.put('http://localhost:8080/UpdateLanguage',null,{params: {language: props.language, userId: props.userId}})
+        axios.put('http://localhost:8080/updateLanguage',null,{params: {language: props.language, userId: props.userId}})
             .then((response) => {
-                //console.log(response);
+                console.log(response);
                 Swal.fire("언어 정보를 수정하였습니다","　","success")
             })
             .catch(function (error){
