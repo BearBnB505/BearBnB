@@ -10,7 +10,11 @@ import com.bearbnb.mapper.ReviewMapper;
 import com.bearbnb.service.HostUpdateService;
 import com.bearbnb.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +23,8 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 public class HostUpdateController {
+
+
 
     @Autowired
     ComfortMapper comfortMapper;
@@ -51,9 +57,12 @@ public class HostUpdateController {
         return reviewService.ReviewList(review);
     }
 
-    @RequestMapping(value = "/reviewListContent", method = RequestMethod.GET)
-    public void reviewListContent(@RequestParam("idx") int idx) {
-        reviewMapper.ReviewListContent(idx);
+
+    // 후기 자세히보기
+    @RequestMapping(value = "/reviewListContent", method = RequestMethod.POST)
+    public ReviewDto reviewListContent(ReviewDto review) throws Exception {
+        System.out.println(review);
+        return hostUpdateService.reviewListContent(review);
     }
 
     @RequestMapping(value = "/updateLanguage", method = RequestMethod.PUT)
@@ -64,7 +73,6 @@ public class HostUpdateController {
     @RequestMapping(value = "/UpdateIntroHost", method = RequestMethod.PUT)
     public String UpdateIntroHost(LodgingDto lodging) throws Exception {
         hostUpdateService.UpdateIntroHost(lodging);
-
         return null;
     }
 
@@ -81,8 +89,6 @@ public class HostUpdateController {
 
         return "redirect:/UpdateLodgingList";
     }
-
-
 
 }
 

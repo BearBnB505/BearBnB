@@ -51,9 +51,7 @@ function ReviewList(props) {
             <div className={"row"}>
                 <div>
                     {data.slice(offset, offset + limit).map((item) => {
-                        return <ReviewItem idx={item.idx} user_id={item.userId}
-                                           comment={item.comment}
-                                           review_create_dt={item.reviewCreateDt}/>
+                        return <ReviewItem key={item.idx} data={item}/>
                     })
                     }
                 </div>

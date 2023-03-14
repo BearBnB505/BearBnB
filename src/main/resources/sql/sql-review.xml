@@ -41,16 +41,17 @@
         ]]>
     </select>
 
-    <select id="ReviewListContent" resultType="com.bearbnb.dto.ReviewDto">
-        <![CDATA[
-        SELECT re.*, lod.lodging_name
-        FROM review re
-                 JOIN lodging lod
-                      ON re.lodging_num = lod.lodging_num
-        WHERE re.deleted_yn = 'N'and re.idx=#{idx}
---         ORDER BY re.review_create_dt desc
-        ]]>
-    </select>
+<!--    원본-->
+<!--    <select id="ReviewListContent" resultType="com.bearbnb.dto.ReviewDto">-->
+<!--        <![CDATA[-->
+<!--        SELECT re.*, lod.lodging_name-->
+<!--        FROM review re-->
+<!--                 JOIN lodging lod-->
+<!--                      ON re.lodging_num = lod.lodging_num-->
+<!--        WHERE re.deleted_yn = 'N'and re.idx=#{idx}-->
+<!--&#45;&#45;         ORDER BY re.review_create_dt desc-->
+<!--        ]]>-->
+<!--    </select>-->
 
     <update id="ReviewUpdate" parameterType="com.bearbnb.dto.ReviewDto">
         <![CDATA[
@@ -101,4 +102,10 @@
         ]]>
     </insert>
 
+<!--    새로 만든거-->
+    <select id="reviewListContent" parameterType="com.bearbnb.dto.ReviewDto" resultType="com.bearbnb.dto.ReviewDto">
+        <![CDATA[
+        SELECT * FROM review WHERE idx = #{idx}
+        ]]>
+    </select>
 </mapper>

@@ -285,8 +285,6 @@ function LodgingPayment(props) {
                                                     {state:{lodgingNum:lodgingNum, lodgingName:lodgingName,startDate:startDate,endDate:endDate,
                                                             adultNum: adultCount, babyNum: childCount,petNum: petCount,dayCost:dayCost, nightCount:nightCount,totalCost:totalCost}})
                                             }
-                                            // const auth = Auth();
-                                            // const userId = auth.userId;
 
 
                                             axios.post("http://localhost:8080/paymentInsert", null,
