@@ -4,8 +4,8 @@
 <mapper namespace="com.bearbnb.mapper.KeepingMapper">
 
     <select id="getKeepList" resultType="com.bearbnb.dto.KeepingDto">
-        SELECT lod.idx, lod.lodging_name, keep.lodging_num,
-               lod.addr,re.clean_grade, re.accuracy_grade, re.communication_grade, re.location_grade, re.check_in_grade, re.cost_grade
+        SELECT lod.idx, lod.lodging_name, keep.lodging_num, lod.*,
+               re.clean_grade, re.accuracy_grade, re.communication_grade, re.location_grade, re.check_in_grade, re.cost_grade
         FROM keeping keep
                  JOIN lodging lod
                       ON keep.lodging_num = lod.lodging_num

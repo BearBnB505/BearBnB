@@ -143,6 +143,8 @@ function Keeping() {
                                 addr={item.addr}
                                 Avg={Avg}
                                 count={data.length}
+                                lat={item.latitude}
+                                lng={item.longitude}
                             />
                         );
                     }
