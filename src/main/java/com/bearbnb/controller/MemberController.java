@@ -58,7 +58,6 @@ public class MemberController {
 //        System.out.println(myInfoBySecurity.getNickname());
 
         return ResponseEntity.ok((myInfoBySecurity));
-        // return ResponseEntity.ok(memberService.getMyInfoBySecurity());
     }
 
     @RequestMapping(value = "/getMemberData", method = RequestMethod.PUT)
@@ -100,14 +99,14 @@ public class MemberController {
         return "redirect:/review";
     }
 
-    @RequestMapping(value = "/MemberReviewList")
-    public List<ReviewDto> MemberReviewList(MembersDto members) {
-        return reviewMapper.MemberReviewList(members);
+    @RequestMapping(value = "/getMemberReviewList", method = RequestMethod.PUT)
+    public List<ReviewDto> getMemberReviewList(@RequestParam("userId") String userId) {
+        return reviewMapper.getMemberReviewList(userId);
     }
 
-    @RequestMapping(value = "/KeepList")
-    public List<KeepingDto> KeepList(KeepingDto keeping) {
-        return keepingService.KeepList(keeping);
+    @RequestMapping(value = "/keepList", method = RequestMethod.PUT)
+    public List<KeepingDto> getKeepList(@RequestParam("userId") String userId) {
+        return keepingService.getKeepList(userId);
     }
 
     @RequestMapping(value = "/cancelList")

@@ -14,9 +14,6 @@ function MembersDel() {
 
     const [pwd, setPwd] = useState("");
 
-    // const location = useLocation();
-    //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
-    // const userId = location.state.userId;
     const {userId} = Auth();
 
     const onChangePwd = (e) => {
@@ -73,7 +70,7 @@ function MembersDel() {
         })
         if(truePwd == pwd) {
             swalWithBootstrapButtons.fire({
-                title: '회원탈회 하시겠습니까?',
+                title: '회원탈퇴 하시겠습니까?',
                 text: "탈퇴 후 취소가 불가능합니다!",
                 icon: 'warning',
                 showCancelButton: true,

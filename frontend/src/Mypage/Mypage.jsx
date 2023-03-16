@@ -25,7 +25,7 @@ function Mypage(props) {
 
     const getUserData = () => {
         setTimeout(() => {
-            axios.put('http://localhost:8080/getMemberData', null, {params: {userId: userId}})
+            axios.put('/getMemberData', null, {params: {userId: userId}})
                 .then((req) => {
                     const {data} = req;
                     setData(data);
@@ -36,7 +36,7 @@ function Mypage(props) {
                     console.log("통신 오류");
                     console.log(err);
                 })
-        }, 200);
+        }, 50);
     }
 
     useEffect(() => {
@@ -50,7 +50,7 @@ function Mypage(props) {
     useEffect(()=>{
         const timer = setTimeout(() => {
             setIsLoaded(true);
-        },1000);
+        },550);
         return () => clearTimeout(timer);
     }, []);
 
@@ -98,7 +98,7 @@ function Mypage(props) {
                         </h5>
                     </div>
 
-            <Link className={"row"}>
+            <div className={"row"}>
                 <Link to={`/members`}   className="col-sm-6 col-md-6 col-lg-4">
                     <Card id={"1"} icon={faUser} title={"본인정보 수정"} content={"성별, 이메일, 전화번호를 수정합니다"}/>
                 </Link>
@@ -130,7 +130,7 @@ function Mypage(props) {
                 <Link to={`/membersDel`}   className="col-sm-6 col-md-6 col-lg-4">
                     <Card id={"8"} icon={faRightFromBracket} title={"회원 탈퇴"} content={"비밀번호 확인후 회원을 탈퇴합니다"}/>
                 </Link>
-            </Link>
+            </div>
             <Outlet/>
         </motion.div>
     ) : <></>

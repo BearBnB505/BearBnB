@@ -7,8 +7,7 @@ import java.util.List;
 
 public interface KeepingService {
 
-    List<KeepingDto> KeepList(KeepingDto keeping);
-
+    List<KeepingDto> getKeepList(String userId);
 
     List<ReviewAvgDto> LodgingAvg(String lodgingNum);
 

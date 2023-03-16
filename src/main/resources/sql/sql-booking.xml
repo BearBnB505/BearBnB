@@ -3,17 +3,6 @@
 
 <mapper namespace="com.bearbnb.mapper.BookingMapper">
 
-<!--    <select id="bookingList" parameterType="String" resultType="com.bearbnb.dto.BookingDto">-->
-<!--        <![CDATA[-->
-<!--        select book.*, lod.lodging_name-->
-<!--        from booking book-->
-<!--                 join lodging lod-->
-<!--                      on book.lodging_num = lod.lodging_num-->
-<!--        where book.lodging_num='2301251111111113' and book_state = #{bookState}-->
-<!--        ]]>-->
-<!--    </select>-->
-
-
 
     <select id="bookingList"  resultType="com.bearbnb.dto.BookingDto">
         <![CDATA[
@@ -23,7 +12,7 @@
                  on book.lodging_num = lod.lodging_num
                  join members mem
                  on book.user_id = mem.user_id
-        where book.user_id='${userId}'
+        where book.user_id = #{userId}
         ]]>
     </select>
 
@@ -35,7 +24,7 @@
                  on book.lodging_num = lod.lodging_num
                  join members mem
                  on book.user_id = mem.user_id
-        where book.user_id='${userId}'
+        where book.user_id = #{userId}
         ]]>
     </select>
 
@@ -47,7 +36,7 @@
                 on lod.lodging_num = book.lodging_num
                 join members mem
                 on book.user_id = mem.user_id
-        where lod.user_id='${userId}'
+        where lod.user_id = #{userId}
         ]]>
     </select>
 

@@ -11,16 +11,15 @@ import ReviewPagenation from "./ReviewPagenation";
 import axios from "axios";
 import Swal from "sweetalert2";
 import {useLocation} from "react-router";
+import {Auth} from "../Auth/Auth";
 
 
 
 function Review() {
 
-  // const location = useLocation();
-  //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
-
-  const userId = location.state.userId;
-
+  const [isLoaded, setIsLoaded] = useState(false);
+  const { userId } = Auth();
+  const check = sessionStorage.getItem('check');
 
   // 리뷰 DB 가져와서 리스트 형식으로 담길 배열
   const [data, setData] = useState([]);
@@ -31,21 +30,38 @@ function Review() {
   // 첫 게시물의 위치(offset)
   const offset = (page - 1) * limit;
 
+  const getMemberReviewList = () => {
+    setTimeout(() => {
+      axios.put('/getMemberReviewList', null, {params: {userId: userId}})
+          .then((req) => {
+            const {data} = req;
+            setData(data);
+            console.log(data);
+            sessionStorage.setItem('check', 'pause');
+          })
+          .catch((err) => {
+            console.log("통신 오류");
+            console.log(err);
+          })
+    }, 50);
+  }
 
   useEffect(() => {
-    axios.get('http://localhost:8080/MemberReviewList/', {params:{userId: userId}})
-      .then((req) => {
-        const {data} = req;
-        setData(data);
-        // console.log(data);
-      })
-      .catch((err) => {
-        console.log("통신 오류");
-        console.log(err);
-      })
+    if (check == 'done') {
+      getMemberReviewList();
+      return () => clearTimeout(getMemberReviewList);
+    }
+  }, [check]);
+
+
+  useEffect(()=>{
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    },450);
+    return () => clearTimeout(timer);
   }, []);
 
-  return (
+  return isLoaded ? (
     <motion.div variants={Anima}
                 initial="hidden"
                 animate="visible"
@@ -80,7 +96,7 @@ function Review() {
 
 
     </motion.div>
-  )
+  ): <></>
 }
 
 

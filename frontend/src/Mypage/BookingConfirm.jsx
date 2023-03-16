@@ -11,28 +11,14 @@ import ReviewPagenation from "./ReviewPagenation";
 import BookingPagenation from "./BookingPagenation";
 import {useLocation} from "react-router";
 import Swal from "sweetalert2";
+import {Auth} from "../Auth/Auth";
+import {Link} from "react-router-dom";
 
 function BookingConfirm() {
 
-
-    const bookingConfirm = [
-        {idx: 1, lodging_name: "해운대 신라 호텔", book_state: "예약완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
-        {idx: 2, lodging_name: "제주도 신라 호텔", book_state: "예약완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
-        {idx: 3, lodging_name: "해운대 신라 호텔", book_state: "예약완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
-        {idx: 4, lodging_name: "제주도 신라 호텔", book_state: "예약완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
-        {idx: 5, lodging_name: "제주도 신라 호텔", book_state: "예약완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
-        {idx: 6, lodging_name: "해운대 신라 호텔", book_state: "예약완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
-    ]
-
-    const bookingWait = [
-        {idx: 1, lodging_name: "해운대 신라 호텔", book_state: "승인대기", book_dt: "2023-01-17", pay_cost: "560,200원"},
-        {idx: 2, lodging_name: "제주도 신라 호텔", book_state: "승인대기", book_dt: "2023-01-17", pay_cost: "560,200원"},
-    ]
-
-  // const location = useLocation();
-    //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
-    const userId = location.state.userId;
-  // console.log('userId: '+ userId);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const { userId } = Auth();
+    const check = sessionStorage.getItem('check');
 
     const [waitArray, setWaitArray] = useState([]);
     const [agreeArray, setAgreeArray] = useState([]);
@@ -44,32 +30,47 @@ function BookingConfirm() {
   const offset = (page - 1) * limit;
 
 
+    const getBookingList = () => {
+        setTimeout(() => {
+            axios.get('http://localhost:8080/bookingList/', {params: {userId: userId}})
+                .then((req) => {
+                    const {data} = req;
+
+                    // dbArray를 기반으로 새로운 배열을 만듭니다.
+                    const waitArray = data.filter(item => item.bookState === "승인대기");
+                    setWaitArray(waitArray);
+                    // console.log(waitArray);
+
+                    const agreeArray = data.filter(item => item.bookState === '예약완료');
+                    setAgreeArray(agreeArray);
+                    // console.log(agreeArray);
+
+                    sessionStorage.setItem('check', 'pause');
+                })
+                .catch((err) => {
+                    console.log("통신 오류");
+                    console.log(err);
+                })
+        }, 50);
+    }
+
     useEffect(() => {
-        axios.get('http://localhost:8080/bookingList/', {params: {userId: userId}})
-          .then((req) => {
-              const {data} = req;
-              // console.log(data);
-              // setData(data);
-
-              // dbArray를 기반으로 새로운 배열을 만듭니다.
-              const waitArray = data.filter(item => item.bookState === "승인대기");
-              setWaitArray(waitArray);
-              // console.log(waitArray);
-
-              const agreeArray = data.filter(item => item.bookState === '예약완료');
-              setAgreeArray(agreeArray);
-              // console.log(agreeArray);
+        if (check == 'done') {
+            getBookingList();
+            return () => clearTimeout(getBookingList);
+        }
+    }, [check]);
 
 
-          })
-          .catch((err) => {
-              console.log("통신 오류");
-              console.log(err);
-          })
+    useEffect(()=>{
+        const timer = setTimeout(() => {
+            setIsLoaded(true);
+        },450);
+        return () => clearTimeout(timer);
     }, []);
 
 
-    return (
+    return isLoaded ? (
 
         <motion.div variants={Anima}
                      initial="hidden"
@@ -77,7 +78,7 @@ function BookingConfirm() {
                      exit="exit" className={"container mt-5"}>
             <div className={"mb-5"}>
                 <Breadcrumb>
-                    <Breadcrumb.Item href="../mypage">마이페이지</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to={"../mypage"}>마이페이지</Link></Breadcrumb.Item>
                     <Breadcrumb.Item active>예약내역 확인</Breadcrumb.Item>
                 </Breadcrumb>
                 <h2 className={"fw-bold"}>예약내역 확인</h2>
@@ -136,7 +137,7 @@ function BookingConfirm() {
 
         </motion.div>
 
-    )
+    ) : <></>
 }
 
 

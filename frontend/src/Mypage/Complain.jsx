@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import ComplainPagenation from "./ComplainPagenation";
-import {useLocation} from "react-router";
+import {Auth} from "../Auth/Auth";
 
 // const complain = [
 //     {idx: 1, lodging_num: "1521", reason: "잘못된 정보", reason_detail: "객실 정보, 이미지 오류", complain_dt: "2023-01-17"},
@@ -18,9 +18,9 @@ import {useLocation} from "react-router";
 
 function Complain() {
 
-  // const location = useLocation();
-    //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
-    const userId = location.state.userId;
+    const [isLoaded, setIsLoaded] = useState(false);
+    const { userId } = Auth();
+    const check = sessionStorage.getItem('check');
 
   const [data, setData] = useState([]);
   // 페이지당 게시물 수
@@ -39,18 +39,11 @@ function Complain() {
 
 
   const deleteBtn=()=>{
-    // axios.put('http://localhost:8080/complainDelete/', null, {params:{idx: checkIdx}} )
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
 
     axios.put('http://localhost:8080/complainDelete', selectedValues, null)
       .then((response) => {
-        console.log(response);
-        window.location.replace("http://localhost:3000/complain/")
+        // console.log(response);
+        // window.location.replace("http://localhost:3000/complain/")
       })
       .catch(function (error) {
         console.log(error);
@@ -58,21 +51,39 @@ function Complain() {
     console.log(checkBox);
   }
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/complainList/', {params:{userId:userId}})
-      .then((req) => {
-        const {data} = req;
-        setData(data)
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log("통신 오류");
-        console.log(err);
-      })
-  }, []);
+    const getComplainList = () => {
+        setTimeout(() => {
+            axios.get('http://localhost:8080/complainList/', {params:{userId:userId}})
+                .then((req) => {
+                    const {data} = req;
+                    setData(data)
+                    // console.log(data);
+                    sessionStorage.setItem('check', 'pause');
+                })
+                .catch((err) => {
+                    console.log("통신 오류");
+                    console.log(err);
+                })
+        }, 50);
+    }
+
+    useEffect(() => {
+        if (check == 'done') {
+            getComplainList();
+            return () => clearTimeout(getComplainList);
+        }
+    }, [check]);
 
 
-    return (
+    useEffect(()=>{
+        const timer = setTimeout(() => {
+            setIsLoaded(true);
+        },450);
+        return () => clearTimeout(timer);
+    }, []);
+
+
+    return isLoaded ? (
         <motion.div variants={Anima}
                     initial="hidden"
                     animate="visible"
@@ -121,7 +132,7 @@ function Complain() {
             setPage={setPage}/>
 
         </motion.div>
-    )
+    ) : <></>
 }
 
 export default Complain;
