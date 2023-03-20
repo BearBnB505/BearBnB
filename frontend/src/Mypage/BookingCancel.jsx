@@ -9,26 +9,29 @@ import axios from "axios";
 import BookingPagenation from "./BookingPagenation";
 import BookingModalDetail from "./BookingConfirm/BookingModalDetail";
 import Swal from "sweetalert2";
+import {Auth} from "../Auth/Auth";
+import {Link} from "react-router-dom";
 
 function BookingCancel() {
 
-    const bookingCancle = [
-        {idx: 1, lodging_name: "해운대 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
-        {idx: 2, lodging_name: "제주도 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
-        {idx: 3, lodging_name: "해운대 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
-        {idx: 4, lodging_name: "제주도 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
-        {idx: 5, lodging_name: "제주도 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
-        {idx: 6, lodging_name: "해운대 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
-    ]
+    // const bookingCancle = [
+    //     {idx: 1, lodging_name: "해운대 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
+    //     {idx: 2, lodging_name: "제주도 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
+    //     {idx: 3, lodging_name: "해운대 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
+    //     {idx: 4, lodging_name: "제주도 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
+    //     {idx: 5, lodging_name: "제주도 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
+    //     {idx: 6, lodging_name: "해운대 신라 호텔", book_state: "취소완료", book_dt: "2023-01-17", pay_cost: "560,200원"},
+    // ]
+    //
+    // const bookingCancleWait = [
+    //     {idx: 1, lodging_name: "해운대 신라 호텔", book_state: "취소대기", book_dt: "2023-01-17", pay_cost: "560,200원"},
+    //     {idx: 2, lodging_name: "제주도 신라 호텔", book_state: "취소대기", book_dt: "2023-01-17", pay_cost: "560,200원"},
+    // ]
 
-    const bookingCancleWait = [
-        {idx: 1, lodging_name: "해운대 신라 호텔", book_state: "취소대기", book_dt: "2023-01-17", pay_cost: "560,200원"},
-        {idx: 2, lodging_name: "제주도 신라 호텔", book_state: "취소대기", book_dt: "2023-01-17", pay_cost: "560,200원"},
-    ]
 
-
-    const location = useLocation();
-    const userId = location.state.userId;
+    const [isLoaded, setIsLoaded] = useState(false);
+    const { userId } = Auth();
+    const check = sessionStorage.getItem('check');
 
     const [cancelArray, setCancelArray] = useState([]);
     const [agreeCancelArray, setAgreeCancelArray] = useState([]);
@@ -64,14 +67,55 @@ function BookingCancel() {
             })
     }, []);
 
-    return (
+    const getBookingCancelList = () => {
+        setTimeout(() => {
+            axios.get('http://localhost:8080/bookingList/', {params: {userId: userId}})
+                .then((req) => {
+                    const {data} = req;
+                    // console.log(data);
+                    // setData(data);
+
+                    // dbArray를 기반으로 새로운 배열을 만듭니다.
+                    const cancelList = data.filter(item => item.bookState === "취소대기");
+                    setCancelArray(cancelList);
+                    // console.log(cancelArray);
+
+                    const agreeCancelList = data.filter(item => item.bookState === '예약취소');
+                    setAgreeCancelArray(agreeCancelList);
+                    // console.log(agreeCancelArray);
+
+                    sessionStorage.setItem('check', 'pause');
+                })
+                .catch((err) => {
+                    console.log("통신 오류");
+                    console.log(err);
+                })
+        }, 50);
+    }
+
+    useEffect(() => {
+        if (check == 'done') {
+            getBookingCancelList();
+            return () => clearTimeout(getBookingCancelList);
+        }
+    }, [check]);
+
+
+    useEffect(()=>{
+        const timer = setTimeout(() => {
+            setIsLoaded(true);
+        },450);
+        return () => clearTimeout(timer);
+    }, []);
+
+    return isLoaded ? (
         <motion.div variants={Anima}
                     initial="hidden"
                     animate="visible"
                     exit="exit" className={"container mt-5"}>
             <div className={"mb-5"}>
                 <Breadcrumb>
-                    <Breadcrumb.Item href="../mypage">마이페이지</Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to={"../mypage"}>마이페이지</Link></Breadcrumb.Item>
                     <Breadcrumb.Item active>예약취소 확인</Breadcrumb.Item>
                 </Breadcrumb>
                 <h2 className={"fw-bold"}>예약취소 확인</h2>
@@ -130,7 +174,7 @@ function BookingCancel() {
 
 
         </motion.div>
-    )
+    ) : <></>
 }
 
 

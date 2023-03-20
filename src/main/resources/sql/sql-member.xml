@@ -12,11 +12,11 @@
 
 
 <!--멤버 리스트-->
-    <select id="MemberList"  resultType="com.bearbnb.dto.MembersDto">
+    <select id="getMemberData" resultType="com.bearbnb.dto.MembersDto">
         <![CDATA[
-        SELECT *
+        SELECT user_id, tel, gender, name, nation, profile_img, birth_dt, join_dt, authority
         FROM members
-        WHERE user_id = '${userId}'
+        WHERE user_id = #{userId}
         ]]>
     </select>
 
@@ -30,15 +30,6 @@
         ]]>
     </select>
 
-<!--    <select id="AllMembersList"  resultType="com.bearbnb.dto.MembersDto">-->
-<!--        <![CDATA[-->
-<!--        SELECT *-->
-<!--        FROM members-->
-<!--        ]]>-->
-<!--    </select>-->
-
-
-
 
 <!--    불만 리스트-->
 
@@ -46,7 +37,7 @@
         <![CDATA[
         SELECT *
         FROM complain
-        WHERE user_id = '${userId}' and deleted_yn = 'N'
+        WHERE user_id = #{userId} and deleted_yn = 'N'
         ]]>
     </select>
 
@@ -54,7 +45,7 @@
     <update id="MemberNameUpdate" parameterType="com.bearbnb.dto.MembersDto">
         <![CDATA[
         update members
-        set user_id = '${userId}'
+        set user_id = #{userId}
         where idx = '${idx}'
         ]]>
     </update>
@@ -87,7 +78,7 @@
         <![CDATA[
         update members
         set deleted_yn = 'Y'
-        where user_id = '${userId}'
+        where user_id = #{userId}
         ]]>
     </update>
 

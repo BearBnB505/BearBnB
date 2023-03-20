@@ -8,14 +8,7 @@
         <![CDATA[
         SELECT *
         FROM lodging
-        WHERE lodging_concept = #{category}
-        ]]>
-    </select>
-
-    <select id="CallLodgingMapper" resultType="com.bearbnb.dto.LodgingDto">
-        <![CDATA[
-        SELECT *
-        FROM lodging
+        WHERE lodging_concept = #{category} AND deleted_yn = 'N'
         ]]>
     </select>
 

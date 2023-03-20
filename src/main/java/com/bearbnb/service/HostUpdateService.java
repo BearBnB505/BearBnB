@@ -3,6 +3,7 @@ package com.bearbnb.service;
 import com.bearbnb.dto.BookingDto;
 import com.bearbnb.dto.ComfortsDto;
 import com.bearbnb.dto.LodgingDto;
+import com.bearbnb.dto.ReviewDto;
 
 import java.util.List;
 
@@ -20,11 +21,13 @@ public interface HostUpdateService {
 
     void UpdateCapacity(LodgingDto lodging);
 
-    void UpdateLanguage(LodgingDto lodging);
+    void updateLanguage(LodgingDto lodging) throws Exception;
 
     void UpdateIntroHost(LodgingDto lodging);
 
     void UpdateBookingState(BookingDto booking);
 
     void UpdateRejectState(BookingDto booking);
+
+    ReviewDto reviewListContent(ReviewDto review);
 }

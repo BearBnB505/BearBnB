@@ -39,8 +39,7 @@ public interface LodgingMapper {
 
     List<LodgingDto> searchLodgingList(String searchSpot, String startDt, String endDt, int adultCount) throws Exception;
 
-    void LanguageUpdate(LodgingDto lodging);
-
     void IntroHostUpdate(LodgingDto lodging);
 
+    void updateLanguage(LodgingDto lodging) throws Exception;
 }

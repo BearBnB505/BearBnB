@@ -14,6 +14,8 @@ public class KeepingDto {
     private String lodgingName;
     private String addr;
     private String certifyImg;
+    private double latitude;
+    private double longitude;
 
     //review dto
     private String accuracyGrade;

@@ -4,12 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import {hostIdUrl} from "./Reducers/HostIdReducer";
 import axios from "axios";
 import Swal from "sweetalert2";
+import {Auth} from "../Auth/Auth";
 
 
 function LodgingFinal(){
 
     // const idImageUrl = useSelector((state)=>state.hostIdUrl.value);
-    const userId = useSelector((state)=>state.hostIdUrl.value); //
+    // const userId = useSelector((state)=>state.hostIdUrl.value); //
     const lodgingNum = useSelector((state)=>state.lodgingNum.value); //
     const hostInfo = useSelector((state) => state.hostInfo.value);//언어와 호스트 소개
     const concept = useSelector((state) => state.lodgingConcept.value);//언어와 호스트 소개
@@ -118,8 +119,13 @@ function LodgingFinal(){
     // console.log(locationDetail.zipCode);
     // console.log(locationDetail.addr1);
     // console.log(locationDetail.addr2);
+
+    const auth = Auth();
+    // console.log("auth.userId: " + auth.userId);
+    const userId = auth.userId;
+
     const data = {
-                userId : 'dbfl14433@gmail.com',
+                userId : userId,
                 lodgingNum: lodgingNum.num,
                 certifyImg: hostId.idUrl,
                 lodgingName: lodgingRealName.name,

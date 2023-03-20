@@ -43,6 +43,8 @@ function LodgingPaymentEnd(){
     const today = moment();
     const payDate = today.format('YY년 MM월 DD일')
 
+    // console.log('숙소이름')
+    // console.log(lodgingName)
 
     return(
         <div className={'container mb-5'}>

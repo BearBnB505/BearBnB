@@ -13,6 +13,7 @@ import axios from "axios";
 import {useLocation} from "react-router";
 import moment from "moment";
 import Calendar from "../Calendar/Calendar";
+import {Auth} from "../Auth/Auth";
 
 
 
@@ -26,22 +27,17 @@ function LodgingPayment(props) {
     const currency = "USD";
     const style = {"layout": "vertical"};
 
-    // <div className={'row align-items-start mt-4'}>*/}
-    //     <div className = {'col-1'} style={{display:"block"}}>
-    //         {/*누르면 상세페이지로 이동*/}
-    //         <Link to={'#'}>
-    //             <img src='/leftArrow.png' style={{width :"20px", marginTop:15}}/>
-    //         </Link>
-    //     </div>
-    //     <div className={'col-3'}>
-    //         <p style={{fontSize:"35px", fontWeight:"bold"}}>확인 및 결제</p>
-    //     </div>
-    // </div>
-
     const location = useLocation();
 
     const lodgingNum = location.state.lodgingNum;
     const lodgingName = location.state.lodgingName;
+    //숙소 주인 이메일
+    const hostUserId = location.state.userId;
+
+
+
+
+
 
     const [chooseDate, setChooseDate] = useState(location.state.chooseDate);
     // const chooseDate = location.state.chooseDate;
@@ -67,6 +63,9 @@ function LodgingPayment(props) {
     let adultCount = guestCount[0];
     let childCount = guestCount[1];
     let petCount = guestCount[2];
+
+    console.log("결제페이지 userID")
+    // console.log(userId);
 
 
 
@@ -125,17 +124,14 @@ function LodgingPayment(props) {
         setTotalCost((parseInt(dayCost) * nightCount));
     }, [nightCount]);
 
-    // console.log('test')
-    // console.log(totalCost)
-    // console.log(lodgingNum)
 
-    //console.log('시작일')
-    //console.log(startDt);
-   // console.log('마지막 일')
-    //console.log(endDt);
+    const auth = Auth();
+    const userId = auth.userId;
+
 
     return (
         <div className={'container mx-auto'}>
+
                             <div className={'row align-items-start mt-3'}>
                                 <div className={'col-1'} style={{display: "block", marginTop: 15, cursor: "pointer"}} onClick={()=>{navigate(-1)}}>
                                     {/*누르면 상세페이지로 이동*/}
@@ -206,6 +202,7 @@ function LodgingPayment(props) {
                                 {childCount !== 0 ? ", 유아 " + childCount + "명" : ""}
                                 {petCount !== 0 ? ", 반려동물 " + petCount + "마리" : ""}
                             </p>
+
                         </div>
                         <div className={'col-2'}>
                             <p style={{
@@ -288,10 +285,12 @@ function LodgingPayment(props) {
                                                     {state:{lodgingNum:lodgingNum, lodgingName:lodgingName,startDate:startDate,endDate:endDate,
                                                             adultNum: adultCount, babyNum: childCount,petNum: petCount,dayCost:dayCost, nightCount:nightCount,totalCost:totalCost}})
                                             }
+
+
                                             axios.post("http://localhost:8080/paymentInsert", null,
                                                 {
                                                     params: {
-                                                        userId: "dbfl1443@nate.com",
+                                                        userId: userId,
                                                         lodgingNum: lodgingNum,
                                                         bookNum: BookNum,
                                                         payType: "PAYPAL",
@@ -306,11 +305,9 @@ function LodgingPayment(props) {
                                                 }
                                             )
                                                 .then((req) => {
-                                                    // console.log("post방식으로 통신성공")
-                                                    // console.log(req); //데이터 넘어오는지 확인
                                                     
                                                     axios.post("/paymentEmail",{
-                                                        to:'dbfl14433@gmail.com',
+                                                        to: hostUserId,
                                                         from:'bearbnbproject@gmail.com',
                                                         title:'예약이 들어왔습니다',
                                                         contents:'숙소 예약이 들어왔습니다. 아래 내용을 참고해주세요'

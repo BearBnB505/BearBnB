@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import KeepingItem from "./KeepingItem";
 import {useLocation} from "react-router";
+import {Auth} from "../Auth/Auth";
 
 
 // const keeping = [
@@ -50,13 +51,9 @@ import {useLocation} from "react-router";
 
 function Keeping() {
 
-    const location = useLocation();
-    const userId = location.state.userId;
-    // console.log("이용자"+userId)
-    // console.log('userId: '+ userId);
-
-
-  // console.log('userId: '+ userId);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const { userId } = Auth();
+    const check = sessionStorage.getItem('check');
 
     // 리뷰 DB 가져와서 리스트 형식으로 담길 배열
     const [data, setData] = useState([]);
@@ -67,30 +64,36 @@ function Keeping() {
     // 첫 게시물의 위치(offset)
     const offset = (page - 1) * limit;
 
-
-
-
-    // const [Avg, setAvg] =useState(0)
-
+    const getKeepList = () => {
+        setTimeout(() => {
+            axios.put('http://localhost:8080/keepList', null, {params:{userId: userId}})
+                .then((req) => {
+                    const {data} = req;
+                    setData(data);
+                    // console.log(data);
+                    sessionStorage.setItem('check', 'pause');
+                })
+                .catch((err) => {
+                    console.log("통신 오류");
+                    console.log(err);
+                })
+        }, 50);
+    }
 
     useEffect(() => {
-        axios.get('http://localhost:8080/KeepList/', {params:{userId: userId}})
-          .then((req) => {
-              const {data} = req;
-              setData(data);
-              console.log(data);
-              console.log(data.length)
-          })
-          .catch((err) => {
-              console.log("통신 오류");
-              console.log(err);
-          })
+        if (check == 'done') {
+            getKeepList();
+            return () => clearTimeout(getKeepList);
+        }
+    }, [check]);
+
+
+    useEffect(()=>{
+        const timer = setTimeout(() => {
+            setIsLoaded(true);
+        },450);
+        return () => clearTimeout(timer);
     }, []);
-
-
-
-
-
 
     const cleanGradeSum = data.reduce((acc, item) => acc + Number(item.cleanGrade), 0);
     const accuracyGradeSum = data.reduce((acc, item) => acc + Number(item.accuracyGrade), 0);
@@ -100,9 +103,9 @@ function Keeping() {
     const costSum = data.reduce((acc, item) => acc + Number(item.costGrade), 0);
 
     const AllGradeSum = (cleanGradeSum+accuracyGradeSum+communicationSum+locationSum+checkInSum+costSum);
-    const divisionNum = Number(data.length*6)
+    const divisionNum = Number(data.length*6);
 
-    let Avg = (AllGradeSum/divisionNum)
+    let Avg = (AllGradeSum/divisionNum);
 
     Avg = Math.round(Avg * 10) / 10;
 
@@ -110,10 +113,9 @@ function Keeping() {
     // console.log(Avg);
 
 
+    const lodgingNumSet = new Set();
 
-    return (
-
-
+    return isLoaded ? (
         <motion.div variants={Anima}
                     initial="hidden"
                     animate="visible"
@@ -130,68 +132,31 @@ function Keeping() {
 
             <div className={"row"}>
                 {data.slice(offset, offset + limit).map((item) => {
-                    // return <KeepingItem idx={item.idx}lodging_num={item.lodgingNum}
-                    //                     lodging_name={item.lodgingName} addr={item.addr}
-                    //                     Avg={Avg} count={data.length}  imageUrl={item.photo} />
-
-                    return <KeepingItem idx={item.idx} lodging_num={item.lodgingNum}
-                                        lodging_name={item.lodgingName} addr={item.addr}
-                                        Avg={Avg} count={data.length} />
-                                        // review_count={item.review_count}/>
+                    if (!lodgingNumSet.has(item.lodgingNum)) {
+                        lodgingNumSet.add(item.lodgingNum);
+                        return (
+                            <KeepingItem
+                                key={item.idx}
+                                idx={item.idx}
+                                lodging_num={item.lodgingNum}
+                                lodging_name={item.lodgingName}
+                                addr={item.addr}
+                                Avg={Avg}
+                                count={data.length}
+                                lat={item.latitude}
+                                lng={item.longitude}
+                            />
+                        );
+                    }
                 })}
+                {/*{data.slice(offset, offset + limit).map((item) => {*/}
+                {/*    return <KeepingItem idx={item.idx} lodging_num={item.lodgingNum}*/}
+                {/*                        lodging_name={item.lodgingName} addr={item.addr}*/}
+                {/*                        Avg={Avg} count={data.length} />*/}
+                {/*})}*/}
             </div>
         </motion.div>
-    )
+    ) : <></>
 }
 
-// function KeepingItem({idx, imageUrl, lodging_num, lodging_name, addr, review_grade, review_count}) {
-//     return (
-//         <div className={"col-sm-6 col-md-6 col-lg-4 mb-2"}>
-//             <ul style={styles.ul}>
-//                 <li style={styles.li}>
-//                     <motion.div whileHover={{scale: 1.05}} whileTap={{scale: 1}}>
-//                     <Card className={"shadow-sm rounded-3 p-1"}>
-//                         <div style={styles.imgDiv}>
-//                             <img style={styles.img} src={imageUrl} alt=""/>
-//                         </div>
-//                         {/*/!*<Card.Img variant="top" src="holder.js/100px180"/>*!/ 이미지 <br/><br/><br/><br/>*/}
-//                         <Card.Text className={"p-3"}>
-//                             <div className={"mb-0"}>
-//                                 <span className={"me-2"}>
-//                                     <strong>{lodging_name}</strong>
-//                                     </span>
-//                                 <span className={"blueColor"}><FontAwesomeIcon icon={faStar} size="1x"/> {review_grade} ({review_count})</span>
-//                             </div>
-//                             <p>{addr}</p>
-//
-//                         </Card.Text>
-//                     </Card>
-//                 </motion.div>
-//             </li>
-//             </ul>
-//         </div>
-//
-//     )
-// }
-
 export default Keeping;
-
-// const styles = {
-//     ul: {
-//         padding: 0,
-//     },
-//     li: {
-//         listStyleType: "none",
-//     },
-//     imgDiv: {
-//         width: "100%",
-//         height: "250px",
-//     },
-//     img: {
-//         width: "100%",
-//         height: "100%",
-//         objectFit: "cover",
-//         backgroundSize: "cover",
-//         backgroundPosition: "50% 50%",
-//     },
-// }

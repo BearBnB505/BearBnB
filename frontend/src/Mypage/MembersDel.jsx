@@ -7,15 +7,14 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import {useLocation} from "react-router";
+import {Auth} from "../Auth/Auth";
 
 
 function MembersDel() {
 
     const [pwd, setPwd] = useState("");
 
-    const location = useLocation();
-    const userId = location.state.userId;
-
+    const {userId} = Auth();
 
     const onChangePwd = (e) => {
         setPwd(e.target.value);
@@ -29,7 +28,7 @@ function MembersDel() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/Members', {params:{userId:userId}})
+        axios.get('http://localhost:8080/getMemberData', {params:{userId:userId}})
           .then((req) => {
               const {data} = req;
               setData(data);
@@ -71,7 +70,7 @@ function MembersDel() {
         })
         if(truePwd == pwd) {
             swalWithBootstrapButtons.fire({
-                title: '회원탈회 하시겠습니까?',
+                title: '회원탈퇴 하시겠습니까?',
                 text: "탈퇴 후 취소가 불가능합니다!",
                 icon: 'warning',
                 showCancelButton: true,

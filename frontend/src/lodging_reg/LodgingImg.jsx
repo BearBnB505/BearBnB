@@ -12,8 +12,7 @@ function LodgingImg(){
     };
 
     const category = useSelector((state) => state.lodgingCategory.value);
-    // console.log("넘어온 category");
-    // console.log(category);
+
 
 
     const styles = {

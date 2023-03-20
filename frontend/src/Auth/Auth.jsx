@@ -3,6 +3,7 @@ import {useLocation} from "react-router";
 import {CheckToken} from "./CheckToken";
 import {useSelector} from "react-redux";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 export function Auth() {
     const location = useLocation();
@@ -13,6 +14,8 @@ export function Auth() {
 
     const [userId, setUserId] = useState('');
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         axios.get('/member/my', {headers: {
                 'Authorization': 'Bearer ' + accessToken
@@ -21,9 +24,11 @@ export function Auth() {
                 const {data} = req;
                 // console.log(data.userId);
                 setUserId(data.userId);
+                sessionStorage.setItem('check', 'done');
             })
             .catch((err) => {
-                console.log("통신 오류");
+                // console.log("통신 오류");
+                navigate('/', { replace: true });
             })
     }, []);
 

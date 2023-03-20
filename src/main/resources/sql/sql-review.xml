@@ -28,7 +28,7 @@
     </select>
 
     <!-- 마이페이지 리뷰 리스트 가져오기  -->
-    <select id="MemberReviewList" resultType="com.bearbnb.dto.ReviewDto">
+    <select id="getMemberReviewList" resultType="com.bearbnb.dto.ReviewDto">
         <![CDATA[
         SELECT re.*, lod.lodging_name, mem.name
         FROM review re
@@ -36,21 +36,22 @@
                       ON re.lodging_num = lod.lodging_num
                  JOIN members mem
                       ON re.user_id = mem.user_id
-        WHERE re.deleted_yn = 'N' and re.user_id = '${userId}'
+        WHERE re.deleted_yn = 'N' and re.user_id = #{userId}
         ORDER BY re.review_create_dt desc
         ]]>
     </select>
 
-    <select id="ReviewListContent" resultType="com.bearbnb.dto.ReviewDto">
-        <![CDATA[
-        SELECT re.*, lod.lodging_name
-        FROM review re
-                 JOIN lodging lod
-                      ON re.lodging_num = lod.lodging_num
-        WHERE re.deleted_yn = 'N'and re.user_id = 'tester2'
-        ORDER BY re.review_create_dt desc
-        ]]>
-    </select>
+<!--    원본-->
+<!--    <select id="ReviewListContent" resultType="com.bearbnb.dto.ReviewDto">-->
+<!--        <![CDATA[-->
+<!--        SELECT re.*, lod.lodging_name-->
+<!--        FROM review re-->
+<!--                 JOIN lodging lod-->
+<!--                      ON re.lodging_num = lod.lodging_num-->
+<!--        WHERE re.deleted_yn = 'N'and re.idx=#{idx}-->
+<!--&#45;&#45;         ORDER BY re.review_create_dt desc-->
+<!--        ]]>-->
+<!--    </select>-->
 
     <update id="ReviewUpdate" parameterType="com.bearbnb.dto.ReviewDto">
         <![CDATA[
@@ -101,4 +102,10 @@
         ]]>
     </insert>
 
+<!--    새로 만든거-->
+    <select id="reviewListContent" parameterType="com.bearbnb.dto.ReviewDto" resultType="com.bearbnb.dto.ReviewDto">
+        <![CDATA[
+        SELECT * FROM review WHERE idx = #{idx}
+        ]]>
+    </select>
 </mapper>

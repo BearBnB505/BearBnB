@@ -15,7 +15,7 @@ public interface MemberMapper {
     public Optional<MembersDto> findById(@Param("userId") String userId);
 
 
-    List<MembersDto> MemberList(MembersDto members);
+    List<MembersDto> getMemberData(String userId);
 
     void MemberNameUpdate(MembersDto members);
 

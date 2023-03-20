@@ -5,6 +5,7 @@ import './HostInfo.css'
 import {useSelector} from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
+import {Auth} from "../Auth/Auth";
 
 
 
@@ -42,7 +43,8 @@ const HostInfo=()=>{
         setRe(false)
     },[re]);
 
-    
+    const auth = Auth();
+    const userId = auth.userId;
 
     
   //  이메일 보내기 버튼 누르면 axios 작동
@@ -50,7 +52,7 @@ const HostInfo=()=>{
 
         axios.post('http://localhost:8080/sendContactHost',{
             to:contact.contact,
-            from:"dbfl1443@naver.com",
+            from: userId,
             title:title,
             contents:contents
         })

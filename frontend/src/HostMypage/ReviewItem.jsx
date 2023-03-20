@@ -5,7 +5,7 @@ import HostModalReview from "./HostModalReview";
 import {Link} from "react-router-dom";
 
 
-function ReviewItem({user_id, comment, review_create_dt}) {
+function ReviewItem(props) {
 
   // 리뷰 모달창 온 오프
   const [modalOpen, setModalOpen] = useState(false);
@@ -15,63 +15,31 @@ function ReviewItem({user_id, comment, review_create_dt}) {
     setModalOpen(true);
   };
 
-
+  console.log(props.data);
 
   return (
     <ul className={"list-group mb-4"} style={styles.ul} >
     {/*<ul className={"list-group mb-4"} style={styles.ul} >*/}
       <li className={"list-group-item p-4"} style={styles.li}>
         <div>
-          <span className={"fs-5 fw-bold me-1"}>{user_id}</span>
-          <span className="me-2">
-            <FontAwesomeIcon icon={faStar} size="1x"/> 4.97/5
-          </span>
-          <small className={"text-secondary"}>{review_create_dt}</small>
+          <span className={"fs-5 fw-bold me-1"}>{props.data.lodgingName}</span>
         </div>
-        {/*<a href="/Review"></a>*/}
-        <Link to={`/ReviewContent`} className={'text'}>
-          {comment}
+        <div>
+          <span className={"fs-5 fw-bold me-1"}>{props.data.userId}</span>
+          <span className="me-2">
+            <FontAwesomeIcon icon={faStar} size="1x"/> {(parseFloat(props.data.cleanGrade+props.data.accuracyGrade+props.data.communicationGrade+props.data.locationGrade+props.data.checkInGrade+props.data.costGrade)/6).toFixed(1)}/5
+          </span>
+          <small className={"text-secondary"}>{props.data.reviewCreateDt}</small>
+        </div>
+
+        <Link to={`/ReviewContent`} className={'text'} state={{idx : props.data.idx}}>
+          {props.data.comment}
         </Link>
       </li>
-      {/*{modalOpen && <HostModalReview modalOpen={modalOpen} setModalOpen={setModalOpen}/>}*/}
     </ul>);
 }
 
 export default ReviewItem;
-
-  // //
-  // function ReviewItem({user_id, comment, review_create_dt}) {
-  //
-  //   // 리뷰 모달창 온 오프
-  //   const [modalOpen, setModalOpen] = useState(false);
-  //
-  //   // 모달창 노출
-  //   const showModal = (flag, event) => {
-  //     console.log(event.target);
-  //     console.log("부모컴포넌트 ul : " + flag);
-  //     setModalOpen(flag);
-  //   };
-  //
-  //
-  //   return (
-  //     <ul className={"list-group mb-4"} style={styles.ul} onClick={(event) => showModal(true, event)}>
-  //       {/*<ul className={"list-group mb-4"} style={styles.ul} >*/}
-  //       <li className={"list-group-item p-4"} style={styles.li}>
-  //         <div>
-  //           <span className={"fs-5 fw-bold me-1"}>{user_id}</span>
-  //           <span className="me-2">
-  //           <FontAwesomeIcon icon={faStar} size="1x"/> 4.97/5
-  //         </span>
-  //           <small className={"text-secondary"}>{review_create_dt}</small>
-  //         </div>
-  //         <div className={'text'}>{comment}</div>
-  //       </li>
-  //       {modalOpen && <HostModalReview modalOpen={modalOpen} setModalOpen={setModalOpen}/>}
-  //       {modalOpen}
-  //     </ul>);
-  // }
-  //
-  // export default ReviewItem;
 
 
 

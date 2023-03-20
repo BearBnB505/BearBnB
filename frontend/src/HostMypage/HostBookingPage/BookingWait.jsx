@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Swal from "sweetalert2";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClose, faList} from "@fortawesome/free-solid-svg-icons";
@@ -7,10 +7,11 @@ import GuestInfoModal from "../GuestInfoModal";
 import axios from "axios";
 
 function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
-                         user_name,user_tel,user_nation,user_id, setKey, idx,
-                         book_check_in_dt,book_num,book_check_out_dt,adult_num,baby_num,pet_num}) {
+                            user_name,user_tel,user_nation,user_id, setKey, idx,
+                            book_check_in_dt,book_num,book_check_out_dt,adult_num,baby_num,pet_num}) {
 
     const [show, setShow] = useState(false);
+
 
     // 숙소 예약 승인시
     const onClickConfirm = () => {
@@ -21,7 +22,7 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
             timer: 1500
         }).then(() => {
             setShow(false);
-            axios.put('http://localhost:8080/UpdateAgreeState',null,{params: {idx: idx }})
+            axios.put('http://localhost:8080/UpdateAgreeState',null,{params: {idx: idx}})
                 .then((response) => {
                     console.log(response);
                     
@@ -30,25 +31,20 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
                         from:'bearbnbproject@gmail.com',
                         to:user_id,
                         title:'숙소 예약이 승인되었습니다',
-                        contents : '귀하의 숙소 예약이 승인되었습니다. BearBnB서비스를 이용해주셔서 감사합니다'
+                        contents : '귀하의 숙소 예약이 승인되었습니다. BearBnB 서비스를 이용해주셔서 감사합니다'
                     })
                         .then((req)=>{
                             console.log(req)
-                            // alert('이메일 보내기 성공')
                         })
-                        .catch((err)=>{
+                        .catch((err) => {
                             console.log(err);
-                            // alert('이메일보내기 실패')
                         })
-
-
                 })
                 .catch(function (error) {
                     console.log(error);
-                    console.log({idx});
-                    console.log({adult_num});
                 });
             childValue('tab2');
+
         })
     };
 
@@ -69,7 +65,7 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
                     icon: 'success'
                 }).then(() => {
                     setShow(false);
-                    axios.put('http://localhost:8080/UpdateRejectState',null,{params: {idx: idx }})
+                    axios.put('http://localhost:8080/UpdateRejectState',null,{params: {idx: idx}})
                         .then((response) => {
                             console.log(response);
                         //    거절되면 게스트에게 이메일이 간다.
@@ -80,12 +76,10 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
                                 contents : '귀하의 숙소 예약이 거절되었습니다. BearBnB서비스를 이용해주셔서 감사합니다'
                             })
                                 .then((req)=>{
-                                    console.log(req)
-                                    // alert('이메일 보내기 성공')
+                                    console.log(req);
                                 })
                                 .catch((err)=>{
                                     console.log(err);
-                                    // alert('이메일보내기 실패')
                                 })
                         })
                         .catch(function (error) {
@@ -113,9 +107,7 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
         li: {}
     };
 
-
     return (
-
         <ul className={"list-group mb-4"} style={styles.ul}>
             <li className={"list-group-item p-4"} style={styles.li}>
                 <div className={"mb-2"}>
@@ -124,14 +116,11 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
                 </div>
                 <div className={"mb-1"}>{lodging_name}</div>
                 <div className={"mb-2"}>결제 금액 : {pay_cost}</div>
-
                 <div className={"row"}>
                     <div className={"col-2 pe-0"} style={{width:120}}>
-
                         <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit" onClick={() => setShow(true)}>
                             <span><FontAwesomeIcon icon={faList} size="1x"/> 상세내역</span>
                         </button>
-
                         <Modal
                             size={"lg"}
                             show={show}
@@ -142,7 +131,6 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
                             <ModalHeader className={'d-flex'} closeButton={true}>
                                 <ModalTitle className={'flex-grow-1 text-center ps-4'}>예약내역</ModalTitle>
                             </ModalHeader>
-
                             <ModalBody>
                                 <GuestInfoModal idx={idx} lodging_name={lodging_name} book_num={book_num}
                                                 book_num={book_num} book_check_in_dt={book_check_in_dt} book_check_out_dt={book_check_out_dt}
@@ -154,10 +142,8 @@ function BookingWait({lodging_name, book_state, book_dt, pay_cost, childValue,
                                     <button className={'col-3 btn btn-danger ms-5'} onClick={onClickReject}>거절</button>
                                 </div>
                             </ModalBody>
-
                         </Modal>
                     </div>
-
                     <div className={"col-1 p-0"}>
                         <button type="button" className="btn btn-outline-secondary btn-sm my-2" title="Edit" onClick={onClickReject}>
                             <span><FontAwesomeIcon icon={faClose} size="1x"/> 거절</span>

@@ -9,19 +9,18 @@ import MyPwd from "./Members/MyPwd";
 import { motion } from "framer-motion";
 import Anima from "./animaData";
 import axios from "axios";
-import {useLocation} from "react-router";
+import {Auth} from "../Auth/Auth";
 
 
 function Members(props) {
 
-    const location = useLocation();
-    const userId = location.state.userId;
-    // console.log('userId: '+ userId);
+    const { userId } = Auth();
+    const check = sessionStorage.getItem('check');
 
-
-
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const [idx, setIdx] = useState('');
+    const [name, setName] = useState('');
 
     const [openEmail, setOpenEmail] = useState(false);
     const [email, setEmail] = useState('');
@@ -34,25 +33,41 @@ function Members(props) {
 
     const [data, setData] = useState([]);
 
-    useEffect(() => {
-        axios.get('http://localhost:8080/Members', {params:{userId: userId}})
+    const getUserData = () => {
+        setTimeout(() => {
+            axios.put('http://localhost:8080/getMemberData', null, {params: {userId: userId}})
+                .then((req) => {
+                    const {data} = req;
+                    setData(data);
+                    setEmail(data[0].userId);
+                    setIdx(data[0].idx);
+                    setTel(data[0].tel);
+                    sessionStorage.setItem('check', 'pause');
+                })
+                .catch((err) => {
+                    console.log("통신 오류");
+                    console.log(err);
+                })
+        }, 50);
+    }
 
-          .then((req) => {
-              const {data} = req;
-              setData(data);
-              setEmail(data[0].userId)
-              setIdx(data[0].idx)
-              setTel(data[0].tel)
-              setPwd(data[0].pwd)
-          })
-          .catch((err) => {
-              console.log("통신 오류");
-              console.log(err);
-          })
+    useEffect(() => {
+        if (check == 'done') {
+            getUserData();
+            return () => clearTimeout(getUserData);
+        }
+    }, [check]);
+
+
+    useEffect(()=>{
+        const timer = setTimeout(() => {
+            setIsLoaded(true);
+        },350);
+        return () => clearTimeout(timer);
     }, []);
 
 
-    return (
+    return isLoaded ? (
       data.map((item)=>{
 
           return (
@@ -79,12 +94,12 @@ function Members(props) {
                                 <p className={"fw-bold"}>실명</p>
                                 <p className={"fw-lighter"}>{item.name}</p>
                             </div>
-                            {/*<div className={"col-xs-1 col-sm-4"}>*/}
-                            {/*    <button className={"btn btn-link float-end text-decoration-none text-dark"} onClick={() => {*/}
-                            {/*        setName(!name);*/}
-                            {/*    }}>{name ? "취소" : "수정"}</button>*/}
-                            {/*</div>*/}
-                            {/*{name && <MyName/>}*/}
+                            <div className={"col-xs-1 col-sm-4"}>
+                                <button className={"btn btn-link float-end text-decoration-none text-dark"} onClick={() => {
+                                    setName(!name);
+                                }}>{name ? "취소" : "수정"}</button>
+                            </div>
+                            {name && <MyName/>}
                         </div>
                         <hr/>
 
@@ -138,7 +153,7 @@ function Members(props) {
           )
       })
 
-    )
+    ) : <></>
 }
 
 const styles = {
