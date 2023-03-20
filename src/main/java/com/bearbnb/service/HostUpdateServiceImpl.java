@@ -2,9 +2,11 @@ package com.bearbnb.service;
 
 import com.bearbnb.dto.BookingDto;
 import com.bearbnb.dto.ComfortsDto;
+import com.bearbnb.dto.ReviewDto;
 import com.bearbnb.mapper.BookingMapper;
 import com.bearbnb.mapper.ComfortMapper;
 import com.bearbnb.mapper.LodgingMapper;
+import com.bearbnb.mapper.ReviewMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.bearbnb.dto.LodgingDto;
@@ -21,6 +23,8 @@ public class HostUpdateServiceImpl implements HostUpdateService{
 
     @Autowired
     private BookingMapper bookingtMapper;
+    @Autowired
+    private ReviewMapper reviewMapper;
 
     @Override
     public void hostLodgingUpdate(LodgingDto lodging) throws Exception{
@@ -30,9 +34,14 @@ public class HostUpdateServiceImpl implements HostUpdateService{
         lodgingMapper.hostLodgingUpdate(lodging);
     }
 
+//    호스트 언어수정
     @Override
-    public void UpdateLanguage(LodgingDto lodging) {
-        lodgingMapper.LanguageUpdate(lodging);
+    public void updateLanguage(LodgingDto lodging)  throws Exception{
+        try{
+        lodgingMapper.updateLanguage(lodging);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -81,7 +90,8 @@ public class HostUpdateServiceImpl implements HostUpdateService{
         lodgingMapper.CapacityUpdate(lodging);
     }
 
-
-
-
+    @Override
+    public ReviewDto reviewListContent(ReviewDto review) {
+        return reviewMapper.reviewListContent(review);
+    }
 }

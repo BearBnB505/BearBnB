@@ -6,6 +6,7 @@ import Anima from "../Mypage/animaData";
 import {motion} from "framer-motion";
 import ReviewList from "./ReviewList";
 import {useLocation} from "react-router";
+import {Auth} from "../Auth/Auth";
 
 
 function Review() {
@@ -19,10 +20,7 @@ function Review() {
     // 첫 게시물의 위치(offset)
     const offset = (page - 1) * limit;
 
-    // const location = useLocation();
-    //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
-    const userId = location.state.userId;
-
+    const { userId } = Auth();
 
     return (
         <motion.div variants={Anima}
@@ -36,7 +34,7 @@ function Review() {
                 </Breadcrumb>
                 <h2 className={"fw-bold"}>숙소에 작성된 후기</h2>
             </div>
-            <ReviewList userId={userId}/>
+            <ReviewList userId={userId} />
 
         </motion.div>
     )

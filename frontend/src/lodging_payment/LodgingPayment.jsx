@@ -27,24 +27,17 @@ function LodgingPayment(props) {
     const currency = "USD";
     const style = {"layout": "vertical"};
 
-    // <div className={'row align-items-start mt-4'}>*/}
-    //     <div className = {'col-1'} style={{display:"block"}}>
-    //         {/*누르면 상세페이지로 이동*/}
-    //         <Link to={'#'}>
-    //             <img src='/leftArrow.png' style={{width :"20px", marginTop:15}}/>
-    //         </Link>
-    //     </div>
-    //     <div className={'col-3'}>
-    //         <p style={{fontSize:"35px", fontWeight:"bold"}}>확인 및 결제</p>
-    //     </div>
-    // </div>
-
     const location = useLocation();
 
     const lodgingNum = location.state.lodgingNum;
     const lodgingName = location.state.lodgingName;
-    // console.log('결제 숙소명')
-    // console.log(lodgingName)
+    //숙소 주인 이메일
+    const hostUserId = location.state.userId;
+
+
+
+
+
 
     const [chooseDate, setChooseDate] = useState(location.state.chooseDate);
     // const chooseDate = location.state.chooseDate;
@@ -70,6 +63,9 @@ function LodgingPayment(props) {
     let adultCount = guestCount[0];
     let childCount = guestCount[1];
     let petCount = guestCount[2];
+
+    console.log("결제페이지 userID")
+    // console.log(userId);
 
 
 
@@ -289,8 +285,6 @@ function LodgingPayment(props) {
                                                     {state:{lodgingNum:lodgingNum, lodgingName:lodgingName,startDate:startDate,endDate:endDate,
                                                             adultNum: adultCount, babyNum: childCount,petNum: petCount,dayCost:dayCost, nightCount:nightCount,totalCost:totalCost}})
                                             }
-                                            // const auth = Auth();
-                                            // const userId = auth.userId;
 
 
                                             axios.post("http://localhost:8080/paymentInsert", null,
@@ -311,11 +305,9 @@ function LodgingPayment(props) {
                                                 }
                                             )
                                                 .then((req) => {
-                                                    // console.log("post방식으로 통신성공")
-                                                    // console.log(req); //데이터 넘어오는지 확인
                                                     
                                                     axios.post("/paymentEmail",{
-                                                        to:'dbfl14433@gmail.com',
+                                                        to: hostUserId,
                                                         from:'bearbnbproject@gmail.com',
                                                         title:'예약이 들어왔습니다',
                                                         contents:'숙소 예약이 들어왔습니다. 아래 내용을 참고해주세요'

@@ -9,7 +9,6 @@ import MyPwd from "./Members/MyPwd";
 import { motion } from "framer-motion";
 import Anima from "./animaData";
 import axios from "axios";
-import {useLocation} from "react-router";
 import {Auth} from "../Auth/Auth";
 
 

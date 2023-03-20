@@ -10,7 +10,11 @@ import com.bearbnb.mapper.ReviewMapper;
 import com.bearbnb.service.HostUpdateService;
 import com.bearbnb.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +23,8 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 public class HostUpdateController {
+
+
 
     @Autowired
     ComfortMapper comfortMapper;
@@ -33,10 +39,8 @@ public class HostUpdateController {
     @Autowired
     private ReviewService reviewService;
 
-//    @RequestMapping(value = "/bookingList")
-//    public List<BookingDto> bookingList(@RequestParam("bookState") String bookState) {
-//        return bookingMapper.bookingList(bookState);
-//    }
+    @Autowired
+    LodgingMapper lodgingMapper;
 
     @RequestMapping(value = "/bookingList")
     public List<BookingDto> bookingList(BookingDto booking) {
@@ -48,36 +52,28 @@ public class HostUpdateController {
         return bookingMapper.HostBookingList(booking);
     }
 
-//    @RequestMapping(value = "/ReviewList")
-//    public List<ReviewDto> ReviewList(ReviewDto review) {
-//        return reviewMapper.ReviewList(review);
-//    }
-
     @RequestMapping(value = "/ReviewList")
     public List<ReviewDto> ReviewList(ReviewDto review) {
         return reviewService.ReviewList(review);
     }
 
-    @RequestMapping(value = "/ReviewListContent")
-    public List<ReviewDto> ReviewListContent() {
-        return reviewMapper.ReviewListContent();
+
+    // 후기 자세히보기
+    @RequestMapping(value = "/reviewListContent", method = RequestMethod.POST)
+    public ReviewDto reviewListContent(ReviewDto review) throws Exception {
+        System.out.println(review);
+        return hostUpdateService.reviewListContent(review);
     }
 
-
-
-
-    @RequestMapping(value = "/UpdateLanguage", method = RequestMethod.PUT)
-    public String UpdateLanguage(LodgingDto lodging) throws Exception {
-        hostUpdateService.UpdateLanguage(lodging);
-
-        return "redirect:/UpdateLodgingList";
+    @RequestMapping(value = "/updateLanguage", method = RequestMethod.PUT)
+    public void UpdateLanguage(LodgingDto lodging) throws Exception {
+        hostUpdateService.updateLanguage(lodging);
     }
 
     @RequestMapping(value = "/UpdateIntroHost", method = RequestMethod.PUT)
     public String UpdateIntroHost(LodgingDto lodging) throws Exception {
         hostUpdateService.UpdateIntroHost(lodging);
-
-        return "redirect:/UpdateLodgingList";
+        return null;
     }
 
     @RequestMapping(value = "/UpdateAgreeState", method = RequestMethod.PUT)
@@ -93,8 +89,6 @@ public class HostUpdateController {
 
         return "redirect:/UpdateLodgingList";
     }
-
-
 
 }
 

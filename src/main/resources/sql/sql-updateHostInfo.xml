@@ -4,11 +4,11 @@
 <mapper namespace="com.bearbnb.mapper.LodgingMapper">
 
     <!--    숙소 관련 정보 수정 하기 -->
-    <update id="LanguageUpdate" parameterType="com.bearbnb.dto.LodgingDto">
+    <update id="updateLanguage" parameterType="com.bearbnb.dto.LodgingDto">
         <![CDATA[
         update lodging
         set language = '${language}'
-        where user_Id = '${userId}'
+        where user_id = '${userId}'
         ]]>
     </update>
 

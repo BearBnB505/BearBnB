@@ -13,47 +13,61 @@ import {Auth} from "../Auth/Auth";
 
 
 function HostMyPageMain(props) {
-  // const location = useLocation();
-    //여기에요 여기!! 유저 아이디 넣어야 할 부분 !!!
-  // const userId = location.state.userId;
-  // console.log('userId: '+ userId);
+
     const {userId} = Auth();
+    const check = sessionStorage.getItem('check');
+    const [data, setData] = useState([]);
+    const [name, setName] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
 
-  const [data, setData] = useState([]);
-  const [name, setName] = useState([]);
+    const getHostData = () => {
+        setTimeout(() => {
+            axios.put('http://localhost:8080/getMemberData', null, {params: {userId: userId}})
+                .then((req) => {
+                    const {data} = req;
+                    setData(data);
+                    sessionStorage.setItem('check', 'pause');
+                })
+                .catch((err) => {
+                    console.log("통신 오류");
+                    console.log(err);
+                })
+        }, 500);
+    }
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/getMemberData',{params: {userId: userId}})
-      .then((req) => {
-        const {data} = req;
-        // console.log(data);
-        setData(data);
-        setName(data[0].name)
-      })
-      .catch((err) => {
-        // console.log("통신 오류");
-        // console.log(err);
-      })
-  }, []);
+    useEffect(() => {
+        if (check == 'done') {
+            getHostData();
+            return () => clearTimeout(getHostData);
+        }
+    }, [check]);
 
-    return (
+
+    useEffect(()=>{
+        const timer = setTimeout(() => {
+            setIsLoaded(true);
+        },2500);
+        return () => clearTimeout(timer);
+    }, []);
+
+    return isLoaded ? (
         <motion.div variants={Anima}
                     initial="hidden"
                     animate="visible"
                     exit="exit" className={"container mt-5"}>
             <div className={"row p-2 mb-5"}>
                 <h2 className={"fw-bold"}>호스트 마이페이지</h2>
-                <h5><strong>{name}</strong>, {userId}</h5>
+                <h5>
+                    {/*<strong>{data[0].name}&nbsp;</strong>*/}
+                    {userId}</h5>
             </div>
             <div className={"row"}>
                 {/*<Link className={"col-sm-4"} to={`/hostMyPageHostInfo/${userId}`} state={{userId: userId}}>*/}
                 <Link className={"col-sm-4"} to={`/hostMyPageHostInfo`} >
                     <Card id={"1"} icon={faUser} title={"호스트정보관리"} content={"소개, 사용언어 등을 수정합니다"}/>
                 </Link>
-
-                {/*<Link className={"col-sm-4"} to={`/hostMyPageLodging/${userId}`} state={{userId: userId}}>*/}
                 <Link className={"col-sm-4"} to={`/hostMyPageLodging`} >
-                {/*<Link style={styles.a} className={"col-sm-4"} to={"/hostMyPageLodging"}>*/}
+
                     <Card id={"2"} icon={faHouse} title={"숙소관리"} content={"새로운 숙소 등록, 등록된 숙소를 관리합니다."}/>
                 </Link>
 
@@ -71,13 +85,13 @@ function HostMyPageMain(props) {
                 </Link>
 
                 <Link className={"col-sm-4"} to={"/hostMyPageRevenue"}><Card id={"5"} icon={faSackDollar}
-                                                                         title={"매출관리"}
-                                                                         content={"달 별 매출 확인과 대금 신청을 할 수 있습니다."}/></Link>
+                                                                            title={"매출관리"}
+                                                                            content={"달 별 매출 확인과 대금 신청을 할 수 있습니다."}/></Link>
             </div>
 
             <Outlet/>
         </motion.div>
-    )
+    ) : <></>
 }
 
 function createCard(props) {

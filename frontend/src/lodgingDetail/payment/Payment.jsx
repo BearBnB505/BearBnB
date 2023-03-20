@@ -12,10 +12,6 @@ import {CheckToken} from "../../Auth/CheckToken";
 
 function Payment(props) {
 
-    // CheckToken();
-    // const isAuth = sessionStorage.getItem("isAuth");
-    // console.log(`isAuth : ${isAuth}`);
-
     const styles = {
         navDate: {
             width: 120
@@ -73,7 +69,8 @@ function Payment(props) {
         setIsLoad(true);
     }
 
-    // console.log(nightCount);
+    console.log("테스트")
+    // console.log(props.);
 
     const total = props.cost * nightCount;
     // console.log(total);
@@ -149,7 +146,7 @@ function Payment(props) {
 
                     {isLoad ?
                         <>
-                    <Link to={"/lodgingPayment"} state={{chooseDate: chooseDate, dayCost: props.cost, nightCount: nightCount, totalCost: total, selectGuest: selectGuest, lodgingNum :lodgingNum, lodgingName : props.lodgingName  }}>
+                    <Link to={"/lodgingPayment"} state={{chooseDate: chooseDate, dayCost: props.cost, nightCount: nightCount, totalCost: total, selectGuest: selectGuest, lodgingNum :lodgingNum, lodgingName : props.lodgingName , userId : props.userId }}>
                         <Button className={'w-100 py-2 mb-2'} variant="primary">예약하기</Button>
                     </Link>
 
